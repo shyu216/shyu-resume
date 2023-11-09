@@ -17,6 +17,11 @@ import {
   Users,
   Link,
   Bot,
+  GraduationCap,
+  Code,
+  School,
+  Building2,
+  LayoutTemplate
 } from "lucide-react";
 
 import type { LucideProps, LucideIcon } from "lucide-react";
@@ -41,4 +46,9 @@ export const Icons = {
   Users: Users,
   Link: Link,
   Bot: Bot,
+  GraduationCap: GraduationCap,
+  Code:Code,
+  School2:School,
+  Building:Building2,
+  LayoutTemplate:LayoutTemplate
 } as const;

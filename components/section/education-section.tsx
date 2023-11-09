@@ -5,12 +5,12 @@ import LabelWithGraphic from "@/components/label-with-graphic";
 const education: EducationProps[] = [
   {
     title: "BSc. Computer Science",
-    gpa: "GPA: 3.3/4.0, ELITE Stream, Honours, Second Class Upper Division",
+    gpa: "GPA: 3.3/4.0, ELITE Stream", //, Honours, Second Class Upper Division
     org: {
       name: "The Chinese University of Hong Kong",
-      logo: "/images/logos/ubc.svg",
+      logo: "/images/logos/cuhk.png",
     },
-    time: "Sep 2022 - Jul 2023",
+    time: "Sep 2019 - Jul 2023",
   },
 ];
 
@@ -23,19 +23,19 @@ function Education({ title, gpa, org, time }: EducationProps) {
             <span className="font-bold text-black dark:text-white">
               {title}
             </span>
-            <LabelWithGraphic icon={Icons.FileBadge} content={gpa} />
+            <LabelWithGraphic icon={Icons.GraduationCap} content={gpa} />
           </div>
           <span>{time}</span>
         </div>
-        <LabelWithGraphic image={org.logo} content={org.name} />
+        <LabelWithGraphic icon={Icons.School2} content={org.name} />
       </div>
       <div className="text-sm font-semibold md:hidden text-zinc-700 dark:text-zinc-300 mb-1">
         <div className="flex gap-x-4 flex-wrap justify-between">
           <div className="font-bold text-black dark:text-white">{title}</div>
-          <LabelWithGraphic icon={Icons.FileBadge} content={gpa} />
+          <LabelWithGraphic icon={Icons.GraduationCap} content={gpa} />
         </div>
         <div className="flex gap-x-4 flex-wrap justify-between">
-          <LabelWithGraphic image={org.logo} content={org.name} />
+          <LabelWithGraphic icon={Icons.School2} content={org.name} />
           <span className="text-right flex-1">{time}</span>
         </div>
       </div>
