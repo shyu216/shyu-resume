@@ -5,7 +5,7 @@ import LabelWithGraphic from "@/components/label-with-graphic";
 const education: EducationProps[] = [
   {
     title: "BSc. Computer Science",
-    gpa: "GPA: 3.3/4.0, ELITE Stream", //, Honours, Second Class Upper Division
+    gpa: "GPA: 3.4/4.0, ELITE Stream", //, Honours, Second Class Upper Division
     org: {
       name: "The Chinese University of Hong Kong",
       logo: "/images/logos/cuhk.png",

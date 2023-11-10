@@ -39,7 +39,7 @@ export default function SkillSection() {
     },
     {
       title: "Machine/Deep Learning",
-      description: "CUDA and PyTorch for construction and optimization.",
+      description: "PyTorch and CUDA for construction and optimization.",
     },
     {
       description: "Matplotlib and Open3D for visualization.",
