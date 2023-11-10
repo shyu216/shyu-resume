@@ -58,7 +58,7 @@ const exp: ExperienceProps[] = [
       <LabelWithGraphic icon={Icons.Building} content="ReCube, Hong Kong" />
     ),
     head3: (
-      <LabelWithGraphic icon={Icons.Stack} content="JavaScript, AWS" />
+      <LabelWithGraphic icon={Icons.Stack} content="Next.js, AWS" />
     ),
     head4: "Apr 2023 - Pres.",
     bulletPoints: [

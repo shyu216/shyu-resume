@@ -50,7 +50,7 @@ export default function SkillSection() {
     },
     {
       title: "Tools",
-      description: "VS Code, Git, Markdown, and LaTex.",
+      description: "VS Code, Git, Docker, Markdown, and LaTex.",
     },
   ]
 
