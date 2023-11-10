@@ -1,8 +1,12 @@
+"use client";
+
 import Section from "./section";
 import { Icons } from "@/components/icons";
 import LabelWithGraphic from "@/components/label-with-graphic";
+import { useContext } from "react";
+import { LanguageContext } from "../lang/language-provider";
 
-const education: EducationProps[] = [
+const education_en: EducationProps[] = [
   {
     title: "BSc. Computer Science",
     gpa: "GPA: 3.4/4.0, ELITE Stream", //, Honours, Second Class Upper Division
@@ -11,6 +15,18 @@ const education: EducationProps[] = [
       logo: "/images/logos/cuhk.png",
     },
     time: "Sep 2019 - Jul 2023",
+  },
+];
+
+const education_zh: EducationProps[] = [
+  {
+    title: "计算机科学学士",
+    gpa: "GPA: 3.4/4.0, ELITE 流", //, Honours, Second Class Upper Division
+    org: {
+      name: "香港中文大学",
+      logo: "/images/logos/cuhk.png",
+    },
+    time: "2019年9月 - 2023年7月",
   },
 ];
 
@@ -44,8 +60,12 @@ function Education({ title, gpa, org, time }: EducationProps) {
 }
 
 export default function EducationSection() {
+  const { language } = useContext(LanguageContext);
+  const education = language === "en" ? education_en : education_zh;
+  const title = language === "en" ? "Education" : "教育经历";
+
   return (
-    <Section title="EDUCATION">
+    <Section title={title}>
       <div className="flex flex-col gap-y-1">
         {education.map((e, index) => (
           <Education key={index} {...e} />

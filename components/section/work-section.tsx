@@ -1,9 +1,13 @@
+"use client";
+
 import Section from "./section";
 import Experience from "@/components/experience";
 import LabelWithGraphic from "@/components/label-with-graphic";
 import { Icon, Icons } from "@/components/icons";
 import { ImageProps } from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import { LanguageContext } from "../lang/language-provider";
 
 type CompanyLabelProps = {
   icon?: Icon;
@@ -29,7 +33,7 @@ function CompanyLabel({ icon, image, content, link }: CompanyLabelProps) {
   );
 }
 
-const exp: ExperienceProps[] = [
+const exp_en: ExperienceProps[] = [
   // {
   //   head1: "Software Engineer",
   //   head2: <LabelWithGraphic icon={Icons.Stack} content="JavaScript, AWS" />,
@@ -96,9 +100,32 @@ const exp: ExperienceProps[] = [
   },
 ];
 
+const exp_zh: ExperienceProps[] = [
+  {
+    head1: "全栈开发工程师",
+    head2: (
+      <CompanyLabel icon={Icons.Building} content="ReCube, 香港" link="https://www.re3.world" />
+    ),
+    head3: (
+      <LabelWithGraphic icon={Icons.Stack} content="Next.js, AWS" />
+    ),
+    head4: "2023年4月 - 现在",
+    bulletPoints: [
+      "情况：与CTO和CEO合作，开发一个可重复使用的餐具借用程序，包括一对网络应用程序和数据库。",
+      "任务：协助开发和维护程序的软件应用和数据库。",
+      "行动：与团队紧密合作，定义、设计和发布新功能，以及识别和解决软件错误。",
+      "结果：实施并部署了关键功能以增强用户体验，如用户认证、支付集成、相机扫描和电子邮件通知，确保应用程序的稳定性并最大化用户满意度。",
+    ],
+  },
+];
+
 export default function WorkSection() {
+  const { language } = useContext(LanguageContext);
+  const exp = language === "en" ? exp_en : exp_zh;
+  const title = language === "en" ? "WORK EXPERIENCE" : "工作经历";
+
   return (
-    <Section title="WORK EXPERIENCE">
+    <Section title={title}>
       <div className="flex flex-col gap-y-1">
         {exp.map((e, index) => (
           <Experience key={index} {...e} />

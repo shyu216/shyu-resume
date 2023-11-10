@@ -1,11 +1,15 @@
+"use client";
+
 import Section from "./section";
 import Experience from "@/components/experience";
 import LabelWithGraphic from "@/components/label-with-graphic";
 import { Icons } from "@/components/icons";
 import Link from "next/link";
 import { type ImageProps } from "next/image";
-import { headers } from "next/headers";
+// import { headers } from "next/headers";
 import { type Icon } from "@/components/icons";
+import { useContext } from "react";
+import { LanguageContext } from "../lang/language-provider";
 
 type ProjectTitleProps = {
   image?: ImageProps["src"];
@@ -14,19 +18,19 @@ type ProjectTitleProps = {
   link: string;
 };
 
-async function getStarNumber(owner: string, repo: string) {
-  const host = headers().get("host");
-  const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
-  const queryParams = new URLSearchParams({ owner, repo }).toString();
-  const res = await fetch(
-    `${protocol}://${host}/api/github/star?${queryParams}`,
-    {
-      cache: "no-cache",
-    }
-  );
-  const { starNumber } = await res.json();
-  return starNumber;
-}
+// async function getStarNumber(owner: string, repo: string) {
+//   const host = headers().get("host");
+//   const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
+//   const queryParams = new URLSearchParams({ owner, repo }).toString();
+//   const res = await fetch(
+//     `${protocol}://${host}/api/github/star?${queryParams}`,
+//     {
+//       cache: "no-cache",
+//     }
+//   );
+//   const { starNumber } = await res.json();
+//   return starNumber;
+// }
 
 function ProjectTitle({ icon, image, title, link }: ProjectTitleProps) {
   return (
@@ -45,8 +49,10 @@ function ProjectTitle({ icon, image, title, link }: ProjectTitleProps) {
   );
 }
 
-export default async function ProjectSection() {
-  const exp: ExperienceProps[] = [
+export default function ProjectSection() {
+  const { language } = useContext(LanguageContext);
+
+  const exp_en: ExperienceProps[] = [
     // {
     //   head1: (
     //     <ProjectTitle
@@ -117,8 +123,38 @@ export default async function ProjectSection() {
     }
   ];
 
+  const exp_zh: ExperienceProps[] = [
+    {
+      head1: (<ProjectTitle title="3D物体检测" icon={Icons.Code} link="https://github.com/shyu216/DPC" />),
+      head2: <LabelWithGraphic content="毕业设计项目" />,
+      head3: <LabelWithGraphic icon={Icons.Stack} content="Python, Pytorch, Open3D" />,
+      head4: "2022年9月 - 2023年5月",
+      bulletPoints: [
+        "情况：现有的3D物体检测方法在预测点较少的物体的边界框时，精度较低，限制了当前检测器的性能。",
+        "任务：通过使用两分支神经网络架构，整合通过深度完成方法生成的密集点云，以提高3D检测器的性能。",
+        "行动：进行了广泛的研究，实现了神经网络，并与我的导师和同伴合作验证了这种方法。",
+        "结果：与基线方法相比，提高了汽车的检测精度5.70%，行人11.38%，自行车0.41%。",
+      ],
+    },
+    {
+      head1: (<ProjectTitle title="画图猜词游戏" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
+      head2: <LabelWithGraphic content="软件工程项目" />,
+      head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, NodeJS, ExpressJS" />,
+      head4: "2022年1月 - 2022年5月",
+      bulletPoints: [
+        `情况：作为"画图猜词游戏"项目的团队一员，目标是创建一个引人入胜、互动性强的网络应用程序。`,
+        "任务：贡献应用程序的设计和开发，包括数据库、用户登录和个人资料界面以及路由系统。",
+        "行动：与团队合作编写了详尽的规格文档，设计和实现了用户友好的界面，并使用NodeJS和ExpressJS开发了健壮的路由系统。",
+        `结果：成功在AWS EC2上发布了"画图猜词游戏"应用程序的演示。`,
+      ]
+    }
+  ];
+
+  const exp = language === "en" ? exp_en : exp_zh;
+  const title = language === "en" ? "PROJECT" : "项目经历";
+
   return (
-    <Section title="PROJECT">
+    <Section title={title}>
       <div className="flex flex-col gap-y-1">
         {exp.map((e, index) => (
           <Experience key={index} {...e} />

@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { Container } from "./container";
 import Link from "next/link";
+import { LanguageSwitcher } from "./lang/language-switcher";
 
 export function Header() {
   return (
@@ -19,9 +20,16 @@ export function Header() {
             />
           </Link>
         </div>
-        <div className="pointer-events-auto">
-          <ThemeSwitcher />
+        <div className="relative flex">
+          <div className="pointer-events-auto mr-4">
+            <LanguageSwitcher />
+          </div>
+          <div className="pointer-events-auto">
+            <ThemeSwitcher />
+          </div>
         </div>
+
+
       </nav>
     </Container>
   );

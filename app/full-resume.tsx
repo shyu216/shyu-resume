@@ -1,5 +1,7 @@
+"use client";
+
 import { Container } from "@/components/container";
-import React from "react";
+import React, { useContext } from "react";
 import ActionButton from "@/components/action-button";
 import Motion from "@/components/motion";
 import HeaderSection from "@/components/section/header-section";
@@ -7,6 +9,7 @@ import SkillSection from "@/components/section/skill-section";
 import WorkSection from "@/components/section/work-section";
 import ProjectSection from "@/components/section/project-section";
 import EducationSection from "@/components/section/education-section";
+import { LanguageContext } from "@/components/lang/language-provider";
 
 type Props = {
   usage: "live" | "pdf";
@@ -26,6 +29,8 @@ type AnimatedComponent = {
 };
 
 export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
+  const { language } = useContext(LanguageContext);
+
   const animatedComponents: AnimatedComponent[] = [
     { component: HeaderSection, props: { usage }, delay: 0.1 },
     { component: EducationSection, delay: 0.3 },
@@ -52,7 +57,7 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
       {usage === "live" && (
         <div className="flex sm:hidden justify-center mt-10">
           <ActionButton
-            text="Download Resume"
+            text={language === "en" ? "Download PDF" : "下載 PDF"}
             className="block sm:hidden"
             usage="live"
           />

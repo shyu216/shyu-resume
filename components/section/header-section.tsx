@@ -1,14 +1,20 @@
+"use client";
+
 import { Icons } from "@/components/icons";
 import { SocialLink } from "@/components/social-link";
 import Link from "next/link";
 import ActionButton from "@/components/action-button";
 import { cn } from "@/lib/utils";
+import { useContext } from "react";
+import { LanguageContext } from "../lang/language-provider";
 
 type Props = {
   usage: "live" | "pdf";
 };
 
 export default function HeaderSection({ usage }: Props) {
+  const { language } = useContext(LanguageContext);
+
   return (
     <section>
       <div className="flex justify-between items-center">
@@ -28,7 +34,10 @@ export default function HeaderSection({ usage }: Props) {
           /> */}
         </div>
         <ActionButton
-          text={usage === "live" ? "Download Resume" : "View Live Resume"}
+          text={usage === "live" ?
+            (language === "en" ? "Download Resume" : "下载简历")
+            :
+            (language === "en" ? "View Live Resume" : "查看在线简历")}
           usage={usage}
           className={cn(usage === "live" && "hidden sm:block")}
         />
