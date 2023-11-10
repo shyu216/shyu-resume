@@ -31,7 +31,7 @@ export default function Experience({
           <div>{head4}</div>
         </div>
       </div>
-      
+
       <ul className="text-sm list-disc ml-4 text-zinc-600 dark:text-zinc-400">
         {bulletPoints.map((point, index) => (
           <li key={index}>{point}</li>

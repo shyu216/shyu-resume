@@ -1,7 +1,33 @@
 import Section from "./section";
 import Experience from "@/components/experience";
 import LabelWithGraphic from "@/components/label-with-graphic";
-import { Icons } from "@/components/icons";
+import { Icon, Icons } from "@/components/icons";
+import { ImageProps } from "next/image";
+import Link from "next/link";
+
+type CompanyLabelProps = {
+  icon?: Icon;
+  image?: ImageProps["src"];
+  content: string;
+  link: string;
+};
+
+function CompanyLabel({ icon, image, content, link }: CompanyLabelProps) {
+  return (
+    <Link
+      href={link}
+      target="_blank"
+      className="flex items-center gap-x-1 group"
+    >
+      {icon && <LabelWithGraphic icon={icon} content={content} />}
+      {image && <LabelWithGraphic image={image} content={content} />}
+      <Icons.Link
+        size={12}
+        className="text-zinc-400 transition group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-200 group-hover:animate-shake"
+      />
+    </Link>
+  );
+}
 
 const exp: ExperienceProps[] = [
   // {
@@ -55,7 +81,7 @@ const exp: ExperienceProps[] = [
   {
     head1: "Full Stack Developer",
     head2: (
-      <LabelWithGraphic icon={Icons.Building} content="ReCube, Hong Kong" />
+      <CompanyLabel icon={Icons.Building} content="ReCube, Hong Kong" link="https://www.re3.world" />
     ),
     head3: (
       <LabelWithGraphic icon={Icons.Stack} content="Next.js, AWS" />
