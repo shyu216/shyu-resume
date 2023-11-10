@@ -62,10 +62,10 @@ const exp: ExperienceProps[] = [
     ),
     head4: "Apr 2023 - Pres.",
     bulletPoints: [
-      "Situation: Collaborate with the CTO and CEO on a reusable tableware borrowing program with an integrated app and database.",
+      "Situation: Collaborate with the CTO and CEO on a reusable tableware borrowing program with a pair of web applications and database.",
       "Task: To assist in the development and maintenance of the program's software applications and database.",
-      "Action: Worked closely with the team to identify and resolve software bugs, ensuring improved application stability and user satisfaction.",
-      "Result: Successfully resolved software bugs, resulting in enhanced application stability and increased user satisfaction.",
+      "Action: Worked closely with the team to define, design, and ship new features, and to identify and resolve software bugs.",
+      "Result: Implemented and deployed critical features to enhance user experience, such as user authentication, payment integration, camera scanning, and email notifications, ensuring application stability and maximizing user satisfaction.",
     ],
   },
 ];

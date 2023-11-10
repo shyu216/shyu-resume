@@ -20,6 +20,8 @@ export default function PrintProvider({
 }: {
   children: React.ReactNode;
 }) {
+
+
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
     // wait animation or image loading for a while before printing?
@@ -33,6 +35,8 @@ export default function PrintProvider({
     onPrintError: (error) => console.log(error),
 
     content: () => componentRef.current,
+
+    copyStyles: true,
   });
 
   return (

@@ -111,7 +111,7 @@ export default async function ProjectSection() {
       bulletPoints: [
         `Situation: As part of a team working on the "Draw & Guess Game" project, aimed to create an engaging and interactive web application.`,
         "Task: To contribute to the design and development of the application, including the database, user login and profile interfaces, and routing system.",
-        "Action: Collaborated with the team to write a thorough specification document, designed and implemented user-friendly login and profile interfaces, and developed a robust routing system using NodeJS and ExpressJS.",
+        "Action: Collaborated with the team to write a thorough specification document, designed and implemented user-friendly interfaces, and developed a robust routing system using NodeJS and ExpressJS.",
         `Result: Successfully launched a demo of the "Draw & Guess Game" application on AWS EC2.`,
       ]
     }

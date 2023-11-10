@@ -28,10 +28,10 @@ type AnimatedComponent = {
 export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
   const animatedComponents: AnimatedComponent[] = [
     { component: HeaderSection, props: { usage }, delay: 0.1 },
-    { component: SkillSection, delay: 0.3 },
+    { component: EducationSection, delay: 0.3 },
     { component: WorkSection, delay: 0.5 },
     { component: ProjectSection, delay: 0.7 },
-    { component: EducationSection, delay: 0.9 },
+    { component: SkillSection, delay: 0.9 },
   ];
   return (
     <Container
