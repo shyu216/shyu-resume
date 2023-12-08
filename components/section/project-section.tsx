@@ -104,7 +104,7 @@ export default function ProjectSection() {
       head3: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
       head4: "Dec 2023 - Pres.",
       bulletPoints: [
-        "Situation: The goal was to create a user-friendly way for people to access and appreciate Chinese classical poetry.",
+        "Situation: To create a user-friendly way for people to access and appreciate Chinese classical poetry.",
         "Task: Design and implement the application's user interface, integrate the chinese-poetry database.",
         "Action: Developed this application using React Native and SQLite, and implemented features such as poetry display, random refresh, and history rollback.",
         "Result: Published the source code on GitHub and released a downloadable Android application.",]
