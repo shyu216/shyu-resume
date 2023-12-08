@@ -100,7 +100,7 @@ export default function ProjectSection() {
 
     {
       head1: (<ProjectTitle title="Poetry Card" icon={Icons.SmartPhone} link="https://github.com/shyu216/ShiYin-Poem-RN" />),
-      head2: <LabelWithGraphic content="GitHub Repo." />,
+      head2: <LabelWithGraphic content="Open Source" />,
       head3: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
       head4: "Dec 2023 - Pres.",
       bulletPoints: [
@@ -123,7 +123,7 @@ export default function ProjectSection() {
     },
     {
       head1: (<ProjectTitle title="Draw & Guess Game" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
-      head2: <LabelWithGraphic content="Software Engineering Project" />,
+      head2: <LabelWithGraphic content="Course Project" />,
       head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, NodeJS, ExpressJS" />,
       head4: "Jan 2022 - May 2022",
       bulletPoints: [
@@ -138,7 +138,7 @@ export default function ProjectSection() {
   const exp_zh: ExperienceProps[] = [
     {
       head1: (<ProjectTitle title="诗词卡片应用" icon={Icons.SmartPhone} link="https://github.com/shyu216/ShiYin-Poem-RN" />),
-      head2: <LabelWithGraphic content="GitHub 项目" />,
+      head2: <LabelWithGraphic content="开源项目" />,
       head3: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
       head4: "2023年12月 - 现在",
       bulletPoints: [
@@ -150,7 +150,7 @@ export default function ProjectSection() {
     },
     {
       head1: (<ProjectTitle title="3D物体检测" icon={Icons.Code} link="https://github.com/shyu216/DPC" />),
-      head2: <LabelWithGraphic content="毕业设计项目" />,
+      head2: <LabelWithGraphic content="毕业设计" />,
       head3: <LabelWithGraphic icon={Icons.Stack} content="Python, Pytorch, Open3D" />,
       head4: "2022年9月 - 2023年5月",
       bulletPoints: [
@@ -162,7 +162,7 @@ export default function ProjectSection() {
     },
     {
       head1: (<ProjectTitle title="画图猜词游戏" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
-      head2: <LabelWithGraphic content="软件工程项目" />,
+      head2: <LabelWithGraphic content="课程项目" />,
       head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, NodeJS, ExpressJS" />,
       head4: "2022年1月 - 2022年5月",
       bulletPoints: [
