@@ -97,6 +97,16 @@ export default function ProjectSection() {
     //     "Enhanced resume with React, featuring responsive/interactive design, dark mode, showing real-time API data, and even integrating GPT etc.",
     //   ],
     // },
+
+    {  head1: (<ProjectTitle title="Poetry Card" icon={Icons.SmartPhone} link="https://github.com/shyu216/ShiYin-Poem-RN" />),
+    head2: <LabelWithGraphic content="GitHub Repo." />,
+    head3: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
+    head4: "Dec 2023 - Pres.",
+    bulletPoints: [ 
+      "Situation: The goal was to create a user-friendly way for people to access and appreciate Chinese classical poetry.", 
+      "Task: Design and implement the application's user interface, integrate the chinese-poetry database.", 
+      "Action: Developed this application using React Native and SQLite, and implemented features such as poetry display, random refresh, and history rollback.", 
+      "Result: Published the source code on GitHub and released a downloadable Android application.", ] },
     {
       head1: (<ProjectTitle title="3D Object Detection" icon={Icons.Code} link="https://github.com/shyu216/DPC" />),
       head2: <LabelWithGraphic content="Final Year Project" />,
@@ -118,12 +128,24 @@ export default function ProjectSection() {
         `Situation: As part of a team working on the "Draw & Guess Game" project, aimed to create an engaging and interactive web application.`,
         "Task: To contribute to the design and development of the application, including the database, user login and profile interfaces, and routing system.",
         "Action: Collaborated with the team to write a thorough specification document, designed and implemented user-friendly interfaces, and developed a robust routing system using NodeJS and ExpressJS.",
-        `Result: Successfully launched a demo of the "Draw & Guess Game" application on AWS EC2.`,
+        `Result: Deployed to  AWS EC2, and successfully launched a demo of the "Draw & Guess Game" application among 4 computers.`,
       ]
     }
   ];
 
   const exp_zh: ExperienceProps[] = [
+    {
+      head1: (<ProjectTitle title="诗词卡片应用" icon={Icons.SmartPhone} link="https://github.com/shyu216/ShiYin-Poem-RN" />),
+      head2: <LabelWithGraphic content="GitHub 项目" />,
+      head3: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
+      head4: "2023年12月 - 现在",
+      bulletPoints: [
+        `情况：目标是创建一个用户友好的方式让人们能够接触和欣赏中国古典诗词。`,
+        "任务：设计和实现应用的用户界面，集成 chinese-poetry 数据库。",
+        "行动：使用 React Native 和 SQLite 开发了这个应用，并实现了诗词的展示、随机刷新和历史回滚等功能。",
+        "结果：在 GitHub 上发布了源代码，并发布了一个可供下载的 Android 应用。",
+      ]
+    },
     {
       head1: (<ProjectTitle title="3D物体检测" icon={Icons.Code} link="https://github.com/shyu216/DPC" />),
       head2: <LabelWithGraphic content="毕业设计项目" />,
@@ -145,9 +167,9 @@ export default function ProjectSection() {
         `情况：作为"画图猜词游戏"项目的团队一员，目标是创建一个引人入胜、互动性强的网络应用程序。`,
         "任务：贡献应用程序的设计和开发，包括数据库、用户登录和个人资料界面以及路由系统。",
         "行动：与团队合作编写了详尽的规格文档，设计和实现了用户友好的界面，并使用NodeJS和ExpressJS开发了健壮的路由系统。",
-        `结果：成功在AWS EC2上发布了"画图猜词游戏"应用程序的演示。`,
+        `结果：在 AWS EC2 上部署，并成功在4台计算机之间启动了一个演示游戏。`,
       ]
-    }
+    },
   ];
 
   const exp = language === "en" ? exp_en : exp_zh;
