@@ -22,7 +22,7 @@ import {
   School,
   Building2,
   LayoutTemplate,
-  SmartPhone
+  Smartphone
 } from "lucide-react";
 
 import type { LucideProps, LucideIcon } from "lucide-react";
@@ -52,5 +52,5 @@ export const Icons = {
   School2:School,
   Building:Building2,
   LayoutTemplate:LayoutTemplate,
-  SmartPhone:SmartPhone
+  SmartPhone:Smartphone
 } as const;
