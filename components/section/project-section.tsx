@@ -143,8 +143,8 @@ export default function ProjectSection() {
       head4: "2023年12月 - 现在",
       bulletPoints: [
         `情况：目标是创建一个用户友好的方式让人们能够接触和欣赏中国古典诗词。`,
-        "任务：设计和实现应用的用户界面，集成 chinese-poetry 数据库。",
-        "行动：使用 React Native 和 SQLite 开发了这个应用，并实现了诗词的展示、随机刷新和历史回滚等功能。",
+        "任务：设计和实现应用的用户界面，集成 chinese-poetry 开源数据集。",
+        "行动：使用 React Native 和 SQLite 进行开发，实现了诗词的展示、随机刷新和历史回滚等功能。",
         "结果：在 GitHub 上发布了源代码，并发布了一个可供下载的 Android 应用。",
       ]
     },
@@ -163,12 +163,12 @@ export default function ProjectSection() {
     {
       head1: (<ProjectTitle title="画图猜词游戏" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
       head2: <LabelWithGraphic content="课程项目" />,
-      head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, NodeJS, ExpressJS" />,
+      head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, ExpressJS, NodeJS" />,
       head4: "2022年1月 - 2022年5月",
       bulletPoints: [
-        `情况：作为"画图猜词游戏"项目的团队一员，目标是创建一个引人入胜、互动性强的网络应用程序。`,
+        `情况：作为"画图猜词游戏"项目的团队一员，目标是创建一个有趣、互动性强的网络应用程序。`,
         "任务：贡献应用程序的设计和开发，包括数据库、用户登录和个人资料界面以及路由系统。",
-        "行动：与团队合作编写了详尽的规格文档，设计和实现了用户友好的界面，并使用NodeJS和ExpressJS开发了健壮的路由系统。",
+        "行动：与团队合作编写了详尽的规格文档，并使用 NodeJS 设计和开发了友好的界面和健壮的路由系统。",
         `结果：在 AWS EC2 上部署，并成功在4台计算机之间启动了一个演示游戏。`,
       ]
     },
