@@ -106,7 +106,7 @@ export default function ProjectSection() {
       bulletPoints: [
         "Situation: To create a user-friendly way for people to access and appreciate Chinese classical poetry.",
         "Task: Design and implement the application's user interface, integrate the chinese-poetry database.",
-        "Action: Developed this application using React Native and SQLite, and implemented features such as poetry display, random refresh, and history rollback.",
+        "Action: Developed this application using React Native and SQLite, and implemented features including poetry display, random refresh, and history rollback.",
         "Result: Published the source code on GitHub and released a downloadable Android application.",]
     },
     {
@@ -116,7 +116,7 @@ export default function ProjectSection() {
       head4: "Sep 2022 - May 2023",
       bulletPoints: [
         "Situation: Existing 3D object detection methods struggled to predict accurate bounding boxes for objects with fewer points, limiting current detectors' performance.",
-        "Task: To enhance 3D detectors by integrating densified point clouds generated through depth completion methods using a two-branch neural network architecture.",
+        "Task: Enhance 3D detectors by integrating densified point clouds generated through depth completion methods using a two-branch neural network architecture.",
         "Action: Conducted extensive research, implemented the neural network, and collaborated with my advisor and peers to validate the approach.",
         "Result: Improved detection accuracy by 5.70% for cars, 11.38% for pedestrians, and 0.41% for cyclists compared to the baseline method.",
       ],
@@ -124,13 +124,13 @@ export default function ProjectSection() {
     {
       head1: (<ProjectTitle title="Draw & Guess Game" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
       head2: <LabelWithGraphic content="Course Project" />,
-      head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, NodeJS, ExpressJS" />,
+      head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, ExpressJS, NodeJS" />,
       head4: "Jan 2022 - May 2022",
       bulletPoints: [
-        `Situation: As part of a team working on the "Draw & Guess Game" project, aimed to create an engaging and interactive web application.`,
-        "Task: To contribute to the design and development of the application, including the database, user login and profile interfaces, and routing system.",
+        "Situation: As part of a team to create an engaging and interactive web application.",
+        "Task: Contribute to the design and development of the application, including the database, user login and profile interfaces, and routing system.",
         "Action: Collaborated with the team to write a thorough specification document, designed and implemented user-friendly interfaces, and developed a robust routing system using NodeJS and ExpressJS.",
-        `Result: Deployed to  AWS EC2, and successfully launched a demo of the "Draw & Guess Game" application among 4 computers.`,
+        "Result: Deployed to  AWS EC2, and successfully launched a demo among 4 computers.",
       ]
     }
   ];
@@ -142,7 +142,7 @@ export default function ProjectSection() {
       head3: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
       head4: "2023年12月 - 现在",
       bulletPoints: [
-        `情况：目标是创建一个用户友好的方式让人们能够接触和欣赏中国古典诗词。`,
+        "情况：目标是创建一个用户友好的方式让人们能够接触和欣赏中国古典诗词。",
         "任务：设计和实现应用的用户界面，集成 chinese-poetry 开源数据集。",
         "行动：使用 React Native 和 SQLite 进行开发，实现了诗词的展示、随机刷新和历史回滚等功能。",
         "结果：在 GitHub 上发布了源代码，并发布了一个可供下载的 Android 应用。",
@@ -166,10 +166,10 @@ export default function ProjectSection() {
       head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, ExpressJS, NodeJS" />,
       head4: "2022年1月 - 2022年5月",
       bulletPoints: [
-        `情况：作为"画图猜词游戏"项目的团队一员，目标是创建一个有趣、互动性强的网络应用程序。`,
-        "任务：贡献应用程序的设计和开发，包括数据库、用户登录和个人资料界面以及路由系统。",
+        "情况：作为团队一员，创建一个有趣、互动性强的网络应用程序。",
+        "任务：设计和开发应用程序，包括数据库、用户登录和个人资料界面以及路由系统。",
         "行动：与团队合作编写了详尽的规格文档，并使用 NodeJS 设计和开发了友好的界面和健壮的路由系统。",
-        `结果：在 AWS EC2 上部署，并成功在4台计算机之间启动了一个演示游戏。`,
+        "结果：在 AWS EC2 上部署，并成功在4台计算机之间启动了一个演示游戏。",
       ]
     },
   ];
