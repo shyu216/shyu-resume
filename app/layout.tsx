@@ -36,7 +36,7 @@ export default function RootLayout({
               </div>
             </div>
 
-            <div className="relative text-zinc-800 dark:text-zinc-200">
+            <div className="relative text-zinc-600 dark:text-zinc-200">
               <Header />
               <main>{children}</main>
               <Footer />
