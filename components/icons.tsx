@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Sun,
   MoonStar,
@@ -8,7 +7,6 @@ import {
   Mail,
   Linkedin,
   Briefcase,
-  School2,
   ExternalLink,
   PhoneCall,
   Layers,
@@ -22,10 +20,11 @@ import {
   School,
   Building2,
   LayoutTemplate,
-  Smartphone
+  Smartphone,
+  MessagesSquare
 } from "lucide-react";
 
-import type { LucideProps, LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 export type Icon = LucideIcon;
 
@@ -38,7 +37,7 @@ export const Icons = {
   Mail: Mail,
   Linkedin: Linkedin,
   Briefcase: Briefcase,
-  School: School2,
+  School: School,
   OpenLink: ExternalLink,
   PhoneCall: PhoneCall,
   Stack: Layers,
@@ -48,9 +47,9 @@ export const Icons = {
   Link: Link,
   Bot: Bot,
   GraduationCap: GraduationCap,
-  Code:Code,
-  School2:School,
-  Building:Building2,
-  LayoutTemplate:LayoutTemplate,
-  SmartPhone:Smartphone
+  Code: Code,
+  Building: Building2,
+  LayoutTemplate: LayoutTemplate,
+  SmartPhone: Smartphone,
+  Wechat: MessagesSquare,
 } as const;

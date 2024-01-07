@@ -9,8 +9,8 @@ import LanguageProvider from "@/components/lang/language-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "YU Si Hong Resume",
-  description: "Powered by React-to-Print, Next.js, Tailwind CSS",
+  title: "YU's Resume",
+  description: "YU Si Hong's Resume",
 };
 
 export default function RootLayout({
