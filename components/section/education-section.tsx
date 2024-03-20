@@ -51,26 +51,14 @@ const education_zh: EducationProps[] = [
 function Education({ title, gpa, org, time }: EducationProps) {
   return (
     <section className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-      <div className="hidden md:block">
-        <div className="text-sm font-semibold flex flex-wrap justify-between text-zinc-700 dark:text-zinc-300">
-          <div className="flex gap-x-4 flex-wrap">
-            <span className="font-bold text-black dark:text-white">
-              {title}
-            </span>
-            <LabelWithGraphic icon={Icons.GraduationCap} content={gpa} />
-          </div>
-          <span>{time}</span>
-        </div>
-        <LabelWithGraphic icon={Icons.School2} content={org.name} />
-      </div>
-      <div className="text-sm font-semibold md:hidden text-zinc-700 dark:text-zinc-300 mb-1">
+      <div className="text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
         <div className="flex gap-x-4 flex-wrap justify-between">
           <div className="font-bold text-black dark:text-white">{title}</div>
-          <LabelWithGraphic icon={Icons.GraduationCap} content={gpa} />
+          <span className="text-right">{time}</span>
         </div>
         <div className="flex gap-x-4 flex-wrap justify-between">
-          <LabelWithGraphic icon={Icons.School2} content={org.name} />
-          <span className="text-right flex-1">{time}</span>
+          <LabelWithGraphic icon={Icons.School} content={org.name} />
+          <LabelWithGraphic icon={Icons.GraduationCap} content={gpa} />
         </div>
       </div>
     </section>

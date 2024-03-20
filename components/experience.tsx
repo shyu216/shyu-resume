@@ -7,27 +7,13 @@ export default function Experience({
 }: ExperienceProps) {
   return (
     <section>
-      <div className="text-sm font-semibold hidden md:flex justify-between flex-wrap text-zinc-700 dark:text-zinc-300">
-        <div className="flex gap-x-4 flex-wrap">
+      <div className="text-sm text-zinc-700 dark:text-zinc-300 mb-1">
+        <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="font-bold text-black dark:text-white">{head1}</div>
-          <div>{head3}</div>
-        </div>
-        <div>{head4}</div>
-      </div>
-      <div className="text-sm font-semibold hidden md:flex justify-between flex-wrap text-zinc-700 dark:text-zinc-300">
-        <div className="flex gap-x-4 flex-wrap">
           <div>{head2}</div>
         </div>
-      </div>
-
-
-      <div className="text-sm font-semibold md:hidden text-zinc-700 dark:text-zinc-300 mb-1">
         <div className="flex gap-x-4 flex-wrap justify-between">
-          <div className="font-bold text-black dark:text-white">{head1}</div>
           <div>{head3}</div>
-        </div>
-        <div className="flex gap-x-4 flex-wrap justify-between">
-          <div>{head2}</div>
           <div>{head4}</div>
         </div>
       </div>
