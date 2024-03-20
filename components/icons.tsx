@@ -1,4 +1,6 @@
 import {
+  PackageOpen,
+  BookOpen,
   Sun,
   MoonStar,
   Zap,
@@ -29,6 +31,8 @@ import type { LucideIcon } from "lucide-react";
 export type Icon = LucideIcon;
 
 export const Icons = {
+  PackageOpen: PackageOpen,
+  BookOpen: BookOpen,
   Sun: Sun,
   Moon: MoonStar,
   Lightning: Zap,

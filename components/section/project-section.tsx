@@ -4,71 +4,31 @@ import Section from "./section";
 import Experience from "@/components/experience";
 import LabelWithGraphic from "@/components/label-with-graphic";
 import { Icons } from "@/components/icons";
-import Link from "next/link";
-import { type ImageProps } from "next/image";
-// import { headers } from "next/headers";
-import { type Icon } from "@/components/icons";
+import Title from "@/components/label-with-link";
 import { useContext } from "react";
 import { LanguageContext } from "../lang/language-provider";
 import { now } from "@/lib/now-utils";
-
-type ProjectTitleProps = {
-  image?: ImageProps["src"];
-  icon?: Icon;
-  title: string;
-  link: string;
-};
-
-// async function getStarNumber(owner: string, repo: string) {
-//   const host = headers().get("host");
-//   const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
-//   const queryParams = new URLSearchParams({ owner, repo }).toString();
-//   const res = await fetch(
-//     `${protocol}://${host}/api/github/star?${queryParams}`,
-//     {
-//       cache: "no-cache",
-//     }
-//   );
-//   const { starNumber } = await res.json();
-//   return starNumber;
-// }
-
-function ProjectTitle({ icon, image, title, link }: ProjectTitleProps) {
-  return (
-    <Link
-      href={link}
-      target="_blank"
-      className="flex items-center gap-x-1 group"
-    >
-      {icon && <LabelWithGraphic icon={icon} content={title} />}
-      {image && <LabelWithGraphic image={image} content={title} />}
-      <Icons.Link
-        size={12}
-        className="text-zinc-400 transition group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-200 group-hover:animate-shake"
-      />
-    </Link>
-  );
-}
 
 export default function ProjectSection() {
   const { language } = useContext(LanguageContext);
 
   const exp_en: ExperienceProps[] = [
+    // {
+    //   head1: "Poetry Card",
+    //   head2: <Title title="Open-source Project" icon={Icons.SmartPhone} link="https://github.com/shyu216/ShiYin-Poem-RN" />,
+    //   head3: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
+    //   head4: "Dec 2023 - " + now("en"),
+    //   bulletPoints: [
+    //     "To create a user-friendly way for people to access and appreciate Chinese classical poetry.",
+    //     "Design and implement the application's user interface, integrate the chinese-poetry database.",
+    //     "Developed this application using React Native and SQLite, and implemented features including poetry display, random refresh, and history rollback.",
+    //     "Published the source code on GitHub and released a downloadable Android application."
+    //   ,]
+    // },
     {
-      head1: <ProjectTitle title="Poetry Card" icon={Icons.SmartPhone} link="https://github.com/shyu216/ShiYin-Poem-RN" />,
-      head2: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
-      head3: "Open Source",
-      head4: "Dec 2023 - " + now("en"),
-      bulletPoints: [
-        "To create a user-friendly way for people to access and appreciate Chinese classical poetry.",
-        "Design and implement the application's user interface, integrate the chinese-poetry database.",
-        "Developed this application using React Native and SQLite, and implemented features including poetry display, random refresh, and history rollback.",
-        "Published the source code on GitHub and released a downloadable Android application.",]
-    },
-    {
-      head1: <ProjectTitle title="3D Object Detection" icon={Icons.Code} link="https://github.com/shyu216/DPC" />,
-      head2: <LabelWithGraphic icon={Icons.Stack} content="Python, Pytorch, Open3D" />,
-      head3: "Final Year Project",
+      head1: "3D Object Detection",
+      head2: <Title title="Final Year Project" icon={Icons.Code} link="https://github.com/shyu216/DPC" />,
+      head3: <LabelWithGraphic icon={Icons.Stack} content="Python, Pytorch, Open3D" />,
       head4: "Sep 2022 - May 2023",
       bulletPoints: [
         "Existing 3D object detection methods struggled to predict accurate bounding boxes for objects with fewer points, limiting current detectors' performance.",
@@ -78,7 +38,7 @@ export default function ProjectSection() {
       ],
     },
     // {
-    //   head1: (<ProjectTitle title="Draw & Guess Game" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
+    //   head1: (<Title title="Draw & Guess Game" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
     //   head2: <LabelWithGraphic content="Course Project" />,
     //   head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, ExpressJS, NodeJS" />,
     //   head4: "Jan 2022 - May 2022",
@@ -93,9 +53,9 @@ export default function ProjectSection() {
 
   const exp_zh: ExperienceProps[] = [
     {
-      head1: <ProjectTitle title="诗词卡片应用" icon={Icons.SmartPhone} link="https://github.com/shyu216/ShiYin-Poem-RN" />,
-      head2: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
-      head3: "开源项目",
+      head1: "诗词卡片应用",
+      head2: <Title title="开源项目" icon={Icons.SmartPhone} link="https://github.com/shyu216/ShiYin-Poem-RN" />,
+      head3: <LabelWithGraphic icon={Icons.Stack} content="React Native, SQLite" />,
       head4: "2023年12月 - " + now("zh"),
       bulletPoints: [
         "创建一个用户友好的方式让人们能够接触和欣赏中国古典诗词。",
@@ -105,9 +65,9 @@ export default function ProjectSection() {
       ]
     },
     {
-      head1: <ProjectTitle title="3D物体检测" icon={Icons.Code} link="https://github.com/shyu216/DPC" />,
-      head2: <LabelWithGraphic icon={Icons.Stack} content="Python, Pytorch, Open3D" />,
-      head3: "毕业设计",
+      head1: "3D物体检测",
+      head2: <Title title="毕业设计" icon={Icons.Code} link="https://github.com/shyu216/DPC" />,
+      head3: <LabelWithGraphic icon={Icons.Stack} content="Python, Pytorch, Open3D" />,
       head4: "2022年9月 - 2023年5月",
       bulletPoints: [
         "现有的3D物体检测方法在预测点较少的物体的边界框时，精度较低，限制了当前检测器的性能。",
@@ -117,7 +77,7 @@ export default function ProjectSection() {
       ],
     },
     // {
-    //   head1: (<ProjectTitle title="画图猜词游戏" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
+    //   head1: (<Title title="画图猜词游戏" icon={Icons.LayoutTemplate} link="https://github.com/easyDG" />),
     //   head2: <LabelWithGraphic content="课程项目" />,
     //   head3: <LabelWithGraphic icon={Icons.Stack} content="MySQL, ExpressJS, NodeJS" />,
     //   head4: "2022年1月 - 2022年5月",
