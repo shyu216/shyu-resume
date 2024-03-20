@@ -90,7 +90,7 @@ const exp_en: ExperienceProps[] = [
     head3: (
       <LabelWithGraphic icon={Icons.Stack} content="Next.js, AWS" />
     ),
-    head4: "Apr 2023 - Pres.",
+    head4: "Apr 2023 - Feb 2024",
     bulletPoints: [
       "Situation: To collaborate with the CEO and COO on a reusable tableware borrowing program, aiding Hong Kong's environmental progress.",
       "Task: Assist in the development and maintenance of the program's software applications and database.",
@@ -109,7 +109,7 @@ const exp_zh: ExperienceProps[] = [
     head3: (
       <LabelWithGraphic icon={Icons.Stack} content="Next.js, AWS" />
     ),
-    head4: "2023年4月 - 现在",
+    head4: "2023年4月 - 2024年2月",
     bulletPoints: [
       "情况：与CEO和COO合作，开发一个重用餐具的租借程序，助力香港环保事业发展。",
       "任务：协助开发和维护程序的软件应用和数据库。",

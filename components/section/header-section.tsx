@@ -28,18 +28,18 @@ export default function HeaderSection({ usage }: Props) {
             aria-label="My GitHub"
             className="mx-1 h-4 w-4"
           />
-          {/* <SocialLink
-            href="https://www.linkedin.com/"
+          <SocialLink
+            href="https://www.linkedin.com/in/sihong-yu-a35b30205/"
             platform="linkedin"
             aria-label="My LinkedIn"
             className="mx-1 h-4 w-4"
-          /> */}
+          />
         </div>
         <ActionButton
           text={usage === "live" ?
-            (language === "en" ? "Download Resume" : "下载简历")
+            (language === "en" ? "Download" : "下载简历")
             :
-            (language === "en" ? "View Live Resume" : "查看在线简历")}
+            (language === "en" ? "View Online" : "查看在线简历")}
           usage={usage}
           className={cn(usage === "live" && "hidden sm:block")}
         />

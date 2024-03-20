@@ -16,6 +16,15 @@ const education_en: EducationProps[] = [
     },
     time: "Sep 2019 - Jul 2023",
   },
+  {
+    title: "MSc. Computer Science",
+    gpa: "NA",
+    org: {
+      name: "University of Melbourne",
+      logo: "/",
+    },
+    time: "Feb 2024 - Mar 2026(Exp.)"
+  }
 ];
 
 const education_zh: EducationProps[] = [
@@ -28,6 +37,15 @@ const education_zh: EducationProps[] = [
     },
     time: "2019年9月 - 2023年7月",
   },
+  {
+    title: "计算机科学硕士",
+    gpa: "NA",
+    org: {
+      name: "墨尔本大学",
+      logo: "/",
+    },
+    time: "2024年2月 - 2026年3月（预计）"
+  }
 ];
 
 function Education({ title, gpa, org, time }: EducationProps) {
