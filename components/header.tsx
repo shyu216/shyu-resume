@@ -12,7 +12,7 @@ export function Header() {
         <div>
           <Link href="/">
             <Image
-              src="/images/shyu216.png"
+              src="./images/penguin.png"
               alt="Portrait"
               width={48}
               height={48}

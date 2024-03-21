@@ -23,8 +23,11 @@
 }
 
 @media print {
+  /* section ul li {
+    font-size: 10pt;
+  } */
   @page { 
     size: 210mm 297mm;
-    margin: 1cm 0cm 1cm 0cm !important; /* T R B L */
+    /* margin: 1cm 0cm 1cm 0cm !important; T R B L */
   }
 }
