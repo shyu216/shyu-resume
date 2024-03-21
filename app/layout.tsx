@@ -19,6 +19,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pageTitle = "SIHONG's Resume";
+
   return (
     <html
       lang="en"
@@ -26,7 +28,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <title>SIHONG's Resume</title>
+        <title>{pageTitle}</title>
       </head>
       <body className="flex h-full flex-col">
         <LanguageProvider>
