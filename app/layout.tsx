@@ -9,8 +9,9 @@ import LanguageProvider from "@/components/lang/language-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "YU's Resume",
-  description: "YU Si Hong's Resume",
+  title: "SIHONG's Resume",
+  description: "A Resume of YU Si Hong - 余思宏的简历",
+  keywords: "YU Si Hong 余思宏 香港中文大学 墨尔本大学 海南 三亚 海南中学 计算机科学"
 };
 
 export default function RootLayout({
@@ -24,6 +25,9 @@ export default function RootLayout({
       className="m-0 h-full p-0 antialiased"
       suppressHydrationWarning
     >
+      <head>
+        <title>SIHONG's Resume</title>
+      </head>
       <body className="flex h-full flex-col">
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="system">
