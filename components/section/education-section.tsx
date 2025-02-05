@@ -12,7 +12,7 @@ const education_en: ExperienceProps[] = [
   {
     head1: "MSc. Computer Science",
     head2: <Title title="The University of Melbourne" icon={Icons.School} link="https://www.unimelb.edu.au" />,
-    head3: <LabelWithGraphic icon={Icons.GraduationCap} content="WAM: 76.25" />,
+    head3: <LabelWithGraphic icon={Icons.GraduationCap} content="WAM: 77.875" />,
     head4: "Feb 2024 - Mar 2026(Exp.)",
     bulletPoints: [
 
@@ -36,7 +36,7 @@ const education_zh: ExperienceProps[] = [
   {
     head1: "计算机科学硕士",
     head2: <Title title="墨尔本大学" icon={Icons.School} link="https://www.unimelb.edu.au" />,
-    head3: <LabelWithGraphic icon={Icons.GraduationCap} content="WAM: 76.25" />,
+    head3: <LabelWithGraphic icon={Icons.GraduationCap} content="WAM: 77.875" />,
     head4: "2024年2月 - 2026年3月（预计）",
     bulletPoints: [
 
