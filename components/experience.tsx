@@ -19,7 +19,7 @@ export default function Experience({
 }: Props) {
   return (
     <section className={cn(usage === "live" ? "text-sm" : "text-11px")}>
-      <div className="text-zinc-700 dark:text-zinc-300 mb-1">
+      <div className="text-mygray-700 dark:text-mygray-300 mb-1">
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="font-bold text-red dark:text-white">{head1}</div>
           <div>{head2}</div>
@@ -30,7 +30,7 @@ export default function Experience({
         </div>
       </div>
 
-      <ul className="list-disc ml-4 text-zinc-600 dark:text-zinc-400">
+      <ul className="list-disc ml-4 text-mygray-600 dark:text-mygray-400">
         {bulletPoints.map((point, index) => (
           <li key={index}>{point}</li>
         ))}

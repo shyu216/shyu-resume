@@ -21,7 +21,7 @@ export default function HeaderSection({ usage }: Props) {
         <div className="flex items-center">
           <h2 className="text-2xl font-bold mr-4 my-1">{language === "en" ? (
             <div>
-              <span className="text-rose-600 dark:text-rose-600">Dale </span>Sihong Yu
+              <span className="text-myred-600 dark:text-myred-600">Dale </span>Sihong Yu
             </div>
           ) : (
             "余思宏"
@@ -59,14 +59,14 @@ export default function HeaderSection({ usage }: Props) {
       {/* <div className="flex flex-wrap gap-4 gap-y-1 text-sm">
         <Link
           href="mailto:shyu0@qq.com"
-          className="group flex gap-2 items-center text-zinc-400 transition hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+          className="group flex gap-2 items-center text-mygray-400 transition hover:text-mygray-700 dark:text-mygray-400 dark:hover:text-mygray-200"
         >
           <Icons.Mail size={12} className="group-hover:animate-shake" />
           shyu0@qq.com
         </Link>
         <Link
           href="tel:+8613697555391"
-          className="group flex gap-2 items-center text-zinc-400 transition hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+          className="group flex gap-2 items-center text-mygray-400 transition hover:text-mygray-700 dark:text-mygray-400 dark:hover:text-mygray-200"
         >
           <Icons.PhoneCall size={12} className="group-hover:animate-shake" />
           (+86) 13697555391

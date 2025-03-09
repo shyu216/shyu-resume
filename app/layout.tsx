@@ -35,11 +35,11 @@ export default function RootLayout({
 
             <div className="fixed inset-0 flex justify-center sm:px-8">
               <div className="flex w-full max-w-7xl lg:px-8">
-                <div className="w-full bg-zinc-50/90 ring-1 ring-zinc-100 dark:bg-zinc-900/80 dark:ring-zinc-400/20" />
+                <div className="w-full bg-mygray-50/90 ring-1 ring-mygray-100 dark:bg-mygray-900/80 dark:ring-mygray-400/20" />
               </div>
             </div>
 
-            <div className="relative text-zinc-600 dark:text-zinc-200">
+            <div className="relative text-mygray-600 dark:text-mygray-200">
               <Header />
               <main>{children}</main>
               <Footer />

@@ -44,7 +44,7 @@ export function LanguageSwitcher() {
           <button
             type="button"
             aria-label="Change language"
-            className="group rounded-full bg-gradient-to-b from-zinc-50/50 to-white/90 px-3 py-2 shadow-lg shadow-zinc-600/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:from-zinc-900/50 dark:to-zinc-600/90 dark:ring-white/10 dark:hover:ring-white/20"
+            className="group rounded-full bg-gradient-to-b from-mygray-50/50 to-white/90 px-3 py-2 shadow-lg shadow-mygray-600/5 ring-1 ring-mygray-900/5 backdrop-blur transition dark:from-mygray-900/50 dark:to-mygray-600/90 dark:ring-white/10 dark:hover:ring-white/20"
             onClick={handleLanguageChange}
           >
             {languages.find((lang) => lang.value === language)?.label}

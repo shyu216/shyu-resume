@@ -24,7 +24,7 @@ export default function Title({ icon, image, title, link }: TitleProps) {
       {image && <LabelWithGraphic image={image} content={title} />}
       <Icons.Link
         size={11}
-        className="text-zinc-400 transition group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-200 group-hover:animate-shake"
+        className="text-mygray-400 transition group-hover:text-mygray-700 dark:text-mygray-400 dark:group-hover:text-mygray-200 group-hover:animate-shake"
       />
     </Link>
   );

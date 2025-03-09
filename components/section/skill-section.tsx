@@ -77,7 +77,7 @@ export default function SkillSection({ usage }: Props) {
             <div className="flex-shrink-0 flex">
               <span className="font-bold">{skill.title}</span>
             </div>
-            <div className="ml-8 text-zinc-700 dark:text-zinc-300">
+            <div className="ml-8 text-mygray-700 dark:text-mygray-300">
               {
                 typeof skill.description === "string" ? <p>{skill.description}</p> :
                   skill.description.map((d, i) => (
@@ -90,7 +90,7 @@ export default function SkillSection({ usage }: Props) {
             <div className="flex-shrink-0 flex">
               <span className="font-bold">{skill.title}</span>
             </div>
-            <div className="ml-8 text-zinc-700 dark:text-zinc-300">
+            <div className="ml-8 text-mygray-700 dark:text-mygray-300">
               {
                 typeof skill.description === "string" ? <p>{skill.description}</p> :
                   skill.description.map((d, i) => (

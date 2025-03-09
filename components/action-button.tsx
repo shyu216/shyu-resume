@@ -19,7 +19,7 @@ export default function ActionButton({ text, className, usage }: Props) {
   ) : (
     <Button href="https://shyu216.github.io/shyu-resume/">
       {text}
-      <Icons.OpenLink className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+      <Icons.OpenLink className="h-4 w-4 stroke-mygray-400 transition group-active:stroke-mygray-600 dark:group-hover:stroke-mygray-50 dark:group-active:stroke-mygray-50" />
     </Button>
   );
 }

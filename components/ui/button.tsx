@@ -3,9 +3,9 @@ import { cn } from "@/lib/utils";
 
 const variantStyles = {
   primary:
-    "bg-zinc-600 font-semibold text-zinc-100 hover:bg-zinc-700 active:bg-zinc-600 active:text-zinc-100/70 dark:bg-zinc-700 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 dark:active:text-zinc-100/70",
+    "bg-mygray-600 font-semibold text-mygray-100 hover:bg-mygray-700 active:bg-mygray-600 active:text-mygray-100/70 dark:bg-mygray-700 dark:hover:bg-mygray-600 dark:active:bg-mygray-700 dark:active:text-mygray-100/70",
   secondary:
-    "bg-zinc-100 font-medium text-zinc-900 hover:bg-zinc-200 active:bg-zinc-200 active:text-zinc-900/60 dark:bg-zinc-600/50 dark:text-zinc-300 dark:hover:bg-zinc-600 dark:hover:text-zinc-50 dark:active:bg-zinc-600/50 dark:active:text-zinc-50/70",
+    "bg-mygray-100 font-medium text-mygray-900 hover:bg-mygray-200 active:bg-mygray-200 active:text-mygray-900/60 dark:bg-mygray-600/50 dark:text-mygray-300 dark:hover:bg-mygray-600 dark:hover:text-mygray-50 dark:active:bg-mygray-600/50 dark:active:text-mygray-50/70",
 };
 
 type ButtonProps = {
