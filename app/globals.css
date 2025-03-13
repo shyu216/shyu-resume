@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-15deg);
+  }
+
+  40%,
+  60% {
+    transform: rotate(15deg);
+  }
+
+  80% {
+    transform: rotate(-15deg);
+  }
+}
+
+@media print {
+  /* section ul li {
+    font-size: 10pt;
+  } */
+  @page { 
+    size: 210mm 297mm;
+    /* margin: 1cm 0cm 1cm 0cm !important; T R B L */
+  }
+}
