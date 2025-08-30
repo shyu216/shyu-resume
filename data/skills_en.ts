@@ -11,7 +11,7 @@ export const skills = [
     title: "Theoretical Knowledge",
     description: [
       "Big Data Computing/Storage, Parallel/Distributed Systems, Cybersecurity",
-      "Reinforcement Learning, Machine Learning, Image Processing",
+      "Reinforcement Learning, Deep Learning, Image Processing",
       "Formal Languages, Quantum Computing, Graph Theory",
     ],
   },
