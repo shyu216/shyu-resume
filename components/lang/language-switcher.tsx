@@ -7,11 +7,11 @@ import { LanguageContext } from "./language-provider";
 
 const languages = [
   {
-    label: "中",
+    label: "ENG",
     value: "zh",
   },
   {
-    label: "ENG",
+    label: "中文",
     value: "en",
   },
 ];

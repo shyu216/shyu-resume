@@ -1,61 +1,73 @@
 export const projects = [
   {
-    "head1": "碳迹花园",
-    "head2": {
-      "title": "COMP90018课程项目",
-      "link": "https://github.com/CRUVOD/CarbonTracker"
+    head1: "混合现实健康监测App",
+    head2: {
+      title: "演示",
+      link: ""
     },
-    "head3": "React Native, Firebase",
-    "head4": "2024年9月 - 2024年11月",
-    "bulletPoints": [
-      "开发基于React Native的环保习惯养成应用，采用Firebase实现实时数据同步",
-      "集成加速度传感器，开发养成挑战，利用Google Maps API实现地理位置追踪",
-      "主导开发情境感知奖励系统和实时排行榜等核心功能模块",
-      "协调5人团队，完成从需求分析到安装包发布的全流程开发"
+    head3: "Unity, Meta Quest 3, C#",
+    head4: "2025年5月 (进行中)",
+    bulletPoints: [
+      "自主设计并开发面向Meta Quest 3的MR健康应用，融合虚实场景，提升健康监测体验。",
+      "结合Passthrough摄像头与运动放大算法，实现无接触心率与呼吸频率检测。",
+      "创新实现生理数据实时可视化，增强用户对自身健康状况的感知。"
     ]
   },
   {
-    "head1": "诗词卡片",
-    "head2": {
-      "title": "开源项目",
-      "link": "https://github.com/shyu216/ccpoems"
+    head1: "碳迹花园",
+    head2: {
+      title: "COMP90018课程项目",
+      link: "https://github.com/CRUVOD/CarbonTracker"
     },
-    "head3": "React Native, SQLite",
-    "head4": "2023年12月 (进行中)",
-    "bulletPoints": [
-      "开发基于React Native的中文古典诗词学习应用，集成SQLite数据库实现本地数据存储",
-      "设计交互界面并整合开放诗词库，实现侧滑翻页、随机刷新和历史回溯功能",
-      "在GitHub开源项目代码，发布可安装的Android应用程序"
+    head3: "React Native, Firebase",
+    head4: "2024年9月 - 2024年11月",
+    bulletPoints: [
+      "联合开发绿色生活习惯App，融入趣味化机制，提升用户环保参与度。",
+      "实现基于加速度传感器的互动挑战，并结合Google Maps实现实时定位任务。",
+      "主导奖励系统与排行榜设计，增强用户使用体验。",
+      "带领5人团队高效协作，推动项目从构想到落地。"
     ]
   },
   {
-    "head1": "基于点云的道路物体检测",
-    "head2": {
-      "title": "毕业设计项目",
-      "link": "https://github.com/shyu216/DPC"
+    head1: "诗词卡片",
+    head2: {
+      title: "兴趣项目",
+      link: "https://github.com/shyu216/ccpoems"
     },
-    "head3": "Python, PyTorch, Open3D",
-    "head4": "2022年9月 - 2023年5月",
-    "bulletPoints": [
-      "通过文献综述和OpenPCDet复现，研究KITTI基准方法的局限性",
-      "提出双分支网络架构，融合深度补全点云提升稀疏目标检测精度",
-      "通过在车辆/行人/自行车数据集上的广泛实验，验证该方法",
-      "在论文中记录研究结果，并在最终答辩中展示技术解决方案"
+    head3: "React Native, SQLite",
+    head4: "2023年12月 (进行中)",
+    bulletPoints: [
+      "打造便捷的古诗词移动应用，支持离线浏览与个性化交互。",
+      "优化界面设计，集成丰富诗词库，支持滑动切换、随机抽取与历史记录。",
+      "项目已在GitHub开源，并发布Android安装包。"
     ]
   },
   {
-    "head1": "你画我猜游戏",
-    "head2": {
-      "title": "CSCI3100课程项目",
-      "link": "https://github.com/easyDG"
+    head1: "点云三维目标检测",
+    head2: {
+      title: "毕业设计项目",
+      link: "https://github.com/shyu216/DPC"
     },
-    "head3": "MySQL, ExpressJS, NodeJS",
-    "head4": "2022年1月 - 2022年5月",
-    "bulletPoints": [
-      "开发基于MERN技术栈的实时多人在线游戏，采用Socket.IO实现实时光标同步",
-      "设计响应式界面并开发跨设备聊天系统，通过Bootstrap栅格系统优化布局",
-      "参与MySQL数据库设计和用户档案界面开发",
-      "部署至AWS EC2云服务器，支持4设备并发演示"
+    head3: "Python, PyTorch, Open3D",
+    head4: "2022年9月 - 2023年5月",
+    bulletPoints: [
+      "聚焦KITTI数据集，深入分析三维点云目标检测难点与主流方法。",
+      "创新提出双分支网络结构，融合原始与补全点云，显著提升检测精度。",
+      "完成多组实验并在答辩中系统展示研究成果。"
+    ]
+  },
+  {
+    head1: "你画我猜",
+    head2: {
+      title: "CSCI3100课程项目",
+      link: "https://github.com/easyDG"
+    },
+    head3: "MySQL, ExpressJS, NodeJS",
+    head4: "2022年1月 - 2022年5月",
+    bulletPoints: [
+      "开发实时互动的多人画猜小游戏，基于MERN全栈与Socket.IO实现高效同步。",
+      "实现跨设备光标追踪、实时聊天与自适应界面，提升用户体验。",
+      "完成云端部署，支持多设备流畅演示。"
     ]
   }
 ]
