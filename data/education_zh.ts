@@ -1,12 +1,12 @@
 export const education = [
   {
-    "head1": "计算机科学硕士",
+    "head1": "计算机科学硕士（优异）",
     "head2": {
       "title": "墨尔本大学",
       "link": "https://www.unimelb.edu.au"
     },
-    "head3": "WAM: 77.875",
-    "head4": "2024年2月 - 2026年3月（预计）",
+    "head3": "WAM: 81.938",
+    "head4": "2024年2月 - 2025年12月",
     "bulletPoints": []
   },
   {
@@ -20,7 +20,7 @@ export const education = [
     "bulletPoints": [
       "入学奖学金",
       "2022-2023年度院长名单",
-      "精英流"
+      "精英班"
     ]
   }
 ]

@@ -1,12 +1,12 @@
 export const education = [
   {
-    "head1": "MSc. Computer Science",
+    "head1": "MSc. Computer Science (with Distinction)",
     "head2": {
       "title": "The University of Melbourne",
       "link": "https://www.unimelb.edu.au"
     },
-    "head3": "WAM: 77.875",
-    "head4": "Feb 2024 - Mar 2026(Exp.)",
+    "head3": "WAM: 81.938",
+    "head4": "Feb 2024 - Dec 2025",
     "bulletPoints": []
   },
   {
