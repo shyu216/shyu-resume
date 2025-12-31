@@ -9,10 +9,12 @@ const languages = [
   {
     label: "ENG",
     value: "zh",
+    description: "Switch to English",
   },
   {
     label: "中文",
     value: "en",
+    description: "切换到中文",
   },
 ];
 
@@ -59,7 +61,7 @@ export function LanguageSwitcher() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                 >
-                  {languages.find((l)=>l.value===language)?.label}
+                  {languages.find((l)=>l.value===language)?.description}
                 </motion.div>
               </Tooltip.Content>
             </Tooltip.Portal>

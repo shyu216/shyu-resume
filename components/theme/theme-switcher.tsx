@@ -9,12 +9,12 @@ import { Tooltip } from "@/components/ui/tooltip";
 
 const themes = [
   {
-    label: "Light Mode",
+    label: "Switch to Dark Mode",
     value: "light",
     icon: Icons.Sun,
   },
   {
-    label: "Dark Mode",
+    label: "Switch to Light Mode",
     value: "dark",
     icon: Icons.Moon,
   },

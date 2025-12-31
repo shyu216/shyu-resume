@@ -19,21 +19,29 @@ export default function HeaderSection({ usage }: Props) {
     <section>
       <div className="flex justify-between items-center">
         <div className="flex items-center">
-          <h2 className="text-2xl font-bold mr-4 my-1">{language === "en" ? (
-            <div>
-              <span className="text-myred-600 dark:text-myred-600">Dale </span>Sihong Yu
-            </div>
-          ) : (
-            <div>
-              <span className="text-myred-600 dark:text-myred-600">余</span>思宏
-            </div>
-          )}</h2>
-          {usage != "live" && <SocialLink
-            href="mailto:shyu0@qq.com"
-            platform="mail"
-            aria-label="My Email"
-            className="mx-1 h-4 w-4"
-          />}
+          <h2 className="text-2xl font-bold mr-4 my-1">
+            {language === "en" ? (
+              <div>
+                Sihong{" "}<span className="text-myred-600 dark:text-myred-600">Yu</span>
+                <span className="text-xs text-mygray-500 ml-2">
+                  (Dale / 余思宏)
+                </span>
+              </div>
+            ) : (
+              <div>
+                <span className="text-myred-600 dark:text-myred-600">余</span>
+                思宏
+              </div>
+            )}
+          </h2>
+          {usage != "live" && (
+            <SocialLink
+              href="mailto:shyu0@qq.com"
+              platform="mail"
+              aria-label="My Email"
+              className="mx-1 h-4 w-4"
+            />
+          )}
           <SocialLink
             href="https://github.com/shyu216"
             platform="github"
@@ -48,10 +56,15 @@ export default function HeaderSection({ usage }: Props) {
           />
         </div>
         <ActionButton
-          text={usage === "live" ?
-            (language === "en" ? "Download PDF" : "下载PDF")
-            :
-            (language === "en" ? "View Online" : "在线查看")}
+          text={
+            usage === "live"
+              ? language === "en"
+                ? "Download PDF"
+                : "下载PDF"
+              : language === "en"
+              ? "View Online"
+              : "在线查看"
+          }
           usage={usage}
           className={cn(usage === "live" && "hidden sm:block")}
           title={
@@ -64,13 +77,15 @@ export default function HeaderSection({ usage }: Props) {
         />
       </div>
 
-      {usage === "live" && <Link
-            href="mailto:shyu0@qq.com"
-            className="group flex gap-2 items-center text-mygray-400 transition hover:text-mygray-700 dark:text-mygray-400 dark:hover:text-mygray-200"
-          >
-            <Icons.Mail size={12} className="group-hover:animate-shake" />
-            shyu0@qq.com
-          </Link> }
+      {usage === "live" && (
+        <Link
+          href="mailto:shyu0@qq.com"
+          className="group flex gap-2 items-center text-mygray-400 transition hover:text-mygray-700 dark:text-mygray-400 dark:hover:text-mygray-200"
+        >
+          <Icons.Mail size={12} className="group-hover:animate-shake" />
+          shyu0@qq.com
+        </Link>
+      )}
     </section>
   );
 }

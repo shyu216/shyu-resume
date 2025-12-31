@@ -5,6 +5,8 @@ type Props = {
   head2?: string | JSX.Element;
   head3?: string | JSX.Element;
   head4?: string | JSX.Element;
+  head5?: string | JSX.Element;
+  head6?: string | JSX.Element;
   bulletPoints?: (string | JSX.Element)[];
   bulletPointsShort?: (string | JSX.Element)[];
   usage: "live" | "pdf";
@@ -15,32 +17,38 @@ export default function Experience({
   head2,
   head3,
   head4,
+  head5,
+  head6,
   bulletPoints,
   bulletPointsShort,
   usage
 }: Props) {
   return (
     <section className={cn(usage === "live" ? "text-sm" : "text-11px")}>
-      <div className="text-mygray-700 dark:text-mygray-300 mb-1">
+      <div className="text-mygray-700 dark:text-mygray-300">
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
-          <div className="font-bold text-red dark:text-white">{head1}</div>
-          <div>{head2}</div>
+          <div className="flex gap-x-4 items-center">
+            <div className="font-bold text-red dark:text-white">{head1}</div> 
+            <div>{head2}</div>
+            <div>{head3}</div>
+          </div>
+          <div>{head4}</div> 
         </div>
         <div className="flex gap-x-4 flex-wrap justify-between">
-          <div>{head3}</div>
-          <div>{head4}</div>
+          <div>{head5}</div>
+          <div>{head6}</div> 
         </div>
       </div>
 
-      {bulletPoints && <ul className="list-disc ml-4 text-mygray-600 dark:text-mygray-400">
+      {bulletPoints && <ul className="list-disc ml-4 text-mygray-600 dark:text-mygray-400 mt-1">
         {bulletPoints.map((point, index) => (
           <li key={index}>{point}</li>
         ))}
       </ul>}
 
-      {bulletPointsShort && <ul className="list-disc ml-4 text-mygray-600 dark:text-mygray-400 flex flex-wrap">
+      {bulletPointsShort && <ul className="flex gap-x-8 items-center flex-wrap ml-4 text-mygray-600 dark:text-mygray-400 list-disc">
         {bulletPointsShort.map((point, index) => (
-          <li key={index} className="w-1/2 md:w-1/3 lg:w-1/4">{point}</li>
+          <li key={index}>{point}</li>
         ))}
       </ul>}
     </section>

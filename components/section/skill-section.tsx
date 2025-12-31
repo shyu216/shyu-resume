@@ -28,7 +28,7 @@ export default function SkillSection({ usage }: Props) {
               {
                 typeof skill.description === "string" ? <p>{skill.description}</p> :
                   skill.description.map((d, i) => (
-                    <p key={i} className="mb-2">{d}</p>
+                    <p key={i}>{d}</p>
                   ))
               }
             </div>
@@ -41,7 +41,7 @@ export default function SkillSection({ usage }: Props) {
               {
                 typeof skill.description === "string" ? <p>{skill.description}</p> :
                   skill.description.map((d, i) => (
-                    <p key={i} className="mb-2">{d}</p>
+                    <p key={i}>{d}</p>
                   ))
               }
             </div>

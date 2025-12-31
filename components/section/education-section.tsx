@@ -26,9 +26,9 @@ export default function EducationSection({ usage }: Props) {
           <Experience
             key={index}
             head1={e.head1}
-            head2={<LabelWithLink title={e.head2.title} icon={Icons.School} link={e.head2.link} />}
-            head3={<LabelWithGraphic icon={Icons.GraduationCap} content={e.head3} />}
-            head4={e.head4}
+            head4={<LabelWithLink title={e.head2.title} icon={Icons.School} link={e.head2.link} />}
+            head5={<LabelWithGraphic icon={Icons.GraduationCap} content={e.head3} />}
+            head6={e.head4}
             bulletPointsShort={e.bulletPoints}
             usage={usage}
           />
