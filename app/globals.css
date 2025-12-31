@@ -26,8 +26,17 @@
   /* section ul li {
     font-size: 10pt;
   } */
-  @page { 
+  @page:first {
+    margin-top: 0cm;
+  }
+  @page {
     size: 210mm 297mm;
-    /* margin: 1cm 0cm 1cm 0cm !important; T R B L */
+    margin-top: 1cm;
+    /* 你可以加其他 margin 设置，比如 margin-left/right/bottom */
+  }
+
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid; /* 兼容老浏览器 */
   }
 }

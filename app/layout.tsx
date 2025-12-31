@@ -8,7 +8,7 @@ import LanguageProvider from "@/components/lang/language-provider";
 export const metadata: Metadata = {
   title: "SIHONG's Resume",
   description: "A Resume",
-  keywords: "YUSIHONG, SIHONG, Resume",
+  keywords: "YUSIHONG, SIHONG, Resume, CV, Portfolio, 余思宏",
 };
 
 export default function RootLayout({

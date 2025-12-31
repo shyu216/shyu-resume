@@ -8,12 +8,13 @@ type Props = {
   text: string;
   className?: string;
   usage: "live" | "pdf";
+  title?: string;
 };
 
-export default function ActionButton({ text, className, usage }: Props) {
+export default function ActionButton({ text, className, usage, title }: Props) {
   const { handlePrint } = usePrint();
   return usage === "live" ? (
-    <Button onClick={handlePrint} className={className}>
+    <Button onClick={handlePrint} className={className} title={title}>
       {text}
     </Button>
   ) : (

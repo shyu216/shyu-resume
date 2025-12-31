@@ -54,6 +54,13 @@ export default function HeaderSection({ usage }: Props) {
             (language === "en" ? "View Online" : "在线查看")}
           usage={usage}
           className={cn(usage === "live" && "hidden sm:block")}
+          title={
+            usage === "live"
+              ? language === "en"
+                ? "Recommended to use Chrome to print PDF for best pagination and link support"
+                : "建议使用 Chrome 浏览器打印 PDF，分页和链接效果最佳"
+              : undefined
+          }
         />
       </div>
 

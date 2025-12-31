@@ -25,13 +25,19 @@ export default function PrintProvider({
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
     // wait animation or image loading for a while before printing?
-    // onBeforePrint: () => {
-    //   return new Promise<void>((resolve) => {
-    //     setTimeout(() => {
-    //       resolve();
-    //     }, 500);
-    //   });
-    // },
+    onBeforePrint: () => {
+      // 用 as 断言绕过类型检查
+      const el = componentRef.current as HTMLElement | null;
+      if (el) {
+        console.log("这是打印的HTML内容：");
+        console.log(el.innerHTML);
+      }
+      // return new Promise<void>((resolve) => {
+      //   setTimeout(() => {
+      //     resolve();
+      //   }, 500);
+      // });
+    },
     onPrintError: (error) => console.log(error),
 
     content: () => componentRef.current,
