@@ -2,23 +2,28 @@ export const skills = [
   {
     title: "Technical Stack",
     description: [
-      "Building web applications using Next.js, React.js, and Vue.js",
-      "Mobile app development with React Native and Qt (C++)",
-      "Cloud service deployment and management using AWS (Amplify, Lambda, EventBridge, CDK) and Firebase (Auth)",
+      "Next.js, React.js, Vue.js for web application development;",
+      "Cross-platform/mobile development with React Native and Qt (C++);",
+      "Cloud deployment using AWS (Amplify, Lambda, EventBridge, CDK) and Firebase (Auth)",
     ],
   },
   {
-    title: "Theoretical Knowledge",
+    title: "Software Tools",
     description: [
-      "Big Data Computing/Storage, Parallel/Distributed Systems, Cybersecurity",
-      "Reinforcement Learning, Deep Learning, Image Processing",
-      "Formal Languages, Quantum Computing, Graph Theory",
+      "Git, Markdown/LaTeX, Docker, VS Code, Visual Studio, Android Studio, Qt Creator, MATLAB, Unity",
     ],
   },
   {
-    title: "Spoken Languages",
+    title: "Core Knowledge",
     description: [
-      "Chinese (Native), English (Fluent), Cantonese (Basic)",
+      "Data Structures, Databases, Big Data, Parallel/Distributed Systems, Networking/Cyber Security,",
+      "Algorithms, Graph Theory, AI Planning/RL, ML/CV/NLP, Bioinformatics Algorithms, Quantum Algorithms",
+    ],
+  },
+  {
+    title: "Languages",
+    description: [
+      "English, Mandarin, Cantonese",
     ],
   },
 ];

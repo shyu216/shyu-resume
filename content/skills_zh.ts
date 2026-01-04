@@ -2,23 +2,28 @@ export const skills = [
   {
     title: "技术栈",
     description: [
-      "使用 Next.js、React.js 和 Vue.js 构建 Web 应用程序",
-      "使用 React Native 和 Qt（C++）开发移动应用",
-      "使用 AWS（Amplify、Lambda、EventBridge、CDK）和 Firebase（Auth）部署和管理云服务",
+      "精通 Next.js、React.js、Vue.js 等前端框架，具备丰富 Web 应用开发经验；",
+      "熟悉 React Native、Qt（C++）等跨平台/移动端开发技术；",
+      "熟练使用 AWS（Amplify、Lambda、EventBridge、CDK）、Firebase（Auth）等云服务进行项目部署",
     ],
   },
   {
-    title: "理论知识",
+    title: "软件工具",
     description: [
-      "大数据计算/存储、并行/分布式系统、网络通信/安全",
-      "计算机图形学、图像处理、点云处理",
-      "图论、自动机、量子计算",
+      "Git、Markdown/LaTeX、Docker、VS Code、Visual Studio、Android Studio、Qt Creator、MATLAB、Unity",
+    ],
+  },
+  {
+    title: "专业基础",
+    description: [
+      "数据结构、数据库、大数据、并行/分布式系统、网络通信/安全、",
+      "算法、图论、智能规划/强化学习、机器学习/CV/NLP、生物信息算法、量子算法",
     ],
   },
   {
     title: "语言能力",
     description: [
-      "中文（母语）、英语（流利）、粤语（基础）",
+      "普通话、粤语、英语",
     ],
   },
 ];

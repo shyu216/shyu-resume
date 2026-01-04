@@ -57,7 +57,7 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
       {usage === "live" && (
         <div className="flex sm:hidden justify-center mt-10">
           <ActionButton
-            text={language === "en" ? "Save" : "保存简历"}
+            text={language === "en" ? "Download PDF" : "下载PDF"}
             className="block sm:hidden"
             usage="live"
           />
