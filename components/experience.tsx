@@ -28,7 +28,7 @@ export default function Experience({
       <div className="text-mygray-700 dark:text-mygray-300">
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="flex gap-x-4 items-center">
-            <div className="font-bold text-red dark:text-white">{head1}</div> 
+            <div>{head1}</div> 
             <div>{head2}</div>
             <div>{head3}</div>
           </div>

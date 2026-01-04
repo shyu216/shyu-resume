@@ -5,7 +5,7 @@ import React from "react";
 type Props = {
   icon?: Icon;
   image?: ImageProps["src"];
-  content: string;
+  content: React.ReactNode;
 };
 
 export default function LabelWithGraphic({

@@ -2,13 +2,14 @@
 
 import Section from "@/components/section";
 import Experience from "@/components/experience";
-import LabelWithGraphic from "@/components/label-with-graphic";
+import LabelWithGraphic from "@/components/labels/label-with-graphic";
 import { Icons } from "@/components/icons";
-import LabelWithLink from "@/components/label-with-link";
+import LabelWithLink from "@/components/labels/label-with-link";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { projects as projectsEn } from "@/data/projects_en";
 import { projects as projectsZh } from "@/data/projects_zh";
+import Label from "@/components/labels/label";
 
 type Props = {
   usage: "live" | "pdf";
@@ -26,8 +27,8 @@ export default function ProjectSection({ usage }: Props) {
         {projects.map((project, index) => (
           <Experience
             key={index}
-            head1={project.head1}
-            head2={<LabelWithLink title={project.head2.title} icon={Icons.Code} link={project.head2.link} />}
+            head1={<LabelWithLink content={<Label content={project.head1} />} link={project.link} />}
+            head2={<LabelWithGraphic icon={Icons.Code} content={project.head2} />}
             head3={<LabelWithGraphic icon={Icons.Stack} content={project.head3} />}
             head4={project.head4}
             bulletPoints={project.bulletPoints}

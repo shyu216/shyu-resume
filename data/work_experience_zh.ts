@@ -3,7 +3,8 @@ export const workExperience = [
     head1: "全栈开发工程师",
     head2: {
       title: "ReCube（香港）",
-      link: "https://www.re3.world"
+      link: "https://www.re3.world",
+      image: "/images/recube.png"
     },
     head3: "Next.js, AWS",
     head4: "2023年4月 - 2024年2月",

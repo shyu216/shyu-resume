@@ -1,10 +1,8 @@
 export const projects = [
   {
     head1: "Mixed Reality Health Monitoring App",
-    head2: {
-      title: "Demo",
-      link: "https://github.com/shyu216/Unity-Quest3-EVM",
-    },
+    head2: "Master Thesis",
+    link: "https://github.com/shyu216/Unity-Quest3-EVM",
     head3: "Unity, Meta Quest 3, C#",
     head4: "May 2025 (Ongoing)",
     bulletPoints: [
@@ -15,10 +13,8 @@ export const projects = [
   },
   {
     head1: "Carbon 2 Garden",
-    head2: {
-      title: "COMP90018 Project",
-      link: "https://github.com/CRUVOD/CarbonTracker",
-    },
+    head2: "COMP90018 Major Assignment",
+    link: "https://github.com/CRUVOD/CarbonTracker",
     head3: "React Native, Firebase",
     head4: "Sep 2024 - Nov 2024",
     bulletPoints: [
@@ -30,10 +26,8 @@ export const projects = [
   },
   {
     head1: "Poetry Card",
-    head2: {
-      title: "Personal Side Project",
-      link: "https://github.com/shyu216/ccpoems",
-    },
+    head2: "Personal Interest Project",
+    link: "https://github.com/shyu216/ccpoems",
     head3: "React Native, SQLite",
     head4: "Dec 2023 (Ongoing)",
     bulletPoints: [
@@ -44,10 +38,8 @@ export const projects = [
   },
   {
     head1: "3D Object Detection",
-    head2: {
-      title: "Final Year Project",
-      link: "https://github.com/shyu216/DPC",
-    },
+    head2: "Bachelor Thesis",
+    link: "https://github.com/shyu216/DPC",
     head3: "Python, PyTorch, Open3D",
     head4: "Sep 2022 - May 2023",
     bulletPoints: [
@@ -58,10 +50,8 @@ export const projects = [
   },
   {
     head1: "Easy Draw & Guess",
-    head2: {
-      title: "CSCI3100 Project",
-      link: "https://github.com/easyDG",
-    },
+    head2: "CSCI3100 Major Assignment",
+    link: "https://github.com/easyDG",
     head3: "MySQL, ExpressJS, NodeJS",
     head4: "Jan 2022 - May 2022",
     bulletPoints: [

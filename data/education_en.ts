@@ -3,7 +3,8 @@ export const education = [
     "head1": "MSc. Computer Science (with Distinction)",
     "head2": {
       "title": "The University of Melbourne",
-      "link": "https://www.unimelb.edu.au"
+      "link": "https://www.unimelb.edu.au",     
+      "image": "/images/unimelb.png"
     },
     "head3": "WAM: 81.938",
     "head4": "Feb 2024 - Dec 2025",
@@ -13,7 +14,8 @@ export const education = [
     "head1": "BSc. Computer Science",
     "head2": {
       "title": "The Chinese University of Hong Kong",
-      "link": "https://www.cuhk.edu.hk"
+      "link": "https://www.cuhk.edu.hk",
+      "image": "/images/cuhk.png"
     },
     "head3": "MGPA: 3.364",
     "head4": "Sep 2019 - Jul 2023",

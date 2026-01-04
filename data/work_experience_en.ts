@@ -3,7 +3,8 @@ export const workExperience = [
     head1: "Full Stack Developer",
     head2: {
       title: "ReCube, Hong Kong",
-      link: "https://www.re3.world"
+      link: "https://www.re3.world",
+      image: "/images/recube.png"
     },
     head3: "Next.js, AWS",
     head4: "Apr 2023 - Feb 2024",

@@ -1,10 +1,8 @@
 export const projects = [
   {
     head1: "混合现实健康监测App",
-    head2: {
-      title: "演示",
-      link: "https://github.com/shyu216/Unity-Quest3-EVM",
-    },
+    head2: "硕士毕设",
+    link: "https://github.com/shyu216/Unity-Quest3-EVM",
     head3: "Unity, Meta Quest 3, C#",
     head4: "2025年5月 (进行中)",
     bulletPoints: [
@@ -15,10 +13,8 @@ export const projects = [
   },
   {
     head1: "碳迹花园",
-    head2: {
-      title: "COMP90018课程项目",
-      link: "https://github.com/CRUVOD/CarbonTracker",
-    },
+    head2: "COMP90018大作业",
+    link: "https://github.com/CRUVOD/CarbonTracker",
     head3: "React Native, Firebase",
     head4: "2024年9月 - 2024年11月",
     bulletPoints: [
@@ -30,10 +26,8 @@ export const projects = [
   },
   {
     head1: "诗词卡片",
-    head2: {
-      title: "兴趣项目",
-      link: "https://github.com/shyu216/ccpoems",
-    },
+    head2: "兴趣项目",
+    link: "https://github.com/shyu216/ccpoems",
     head3: "React Native, SQLite",
     head4: "2023年12月 (进行中)",
     bulletPoints: [
@@ -44,10 +38,8 @@ export const projects = [
   },
   {
     head1: "点云三维目标检测",
-    head2: {
-      title: "毕业设计项目",
-      link: "https://github.com/shyu216/DPC",
-    },
+    head2: "本科毕设",
+    link: "https://github.com/shyu216/DPC",
     head3: "Python, PyTorch, Open3D",
     head4: "2022年9月 - 2023年5月",
     bulletPoints: [
@@ -58,10 +50,8 @@ export const projects = [
   },
   {
     head1: "你画我猜",
-    head2: {
-      title: "CSCI3100课程项目",
-      link: "https://github.com/easyDG",
-    },
+    head2: "CSCI3100大作业",
+    link: "https://github.com/easyDG",
     head3: "MySQL, ExpressJS, NodeJS",
     head4: "2022年1月 - 2022年5月",
     bulletPoints: [
