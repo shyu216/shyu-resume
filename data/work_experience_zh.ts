@@ -4,7 +4,7 @@ export const workExperience = [
     head2: {
       title: "ReCube（香港）",
       link: "https://www.re3.world",
-      image: "/images/recube.png"
+      image: "./images/recube.png"
     },
     head3: "Next.js, AWS",
     head4: "2023年4月 - 2024年2月",

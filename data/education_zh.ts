@@ -4,7 +4,7 @@ export const education = [
     "head2": {
       "title": "墨尔本大学",
       "link": "https://www.unimelb.edu.au",     
-      "image": "/images/unimelb.png"
+      "image": "./images/unimelb.png"
     },
     "head3": "WAM: 81.938",
     "head4": "2024年2月 - 2025年12月",
@@ -15,7 +15,7 @@ export const education = [
     "head2": {
       "title": "香港中文大学",
       "link": "https://www.cuhk.edu.hk",
-      "image": "/images/cuhk.png"
+      "image": "./images/cuhk.png"
     },
     "head3": "MGPA: 3.364",
     "head4": "2019年9月 - 2023年7月",
