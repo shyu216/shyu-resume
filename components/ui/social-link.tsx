@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link, { type LinkProps } from "next/link";
 import React from "react";
 
-import { Icons, type Icon } from "@/components/icons";
+import { Icons, type Icon } from "@/components/ui/icons";
 import { Tooltip } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 

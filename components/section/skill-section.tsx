@@ -1,10 +1,10 @@
 "use client";
 
 import { useContext } from "react";
-import Section from "@/components/section";
+import Section from "@/components/section/section";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { skills as skillsEn } from "@/data/skills_en";
-import { skills as skillsZh } from "@/data/skills_zh";
+import { skills as skillsEn } from "@/content/skills_en";
+import { skills as skillsZh } from "@/content/skills_zh";
 
 type Props = {
   usage: "live" | "pdf";

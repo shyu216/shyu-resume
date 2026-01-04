@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ContainerInner, ContainerOuter } from "@/components/container";
-import lastUpdateData from "@/data/last-update.json";
+import { ContainerInner, ContainerOuter } from "@/components/ui/container";
+import lastUpdateData from "@/app/last-update.json";
 
 function NavLink({
   href,

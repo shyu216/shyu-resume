@@ -1,14 +1,14 @@
 "use client";
 
-import Section from "@/components/section";
-import Experience from "@/components/experience";
+import Section from "@/components/section/section";
+import Experience from "@/components/section/experience";
 import LabelWithGraphic from "@/components/labels/label-with-graphic";
-import { Icons } from "@/components/icons";
+import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { workExperience as workExperienceEn } from "@/data/work_experience_en";
-import { workExperience as workExperienceZh } from "@/data/work_experience_zh";
+import { workExperience as workExperienceEn } from "@/content/work_experience_en";
+import { workExperience as workExperienceZh } from "@/content/work_experience_zh";
 import Label from "@/components/labels/label";
 
 type Props = {

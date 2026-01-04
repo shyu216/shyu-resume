@@ -1,9 +1,9 @@
 import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 import React from "react";
 import Image from "next/image";
-import { Container } from "../components/container";
+import { Container } from "./ui/container";
 import Link from "next/link";
-import { LanguageSwitcher } from "../components/lang/language-switcher";
+import { LanguageSwitcher } from "./lang/language-switcher";
 
 export function Header() {
   return (

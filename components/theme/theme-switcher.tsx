@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import React from "react";
 
-import { Icons } from "@/components/icons";
+import { Icons } from "@/components/ui/icons";
 import { Tooltip } from "@/components/ui/tooltip";
 
 const themes = [

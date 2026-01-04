@@ -1,14 +1,14 @@
 "use client";
 
-import Section from "@/components/section";
-import { Icons } from "@/components/icons";
+import Section from "@/components/section/section";
+import { Icons } from "@/components/ui/icons";
 import LabelWithGraphic from "@/components/labels/label-with-graphic";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import Experience from "@/components/experience";
+import Experience from "@/components/section/experience";
 import LabelWithLink from "@/components/labels/label-with-link";
-import { education as educationEn } from "@/data/education_en";
-import { education as educationZh } from "@/data/education_zh";
+import { education as educationEn } from "@/content/education_en";
+import { education as educationZh } from "@/content/education_zh";
 import Label from "@/components/labels/label";
 
 type Props = {

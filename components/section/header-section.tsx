@@ -1,9 +1,9 @@
 "use client";
 
-import { Icons } from "@/components/icons";
-import { SocialLink } from "@/components/social-link";
+import { Icons } from "@/components/ui/icons";
+import { SocialLink } from "@/components/ui/social-link";
 import Link from "next/link";
-import ActionButton from "@/components/action-button";
+import ActionButton from "@/components/ui/action-button";
 import { cn } from "@/lib/utils";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";

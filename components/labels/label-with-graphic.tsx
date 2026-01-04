@@ -1,4 +1,4 @@
-import { type Icon } from "@/components/icons";
+import { type Icon } from "@/components/ui/icons";
 import Image, { type ImageProps } from "next/image";
 import React from "react";
 

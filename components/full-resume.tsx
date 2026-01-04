@@ -1,9 +1,9 @@
 "use client";
 
-import { Container } from "@/components/container";
+import { Container } from "@/components/ui/container";
 import React, { useContext } from "react";
-import ActionButton from "@/components/action-button";
-import Motion from "@/components/motion";
+import ActionButton from "@/components/ui/action-button";
+import Motion from "@/components/ui/motion";
 import HeaderSection from "@/components/section/header-section";
 import SkillSection from "@/components/section/skill-section";
 import WorkSection from "@/components/section/work-section";

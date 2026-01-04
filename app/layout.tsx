@@ -1,8 +1,8 @@
 import ThemeProvider from "@/components/theme/theme-provider";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Header } from "@/app/header";
-import { Footer } from "@/app/footer";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import LanguageProvider from "@/components/lang/language-provider";
 
 export const metadata: Metadata = {
