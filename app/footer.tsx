@@ -1,6 +1,6 @@
 import Link from "next/link";
-
 import { ContainerInner, ContainerOuter } from "@/components/container";
+import lastUpdateData from "@/data/last-update.json";
 
 function NavLink({
   href,
@@ -27,7 +27,10 @@ export function Footer() {
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
               <p className="text-sm text-mygray-400 dark:text-mygray-500">
-                &copy; {new Date().getFullYear()} Dale. All rights reserved.
+                &copy; {new Date().getFullYear()} Dale |
+                {lastUpdateData?.lastUpdate && (
+                  <> Last update: {new Date(lastUpdateData.lastUpdate).toLocaleDateString()}</>
+                )}
               </p>
             </div>
           </ContainerInner>
