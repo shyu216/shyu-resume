@@ -25,7 +25,7 @@ export default function Experience({
 }: Props) {
   return (
     <section className={cn(usage === "live" ? "text-sm" : "text-11px")}>
-      <div className="text-mygray-700 dark:text-mygray-300">
+      <div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="flex gap-x-4 flex-wrap">
             <div>{head1}</div> 
@@ -34,19 +34,19 @@ export default function Experience({
           </div>
           <div>{head4}</div> 
         </div>
-        <div className="flex gap-x-4 flex-wrap justify-between">
+        <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div>{head5}</div>
           <div>{head6}</div> 
         </div>
       </div>
 
-      {bulletPoints && <ul className="list-disc ml-4 text-mygray-600 dark:text-mygray-400 mt-1">
+      {bulletPoints && <ul className="list-disc ml-4 mt-1">
         {bulletPoints.map((point, index) => (
           <li key={index}>{point}</li>
         ))}
       </ul>}
 
-      {bulletPointsShort && <ul className="flex gap-x-8 items-center flex-wrap ml-4 text-mygray-600 dark:text-mygray-400 list-disc">
+      {bulletPointsShort && <ul className="flex gap-x-8 items-center flex-wrap ml-4 list-disc">
         {bulletPointsShort.map((point, index) => (
           <li key={index}>{point}</li>
         ))}

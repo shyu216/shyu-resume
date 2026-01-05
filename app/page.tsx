@@ -1,5 +1,5 @@
 import React from "react";
-import { FullResume } from "@/components/full-resume";
+import { FullResume } from "@/components/section/full-resume";
 import PrintProvider from "@/components/print-provider";
 import PDFResumeContainer from "@/components/pdf-resume-container";
 

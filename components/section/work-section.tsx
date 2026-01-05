@@ -7,8 +7,9 @@ import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { workExperience as workExperienceEn } from "@/content/work_experience_en";
-import { workExperience as workExperienceZh } from "@/content/work_experience_zh";
+import { workExperience as workExperienceEn } from "@/content/en/work_experience";
+import { workExperience as workExperienceZh } from "@/content/zh/work_experience";
+import { workExperience as workExperienceZhHk } from "@/content/zh-hk/work_experience";
 import Label from "@/components/labels/label";
 
 type Props = {
@@ -18,8 +19,17 @@ type Props = {
 export default function WorkSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
 
-  const workExperience = language === "en" ? workExperienceEn : workExperienceZh;
-  const title = language === "en" ? "WORK EXPERIENCE" : "工作经历";
+  let workExperience, title;
+  if (language === "en") {
+    workExperience = workExperienceEn;
+    title = "WORK EXPERIENCE";
+  } else if (language === "zh") {
+    workExperience = workExperienceZh;
+    title = "工作经历";
+  } else {
+    workExperience = workExperienceZhHk;
+    title = "工作經歷";
+  }
 
   return (
     <Section title={title} usage={usage}>

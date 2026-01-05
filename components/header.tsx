@@ -1,3 +1,5 @@
+// The header of the webpage, not in PDF
+
 import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 import React from "react";
 import Image from "next/image";
@@ -16,7 +18,7 @@ export function Header() {
               alt="Portrait"
               width={48}
               height={48}
-              className="w-10 h-10 rounded-full ring-2 ring-mygray-200 dark:ring-mygray-400/40"
+              className="w-10 h-10 rounded-full ring-2 ring-stone-200 dark:ring-stone-300/40"
             />
           </Link>
         </div>

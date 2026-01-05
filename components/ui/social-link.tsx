@@ -82,7 +82,7 @@ export function SocialLink({
           >
             <info.icon
               className={cn(
-                "h-5 w-5 text-mygray-400 transition group-hover:text-mygray-700 dark:text-mygray-400 dark:group-hover:text-mygray-200",
+                "h-5 w-5 text-stone-600 transition group-hover:text-stone-900 dark:group-hover:text-stone-300",
                 className
               )}
             />

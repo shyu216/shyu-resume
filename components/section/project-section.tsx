@@ -7,8 +7,9 @@ import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { projects as projectsEn } from "@/content/projects_en";
-import { projects as projectsZh } from "@/content/projects_zh";
+import { projects as projectsEn } from "@/content/en/projects";
+import { projects as projectsZh } from "@/content/zh/projects";
+import { projects as projectsZhHk } from "@/content/zh-hk/projects";
 import Label from "@/components/labels/label";
 
 type Props = {
@@ -18,8 +19,17 @@ type Props = {
 export default function ProjectSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
 
-  const projects = language === "en" ? projectsEn : projectsZh;
-  const title = language === "en" ? "PROJECT" : "项目经历";
+  let projects, title;
+  if (language === "en") {
+    projects = projectsEn;
+    title = "PROJECT";
+  } else if (language === "zh") {
+    projects = projectsZh;
+    title = "项目经历";
+  } else {
+    projects = projectsZhHk;
+    title = "項目經歷";
+  }
 
   return (
     <Section title={title} usage={usage}>

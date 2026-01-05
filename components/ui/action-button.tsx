@@ -18,9 +18,9 @@ export default function ActionButton({ text, className, usage, title }: Props) {
       {text}
     </Button>
   ) : (
-    <Button href="https://shyu216.github.io/shyu-resume/">
+    <Button className={className} href="https://shyu216.github.io/shyu-resume/">
       {text}
-      <Icons.OpenLink className="h-4 w-4 stroke-mygray-400 transition group-active:stroke-mygray-600 dark:group-hover:stroke-mygray-50 dark:group-active:stroke-mygray-50" />
+      <Icons.OpenLink className="h-4 w-4 stroke-stone-300 transition group-active:stroke-stone-700 dark:group-hover:stroke-stone-50 dark:group-active:stroke-stone-50" />
     </Button>
   );
 }

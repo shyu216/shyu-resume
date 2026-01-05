@@ -1,20 +1,35 @@
 "use client";
 
+
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "next-themes";
-import React from "react";
-
+import React, { useContext } from "react";
+import { LanguageContext } from "@/components/lang/language-provider";
 import { Icons } from "@/components/ui/icons";
 import { Tooltip } from "@/components/ui/tooltip";
 
+
+const themeLabels = {
+  en: {
+    light: "Click to switch to Dark Mode",
+    dark: "Click to switch to Light Mode",
+  },
+  zh: {
+    light: "点击切换为深色模式",
+    dark: "点击切换为浅色模式",
+  },
+  'zh-hk': {
+    light: "點擊切換為深色模式",
+    dark: "點擊切換為淺色模式",
+  },
+};
+
 const themes = [
   {
-    label: "Switch to Dark Mode",
     value: "light",
     icon: Icons.Sun,
   },
   {
-    label: "Switch to Light Mode",
     value: "dark",
     icon: Icons.Moon,
   },
@@ -23,6 +38,7 @@ export function ThemeSwitcher() {
   const [mounted, setMounted] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const { setTheme, theme, resolvedTheme } = useTheme();
+  const { language } = useContext(LanguageContext);
   const ThemeIcon = React.useMemo(
     () => themes.find((t) => t.value === theme)?.icon ?? Icons.Lightning,
     [theme]
@@ -45,10 +61,10 @@ export function ThemeSwitcher() {
           <button
             type="button"
             aria-label="Change theme"
-            className="group rounded-full bg-gradient-to-b from-mygray-50/50 to-white/90 px-3 py-2 shadow-lg shadow-mygray-600/5 ring-1 ring-mygray-900/5 backdrop-blur transition dark:from-mygray-900/50 dark:to-mygray-600/90 dark:ring-white/10 dark:hover:ring-white/20"
+            className="group rounded-full bg-gradient-to-b from-stone-50/50 to-white/90 px-3 py-2 shadow-lg shadow-stone-700/5 ring-1 ring-stone-900/5 backdrop-blur transition dark:from-stone-900/50 dark:to-stone-700/90 dark:ring-white/10 dark:hover:ring-white/20"
             onClick={toggleTheme}
           >
-            <ThemeIcon className="h-6 w-6 stroke-mygray-500 p-0.5 transition group-hover:stroke-mygray-700 dark:group-hover:stroke-mygray-200" />
+            <ThemeIcon className="h-6 w-6 stroke-stone-500 p-0.5 transition group-hover:stroke-stone-700 dark:group-hover:stroke-stone-200" />
           </button>
         </Tooltip.Trigger>
         <AnimatePresence>
@@ -60,7 +76,7 @@ export function ThemeSwitcher() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                 >
-                  {themes.find((t) => t.value === theme)?.label}
+                  {themeLabels[language]?.[theme as "light" | "dark"]}
                 </motion.div>
               </Tooltip.Content>
             </Tooltip.Portal>

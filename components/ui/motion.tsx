@@ -1,3 +1,5 @@
+// Handle the animation of main content display
+
 "use client";
 
 import { motion } from "framer-motion";

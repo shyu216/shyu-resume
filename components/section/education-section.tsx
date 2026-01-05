@@ -7,8 +7,9 @@ import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import Experience from "@/components/section/experience";
 import LabelWithLink from "@/components/labels/label-with-link";
-import { education as educationEn } from "@/content/education_en";
-import { education as educationZh } from "@/content/education_zh";
+import { education as educationEn } from "@/content/en/education";
+import { education as educationZh } from "@/content/zh/education";
+import { education as educationZhHk } from "@/content/zh-hk/education";
 import Label from "@/components/labels/label";
 
 type Props = {
@@ -17,8 +18,17 @@ type Props = {
 
 export default function EducationSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
-  const education = language === "en" ? educationEn : educationZh;
-  const title = language === "en" ? "EDUCATION" : "教育经历";
+  let education, title;
+  if (language === "en") {
+    education = educationEn;
+    title = "EDUCATION";
+  } else if (language === "zh") {
+    education = educationZh;
+    title = "教育经历";
+  } else {
+    education = educationZhHk;
+    title = "教育經歷";
+  }
 
   return (
     <Section title={title} usage={usage}>
