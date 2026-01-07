@@ -41,9 +41,9 @@ export function Footer() {
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
               <p className="text-sm">
-                &copy; {new Date().getFullYear()} {language === "en" ? "Dale" : "余"} |
+                &copy; {new Date().getFullYear()} {language === "en" ? "Dale" : "余"}
                 {lastUpdateData?.lastUpdate && (
-                  <> {lastUpdateLabel} {lastUpdateDate} </>
+                  <> | {lastUpdateLabel} {lastUpdateDate} </>
                 )}
               </p>
             </div>
