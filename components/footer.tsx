@@ -13,16 +13,24 @@ export function Footer() {
   let lastUpdateLabel = "Last update:";
   let lastUpdateDate = "";
   if (lastUpdateData?.lastUpdate) {
-    const date = new Date(lastUpdateData.lastUpdate);
-    if (language === "en") {
-      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      lastUpdateDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-    } else if (language === "zh") {
-      lastUpdateLabel = "最后更新：";
-      lastUpdateDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
-    } else if (language === "zh-hk") {
-      lastUpdateLabel = "最後更新：";
-      lastUpdateDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+    let date = new Date(lastUpdateData.lastUpdate);
+    // iOS/iPad 浏览器兼容处理
+    if (isNaN(date.getTime())) {
+      // 尝试将空格和 + 时区替换为 ISO 格式
+      const isoDateStr = lastUpdateData.lastUpdate.replace(" ", "T").replace(/\s\+\d{4}/, "Z");
+      date = new Date(isoDateStr);
+    }
+    if (!isNaN(date.getTime())) {
+      if (language === "en") {
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        lastUpdateDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+      } else if (language === "zh") {
+        lastUpdateLabel = "最后更新：";
+        lastUpdateDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+      } else if (language === "zh-hk") {
+        lastUpdateLabel = "最後更新：";
+        lastUpdateDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+      }
     }
   }
 
