@@ -10,7 +10,7 @@ import { LanguageContext } from "@/components/lang/language-provider";
 
 export function Footer() {
   const { language } = useContext(LanguageContext);
-  let lastUpdateLabel = "Last update:";
+  let lastUpdateLabel = "";
   let lastUpdateDate = "";
   if (lastUpdateData?.lastUpdate) {
     let date = new Date(lastUpdateData.lastUpdate);
@@ -22,10 +22,11 @@ export function Footer() {
     }
     if (!isNaN(date.getTime())) {
       if (language === "en") {
+        lastUpdateLabel = "Last updated: ";
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         lastUpdateDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
       } else if (language === "zh") {
-        lastUpdateLabel = "最后更新：";
+        lastUpdateLabel = "最近更新：";
         lastUpdateDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
       } else if (language === "zh-hk") {
         lastUpdateLabel = "最後更新：";
@@ -43,7 +44,7 @@ export function Footer() {
               <p className="text-sm">
                 &copy; {new Date().getFullYear()} {language === "en" ? "Dale" : "余"}
                 {lastUpdateData?.lastUpdate && (
-                  <> | {lastUpdateLabel} {lastUpdateDate} </>
+                  <> | {lastUpdateLabel}{lastUpdateDate} </>
                 )}
               </p>
             </div>
