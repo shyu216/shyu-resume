@@ -10,6 +10,13 @@ import { LanguageContext } from "@/components/lang/language-provider";
 
 export function Footer() {
   const { language } = useContext(LanguageContext);
+  
+  const nameMap = {
+    en: "Dale",
+    zh: "余",
+    "zh-hk": "余",
+  };
+  
   let lastUpdateLabel = "";
   let lastUpdateDate = "";
   if (lastUpdateData?.lastUpdate) {
@@ -21,17 +28,26 @@ export function Footer() {
       date = new Date(isoDateStr);
     }
     if (!isNaN(date.getTime())) {
-      if (language === "en") {
-        lastUpdateLabel = "Last updated: ";
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        lastUpdateDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-      } else if (language === "zh") {
-        lastUpdateLabel = "最近更新：";
-        lastUpdateDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
-      } else if (language === "zh-hk") {
-        lastUpdateLabel = "最後更新：";
-        lastUpdateDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
-      }
+      const dateFormatMap = {
+        en: {
+          label: "Last updated: ",
+          format: (d: Date) => {
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            return `${monthNames[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+          }
+        },
+        zh: {
+          label: "最近更新：",
+          format: (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+        },
+        "zh-hk": {
+          label: "最後更新：",
+          format: (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+        }
+      };
+      
+      lastUpdateLabel = dateFormatMap[language].label;
+      lastUpdateDate = dateFormatMap[language].format(date);
     }
   }
 
@@ -42,7 +58,7 @@ export function Footer() {
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
               <p className="text-sm">
-                &copy; {new Date().getFullYear()} {language === "en" ? "Dale" : "余"}
+                &copy; {new Date().getFullYear()} {nameMap[language]}
                 {lastUpdateData?.lastUpdate && (
                   <> | {lastUpdateLabel}{lastUpdateDate} </>
                 )}

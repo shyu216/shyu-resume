@@ -19,17 +19,13 @@ type Props = {
 export default function ProjectSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
 
-  let projects, title;
-  if (language === "en") {
-    projects = projectsEn;
-    title = "PROJECT";
-  } else if (language === "zh") {
-    projects = projectsZh;
-    title = "项目经历";
-  } else {
-    projects = projectsZhHk;
-    title = "項目經歷";
-  }
+  const contentMap = {
+    en: { data: projectsEn, title: "PROJECT" },
+    zh: { data: projectsZh, title: "项目经历" },
+    "zh-hk": { data: projectsZhHk, title: "項目經歷" },
+  };
+  
+  const { data: projects, title } = contentMap[language];
 
   return (
     <Section title={title} usage={usage}>

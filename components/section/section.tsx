@@ -9,11 +9,16 @@ type Props = {
 };
 
 export default function Section({ title, children, usage }: Props) {
+  const titleSizeMap = {
+    live: "text-md",
+    pdf: "text-14px",
+  };
+  
   return (
     <section className="mt-2">
       <h3
         className={cn(
-          usage === "live" ? "text-md" : "text-14px",
+          titleSizeMap[usage],
           "font-bold text-rose-600"
         )}
       >
