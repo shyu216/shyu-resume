@@ -8,7 +8,7 @@ export const projects: Project[] = [
     subtitle: "MR Physiological Signal Monitoring · Research Project",
     subtitleIcon: Icons.GraduationCap,
     link: "https://youtu.be/zOPQXXpSRbg",
-    dateRange: "May 2025 – Present",
+    dateRange: "May 2025 – Nov 2025",
     techStack: "Unity, Meta Quest 3, C#",
     bullets: [
       "Developed a Meta Quest 3 MR health app in Unity, implementing Eulerian Video Magnification and rPPG for contactless heart and respiratory rate measurement.",
