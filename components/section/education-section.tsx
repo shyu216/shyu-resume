@@ -34,7 +34,7 @@ export default function EducationSection({ usage }: Props) {
         {education.map((e, index) => (
           <Experience
             key={index}
-            head1={<Label content={e.degree + (e.withDistinction ? " (with Distinction)" : "")} />}
+            head1={<Label content={e.degree} />}
             head4={
               e.institutionLink ? (
                 <LabelWithLink

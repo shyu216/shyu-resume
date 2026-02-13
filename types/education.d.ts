@@ -1,7 +1,6 @@
 export interface Education {
   id: string;
   degree: string;
-  withDistinction?: boolean;
   institution: string;
   institutionLink?: string;
   institutionImage?: string;

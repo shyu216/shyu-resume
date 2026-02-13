@@ -4,7 +4,6 @@ export const education: Education[] = [
   {
     id: "unimelb-msc",
     degree: "计算机科学 硕士（优异）",
-    withDistinction: true,
     institution: "墨尔本大学",
     institutionLink: "https://www.unimelb.edu.au",
     institutionImage: "./images/unimelb.png",

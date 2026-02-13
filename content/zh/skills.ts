@@ -5,7 +5,7 @@ export const skills: SkillCategory[] = [
   "id": "ai-computer-vision",
   "name": "AI / 计算机视觉",
   "skills": [
-    "PyTorch", "Open3D", "3D目标检测",
+    "PyTorch", "Open3D", "三维目标检测",
     "EVM/rPPG", "Unity (C#, ComputeShader)"
   ]
 },

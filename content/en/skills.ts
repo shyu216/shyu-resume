@@ -1,34 +1,37 @@
+
 import { type SkillCategory } from "@/types/skill-category";
 
 export const skills: SkillCategory[] = [
   {
-    id: "frontend-web",
-    name: "Frontend / Web",
-    skills: ["Next.js", "React", "Vue", "Tailwind"],
-    rank: 1,
+    id: "ai-computer-vision",
+    name: "AI / Computer Vision",
+    skills: [
+      "PyTorch", "Open3D", "3D Object Detection",
+      "EVM/rPPG", "Unity (C#, ComputeShader)"
+    ]
   },
   {
-    id: "mobile-mr",
-    name: "Mobile / MR",
-    skills: ["React Native", "Unity (MR)", "Qt (C++)"],
-    rank: 1,
+    id: "cloud-infrastructure",
+    name: "Cloud Computing & Infrastructure",
+    skills: [
+      "AWS (CDK/Lambda/EventBridge/Amplify)",
+      "Firebase",
+      "GitHub Actions"
+    ]
   },
   {
-    id: "backend-cloud",
-    name: "Backend / Cloud",
-    skills: ["AWS Amplify", "AWS CDK", "Lambda", "EventBridge", "Firebase Auth"],
-    rank: 1,
-  },
-  {
-    id: "devops-tools",
-    name: "DevOps / Tools",
-    skills: ["Git", "Docker", "GitHub Actions", "LaTeX/Markdown", "VS Code", "Unity"],
-    rank: 2,
+    id: "software-engineering",
+    name: "Software Engineering",
+    skills: [
+      "Next.js", "TypeScript",
+      "React Native"
+    ]
   },
   {
     id: "languages",
     name: "Languages",
-    skills: ["English", "Mandarin", "Cantonese"],
-    rank: 1,
-  },
+    skills: [
+      "English", "Mandarin", "Cantonese"
+    ]
+  }
 ];

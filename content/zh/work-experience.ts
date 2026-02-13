@@ -18,7 +18,7 @@ export const workExperience: WorkExperience[] = [
       "开发基于 AWS EventBridge/SNS 的事件通知系统，支持事务及营销推送",
       "管理 Cloudflare 开发/测试/生产环境域名及路由分配",
       "设计 i18n 语言钩子，实现英文/繁体中文切换；文案由 CEO 本地化润色，语料与代码解耦",
-      "协助制作并部署 App 内教程视频，提升用户上手效率",
+      "制作并部署 App 内教程视频，提升用户上手效率",
     ],
   },
 ];

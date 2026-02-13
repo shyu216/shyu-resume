@@ -1,10 +1,9 @@
 import { type Education } from "@/types/education";
 
-export const education: Education[] = [
+	export const education: Education[] = [
 	{
 		id: "unimelb-msc",
-		degree: "計算機科學碩士",
-		withDistinction: true,
+		degree: "計算機科學碩士（優異）",
 		institution: "墨爾本大學",
 		institutionLink: "https://www.unimelb.edu.au",
 		institutionImage: "./images/unimelb.png",
@@ -22,8 +21,8 @@ export const education: Education[] = [
 		gpa: "MGPA：3.364/4.0",
 		honors: [
 			"入學獎學金",
-			"2022-2023年度院長名單",
-			"精英班",
+			"院長名單 2022-23",
+			"ELITE 精英班",
 		],
 	},
 ];

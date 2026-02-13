@@ -10,14 +10,15 @@ export const workExperience: WorkExperience[] = [
 		dateRange: "Apr 2023 - Feb 2024",
 		techStack: "Next.js, AWS",
 		bullets: [
-			"Led development of a reusable container rental platform for consumers and restaurant managers.",
-			"Delivered Next.js SSR PWA with AWS Amplify/CDK CI/CD for rapid releases.",
-			"Built QR code system for container tracking and mobile camera integration.",
-			"Implemented multi-channel authentication (Google, Facebook, email, SMS) to streamline onboarding.",
-			"Developed scalable notification system (AWS EventBridge, SES/SNS) for transactional and newsletter messaging.",
-			"Produced and deployed in-app tutorial videos (https://app.recube.hk/account/in_app_tut) to improve user experience.",
-			"Provided a multilingual support class for teammates to optimize UI copy and user experience.",
-			"Technical lead for a 3-person team, delivering 80+ features with user acceptance testing."
+			"Technical lead, managed a 3-person team, delivered 80+ features and passed user acceptance testing.",
+			"Led end-to-end development of a reusable container rental platform, implementing core flows for QR code-based borrowing/return and container tracking.",
+			"Built Next.js SSR PWA and AWS CDK/Amplify CI/CD pipelines to enable rapid iteration and deployment.",
+			"Integrated Stripe for credit card payments, supporting pre-authorization and refunds.",
+			"Integrated Firebase Auth (email/SMS) for authentication, decoupled from AWS business logic.",
+			"Developed an event-driven notification system using AWS EventBridge and SNS, supporting both transactional and marketing messages.",
+			"Managed Cloudflare domains and routing for development, testing, and production environments.",
+			"Designed i18n language hooks for seamless English/Traditional Chinese switching; collaborated with CEO for copy localization and decoupled content from codebase.",
+			"Produced and deployed in-app tutorial videos to improve user onboarding efficiency."
 		]
 	}
 ];
