@@ -8,8 +8,8 @@ export const education: Education[] = [
     institution: "The University of Melbourne",
     institutionLink: "https://www.unimelb.edu.au",
     institutionImage: "./images/unimelb.png",
-    dateRange: { start: "Feb 2024", end: "Dec 2025" },
-    gpa: { value: 81.938, scale: 100, label: "WAM" },
+  dateRange: "Feb 2024 – Dec 2025",
+  gpa: "WAM: 81.938/100",
     honors: [],
   },
   {
@@ -18,8 +18,8 @@ export const education: Education[] = [
     institution: "The Chinese University of Hong Kong",
     institutionLink: "https://www.cuhk.edu.hk",
     institutionImage: "./images/cuhk.png",
-    dateRange: { start: "Sep 2019", end: "Jul 2023" },
-    gpa: { value: 3.364, scale: 4.0, label: "MGPA" },
+  dateRange: "Sep 2019 – Jul 2023",
+  gpa: "MGPA: 3.364/4.0",
     honors: [
       "Honours at Entrance",
       "Dean's List, 2022-2023",

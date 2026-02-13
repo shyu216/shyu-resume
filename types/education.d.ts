@@ -5,7 +5,7 @@ export interface Education {
   institution: string;
   institutionLink?: string;
   institutionImage?: string;
-  dateRange: { start: string; end: string };
-  gpa?: { value: number; scale: 100 | 4.0; label: string };
+  dateRange: string;
+  gpa?: string;
   honors?: string[];
 }

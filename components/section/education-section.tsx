@@ -28,9 +28,6 @@ export default function EducationSection({ usage }: Props) {
   
   const { data: education, title } = contentMap[language];
 
-  const formatDate = (edu: Education) => `${edu.dateRange.start} - ${edu.dateRange.end}`;
-  const formatGpa = (edu: Education) => edu.gpa ? `${edu.gpa.label}: ${edu.gpa.value}` : undefined;
-
   return (
     <Section title={title} usage={usage}>
       <div className="flex flex-col gap-y-1">
@@ -48,8 +45,8 @@ export default function EducationSection({ usage }: Props) {
                 <LabelWithGraphic image={e.institutionImage} content={e.institution} />
               )
             }
-            head5={formatGpa(e) ? <LabelWithGraphic icon={Icons.GraduationCap} content={formatGpa(e)} /> : undefined}
-            head6={formatDate(e)}
+            head5={e.gpa ? <LabelWithGraphic icon={Icons.GraduationCap} content={e.gpa} /> : undefined}
+            head6={e.dateRange}
             bulletPointsShort={e.honors}
             usage={usage}
           />
