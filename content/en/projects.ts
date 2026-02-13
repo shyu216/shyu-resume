@@ -5,7 +5,7 @@ export const projects: Project[] = [
   {
     id: "biovis",
     name: "BioVis",
-    subtitle: "MR Physiological Signal Monitoring · Research Project",
+    subtitle: "Mixed Reality Biosensing · Research Project",
     subtitleIcon: Icons.GraduationCap,
     link: "https://youtu.be/zOPQXXpSRbg",
     dateRange: "May 2025 – Nov 2025",
@@ -76,7 +76,7 @@ export const projects: Project[] = [
   },
   {
     id: "distributed-raft",
-    name: "Raft Consensus Algorithm (Go Implementation)",
+    name: "Raft Consensus Implementation in Go",
     subtitle: "Distributed Systems · CSCI4160",
     subtitleIcon: Icons.Code,
     link: "https://github.com/shyu216/go-raft",
