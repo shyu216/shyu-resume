@@ -16,27 +16,54 @@ type Props = {
 export default function HeaderSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
 
+  const nameMap = {
+    en: (
+      <div>
+        Sihong{" "}<span className="text-rose-600">Yu</span>
+        <span className="text-xs text-stone-600 ml-2">
+          (Dale / 余思宏)
+        </span>
+      </div>
+    ),
+    zh: (
+      <div>
+        <span className="text-rose-600">余</span>
+        思宏
+        <span className="text-xs text-stone-600 ml-2">
+          (微信：seinbaulio)
+        </span>
+      </div>
+    ),
+    "zh-hk": (
+      <div>
+        <span className="text-rose-600">余</span>
+        思宏
+        <span className="text-xs text-stone-600 ml-2">
+          (微信：seinbaulio)
+        </span>
+      </div>
+    ),
+  };
+
+  const buttonTextMap = {
+    live: {
+      en: "Save PDF",
+      zh: "保存PDF",
+      "zh-hk": "儲存PDF",
+    },
+    pdf: {
+      en: "Open",
+      zh: "前往",
+      "zh-hk": "打開",
+    },
+  };
+
   return (
     <section>
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <h2 className="text-2xl font-bold mr-4 my-1">
-            {language === "en" ? (
-              <div>
-                Sihong{" "}<span className="text-rose-600">Yu</span>
-                <span className="text-xs text-stone-600 ml-2">
-                  (Dale / 余思宏)
-                </span>
-              </div>
-            ) : (
-              <div>
-                <span className="text-rose-600">余</span>
-                思宏
-                <span className="text-xs text-stone-600 ml-2">
-                  (微信：seinbaulio)
-                </span>
-              </div>
-            )}
+            {nameMap[language]}
           </h2>
           {usage != "live" && (
             <SocialLink
@@ -60,19 +87,7 @@ export default function HeaderSection({ usage }: Props) {
           />
         </div>
         <ActionButton
-          text={
-            usage === "live"
-              ? language === "en"
-                ? "Save PDF"
-                : language === "zh"
-                ? "保存PDF"
-                : "儲存PDF"
-              : language === "en"
-              ? "Open"
-              : language === "zh"
-              ? "前往"
-              : "打開"
-          }
+          text={buttonTextMap[usage][language]}
           usage={usage}
           className={cn("bg-stone-800", usage === "live" && "hidden sm:block")}
           // 没必要

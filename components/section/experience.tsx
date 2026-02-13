@@ -23,8 +23,13 @@ export default function Experience({
   bulletPointsShort,
   usage
 }: Props) {
+  const textSizeMap = {
+    live: "text-sm",
+    pdf: "text-11px",
+  };
+  
   return (
-    <section className={cn(usage === "live" ? "text-sm" : "text-11px")}>
+    <section className={cn(textSizeMap[usage])}>
       <div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="flex gap-x-4 flex-wrap">

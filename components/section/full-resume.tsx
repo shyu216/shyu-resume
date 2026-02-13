@@ -31,6 +31,12 @@ type AnimatedComponent = {
 export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
   const { language } = useContext(LanguageContext);
 
+  const buttonTextMap = {
+    en: "Save PDF",
+    zh: "保存PDF",
+    "zh-hk": "儲存PDF",
+  };
+
   const animatedComponents: AnimatedComponent[] = [
     { component: HeaderSection, props: { usage }, delay: 0.1 },
     { component: WorkSection, props: { usage }, delay: 0.3 },
@@ -57,11 +63,7 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
       {usage === "live" && (
         <div className="flex sm:hidden justify-center mt-10">
           <ActionButton
-            text={language === "en"
-                ? "Save PDF"
-                : language === "zh"
-                ? "保存PDF"
-                : "儲存PDF"}
+            text={buttonTextMap[language]}
             className="bg-stone-800 block sm:hidden"
             usage="live"
           />

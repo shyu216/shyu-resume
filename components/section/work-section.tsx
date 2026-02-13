@@ -19,17 +19,13 @@ type Props = {
 export default function WorkSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
 
-  let workExperience, title;
-  if (language === "en") {
-    workExperience = workExperienceEn;
-    title = "WORK EXPERIENCE";
-  } else if (language === "zh") {
-    workExperience = workExperienceZh;
-    title = "工作经历";
-  } else {
-    workExperience = workExperienceZhHk;
-    title = "工作經歷";
-  }
+  const contentMap = {
+    en: { data: workExperienceEn, title: "WORK EXPERIENCE" },
+    zh: { data: workExperienceZh, title: "工作经历" },
+    "zh-hk": { data: workExperienceZhHk, title: "工作經歷" },
+  };
+  
+  const { data: workExperience, title } = contentMap[language];
 
   return (
     <Section title={title} usage={usage}>

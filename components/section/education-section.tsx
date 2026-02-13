@@ -18,17 +18,14 @@ type Props = {
 
 export default function EducationSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
-  let education, title;
-  if (language === "en") {
-    education = educationEn;
-    title = "EDUCATION";
-  } else if (language === "zh") {
-    education = educationZh;
-    title = "教育经历";
-  } else {
-    education = educationZhHk;
-    title = "教育經歷";
-  }
+  
+  const contentMap = {
+    en: { data: educationEn, title: "EDUCATION" },
+    zh: { data: educationZh, title: "教育经历" },
+    "zh-hk": { data: educationZhHk, title: "教育經歷" },
+  };
+  
+  const { data: education, title } = contentMap[language];
 
   return (
     <Section title={title} usage={usage}>
