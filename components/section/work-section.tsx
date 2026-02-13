@@ -7,10 +7,11 @@ import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { workExperience as workExperienceEn } from "@/content/en/work_experience";
-import { workExperience as workExperienceZh } from "@/content/zh/work_experience";
-import { workExperience as workExperienceZhHk } from "@/content/zh-hk/work_experience";
+import { workExperience as workExperienceEn } from "@/content/en/work-experience";
+import { workExperience as workExperienceZh } from "@/content/zh/work-experience";
+import { workExperience as workExperienceZhHk } from "@/content/zh-hk/work-experience";
 import Label from "@/components/labels/label";
+import { type WorkExperience } from "@/types/work-experience";
 
 type Props = {
   usage: "live" | "pdf";
@@ -33,11 +34,20 @@ export default function WorkSection({ usage }: Props) {
         {workExperience.map((e, index) => (
           <Experience
             key={index}
-            head1={<Label content={e.head1} />}
-            head2={<LabelWithLink content={<LabelWithGraphic image={e.head2.image} content={e.head2.title} />} link={e.head2.link} />}
-            head3={<LabelWithGraphic icon={Icons.Stack} content={e.head3} />}
-            head4={e.head4}
-            bulletPoints={e.bulletPoints}
+            head1={<Label content={e.position} />}
+            head2={
+              e.companyLink ? (
+                <LabelWithLink
+                  content={<LabelWithGraphic image={e.companyImage} content={e.company} />}
+                  link={e.companyLink}
+                />
+              ) : (
+                <LabelWithGraphic image={e.companyImage} content={e.company} />
+              )
+            }
+            head3={<LabelWithGraphic icon={Icons.Stack} content={e.techStack} />}
+            head4={e.dateRange}
+            bulletPoints={e.bullets}
             usage={usage}
           />
         ))}

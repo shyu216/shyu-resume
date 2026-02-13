@@ -1,28 +1,29 @@
-export const education = [
+import { type Education } from "@/types/education";
+
+export const education: Education[] = [
   {
-    "head1": "计算机科学硕士（优异）",
-    "head2": {
-      "title": "墨尔本大学",
-      "link": "https://www.unimelb.edu.au",     
-      "image": "./images/unimelb.png"
-    },
-    "head3": "WAM: 81.938",
-    "head4": "2024年2月 - 2025年12月",
-    "bulletPoints": []
+    id: "unimelb-msc",
+    degree: "计算机科学硕士",
+    withDistinction: true,
+    institution: "墨尔本大学",
+    institutionLink: "https://www.unimelb.edu.au",
+    institutionImage: "./images/unimelb.png",
+    dateRange: { start: "2024年2月", end: "2025年12月" },
+    gpa: { value: 81.938, scale: 100, label: "WAM" },
+    honors: [],
   },
   {
-    "head1": "计算机科学学士",
-    "head2": {
-      "title": "香港中文大学",
-      "link": "https://www.cuhk.edu.hk",
-      "image": "./images/cuhk.png"
-    },
-    "head3": "MGPA: 3.364",
-    "head4": "2019年9月 - 2023年7月",
-    "bulletPoints": [
+    id: "cuhk-bsc",
+    degree: "计算机科学学士",
+    institution: "香港中文大学",
+    institutionLink: "https://www.cuhk.edu.hk",
+    institutionImage: "./images/cuhk.png",
+    dateRange: { start: "2019年9月", end: "2023年7月" },
+    gpa: { value: 3.364, scale: 4.0, label: "MGPA" },
+    honors: [
       "入学奖学金",
       "2022-2023年度院长名单",
-      "精英班"
-    ]
-  }
-]
+      "精英班",
+    ],
+  },
+];

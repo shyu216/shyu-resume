@@ -1,29 +1,34 @@
-export const skills = [
+import { type SkillCategory } from "@/types/skill-category";
+
+export const skills: SkillCategory[] = [
   {
-    title: "Technical Stack",
-    description: [
-      "Next.js, React.js, Vue.js for web application development;",
-      "Cross-platform/mobile development with React Native and Qt (C++);",
-      "Cloud deployment using AWS (Amplify, Lambda, EventBridge, CDK) and Firebase (Auth)",
-    ],
+    id: "frontend-web",
+    name: "Frontend / Web",
+    skills: ["Next.js", "React", "Vue", "Tailwind"],
+    rank: 1,
   },
   {
-    title: "Software Tools",
-    description: [
-      "Git, Markdown/LaTeX, Docker, VS Code, Visual Studio, Android Studio, Qt Creator, MATLAB, Unity",
-    ],
+    id: "mobile-mr",
+    name: "Mobile / MR",
+    skills: ["React Native", "Unity (MR)", "Qt (C++)"],
+    rank: 1,
   },
   {
-    title: "Core Knowledge",
-    description: [
-      "Data Structures, Databases, Big Data, Parallel/Distributed Systems, Networking/Cyber Security,",
-      "Algorithms (Graph/Bioinformatics/Quantum), AI Planning/RL, ML/CV/NLP",
-    ],
+    id: "backend-cloud",
+    name: "Backend / Cloud",
+    skills: ["AWS Amplify", "AWS CDK", "Lambda", "EventBridge", "Firebase Auth"],
+    rank: 1,
   },
   {
-    title: "Languages",
-    description: [
-      "English, Mandarin, Cantonese",
-    ],
+    id: "devops-tools",
+    name: "DevOps / Tools",
+    skills: ["Git", "Docker", "GitHub Actions", "LaTeX/Markdown", "VS Code", "Unity"],
+    rank: 2,
+  },
+  {
+    id: "languages",
+    name: "Languages",
+    skills: ["English", "Mandarin", "Cantonese"],
+    rank: 1,
   },
 ];

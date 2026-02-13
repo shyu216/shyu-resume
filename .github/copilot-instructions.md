@@ -1,122 +1,53 @@
+
 # Copilot Instructions for shyu-resume
 
-## Project Overview
-Next.js 13 static-export resume website with dual rendering modes: live view (animated) and PDF export. Fork of Markdown-React-Resume with multilingual support (en/zh/zhhk) and optimized A4 PDF layout.
+## 项目架构与核心模式
 
-## Architecture & Critical Patterns
+- **Next.js 13 静态导出简历站点**，支持 live（动画/交互）与 PDF（静态/A4 优化）双渲染模式。内容多语言（en/zh/zh-hk），A4 PDF 布局高度定制。
+- **所有组件均接收 `usage: "live" | "pdf"`**，通过对象映射（object mapping）切换 live/PDF 样式与行为。严禁 if-else/三元表达式，务必用对象映射。
+- **live 模式**：`rem` 单位、framer-motion 动画、交互 UI。
+- **pdf 模式**：`px` 单位（如 `text-14px`）、无动画、静态排版。详见 `components/section/full-resume.tsx`。
+- **PDF 内容渲染在隐藏 div**（`app/page.tsx`），用 `react-to-print` 捕获导出。
+- **i18n 采用 Context**（`components/lang/language-provider.tsx`），内容存于 `content/{en,zh,zh-hk}/`，所有 section 组件用对象映射选择语言内容。
+- **数据结构**：各 `content/` 下导出数组对象，字段结构需三语一致（如 `work_experience.ts`、`projects.ts`、`education.ts`、`skills.ts`）。
+- **PDF 样式依赖 `@media print`**（`app/globals.css`），如 `section { break-inside: avoid; }`，A4 纸张、边距、分页优化。
+- **自定义 Tailwind 字号**（`tailwind.config.ts`）：如 `text-11px`、`text-14px`，PDF 专用。
+- **主题色为 rose-600**，全局查找 `rose-`。
+- **深色模式**：`next-themes`，详见 `components/theme/theme-provider.tsx`。
+- **所有样式用 Tailwind，禁止 CSS modules。**
 
-### Dual Rendering System
-All components accept `usage: "live" | "pdf"` prop:
-- **Live mode**: Uses `rem` units, framer-motion animations, interactive UI
-- **PDF mode**: Uses `px` units (e.g., `text-14px`), no animations, static layout
-- See `components/section/full-resume.tsx` for the pattern: conditionally wraps components in `<Motion>` only for live mode
-- PDF content is rendered in a hidden div (`<div className="hidden">`) and printed via `react-to-print`
+## 关键开发工作流
 
-### Language System
-- Context-based i18n via `LanguageContext` (`components/lang/language-provider.tsx`)
-- Content stored in `content/{en,zh,zh-hk}/` as TypeScript exports
-- All section components use **object mapping pattern** for language-specific content:
-```typescript
-const contentMap = {
-  en: { data: dataEn, title: "TITLE" },
-  zh: { data: dataZh, title: "标题" },
-  "zh-hk": { data: dataZhHk, title: "標題" },
-};
-const { data, title } = contentMap[language];
-```
-- **Do not** use if-else chains for language selection; always use object mapping for readability
+- 启动开发：`npm run dev`
+- 静态导出：`npm run build`（输出到 `out/`）
+- 代码检查：`npm run lint`
+- PDF 预览/导出：仅用 Chrome 浏览器“另存为 PDF”保证分页与链接可用（见 README）。
+- 静态导出配置见 `next.config.js`（`output: 'export'`，图片 unoptimized 适配 GitHub Pages）。
 
-### Content Structure
-Data files export arrays of objects with specific shapes:
-- `work_experience.ts`: `{ head1, head2: {title, link, image}, head3, head4, bulletPoints[] }`
-- `projects.ts`: Similar structure for project entries
-- `education.ts`: Education history
-- `skills.ts`: Technical skills grouped by category
+## 组件与约定
 
-When adding content, maintain consistency across all three language folders.
+- **Label 组件**：`components/labels/` 下三种（纯文本/带链接/带图标）。
+- **Section 组件**：每个 section 先导入三语数据，统一用对象映射选内容与标题，再用对象映射切换 live/pdf 样式，最后包裹 `<Section>`。
+- **动画**：仅 live 模式用 `Motion`（`components/ui/motion.tsx`），PDF 跳过动画。
+- **PrintProvider**（`components/print-provider.tsx`）：全局提供 `componentRef`、`handlePrint`，供 PDF 导出。
+- **ActionButton** 触发 PDF 导出。
+- **内容变更**：需同步三语数据，保持字段一致。
 
-### PDF-Specific Styling
-- **Critical**: PDF layout relies on `@media print` in `globals.css`:
-  - `@page { size: 210mm 297mm; margin-top: 1cm; }`
-  - `section { break-inside: avoid; page-break-inside: avoid; }`
-- Custom font sizes in `tailwind.config.ts`: `'11px': '11px'`, `'14px': '14px'` for precise PDF typography
-- Use **object mapping pattern** for usage-specific styles:
-```typescript
-const styleMap = {
-  live: "text-sm",
-  pdf: "text-11px",
-};
-<div className={styleMap[usage]} />
-```
-- **Do not** use ternary operators for usage conditionals; always use object mapping
+## 依赖说明
 
-### Print Provider Pattern
-`components/print-provider.tsx` wraps the app and provides:
-- `componentRef`: React ref pointing to PDF content
-- `handlePrint()`: Triggers `react-to-print` library
-- Used by `ActionButton` to trigger PDF generation
-- **Note**: Only Chrome's "Save as PDF" fully supports all features (see README troubleshooting)
+- `framer-motion`（live 动画）、`react-to-print`（PDF 导出）、`next-themes`（深色模式）、`@radix-ui/react-tooltip`（提示）、`lucide-react`（图标）、`tailwind-merge`（class 合并）。
 
-## Key Commands
-```bash
-npm run dev        # Start dev server
-npm run build      # Static export to out/
-npm run lint       # ESLint checks
-```
+## 常见修改
 
-## Static Export Configuration
-`next.config.js` sets `output: 'export'` and `images: { unoptimized: true }` for GitHub Pages deployment.
+- **加内容**：改 `content/{en,zh,zh-hk}/`，三语同步，PDF 预览分页。
+- **改主题色**：全局搜 `rose-`。
+- **调 PDF 排版**：改 `globals.css` 的 `@media print`，用 px 单位，分页用 `break-inside: avoid`。
 
-## Component Patterns
+## 重要约定
 
-### Label Components
-Three variants in `components/labels/`:
-- `label.tsx`: Plain text
-- `label-with-link.tsx`: Clickable links
-- `label-with-graphic.tsx`: Icon or image + text
+- **所有语言/usage 分支必须用对象映射，禁止 if-else/三元。**
+- **PDF 样式用 px 单位和自定义字号，不用 rem。**
+- **所有视觉差异组件都要有 live/pdf 两套。**
+- **PDF 仅用 Chrome 另存为 PDF 测试。**
 
-### Section Components
-All section components follow this structure:
-1. Import all language variants of data
-2. Use object mapping to select content based on `language`:
-   ```typescript
-   const contentMap = {
-     en: { data: dataEn, title: "TITLE" },
-     zh: { data: dataZh, title: "标题" },
-     "zh-hk": { data: dataZhHk, title: "標題" },
-   };
-   const { data, title } = contentMap[language];
-   ```
-3. Use object mapping for `usage`-dependent styles
-4. Wrap in `<Section>` wrapper with translated title
-
-### Styling Conventions
-- Uses `next-themes` for dark mode (see `components/theme/theme-provider.tsx`)
-- Background uses custom gradient patterns in `app/layout.tsx` (grid + radial gradient)
-- All styling is Tailwind-based; no CSS modules
-- Dark mode variants: `dark:text-stone-300`, `dark:bg-stone-900/80`
-
-## Common Modifications
-
-### Adding New Content
-1. Update data file in `content/{language}/` (e.g., `work_experience.ts`)
-2. Add corresponding translations in all three language folders
-3. Verify PDF layout with Chrome's print preview
-4. Check `break-inside: avoid` is applied if content spans multiple lines
-
-### Changing Theme Color
-Primary color is rose/red (`text-rose-600`). Search for `rose-` to find all uses in section headers, buttons, etc.
-
-### Adjusting PDF Layout
-- Modify `@media print` rules in `globals.css`
-- Test pagination with `break-inside: avoid` on sections
-- Use fixed `px` units for PDF-specific typography
-- Preview with Chrome > Print > "Save as PDF" (NOT "Microsoft Print to PDF")
-
-## Important Notes
-- **Always use object mapping** instead of if-else chains or ternary operators for `language` and `usage` conditionals
-- **Do not** use `rem` units for PDF-specific styles; use custom Tailwind sizes like `text-14px`
-- **Always** provide both live and PDF variants when modifying components with visual differences
-- **Test** PDF generation in Chrome browser specifically (Firefox/Edge have limitations)
-- Component ref forwarding is used in `FullResume` for print functionality
-- Key for animated components includes `language` to force re-render on language change
+如有不清楚或遗漏之处，请反馈补充。

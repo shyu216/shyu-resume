@@ -11,6 +11,7 @@ import { education as educationEn } from "@/content/en/education";
 import { education as educationZh } from "@/content/zh/education";
 import { education as educationZhHk } from "@/content/zh-hk/education";
 import Label from "@/components/labels/label";
+import { type Education } from "@/types/education";
 
 type Props = {
   usage: "live" | "pdf";
@@ -27,17 +28,29 @@ export default function EducationSection({ usage }: Props) {
   
   const { data: education, title } = contentMap[language];
 
+  const formatDate = (edu: Education) => `${edu.dateRange.start} - ${edu.dateRange.end}`;
+  const formatGpa = (edu: Education) => edu.gpa ? `${edu.gpa.label}: ${edu.gpa.value}` : undefined;
+
   return (
     <Section title={title} usage={usage}>
       <div className="flex flex-col gap-y-1">
         {education.map((e, index) => (
           <Experience
             key={index}
-            head1={<Label content={e.head1} />}
-            head4={<LabelWithLink content={<LabelWithGraphic image={e.head2.image} content={e.head2.title} />} link={e.head2.link} />}
-            head5={<LabelWithGraphic icon={Icons.GraduationCap} content={e.head3} />}
-            head6={e.head4}
-            bulletPointsShort={e.bulletPoints}
+            head1={<Label content={e.degree + (e.withDistinction ? " (with Distinction)" : "")} />}
+            head4={
+              e.institutionLink ? (
+                <LabelWithLink
+                  content={<LabelWithGraphic image={e.institutionImage} content={e.institution} />}
+                  link={e.institutionLink}
+                />
+              ) : (
+                <LabelWithGraphic image={e.institutionImage} content={e.institution} />
+              )
+            }
+            head5={formatGpa(e) ? <LabelWithGraphic icon={Icons.GraduationCap} content={formatGpa(e)} /> : undefined}
+            head6={formatDate(e)}
+            bulletPointsShort={e.honors}
             usage={usage}
           />
         ))}

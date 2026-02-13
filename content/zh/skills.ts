@@ -1,29 +1,34 @@
-export const skills = [
+import { type SkillCategory } from "@/types/skill-category";
+
+export const skills: SkillCategory[] = [
   {
-    title: "技术栈",
-    description: [
-      "精通 Next.js、React.js、Vue.js 等前端框架，具备丰富 Web 应用开发经验；",
-      "熟悉 React Native、Qt（C++）等跨平台/移动端开发技术；",
-      "熟练使用 AWS（Amplify、Lambda、EventBridge、CDK）、Firebase（Auth）等云服务进行项目部署",
-    ],
+    id: "frontend-web",
+    name: "前端 / Web",
+    skills: ["Next.js", "React", "Vue", "Tailwind"],
+    rank: 1,
   },
   {
-    title: "软件工具",
-    description: [
-      "Git、Markdown/LaTeX、Docker、VS Code、Visual Studio、Android Studio、Qt Creator、MATLAB、Unity",
-    ],
+    id: "mobile-mr",
+    name: "移动 / MR",
+    skills: ["React Native", "Unity (MR)", "Qt (C++)"],
+    rank: 1,
   },
   {
-    title: "专业基础",
-    description: [
-      "数据结构、数据库、大数据、并行/分布式系统、网络通信/安全、",
-      "算法、图论、智能规划/强化学习、机器学习/CV/NLP、生物信息算法、量子算法",
-    ],
+    id: "backend-cloud",
+    name: "后端 / 云",
+    skills: ["AWS Amplify", "AWS CDK", "Lambda", "EventBridge", "Firebase Auth"],
+    rank: 1,
   },
   {
-    title: "语言能力",
-    description: [
-      "普通话、粤语、英语",
-    ],
+    id: "devops-tools",
+    name: "DevOps / 工具",
+    skills: ["Git", "Docker", "GitHub Actions", "LaTeX/Markdown", "VS Code", "Unity"],
+    rank: 2,
+  },
+  {
+    id: "languages",
+    name: "语言",
+    skills: ["英语", "普通话", "粤语"],
+    rank: 1,
   },
 ];
