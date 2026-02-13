@@ -7,7 +7,7 @@ export const projects: Project[] = [
     name: "BioVis",
     subtitle: "MR 生理信号监测 · 研究项目",
     subtitleIcon: Icons.GraduationCap,
-    link: "",
+    link: "https://youtu.be/zOPQXXpSRbg",
     dateRange: "2025年5月 - 2025年11月",
     techStack: "Unity, Meta Quest 3, C#",
     bullets: [
