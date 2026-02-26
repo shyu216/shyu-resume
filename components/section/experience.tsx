@@ -45,14 +45,14 @@ export default function Experience({
         </div>
       </div>
 
-      {bulletPoints && <ul className="list-disc ml-4 mt-1">
-        {bulletPoints.map((point, index) => (
+      {bulletPointsShort && <ul className="flex gap-x-8 items-center flex-wrap ml-4 list-disc">
+        {bulletPointsShort.map((point, index) => (
           <li key={index}>{point}</li>
         ))}
       </ul>}
 
-      {bulletPointsShort && <ul className="flex gap-x-8 items-center flex-wrap ml-4 list-disc">
-        {bulletPointsShort.map((point, index) => (
+      {bulletPoints && <ul className="list-disc ml-4 mt-1">
+        {bulletPoints.map((point, index) => (
           <li key={index}>{point}</li>
         ))}
       </ul>}

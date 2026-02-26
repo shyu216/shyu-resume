@@ -1,5 +1,9 @@
 This project is a 魔改 version of [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume). This project is mainly for personal use, but you are welcome to take inspiration from it or adapt it for your own needs.
 
+## What is 简历?
+
+以言简意赅的言词描述出自己的经历, HR cares only about what aligns with the job description.
+
 ## What is new?
 
 - [x] Support bilingual, Chinese and English.
