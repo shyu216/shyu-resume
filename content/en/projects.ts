@@ -39,7 +39,7 @@ export const projects: Project[] = [
     subtitle: "Sensor Interactive App · COMP90018",
     subtitleIcon: Icons.LayoutTemplate,
     link: "https://github.com/CRUVOD/CarbonTracker",
-    dateRange: "Aug 2024 – Nov 2024",
+    dateRange: "Sep 2024 – Nov 2024",
     techStack: "React Native, Firebase",
     bullets: [
     "Built a React Native eco-habit app with tasks, leaderboards, and activity reminders.",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     subtitle: "Point Cloud · Bachelor Thesis",
     subtitleIcon: Icons.GraduationCap,
     link: "https://github.com/shyu216/DPC",
-    dateRange: "Aug 2022 – Jul 2023",
+    dateRange: "Sep 2022 – May 2023",
     techStack: "Python, PyTorch, Open3D",
     bullets: [
     "Reproduced 3D object detection on OpenPCDet, generating vehicle/pedestrian/cyclist boxes on KITTI.",
@@ -94,11 +94,11 @@ export const projects: Project[] = [
   {
     id: "easy-draw-guess",
     name: "Easy Draw & Guess",
-    subtitle: "CSCI3100 Major Assignment",
+    subtitle: "Real-time Multiplayer Game · CSCI3100",
     subtitleIcon: Icons.BookOpen,
     link: "https://github.com/easyDG",
     dateRange: "Jan 2022 – May 2022",
-    techStack: "MySQL, ExpressJS, NodeJS, Socket.IO",
+    techStack: "NodeJS, Socket.IO",
     bullets: [
     "Built MySQL account management and Socket.IO cross-device cursor tracking plus real-time chat.",
     "Deployed on AWS EC2 for smooth multi-device demos.",
@@ -107,12 +107,12 @@ export const projects: Project[] = [
   },
   {
     id: "course-algorithm-practice",
-    name: "Big Data & ML Algorithm Practice",
-    subtitle: "Engineering Delivery · Multi-course",
+    name: "Data & Algorithm Delivery",
+    subtitle: "Course Project Collection",
     subtitleIcon: Icons.Code,
     link: "https://shyu216.github.io/knownoevil/study/",
     dateRange: "Sep 2021 – May 2024",
-    techStack: "MySQL, PostGIS, Hadoop/MapReduce, Python",
+    techStack: "SQL, Hadoop, Python",
     bullets: [
       "IERG4300 (Big Data): Designed Hadoop/MapReduce distributed algorithms (parallel Dijkstra, PageRank, K-Means); optimized data processing flow.",
       "CSCI3170 (Databases): Designed 5 related tables with PK/FK; wrote 8 complex SQL queries for league/team/sponsor analytics.",
