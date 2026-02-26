@@ -72,7 +72,7 @@ export const projects: Project[] = [
     techStack: "Python, PyTorch, Open3D",
     bullets: [
       "基於 OpenPCDet 複現 3D 目標檢測，在 KITTI 數據集生成車輛/行人/自行車檢測框",
-      "使用 SLURM 集群訓練模型，透過 Open3D 完成點雲視覺化與實驗分析",
+      "使用 SLURM 集群訓練模型，透過 Open3D 完成點雲視覺化與實驗結果分析",
       "獨立完成本科畢業論文，系統整理檢測方法與實驗數據",
     ],
     rank: 1,
@@ -114,10 +114,10 @@ export const projects: Project[] = [
     dateRange: "2021年9月 - 2024年5月",
     techStack: "SQL, Hadoop, Python",
     bullets: [
-      "IERG4300（大數據分析）：基於 Hadoop/MapReduce 設計分布式算法，實現並行 Dijkstra、PageRank、K-Means，優化大數據處理流程",
-      "CSCI3170（數據庫）：設計 5 張帶主鍵/外鍵的關聯表，撰寫 8 個高複雜度 SQL 查詢，完成體育聯賽數據統計分析",
-      "GEOM90008（空間數據庫）：基於 PostGIS 實現空間 SQL 查詢，落地距離計算、路徑規劃、高程分析等 GIS 場景",
-      "COMP90054（AI 規劃）：為 Splendor 遊戲設計多策略 AI，抽象 MDP 狀態、設計獎勵，優化規劃 Agent（27 勝 13 負），掌握搜索/調參",
+      "基於 Hadoop/MapReduce 設計分布式算法系統，實現並行 Dijkstra、PageRank、K-Means，優化大數據處理流程",
+      "設計 5 張帶主鍵/外鍵約束的關聯表，編寫 8 條含多表聯查/子查詢/自定義公式的 SQL 查詢，分析聯賽/球隊/贊助商數據",
+      "基於 PostGIS 實現空間 SQL 查詢，覆蓋距離計算、路徑規劃、單點高程查詢與區域坡度統計",
+      "針對 Splendor 遊戲設計 AI 規劃智能體，抽象 MDP 狀態空間，設計獎勵函數，擊敗 TA 基準（27 勝 13 負）",
     ],
     rank: 1,
   },
