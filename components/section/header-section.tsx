@@ -1,7 +1,6 @@
 "use client";
 
 import { Icons } from "@/components/ui/icons";
-import { SocialLink } from "@/components/ui/social-link";
 import Link from "next/link";
 import ActionButton from "@/components/ui/action-button";
 import { cn } from "@/lib/utils";
@@ -19,28 +18,19 @@ export default function HeaderSection({ usage }: Props) {
   const nameMap = {
     en: (
       <div>
-        Sihong{" "}<span className="text-rose-600">Yu</span>
-        <span className="text-xs text-stone-600 ml-2">
-          (Dale / 余思宏)
-        </span>
+        Sihong <span className="text-rose-600">Yu</span>
       </div>
     ),
     zh: (
       <div>
         <span className="text-rose-600">余</span>
         思宏
-        <span className="text-xs text-stone-600 ml-2">
-          (微信：seinbaulio)
-        </span>
       </div>
     ),
     "zh-hk": (
       <div>
         <span className="text-rose-600">余</span>
         思宏
-        <span className="text-xs text-stone-600 ml-2">
-          (微信：seinbaulio)
-        </span>
       </div>
     ),
   };
@@ -58,33 +48,47 @@ export default function HeaderSection({ usage }: Props) {
     },
   };
 
+  const contactItemClass =
+    "group mx-1 text-xs inline-flex gap-1 items-center text-stone-600 transition hover:text-stone-900 dark:hover:text-stone-300";
+
   return (
     <section>
       <div className="flex justify-between items-center">
-        <div className="flex items-center">
-          <h2 className="text-2xl font-bold mr-4 my-1">
-            {nameMap[language]}
-          </h2>
-          {usage != "live" && (
-            <SocialLink
-              href="mailto:shyu0@qq.com"
-              platform="mail"
-              aria-label="My Email"
-              className="mx-1 h-4 w-4"
-            />
-          )}
-          <SocialLink
+        <div className="flex items-center flex-wrap">
+          <h2 className="text-2xl font-bold mr-4">{nameMap[language]}</h2>
+          
+          <Link
+            href="https://www.linkedin.com/in/sihong-yu/"
+            target="_blank"
+            rel="noreferrer"
+            className={contactItemClass}
+            aria-label="LinkedIn"
+          >
+            <Icons.Linkedin size={16} className="group-hover:animate-shake" />
+          </Link>
+
+          <Link
             href="https://github.com/shyu216"
-            platform="github"
-            aria-label="My GitHub"
-            className="mx-1 h-4 w-4"
-          />
-          <SocialLink
-            href="https://www.linkedin.com/in/sihong-yu-a35b30205/"
-            platform="linkedin"
-            aria-label="My LinkedIn"
-            className="mx-1 h-4 w-4"
-          />
+            target="_blank"
+            rel="noreferrer"
+            className={contactItemClass}
+            aria-label="GitHub"
+          >
+            <Icons.Github size={16} className="group-hover:animate-shake" />
+          </Link>
+
+          <Link
+            href="mailto:yusihong073@gmail.com"
+            className={contactItemClass}
+          >
+            <Icons.Mail size={16} className="group-hover:animate-shake" />
+            <span>yusihong073@gmail.com</span>
+          </Link>
+          
+          <Link href="tel:+61431083127" className={contactItemClass}>
+            <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
+            <span>+61 431 083 127</span>
+          </Link>
         </div>
         <ActionButton
           text={buttonTextMap[usage][language]}
@@ -102,16 +106,6 @@ export default function HeaderSection({ usage }: Props) {
           // }
         />
       </div>
-
-      {usage === "live" && (
-        <Link
-          href="mailto:shyu0@qq.com"
-          className="group inline-flex gap-2 items-center text-stone-600 transition hover:text-stone-900 dark:hover:text-stone-300"
-        >
-          <Icons.Mail size={12} className="group-hover:animate-shake" />
-          shyu0@qq.com
-        </Link>
-      )}
     </section>
   );
 }
