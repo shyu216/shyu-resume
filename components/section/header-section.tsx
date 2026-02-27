@@ -6,7 +6,6 @@ import ActionButton from "@/components/ui/action-button";
 import { cn } from "@/lib/utils";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { motion } from "framer-motion";
 
 type Props = {
   usage: "live" | "pdf";
@@ -91,19 +90,8 @@ export default function HeaderSection({ usage }: Props) {
           </Link>
         </div>
         <ActionButton
-          text={buttonTextMap[usage][language]}
           usage={usage}
           className={cn("bg-stone-800", usage === "live" && "hidden sm:block")}
-          // 没必要
-          // title={
-          //   usage === "live"
-          //     ? (language === "en"
-          //         ? "Recommended to use Chrome to print PDF for best pagination and link support"
-          //         : language === "zh"
-          //         ? "建议使用 Chrome 浏览器打印 PDF，分页和链接效果最佳"
-          //         : "建議使用 Chrome 瀏覽器列印 PDF，分頁和連結效果最佳")
-          //     : undefined
-          // }
         />
       </div>
     </section>

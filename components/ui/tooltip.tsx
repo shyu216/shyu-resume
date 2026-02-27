@@ -2,7 +2,6 @@
 
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
 import * as React from "react";
 
 const { Provider, Root, Trigger, Portal } = TooltipPrimitive;
@@ -34,29 +33,23 @@ export const Tooltip = {
 type ElegantTooltipProps = {
   children: React.ReactNode;
   content: React.ReactNode;
+  delayDuration?: number;
+  side?: "top" | "bottom" | "left" | "right";
 };
-export function ElegantTooltip({ children, content }: ElegantTooltipProps) {
-  const [open, setOpen] = React.useState(false);
 
+export function ElegantTooltip({
+  children,
+  content,
+  delayDuration = 200,
+  side = "bottom",
+}: ElegantTooltipProps) {
   return (
-    <Tooltip.Provider disableHoverableContent delayDuration={0.2}>
-      <Tooltip.Root open={open} onOpenChange={setOpen}>
+    <Tooltip.Provider disableHoverableContent delayDuration={delayDuration}>
+      <Tooltip.Root>
         <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>
-        <AnimatePresence>
-          {open && (
-            <Tooltip.Portal forceMount>
-              <Tooltip.Content asChild>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                >
-                  {content}
-                </motion.div>
-              </Tooltip.Content>
-            </Tooltip.Portal>
-          )}
-        </AnimatePresence>
+        <Tooltip.Portal>
+          <Tooltip.Content side={side}>{content}</Tooltip.Content>
+        </Tooltip.Portal>
       </Tooltip.Root>
     </Tooltip.Provider>
   );
