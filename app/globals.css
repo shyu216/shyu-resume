@@ -35,8 +35,15 @@
     /* 你可以加其他 margin 设置，比如 margin-left/right/bottom */
   }
 
-  section {
+  /* 确保每个Experience组件（项目）的header和bulletpoint不被分页拆分 */
+  section[class*="text-"] {
     break-inside: avoid;
-    page-break-inside: avoid; /* 兼容老浏览器 */
+    page-break-inside: avoid;
+  }
+  
+  /* 允许列表项内部的长文本分页 */
+  section ul li {
+    break-inside: auto;
+    page-break-inside: auto;
   }
 }
