@@ -12,6 +12,8 @@ import { workExperience as workExperienceZh } from "@/content/zh/work-experience
 import { workExperience as workExperienceZhHk } from "@/content/zh-hk/work-experience";
 import Label from "@/components/labels/label";
 import { type WorkExperience } from "@/types/work-experience";
+import { useJobType } from "@/components/job/job-type-provider";
+import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
 
 type Props = {
   usage: "live" | "pdf";
@@ -19,6 +21,8 @@ type Props = {
 
 export default function WorkSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
+  const { jobType } = useJobType();
+  const keywords = getJobStackKeywords(jobType);
 
   const contentMap = {
     en: { data: workExperienceEn, title: "WORK EXPERIENCE" },
@@ -49,6 +53,7 @@ export default function WorkSection({ usage }: Props) {
             head4={e.dateRange}
             bulletPoints={e.bullets}
             usage={usage}
+            keywords={keywords}
           />
         ))}
       </div>

@@ -3,6 +3,23 @@ import { type Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    id: "breath-tracking",
+    name: "Breath Tracking",
+    subtitle: "Real-time Biosensing Pipeline · Research Project",
+    subtitleIcon: Icons.GraduationCap,
+    link: "",
+    dateRange: "Feb 2025 - Nov 2025",
+    techStack: "Python, Flask, YOLOv11n, EVM",
+    bullets: [
+      "Built a Python Flask real-time breath-tracking prototype integrating YOLOv11n-seg/pose inference, Eulerian Video Magnification, and dynamic ROI computation.",
+      "On i9-11900F + GTX 2080 Ti, the pipeline (without visualization) delivers 40.49+/-5.79 ms latency and 24.7 FPS, meeting XV Scanner clinical trigger needs.",
+      "Processed three respiratory datasets (XV Scanner, dPPG PFT, challenging motion) with cropping/resizing, three-channel depth conversion, Z-score standardization, and end-exhalation phase estimation.",
+      "In motion scenarios, correlation improved from 0.16 to 0.66 (~299.6% gain) and MSE dropped 59.1%, evidencing robustness to motion artifacts.",
+      "Rebuilt MATLAB EVM into Python (OpenCV/NumPy), optimized 8-level Laplacian pyramid, 0.1-0.3 Hz Butterworth band-pass, and 10-frame moving average.",
+      "Paired with YOLO fine-tuning (50 epochs, batch 8) and differential ROI fusion, achieved end-exhalation timing error 212.9+/-789.2 ms and cycle RMSE 1007.9+/-950.2 ms on dPPG PFT (35 subjects, 300 sequences), aligning with clinical trigger accuracy.",
+    ],
+  },
+  {
     id: "biovis",
     name: "BioVis",
     subtitle: "Mixed Reality Biosensing · Research Project",
@@ -16,8 +33,10 @@ export const projects: Project[] = [
       "Used ComputeShader for parallel image processing; reproduced EVM; deployed a Quest 3 real-time MR prototype.",
       "Evaluated ONNX and Sentis quantization/inference; benchmarked YOLO v11 nano in real time on Quest 3.",
       "Reproduced multiple rPPG algorithms and validated across datasets, delivering academic-to-edge real-time deployment.",
+      "Built an XR-HMD multi-modal biosignal pipeline (Quest 3 + RealSense D415 + PC) for multi-human rPPG/breath plus wearer BCG; UDP streams signals back to HMD with per-module latency 10–42 ms and stable 30 FPS tracking of 3–4 people.",
+      "Achieved rPPG heart-rate MAE 3.75 BPM on UBFC re-capture tests with RhythmFormer; motion-magnified torso-mask area delivered breath-rate MAE 2.45 BPM despite re-capture noise.",
+      "Extracted wearer heart/breath from HMD IMU BCG (e.g., 87.4 BPM, 12.9 BrPM) as a proof-of-concept for on-head sensing.",
     ],
-    rank: 1,
   },
   {
     id: "shyu-resume",
@@ -31,7 +50,6 @@ export const projects: Project[] = [
       "Built a Next.js i18n resume generator with tri-language (ZH/EN/HK) switching and A4 PDF export (hyperlinks included).",
       "Deployed to GitHub Pages with one-click save/print.",
     ],
-    rank: 1,
   },
   {
     id: "carbon-2-garden",
@@ -46,7 +64,6 @@ export const projects: Project[] = [
       "Integrated gyroscope and Google Maps API to ship a \"sedentary alert + park recommendation\" challenge prototype.",
       "Owned routing and project skeleton; shipped the APK.",
     ],
-    rank: 1,
   },
   {
     id: "poetry-card",
@@ -60,7 +77,6 @@ export const projects: Project[] = [
       "Built a Chinese poetry app with React Native + SQLite, enabling local CRUD, random draws, and history.",
       "Shipped the Android APK, accruing React Native delivery experience for later projects.",
     ],
-    rank: 2,
   },
   {
     id: "3d-object-detection",
@@ -75,7 +91,6 @@ export const projects: Project[] = [
       "Trained on a SLURM cluster; used Open3D for point-cloud visualization and experiment analysis.",
       "Completed the bachelor thesis independently, consolidating methods and results.",
     ],
-    rank: 1,
   },
   {
     id: "distributed-raft",
@@ -89,7 +104,6 @@ export const projects: Project[] = [
       "Implemented Raft per the paper; passed leader election and log replication tests.",
       "Delivered a linearizable distributed KV store; fixed lock contention and log commit issues; passed all tests.",
     ],
-    rank: 1,
   },
   {
     id: "easy-draw-guess",
@@ -103,7 +117,6 @@ export const projects: Project[] = [
     "Built MySQL account management and Socket.IO cross-device cursor tracking plus real-time chat.",
     "Deployed on AWS EC2 for smooth multi-device demos.",
     ],
-    rank: 3,
   },
   {
     id: "course-algorithm-practice",
@@ -119,6 +132,5 @@ export const projects: Project[] = [
       "Built PostGIS spatial SQL for distance, routing, single-point elevation, and area slope statistics.",
       "Splendor planning agents modeled with MDP and reward functions; tuned to beat the TA baseline (27–13).",
     ],
-    rank: 1,
   },
 ];

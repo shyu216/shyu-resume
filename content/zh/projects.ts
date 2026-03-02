@@ -3,6 +3,23 @@ import { type Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    id: "breath-tracking",
+    name: "Breath Tracking",
+    subtitle: "实时呼吸监测 · 研究项目",
+    subtitleIcon: Icons.GraduationCap,
+    link: "",
+    dateRange: "2025年2月 - 2025年11月",
+    techStack: "Python, Flask, YOLOv11n, EVM",
+    bullets: [
+      "开发 Python Flask 实时呼吸监测原型，集成 YOLOv11n-seg/pose 推理、Eulerian Video Magnification、动态 ROI 计算",
+      "在 i9-11900F + GTX 2080 Ti 上实现 40.49+/-5.79 ms 延迟、24.7 FPS，满足 XV Scanner 临床触发需求",
+      "处理 XV Scanner、dPPG PFT、运动干扰三类呼吸数据集，通过裁剪/缩放、三通道深度转换、Z-score 标准化、呼气末相位估计",
+      "在运动场景中，相关系数从 0.16 提升至 0.66（~299.6% 增长），MSE 下降 59.1%，验证运动鲁棒性",
+      "将 MATLAB EVM 重写为 Python（OpenCV/NumPy），优化 8 层拉普拉斯金字塔、0.1-0.3 Hz 巴特沃斯带通、10 帧移动平均",
+      "结合 YOLO 微调（50 轮，批量 8）与差分 ROI 融合，在 dPPG PFT（35 受试者，300 序列）上实现呼气末定时误差 212.9+/-789.2 ms，周期 RMSE 1007.9+/-950.2 ms，达到临床触发精度",
+    ],
+  },
+  {
     id: "biovis",
     name: "BioVis",
     subtitle: "MR 生理信号监测 · 研究项目",
@@ -16,8 +33,10 @@ export const projects: Project[] = [
       "基于 ComputeShader 实现图像处理并行加速，复现 EVM 算法，完成 Quest 3 实时 MR 原型部署",
       "评估 ONNX、Sentis 模型量化与推理方案，在 Quest 3 完成 YOLO v11 nano 实时推理测试与对比",
       "复现多款 rPPG 算法并在多数据集完成性能验证，实现从学术评估到端侧实时部署",
+      "构建 XR-HMD 多模态生理信号采集管线（Quest 3 + RealSense D415 + PC），支持多人 rPPG/呼吸 + 佩戴者 BCG，UDP 回传至 HMD，单模块延迟 10-42 ms，稳定 30 FPS 追踪 3-4 人",
+      "在 UBFC 重采集测试中，使用 RhythmFormer 实现 rPPG 心率 MAE 3.75 BPM；通过运动放大躯干区域，在重采集噪声下实现呼吸率 MAE 2.45 BPM",
+      "从 HMD IMU BCG 提取佩戴者心率/呼吸（如 87.4 BPM、12.9 BrPM），验证头部传感可行性",
     ],
-    rank: 1,
   },
   {
     id: "shyu-resume",
@@ -31,7 +50,6 @@ export const projects: Project[] = [
       "开发基于 Next.js 的 i18n 简历生成器，支持中/英/港三语切换及 A4 PDF 导出（含超链接）",
       "部署于 GitHub Pages，提供一键保存/打印入口",
     ],
-    rank: 1,
   },
   {
     id: "carbon-2-garden",
@@ -46,7 +64,6 @@ export const projects: Project[] = [
       "集成陀螺仪传感器与 Google Maps API，完成“久坐提醒 + 公园推荐”互动挑战原型",
       "负责路由设计及项目骨架，完成 APK 打包发布",
     ],
-    rank: 1,
   },
   {
     id: "poetry-card",
@@ -60,7 +77,6 @@ export const projects: Project[] = [
       "使用 React Native + SQLite 开发古诗词 App，实现本地 CRUD、随机抽取、历史记录",
       "完成 Android APK 打包发布，为后续 React Native 项目积累工程经验",
     ],
-    rank: 2,
   },
   {
     id: "3d-object-detection",
@@ -75,7 +91,6 @@ export const projects: Project[] = [
       "使用 SLURM 集群训练模型，通过 Open3D 完成点云可视化及实验结果分析",
       "独立完成本科毕业论文，系统整理检测方法与实验数据",
     ],
-    rank: 1,
   },
   {
     id: "distributed-raft",
@@ -89,7 +104,6 @@ export const projects: Project[] = [
       "研读 Raft 论文核心原理，基于论文要点实现 Raft 共识算法，通过 Leader 选举与日志复制核心模块测试",
       "实现支持线性一致性的分布式 KV 存储，修复锁竞争、日志提交推进等分布式系统典型并发问题，稳定通过所有测试用例",
     ],
-    rank: 1,
   },
   {
     id: "easy-draw-guess",
@@ -103,7 +117,6 @@ export const projects: Project[] = [
       "基于 MySQL 实现游戏账号管理，利用 Socket.IO 实现跨设备光标追踪与实时聊天",
       "部署于 AWS EC2，支持多设备流畅演示",
     ],
-    rank: 3,
   },
   {
     id: "course-algorithm-practice",
@@ -119,6 +132,5 @@ export const projects: Project[] = [
       "基于 PostGIS 实现空间 SQL 查询，实现单点高程查询、区域坡度统计等需求，覆盖地理距离计算、路径规划等场景",
       "针对 Splendor 游戏设计 AI 规划智能体，抽象 MDP 状态空间，设计奖励函数，击败 TA 基准（27 胜 13 负）",
     ],
-    rank: 1,
   },
 ];

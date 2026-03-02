@@ -9,5 +9,4 @@ export interface Project {
   dateRange: string;
   techStack: string;
   bullets: string[];
-  rank: 1 | 2 | 3;
 }

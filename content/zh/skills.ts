@@ -2,35 +2,66 @@ import { type SkillCategory } from "@/types/skill-category";
 
 export const skills: SkillCategory[] = [
 {
-  "id": "ai-computer-vision",
-  "name": "AI / 计算机视觉",
+  "id": "frontend",
+  "name": "前端",
   "skills": [
-    "PyTorch", "Open3D", "三维目标检测",
-    "EVM/rPPG", "Unity (C#, ComputeShader)"
+    "Next.js", "React", "React Native", "Tailwind CSS", "HTML/CSS", "TypeScript", "JavaScript", "UI/3D Integration"
   ]
 },
 {
-  "id": "cloud-infrastructure",
-  "name": "云计算与运维",
+  "id": "backend",
+  "name": "后端",
   "skills": [
-    "AWS (CDK/Lambda/EventBridge/Amplify)",
-    "Firebase",
-    "GitHub Actions"
+    "Node.js", "Go", "Python", "C#", "RESTful API", "Firebase Auth", "MySQL", "SQLite", "DynamoDB", "Socket.IO"
   ]
 },
 {
-  "id": "software-engineering",
-  "name": "软件工程",
+  "id": "cloud-devops",
+  "name": "云计算与DevOps",
   "skills": [
-    "Next.js", "TypeScript",
-    "React Native"
+    "AWS (EC2, DynamoDB, S3, CDK, Amplify, EventBridge, SES, Lambda)", "CI/CD", "GitHub Actions", "Cloudflare (DNS/SSL)", "Linux", "Nginx"
+  ]
+},
+{
+  "id": "ai-ml-cv",
+  "name": "AI / ML / 计算机视觉",
+  "skills": [
+    "PyTorch", "YOLO", "OpenPCDet", "Open3D", "ONNX", "Hugging Face", "scikit-learn", "Doc2Vec", "SBERT", "BiLSTM", "rPPG", "EVM", "CUDA"
+  ]
+},
+{
+  "id": "xr-3d",
+  "name": "XR / 3D",
+  "skills": [
+    "Unity", "Meta Quest 3", "C#", "ComputeShader (HLSL)", "RealSense SDK", "3D Assets/UI"
+  ]
+},
+{
+  "id": "data-database",
+  "name": "数据与数据库",
+  "skills": [
+    "SQL", "PostgreSQL", "PostGIS", "Hadoop/MapReduce", "DynamoDB", "ER Modelling", "Spatial Analysis"
+  ]
+},
+{
+  "id": "payments-auth",
+  "name": "支付与认证",
+  "skills": [
+    "Stripe API (deposits/refunds)", "Firebase Auth (email/SMS)", "JWT", "OAuth 2.0"
+  ]
+},
+{
+  "id": "other",
+  "name": "其他",
+  "skills": [
+    "Distributed Systems (Raft)", "Git", "i18n", "Agile/Scrum", "SLURM HPC", "WakaTime"
   ]
 },
 {
   "id": "languages",
   "name": "语言",
   "skills": [
-    "英语", "普通话", "粤语"
+    "英语 (流利)", "普通话 (母语)", "粤语 (流利)"
   ]
 }
 ];

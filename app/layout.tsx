@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import LanguageProvider from "@/components/lang/language-provider";
+import { JobTypeProvider } from "@/components/job/job-type-provider";
 
 export const metadata: Metadata = {
   title: "ShYu Resume",
@@ -29,29 +30,31 @@ export default function RootLayout({
       </head>
       <body className="flex h-full flex-col">
         <LanguageProvider>
-          <ThemeProvider attribute="class" defaultTheme="system">
-            <div
-              className="
-                pointer-events-none fixed inset-0 select-none opacity-50
-                bg-[repeating-linear-gradient(to_right,theme(colors.stone.300)_0_1px,transparent_1px_8px),repeating-linear-gradient(to_bottom,theme(colors.stone.300)_0_1px,transparent_1px_8px)]
-                dark:bg-[repeating-linear-gradient(to_right,theme(colors.stone.700)_0_1px,transparent_1px_8px),repeating-linear-gradient(to_bottom,theme(colors.stone.700)_0_1px,transparent_1px_8px)]
-                "
-            />
+          <JobTypeProvider>
+            <ThemeProvider attribute="class" defaultTheme="system">
+              <div
+                className="
+                  pointer-events-none fixed inset-0 select-none opacity-50
+                  bg-[repeating-linear-gradient(to_right,theme(colors.stone.300)_0_1px,transparent_1px_8px),repeating-linear-gradient(to_bottom,theme(colors.stone.300)_0_1px,transparent_1px_8px)]
+                  dark:bg-[repeating-linear-gradient(to_right,theme(colors.stone.700)_0_1px,transparent_1px_8px),repeating-linear-gradient(to_bottom,theme(colors.stone.700)_0_1px,transparent_1px_8px)]
+                  "
+              />
 
-            <span className="pointer-events-none fixed top-0 block h-[600px] w-full select-none bg-[radial-gradient(103.72%_46.58%_at_50%_0%,rgba(34,197,94,0.5)_0%,rgba(0,0,0,0)_100%)] dark:bg-[radial-gradient(103.72%_46.58%_at_50%_0%,rgba(59,130,246,0.5)_0%,rgba(255,255,255,0)_100%)]" />
+              <span className="pointer-events-none fixed top-0 block h-[600px] w-full select-none bg-[radial-gradient(103.72%_46.58%_at_50%_0%,rgba(34,197,94,0.5)_0%,rgba(0,0,0,0)_100%)] dark:bg-[radial-gradient(103.72%_46.58%_at_50%_0%,rgba(59,130,246,0.5)_0%,rgba(255,255,255,0)_100%)]" />
 
-            <div className="fixed inset-0 flex justify-center sm:px-8">
-              <div className="flex w-full max-w-7xl lg:px-8">
-                <div className="w-full bg-stone-50/70 ring-1 ring-stone-500/50 dark:bg-stone-900/80" />
+              <div className="fixed inset-0 flex justify-center sm:px-8">
+                <div className="flex w-full max-w-7xl lg:px-8">
+                  <div className="w-full bg-stone-50/70 ring-1 ring-stone-500/50 dark:bg-stone-900/80" />
+                </div>
               </div>
-            </div>
 
-            <div className="relative text-stone-700 dark:text-stone-300">
-              <Header />
-              <main>{children}</main>
-              <Footer />
-            </div>
-          </ThemeProvider>
+              <div className="relative text-stone-700 dark:text-stone-300">
+                <Header />
+                <main>{children}</main>
+                <Footer />
+              </div>
+            </ThemeProvider>
+          </JobTypeProvider>
         </LanguageProvider>
       </body>
     </html>

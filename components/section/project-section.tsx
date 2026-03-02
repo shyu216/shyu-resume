@@ -5,13 +5,15 @@ import Experience from "@/components/section/experience";
 import LabelWithGraphic from "@/components/labels/label-with-graphic";
 import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { projects as projectsEn } from "@/content/en/projects";
 import { projects as projectsZh } from "@/content/zh/projects";
 import { projects as projectsZhHk } from "@/content/zh-hk/projects";
 import Label from "@/components/labels/label";
 import { type Project } from "@/types/project";
+import { useJobType } from "@/components/job/job-type-provider";
+import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
 
 type Props = {
   usage: "live" | "pdf";
@@ -19,6 +21,8 @@ type Props = {
 
 export default function ProjectSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
+  const { jobType } = useJobType();
+  const keywords = getJobStackKeywords(jobType);
 
   const contentMap = {
     en: { data: projectsEn, title: "PROJECT" },
@@ -28,16 +32,10 @@ export default function ProjectSection({ usage }: Props) {
   
   const { data: projects, title } = contentMap[language];
 
-
-  const filteredProjects = useMemo(
-    () => projects.filter((project: Project) => (usage === "pdf" ? project.rank === 1 : true)),
-    [projects, usage]
-  );
-
   return (
     <Section title={title} usage={usage}>
       <div className="flex flex-col gap-y-1">
-        {filteredProjects.map((project) => (
+        {projects.map((project) => (
           <Experience
             key={project.id}
             head1={<LabelWithLink content={<Label content={project.name} />} link={project.link} />}
@@ -50,6 +48,7 @@ export default function ProjectSection({ usage }: Props) {
             head4={project.dateRange}
             bulletPoints={project.bullets}
             usage={usage}
+            keywords={keywords}
           />
             ))}
       </div>

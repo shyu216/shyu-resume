@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Container } from "./ui/container";
 import Link from "next/link";
 import { LanguageSwitcher } from "./lang/language-switcher";
+import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
 
 export function Header() {
   return (
@@ -22,16 +23,17 @@ export function Header() {
             />
           </Link>
         </div>
-        <div className="relative flex">
-          <div className="pointer-events-auto mr-4">
+        <div className="relative flex items-center space-x-4">
+          <div className="pointer-events-auto">
+            <JobSwitcherWrapper />
+          </div>
+          <div className="pointer-events-auto">
             <LanguageSwitcher />
           </div>
           <div className="pointer-events-auto">
             <ThemeSwitcher />
           </div>
         </div>
-
-
       </nav>
     </Container>
   );

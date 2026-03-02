@@ -38,11 +38,13 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
     { component: EducationSection, props: { usage }, delay: 0.7 },
     { component: SkillSection, props: { usage }, delay: 0.9 },
   ];
-  return (
+
+  const ResumeContent = () => (
     <Container
       className="mt-9 max-w-6xl mx-auto"
       ref={ref as React.RefObject<HTMLDivElement>}
     >
+
       {animatedComponents.map(
         ({ component: Component, props = { usage: "live" }, delay }, index) =>
           usage === "live" ? (
@@ -64,6 +66,8 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
       )}
     </Container>
   );
+
+  return <ResumeContent />;
 });
 
 FullResume.displayName = "FullResume";

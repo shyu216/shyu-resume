@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { KeywordHighlighter } from "@/components/job/keyword-highlighter";
 
 type Props = {
   head1: string | JSX.Element;
@@ -10,6 +11,7 @@ type Props = {
   bulletPoints?: (string | JSX.Element)[];
   bulletPointsShort?: (string | JSX.Element)[];
   usage: "live" | "pdf";
+  keywords?: string[];
 };
 
 export default function Experience({
@@ -21,7 +23,8 @@ export default function Experience({
   head6,
   bulletPoints,
   bulletPointsShort,
-  usage
+  usage,
+  keywords = []
 }: Props) {
   const textSizeMap = {
     live: "text-sm",
@@ -53,7 +56,13 @@ export default function Experience({
 
       {bulletPoints && <ul className="list-disc ml-4 mt-1">
         {bulletPoints.map((point, index) => (
-          <li key={index}>{point}</li>
+          <li key={index}>
+            {typeof point === 'string' ? (
+              <KeywordHighlighter text={point} keywords={keywords} />
+            ) : (
+              point
+            )}
+          </li>
         ))}
       </ul>}
     </section>
