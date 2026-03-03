@@ -35,7 +35,13 @@
     /* 你可以加其他 margin 设置，比如 margin-left/right/bottom */
   }
 
-  /* 确保每个Experience组件（项目）的header和bulletpoint不被分页拆分 */
+  /* 移除section的默认边距，减少空白空间 */
+  section {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 确保每个Experience组件（项目）的内容不被分页拆分 */
   section[class*="text-"] {
     break-inside: avoid;
     page-break-inside: avoid;
@@ -45,5 +51,16 @@
   section ul li {
     break-inside: auto;
     page-break-inside: auto;
+  }
+  
+  /* 调整列表的边距，减少空白空间 */
+  section ul {
+    margin: 0.25em 0;
+    padding-left: 1.5em;
+  }
+  
+  /* 调整段落的边距，减少空白空间 */
+  section p {
+    margin: 0.25em 0;
   }
 }

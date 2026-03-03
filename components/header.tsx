@@ -11,7 +11,7 @@ import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
 export function Header() {
   return (
     <Container className="mt-5 mb-10">
-      <nav className="relative flex justify-between items-center">
+      <nav className="relative flex flex-col sm:flex-row justify-between items-center gap-4">
         <div>
           <Link href="/">
             <Image
@@ -23,14 +23,12 @@ export function Header() {
             />
           </Link>
         </div>
-        <div className="relative flex items-center space-x-4">
-          <div className="pointer-events-auto">
+        <div className="relative flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <div className="pointer-events-auto w-full sm:w-auto flex justify-center sm:justify-start">
             <JobSwitcherWrapper />
           </div>
-          <div className="pointer-events-auto">
+          <div className="pointer-events-auto flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start">
             <LanguageSwitcher />
-          </div>
-          <div className="pointer-events-auto">
             <ThemeSwitcher />
           </div>
         </div>
