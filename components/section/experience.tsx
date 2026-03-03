@@ -32,7 +32,7 @@ export default function Experience({
   };
   
   return (
-    <section className={cn(textSizeMap[usage])}>
+    <section className={cn(textSizeMap[usage], "break-inside-avoid page-break-inside-avoid break-before-auto")}>
       <div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="flex gap-x-4 flex-wrap">

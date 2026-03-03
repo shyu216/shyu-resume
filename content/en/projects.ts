@@ -5,11 +5,11 @@ export const projects: Project[] = [
   {
     id: "breath-tracking",
     name: "Breath Tracking",
-    subtitle: "Real-time Biosensing Pipeline · Research Project",
+    subtitle: "Real-time Biosensing · Research",
     subtitleIcon: Icons.GraduationCap,
     link: "",
     dateRange: "Feb 2025 - Nov 2025",
-    techStack: "Python, Flask, YOLOv11n, EVM",
+    techStack: "Python, Flask, YOLO, EVM",
     bullets: [
       "Built a Python Flask real-time breath-tracking prototype integrating YOLOv11n-seg/pose inference, Eulerian Video Magnification, and dynamic ROI computation.",
       "On i9-11900F + GTX 2080 Ti, the pipeline (without visualization) delivers 40.49+/-5.79 ms latency and 24.7 FPS, meeting XV Scanner clinical trigger needs.",
@@ -22,7 +22,7 @@ export const projects: Project[] = [
   {
     id: "biovis",
     name: "BioVis",
-    subtitle: "Mixed Reality Biosensing · Research Project",
+    subtitle: "Mixed Reality Biosensing · Research",
     subtitleIcon: Icons.GraduationCap,
     link: "https://youtu.be/zOPQXXpSRbg",
     dateRange: "May 2025 – Nov 2025",

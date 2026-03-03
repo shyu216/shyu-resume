@@ -32,35 +32,7 @@
   @page {
     size: 210mm 297mm;
     margin-top: 1cm;
+    margin-bottom: 0.5cm;
     /* 你可以加其他 margin 设置，比如 margin-left/right/bottom */
-  }
-
-  /* 移除section的默认边距，减少空白空间 */
-  section {
-    margin: 0;
-    padding: 0;
-  }
-
-  /* 确保每个Experience组件（项目）的内容不被分页拆分 */
-  section[class*="text-"] {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-  
-  /* 允许列表项内部的长文本分页 */
-  section ul li {
-    break-inside: auto;
-    page-break-inside: auto;
-  }
-  
-  /* 调整列表的边距，减少空白空间 */
-  section ul {
-    margin: 0.25em 0;
-    padding-left: 1.5em;
-  }
-  
-  /* 调整段落的边距，减少空白空间 */
-  section p {
-    margin: 0.25em 0;
   }
 }

@@ -127,7 +127,7 @@ Use these mix-and-match phrases to assemble tailored CV bullets and cover letter
     - 关键词: 产品运营, 新手引导, 留存优化
 
 ### 项目经历
-- Breath Tracking, Real-time Biosensing Pipeline · Research Project, Feb 2025 - Nov 2025
+- Breath Tracking, Real-time Biosensing Pipeline · Research, Feb 2025 - Nov 2025
   - notes: with 4DMedical and its XV Scanner 
   - Built a Python Flask real-time breath-tracking prototype integrating YOLOv11n-seg/pose inference, Eulerian Video Magnification, and dynamic ROI computation; on i9-11900F + GTX 2080 Ti, the pipeline (without visualization) delivers 40.49+/-5.79 ms latency and 24.7 FPS, meeting XV Scanner clinical trigger needs.
   - Processed three respiratory datasets (XV Scanner, dPPG PFT, challenging motion) with cropping/resizing, three-channel depth conversion, Z-score standardization, and end-exhalation phase estimation; in motion scenarios, correlation improved from 0.16 to 0.66 (~299.6% gain) and MSE dropped 59.1%, evidencing robustness to motion artifacts.
@@ -135,7 +135,7 @@ Use these mix-and-match phrases to assemble tailored CV bullets and cover letter
     - keywords: real-time breath tracking, Flask, YOLOv11n-seg, YOLOv11n-pose, EVM, dynamic ROI, depth imaging, i9-11900F, GTX 2080 Ti, 24.7 FPS, 40.49 ms latency, MSE, correlation, end-exhalation trigger
     - note: Latency measured without visualization per Table 5.2; dataset metrics correspond to XV Scanner, dPPG PFT, and challenging motion evaluations with standardized signals.
 
-- BioVis, Mixed Reality Biosensing · Research Project, May 2025 – Nov 2025, https://youtu.be/zOPQXXpSRbg
+- BioVis, Mixed Reality Biosensing · Research, May 2025 – Nov 2025, https://youtu.be/zOPQXXpSRbg
   - Co-authored (2nd) a Siggraph Asia XR submission; built the MR biosensing prototype.
     - 关键词: 学术研究, XR, MR, 原型开发
     - notes：rejected，so make sure using "submission"

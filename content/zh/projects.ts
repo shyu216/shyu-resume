@@ -9,7 +9,7 @@ export const projects: Project[] = [
     subtitleIcon: Icons.GraduationCap,
     link: "",
     dateRange: "2025年2月 - 2025年11月",
-    techStack: "Python, Flask, YOLOv11n, EVM",
+    techStack: "Python, Flask, YOLO, EVM",
     bullets: [
       "开发 Python Flask 实时呼吸监测原型，集成 YOLOv11n-seg/pose 推理、Eulerian Video Magnification、动态 ROI 计算",
       "在 i9-11900F + GTX 2080 Ti 上实现 40.49+/-5.79 ms 延迟、24.7 FPS，满足 XV Scanner 临床触发需求",
