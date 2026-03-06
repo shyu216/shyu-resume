@@ -1,36 +1,46 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 interface KeywordHighlighterProps {
+  index: number;
   text: string;
   keywords: string[];
 }
 
-export const KeywordHighlighter: React.FC<KeywordHighlighterProps> = ({ text, keywords }) => {
-  if (!keywords || keywords.length === 0) {
-    return <span>{text}</span>;
+export const KeywordHighlighter: React.FC<KeywordHighlighterProps> = ({ index, text, keywords }) => {
+  const processedContent = useMemo(() => {
+    if (!text || !text.trim() || !keywords || keywords.length === 0) {
+      return null;
+    }
+
+    const regexPattern = keywords
+      .map(keyword => {
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return `\\b${escapedKeyword}\\b`;
+      })
+      .join('|');
+
+    const keywordRegex = new RegExp(`(${regexPattern})`, 'gi');
+    const parts = text.split(keywordRegex);
+
+    if (parts.length <= 1) {
+      return null;
+    }
+
+    const keywordSet = new Set(keywords.map(keyword => keyword.toLowerCase()));
+    
+    return parts.map((part, partIndex) => {
+      const isKeyword = keywordSet.has(part.toLowerCase());
+      return (
+        <span key={partIndex} className={isKeyword ? "font-bold" : undefined}>
+          {part}
+        </span>
+      );
+    });
+  }, [text, keywords]);
+
+  if (!processedContent) {
+    return null;
   }
 
-  // Counter strike source download for windows 7 32 bit free full version
-  // 创建正则表达式，匹配所有关键词（不区分大小写）
-  const regexPattern = keywords.map(keyword => keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
-  const regex = new RegExp(`(${regexPattern})`, 'gi');
-
-  // 分割文本并标记匹配的关键词
-  const parts = text.split(regex);
-
-  return (
-    <span>
-      {parts.map((part, index) => {
-        // 检查当前部分是否是关键词
-        const isKeyword = keywords.some(keyword => 
-          part.toLowerCase() === keyword.toLowerCase()
-        );
-        return isKeyword ? (
-          <span key={index} className="font-bold">{part}</span>
-        ) : (
-          <span key={index}>{part}</span>
-        );
-      })}
-    </span>
-  );
+  return <li key={index}><span>{processedContent}</span></li>;
 };

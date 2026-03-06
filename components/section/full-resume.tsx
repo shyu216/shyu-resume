@@ -10,6 +10,7 @@ import WorkSection from "@/components/section/work-section";
 import ProjectSection from "@/components/section/project-section";
 import EducationSection from "@/components/section/education-section";
 import { LanguageContext } from "@/components/lang/language-provider";
+import { useJobType } from "@/components/job/job-type-provider";
 
 type Props = {
   usage: "live" | "pdf";
@@ -30,6 +31,7 @@ type AnimatedComponent = {
 
 export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
   const { language } = useContext(LanguageContext);
+  const { jobType } = useJobType();
 
   const animatedComponents: AnimatedComponent[] = [
     { component: HeaderSection, props: { usage }, delay: 0.1 },
@@ -48,7 +50,7 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
       {animatedComponents.map(
         ({ component: Component, props = { usage: "live" }, delay }, index) =>
           usage === "live" ? (
-            <Motion key={language + index} delay={delay}>
+            <Motion key={language + jobType + index} delay={delay}>
               <Component {...props} />
             </Motion>
           ) : (
