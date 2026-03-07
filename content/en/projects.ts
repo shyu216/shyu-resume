@@ -9,14 +9,12 @@ export const projects: Project[] = [
     subtitleIcon: Icons.GraduationCap,
     link: "",
     dateRange: "Feb 2025 - Nov 2025",
-    techStack: "Python, Flask, YOLO, EVM",
+    techStack: "Python, Flask, YOLO, OpenCV",
     bullets: [
-      "Built a Python Flask real-time breath-tracking prototype integrating YOLOv11n-seg/pose inference, Eulerian Video Magnification, and dynamic ROI computation.",
-      "On i9-11900F + GTX 2080 Ti, the pipeline (without visualization) delivers 40.49+/-5.79 ms latency and 24.7 FPS, meeting XV Scanner clinical trigger needs.",
-      "Processed three respiratory datasets (XV Scanner, dPPG PFT, challenging motion) with cropping/resizing, three-channel depth conversion, Z-score standardization, and end-exhalation phase estimation.",
-      "In motion scenarios, correlation improved from 0.16 to 0.66 (~299.6% gain) and MSE dropped 59.1%, evidencing robustness to motion artifacts.",
-      "Rebuilt MATLAB EVM into Python (OpenCV/NumPy), optimized 8-level Laplacian pyramid, 0.1-0.3 Hz Butterworth band-pass, and 10-frame moving average.",
-      "Paired with YOLO fine-tuning (50 epochs, batch 8) and differential ROI fusion, achieved end-exhalation timing error 212.9+/-789.2 ms and cycle RMSE 1007.9+/-950.2 ms on dPPG PFT (35 subjects, 300 sequences), aligning with clinical trigger accuracy.",
+      "Collaborated with 4DMedical to develop a real-time breath tracking system to trigger their XV Scanner",
+      "Trained YOLOv11n for depth map human detection, boosting signal stability (correlation ↑0.5, MSE ↓59.1\%)",
+      "Rebuilt MATLAB EVM algorithm in Python (OpenCV/NumPy) to magnify subtle respiratory motions",
+      "Built real-time breath tracking pipeline; optimized Flask demo (1000ms→150ms rendering)"
     ],
   },
   {
@@ -28,14 +26,11 @@ export const projects: Project[] = [
     dateRange: "May 2025 – Nov 2025",
     techStack: "Unity, Meta Quest 3, C#",
     bullets: [
-      "Co-authored (2nd) a Siggraph Asia XR submission; built the MR biosensing prototype.",
-      "Solo-built a Unity project with 6 scenes and 40+ scripts, integrating 3D assets and UI.",
-      "Used ComputeShader for parallel image processing; reproduced EVM; deployed a Quest 3 real-time MR prototype.",
-      "Evaluated ONNX and Sentis quantization/inference; benchmarked YOLO v11 nano in real time on Quest 3.",
-      "Reproduced multiple rPPG algorithms and validated across datasets, delivering academic-to-edge real-time deployment.",
-      "Built an XR-HMD multi-modal biosignal pipeline (Quest 3 + RealSense D415 + PC) for multi-human rPPG/breath plus wearer BCG; UDP streams signals back to HMD with per-module latency 10–42 ms and stable 30 FPS tracking of 3–4 people.",
-      "Achieved rPPG heart-rate MAE 3.75 BPM on UBFC re-capture tests with RhythmFormer; motion-magnified torso-mask area delivered breath-rate MAE 2.45 BPM despite re-capture noise.",
-      "Extracted wearer heart/breath from HMD IMU BCG (e.g., 87.4 BPM, 12.9 BrPM) as a proof-of-concept for on-head sensing.",
+      "Co-authored (2nd) SIGGRAPH Asia XR submission; built MR biosensing prototype (Unity).",
+      "Solo-built Unity project (6 scenes, 40+ scripts) with 3D/UI integration.",
+      "Reproduced EVM via ComputeShader; deployed on Meta Quest 3.",
+      "Benchmarked YOLOv11n on Quest 3; optimized ONNX/Sentis quantization.",
+      "Validated rPPG (HR MAE 3.75 BPM, BR MAE 2.45 BPM) on UBFC dataset.",
     ],
   },
   {
@@ -58,7 +53,7 @@ export const projects: Project[] = [
     subtitleIcon: Icons.LayoutTemplate,
     link: "https://github.com/CRUVOD/CarbonTracker",
     dateRange: "Sep 2024 – Nov 2024",
-    techStack: "React Native, Firebase",
+    techStack: "React Native, Google Maps API",
     bullets: [
       "Built a React Native eco-habit app with tasks, leaderboards, and activity reminders.",
       "Integrated gyroscope and Google Maps API to ship a \"sedentary alert + park recommendation\" challenge prototype.",
@@ -85,7 +80,7 @@ export const projects: Project[] = [
     subtitleIcon: Icons.GraduationCap,
     link: "https://github.com/shyu216/DPC",
     dateRange: "Sep 2022 – May 2023",
-    techStack: "Python, PyTorch, Open3D",
+    techStack: "PyTorch, Open3D, OpenPCDet, SLURM",
     bullets: [
       "Reproduced 3D object detection on OpenPCDet, generating vehicle/pedestrian/cyclist boxes on KITTI.",
       "Trained on a SLURM cluster; used Open3D for point-cloud visualization and experiment analysis.",
@@ -114,8 +109,8 @@ export const projects: Project[] = [
     dateRange: "Jan 2022 – May 2022",
     techStack: "NodeJS, Socket.IO",
     bullets: [
-    "Built MySQL account management and Socket.IO cross-device cursor tracking plus real-time chat.",
-    "Deployed on AWS EC2 for smooth multi-device demos.",
+      "Built MySQL account management and Socket.IO cross-device cursor tracking plus real-time chat.",
+      "Deployed on AWS EC2 for smooth multi-device demos.",
     ],
   },
   {
@@ -128,9 +123,10 @@ export const projects: Project[] = [
     techStack: "SQL, Hadoop, Python",
     bullets: [
       "Designed Hadoop/MapReduce pipelines for parallel Dijkstra, PageRank, K-Means; optimized big-data processing flow.",
-      "Designed a 5-table PK/FK schema and 8 complex SQL queries (multi-join/subquery/custom formulas) for league/team/sponsor analytics.",
+      "Designed a 5-table PK/FK schema and 8 complex SQL queries for league/team/sponsor analytics.",
       "Built PostGIS spatial SQL for distance, routing, single-point elevation, and area slope statistics.",
-      "Splendor planning agents modeled with MDP and reward functions; tuned to beat the TA baseline (27–13).",
+      "Splendor planning agents modeled with MDP and reward functions; achieved 27/40 wins against TA benchmark.",
+      "Trained a fact-checking system with Doc2Vec/BiLSTM; processed 1.2M+ evidence sentences with 64.9% classification accuracy.",
     ],
   },
 ];
