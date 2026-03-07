@@ -3,7 +3,7 @@
 
 ## 项目架构与核心模式
 
-- **Next.js 13 静态导出简历站点**，支持 live（动画/交互）与 PDF（静态/A4 优化）双渲染模式。内容多语言（en/zh/zh-hk），A4 PDF 布局高度定制。
+- **Next.js 13.5.4 静态导出简历站点**，支持 live（动画/交互）与 PDF（静态/A4 优化）双渲染模式。内容多语言（en/zh/zh-hk），A4 PDF 布局高度定制。
 - **所有组件均接收 `usage: "live" | "pdf"`**，通过对象映射（object mapping）切换 live/PDF 样式与行为。严禁 if-else/三元表达式，务必用对象映射。
 - **live 模式**：`rem` 单位、framer-motion 动画、交互 UI。
 - **pdf 模式**：`px` 单位（如 `text-14px`）、无动画、静态排版。详见 `components/section/full-resume.tsx`。
@@ -15,6 +15,8 @@
 - **主题色为 rose-600**，全局查找 `rose-`。
 - **深色模式**：`next-themes`，详见 `components/theme/theme-provider.tsx`。
 - **所有样式用 Tailwind，禁止 CSS modules。**
+- **工作类型切换**：通过 `job-type-provider.tsx` 提供工作类型上下文，支持 FULLSTACK、SOFTWARE、ML_RESEARCHER 三种工作类型。
+- **关键词高亮**：根据选择的工作类型，自动高亮相关技能和经验，详见 `keyword-highlighter.tsx`。
 
 ## 关键开发工作流
 
@@ -32,16 +34,27 @@
 - **PrintProvider**（`components/print-provider.tsx`）：全局提供 `componentRef`、`handlePrint`，供 PDF 导出。
 - **ActionButton** 触发 PDF 导出。
 - **内容变更**：需同步三语数据，保持字段一致。
+- **JobSwitcher**：工作类型切换组件，位于 `components/job/job-switcher.tsx`，支持三种工作类型切换。
+- **LanguageSwitcher**：语言切换组件，位于 `components/lang/language-switcher.tsx`，支持英文、简体中文、繁体中文切换。
+- **ThemeSwitcher**：主题切换组件，位于 `components/theme/theme-switcher.tsx`，支持浅色/深色模式切换。
+
+## 配置文件
+
+- **content/config.ts**：集中管理站点元数据、个人信息、联系方式等配置。
+- **app/keywords.json**：存储关键词数据，用于关键词高亮功能。
+- **app/last-update.json**：存储最后更新时间，自动生成。
 
 ## 依赖说明
 
-- `framer-motion`（live 动画）、`react-to-print`（PDF 导出）、`next-themes`（深色模式）、`@radix-ui/react-tooltip`（提示）、`lucide-react`（图标）、`tailwind-merge`（class 合并）。
+- `framer-motion`（live 动画）、`react-to-print`（PDF 导出）、`next-themes`（深色模式）、`@radix-ui/react-tooltip`（提示）、`lucide-react`（图标）、`tailwind-merge`（class 合并）、`clsx`（条件类名）。
 
 ## 常见修改
 
 - **加内容**：改 `content/{en,zh,zh-hk}/`，三语同步，PDF 预览分页。
 - **改主题色**：全局搜 `rose-`。
 - **调 PDF 排版**：改 `globals.css` 的 `@media print`，用 px 单位，分页用 `break-inside: avoid`。
+- **添加工作类型**：修改 `components/job/job-switcher.tsx` 中的 jobOptions 数组。
+- **修改关键词映射**：更新 `components/job/job-stack-keywords.ts` 中的关键词映射。
 
 ## 重要约定
 
@@ -49,5 +62,6 @@
 - **PDF 样式用 px 单位和自定义字号，不用 rem。**
 - **所有视觉差异组件都要有 live/pdf 两套。**
 - **PDF 仅用 Chrome 另存为 PDF 测试。**
+- **工作类型切换和关键词高亮功能需要保持同步更新。**
 
 如有不清楚或遗漏之处，请反馈补充。
