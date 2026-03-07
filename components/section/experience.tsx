@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { KeywordHighlighter } from "@/components/job/keyword-highlighter";
-import { useMemo } from "react";
 
 type Props = {
   head1: string | JSX.Element;
@@ -15,21 +14,6 @@ type Props = {
   keywords?: string[];
 };
 
-const hasKeywordMatches = (text: string, keywords: string[]): boolean => {
-  if (!text || !text.trim() || !keywords || keywords.length === 0) {
-    return false;
-  }
-
-  const regexPattern = keywords
-    .map(keyword => {
-      const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return `\\b${escapedKeyword}\\b`;
-    })
-    .join('|');
-
-  const keywordRegex = new RegExp(`(${regexPattern})`, 'gi');
-  return keywordRegex.test(text);
-};
 
 export default function Experience({
   head1,
@@ -48,21 +32,9 @@ export default function Experience({
     pdf: "text-11px",
   };
 
-  const hasMatches = useMemo(() => {
-    if (head6) {
-      return true;
-    }
-    return bulletPoints?.some(point => hasKeywordMatches(point, keywords || [])) || false;
-  }, [bulletPoints, keywords, head6]);
-
-  const filteredBulletPoints = useMemo(() => {
-    return bulletPoints?.map((point, index) => (
-      <KeywordHighlighter index={index} text={point} keywords={keywords || []} />
-    )).filter(Boolean) || [];
-  }, [bulletPoints, keywords]);
 
   return (
-    <section className={hasMatches ? cn(textSizeMap[usage], "break-inside-avoid page-break-inside-avoid break-before-auto") : "hidden"}>
+    <section className={cn(textSizeMap[usage], "break-inside-avoid page-break-inside-avoid break-before-auto")}>
       <div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="flex gap-x-4 flex-wrap">
@@ -86,9 +58,11 @@ export default function Experience({
         </ul>
       )}
 
-      {filteredBulletPoints.length > 0 && (
+      {bulletPoints && bulletPoints.length > 0 && (
         <ul className="list-disc ml-4 mt-1">
-          {filteredBulletPoints}
+          {bulletPoints?.map((point, index) => (
+            <li key={index}><KeywordHighlighter text={point} keywords={keywords || []} /></li>
+          ))}
         </ul>)}
     </section>
   );

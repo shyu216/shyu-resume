@@ -5,15 +5,15 @@ import Experience from "@/components/section/experience";
 import LabelWithGraphic from "@/components/labels/label-with-graphic";
 import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { projects as projectsEn } from "@/content/en/projects";
 import { projects as projectsZh } from "@/content/zh/projects";
 import { projects as projectsZhHk } from "@/content/zh-hk/projects";
 import Label from "@/components/labels/label";
-import { type Project } from "@/types/project";
 import { useJobType } from "@/components/job/job-type-provider";
 import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
+import { hasKeywordMatches } from "@/lib/keyword-utils";
 
 type Props = {
   usage: "live" | "pdf";
@@ -32,10 +32,23 @@ export default function ProjectSection({ usage }: Props) {
   
   const { data: projects, title } = contentMap[language];
 
+  // 新增：基于 jobType 关键词过滤 projects
+  const filteredProjects = useMemo(() => {
+    // 如果没有关键词，返回所有项目
+    if (!keywords || keywords.length === 0) {
+      return projects;
+    }
+    // 过滤逻辑：检查项目的 bullet points 中是否有至少一个匹配关键词
+    return projects.filter(project => 
+      project.bullets?.some(bullet => hasKeywordMatches(bullet, keywords)) || false
+    );
+  }, [projects, keywords]);
+
   return (
     <Section title={title} usage={usage}>
       <div className="flex flex-col gap-y-1">
-        {projects.map((project) => (
+        {/* 替换成 filteredProjects.map */}
+        {filteredProjects.map((project) => (
           <Experience
             key={project.id}
             head1={<LabelWithLink content={<Label content={project.name} />} link={project.link} />}
@@ -50,7 +63,7 @@ export default function ProjectSection({ usage }: Props) {
             usage={usage}
             keywords={keywords}
           />
-            ))}
+        ))}
       </div>
     </Section>
   );
