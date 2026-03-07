@@ -74,6 +74,21 @@ To add or modify job types and their associated keywords:
 1. Edit the job types in `components/job/job-switcher.tsx`
 2. Update keyword mappings in `components/job/job-stack-keywords.ts`
 
+### AI-Powered Keyword Generation
+
+The keyword matching system is enhanced by AI. After writing your work experience and projects, you can:
+
+1. Package your resume content (work experience and projects)
+2. Send it to an AI assistant like Doubao (豆包)
+3. Request it to generate a comprehensive `keywords.json` file
+4. Replace the existing `app/keywords.json` file with the generated one
+
+This AI-generated keyword list will help optimize your resume for different job types and improve ATS compatibility.
+
+### Customize Keyword Generation Script
+
+You can also modify the `scripts/gen-keywords.js` file to customize the keyword generation process. This script is called by the workflow, but the implementation details are still being finalized. Feel free to unleash your creativity and implement your own keyword generation logic!
+
 ### Central Configuration
 
 All customizable content is now centralized in a single configuration file for easy maintenance:
@@ -116,9 +131,10 @@ To customize the footer:
 ## 📄 PDF Generation
 
 1. Open your resume in Chrome
-2. Press `Ctrl+P` (Windows) or `Cmd+P` (Mac)
-3. Select **Save as PDF** as the destination
-4. Click **Save** to download your resume as a PDF
+2. Click the **Save PDF** button on the page (provided by the Action Button component)
+3. The print dialog will open automatically
+4. Select **Save as PDF** as the destination
+5. Click **Save** to download your resume as a PDF
 
 > **Note**: For best results, use Chrome's "Save as PDF" feature. Firefox and Edge may not support all features.
 
