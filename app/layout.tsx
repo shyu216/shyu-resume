@@ -5,11 +5,12 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import LanguageProvider from "@/components/lang/language-provider";
 import { JobTypeProvider } from "@/components/job/job-type-provider";
+import { siteConfig } from "@/content/config";
 
 export const metadata: Metadata = {
-  title: "ShYu Resume",
-  description: "A Resume",
-  keywords: "YUSIHONG, SIHONG, Resume, CV, Portfolio, 余思宏",
+  title: siteConfig.title,
+  description: siteConfig.description,
+  keywords: siteConfig.keywords.join(", "),
 };
 
 export default function RootLayout({
@@ -17,7 +18,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pageTitle = "ShYu Resume";
+  const pageTitle = siteConfig.title;
 
   return (
     <html

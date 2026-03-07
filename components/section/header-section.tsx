@@ -6,6 +6,7 @@ import ActionButton from "@/components/ui/action-button";
 import { cn } from "@/lib/utils";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
+import { siteConfig } from "@/content/config";
 
 type Props = {
   usage: "live" | "pdf";
@@ -13,26 +14,7 @@ type Props = {
 
 export default function HeaderSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
-
-  const nameMap = {
-    en: (
-      <div>
-        Sihong <span className="text-rose-600">Yu</span>
-      </div>
-    ),
-    zh: (
-      <div>
-        <span className="text-rose-600">余</span>
-        思宏
-      </div>
-    ),
-    "zh-hk": (
-      <div>
-        <span className="text-rose-600">余</span>
-        思宏
-      </div>
-    ),
-  };
+  const { name, contact } = siteConfig.personal;
 
   const buttonTextMap = {
     live: {
@@ -50,14 +32,32 @@ export default function HeaderSection({ usage }: Props) {
   const contactItemClass =
     "group mx-1 text-xs inline-flex gap-1 items-center text-stone-600 transition hover:text-stone-900 dark:hover:text-stone-300";
 
+  const renderName = () => {
+    const nameData = name[language as keyof typeof name];
+    if (language === 'en') {
+      return (
+        <div>
+          {nameData.first} <span className="text-rose-600">{nameData.last}</span>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <span className="text-rose-600">{nameData.last}</span>
+          {nameData.first}
+        </div>
+      );
+    }
+  };
+
   return (
     <section>
       <div className="flex justify-between items-center">
         <div className="flex items-center flex-wrap">
-          <h2 className="text-2xl font-bold mr-4">{nameMap[language]}</h2>
+          <h2 className="text-2xl font-bold mr-4">{renderName()}</h2>
           
           <Link
-            href="https://www.linkedin.com/in/sihong-yu/"
+            href={contact.linkedin}
             target="_blank"
             rel="noreferrer"
             className={contactItemClass}
@@ -67,7 +67,7 @@ export default function HeaderSection({ usage }: Props) {
           </Link>
 
           <Link
-            href="https://github.com/shyu216"
+            href={contact.github}
             target="_blank"
             rel="noreferrer"
             className={contactItemClass}
@@ -77,16 +77,16 @@ export default function HeaderSection({ usage }: Props) {
           </Link>
 
           <Link
-            href="mailto:yusihong073@gmail.com"
+            href={`mailto:${contact.email}`}
             className={contactItemClass}
           >
             <Icons.Mail size={16} className="group-hover:animate-shake" />
-            <span>yusihong073@gmail.com</span>
+            <span>{contact.email}</span>
           </Link>
           
-          <Link href="tel:+61431083127" className={contactItemClass}>
+          <Link href={`tel:${contact.phone.replace(/\s/g, '')}`} className={contactItemClass}>
             <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
-            <span>+61 431 083 127</span>
+            <span>{contact.phone}</span>
           </Link>
         </div>
         <ActionButton

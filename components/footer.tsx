@@ -7,15 +7,11 @@ import { ContainerInner, ContainerOuter } from "@/components/ui/container";
 import lastUpdateData from "@/app/last-update.json";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
+import { siteConfig } from "@/content/config";
 
 export function Footer() {
   const { language } = useContext(LanguageContext);
-  
-  const nameMap = {
-    en: "Dale",
-    zh: "余",
-    "zh-hk": "余",
-  };
+  const { shortName } = siteConfig.personal;
   
   let lastUpdateLabel = "";
   let lastUpdateDate = "";
@@ -58,7 +54,7 @@ export function Footer() {
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
               <p className="text-sm">
-                &copy; {new Date().getFullYear()} {nameMap[language]}
+                &copy; {new Date().getFullYear()} {shortName[language as keyof typeof shortName]}
                 {lastUpdateData?.lastUpdate && (
                   <> | {lastUpdateLabel}{lastUpdateDate} </>
                 )}

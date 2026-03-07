@@ -1,0 +1,161 @@
+# ShYu 履歷
+
+一個現代化的雙語履歷構建器，使用 Next.js 和 React 構建，為網頁和 PDF 格式進行了優化。這個專案是 [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume) 的增強版本，旨在創建專業的履歷，在 HR 和 ATS 系統中脫穎而出。
+
+## ✨ 特性
+
+- **雙語支援**：創建中文（簡體和繁體）和英文履歷
+- **優化的 PDF 佈局**：完美的 A4 格式，具有適當的分頁和樣式
+- **響應式設計**：在桌面和移動設備上都看起來很棒
+- **主題定制**：紅色主題，帶有可定制選項
+- **內容分離**：所有文本內容存儲在組織良好的 `content` 資料夾中，便於編輯
+- **ATS 友好**：為 Applicant Tracking Systems 優化
+- **基於工作的關鍵詞高亮**：根據選擇的工作類型自動高亮相關技能和經驗
+- **專案過濾**：動態過濾專案，只顯示與所選工作類型相關的專案
+- **列印為 PDF**：一鍵生成 PDF 格式，格式正確
+
+## 🚀 開始使用
+
+### 先決條件
+
+- Node.js 18+
+- npm 或 yarn
+
+### 安裝
+
+1. Fork 倉庫
+2. 克隆你的 fork
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/shyu-resume.git
+   cd shyu-resume
+   ```
+3. 安裝依賴
+   ```bash
+   npm install
+   # 或
+   yarn install
+   ```
+4. 啟動開發伺服器
+   ```bash
+   npm run dev
+   # 或
+   yarn dev
+   ```
+5. 在瀏覽器中打開 [http://localhost:3000](http://localhost:3000)
+
+## 📝 定制
+
+### 編輯內容
+
+所有履歷內容都存儲在 `content` 資料夾中，按語言組織：
+
+- `content/en/` - 英文內容
+- `content/zh/` - 簡體中文內容
+- `content/zh-hk/` - 繁體中文內容
+
+只需編輯這些資料夾中的 TypeScript 檔案即可更新你的履歷資訊。
+
+### 更改主題
+
+修改 `components/theme/theme-provider.tsx` 中的主題設定以自訂顏色和樣式。
+
+### 基於工作的功能
+
+履歷構建器包含智能的基於工作的功能：
+
+1. **工作類型選擇**：使用介面中的工作切換器選擇你申請的工作類型
+2. **關鍵詞高亮**：自動高亮與所選工作類型相關的技能和經驗
+3. **專案過濾**：動態過濾你的專案，只顯示與所選工作類型最相關的專案
+
+### 自訂工作類型
+
+要添加或修改工作類型及其相關關鍵詞：
+
+1. 在 `components/job/job-switcher.tsx` 中編輯工作類型
+2. 在 `components/job/job-stack-keywords.ts` 中更新關鍵詞映射
+
+### 集中配置
+
+所有可定制內容現在集中在一個配置檔案中，便於維護：
+
+**檔案**：`content/config.ts`
+
+此檔案包含：
+- 網站元數據（標題、描述、關鍵詞）
+- 個人資訊（不同語言的姓名）
+- 聯絡方式（LinkedIn、GitHub、電郵、電話）
+
+### 自訂頁眉和頁腳
+
+#### 頁眉
+
+頁眉元件位於 `components/header.tsx`，包括：
+- 導航欄
+- 個人資料圖片（根據配置中的 GitHub URL 自動從 GitHub 拉取）
+- 工作類型切換器
+- 語言切換器
+- 主題切換器
+
+要自訂頁眉：
+1. 編輯 `content/config.ts` 更新你的 GitHub URL（用於個人資料圖片）
+2. 編輯 `components/header.tsx` 修改佈局或添加/刪除元素
+3. 使用 Tailwind CSS 類調整樣式
+
+#### 頁腳
+
+頁腳元件位於 `components/footer.tsx`，包括：
+- 版權資訊（從配置中獲取姓名）
+- 最後更新日期（自動生成）
+- 多語言支援
+
+要自訂頁腳：
+1. 編輯 `content/config.ts` 更新不同語言的姓名
+2. 編輯 `components/footer.tsx` 修改佈局或添加/刪除元素
+3. 調整日期格式或添加其他資訊
+
+## 📄 PDF 生成
+
+1. 在 Chrome 中打開你的履歷
+2. 按 `Ctrl+P`（Windows）或 `Cmd+P`（Mac）
+3. 選擇 **另存為 PDF** 作為目標
+4. 點擊 **儲存** 下載你的履歷為 PDF 格式
+
+> **注意**：為獲得最佳效果，請使用 Chrome 的 "另存為 PDF" 功能。Firefox 和 Edge 可能不支援所有功能。
+
+## 🤝 貢獻
+
+歡迎貢獻！如果你有改進或錯誤修復的想法，請：
+
+1. Fork 倉庫
+2. 創建一個新分支 (`git checkout -b feature/your-feature`)
+3. 進行你的更改
+4. 提交你的更改 (`git commit -m 'Add your feature'`)
+5. 推送到分支 (`git push origin feature/your-feature`)
+6. 打開一個 Pull Request
+
+## 📚 技術棧
+
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- Framer Motion（用於動畫）
+
+## 📄 許可證
+
+這個專案是開源的，在 [MIT License](LICENSE) 下可用。
+
+## 🌟 顯示你的支持
+
+如果你發現這個專案有幫助，請在 GitHub 上給它一個 ⭐️！
+
+---
+
+用 ❤️ 構建 by ShYu
+
+---
+
+### 其他語言版本
+
+- [English](README.md) - 英文版
+- [简体中文](README.zh.md) - 簡體中文版

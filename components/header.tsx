@@ -7,15 +7,19 @@ import { Container } from "./ui/container";
 import Link from "next/link";
 import { LanguageSwitcher } from "./lang/language-switcher";
 import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
+import { siteConfig } from "@/content/config";
 
 export function Header() {
+  // Extract GitHub username from the GitHub URL
+  const githubUsername = siteConfig.personal.contact.github.split('/').pop();
+  
   return (
     <Container className="mt-5 mb-10">
       <nav className="relative flex flex-col sm:flex-row justify-between items-center gap-4">
         <div>
           <Link href="/">
             <Image
-              src="https://github.com/shyu216.png"
+              src={`https://github.com/${githubUsername}.png`}
               alt="Portrait"
               width={48}
               height={48}
