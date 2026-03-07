@@ -3,45 +3,53 @@ import { type SkillCategory } from "@/types/skill-category";
 
 export const skills: SkillCategory[] = [
   {
+    id: "soft-skills",
+    name: "軟實力",
+    skills: [
+      "團隊領導力", "項目管理", "敏捷/Scrum", "遠程協作", "問題解決",
+      "技術文檔", "代碼審查", "利益相關者溝通", "獨立研究"
+    ]
+  },
+  {
     id: "frontend",
     name: "前端",
     skills: [
-      "Next.js", "React", "React Native", "Tailwind CSS", "HTML/CSS", "TypeScript", "JavaScript", "UI/3D Integration"
+      "Next.js", "React", "React Native", "Tailwind CSS", "TypeScript", "JavaScript", "PWA", "SSR"
     ]
   },
   {
     id: "backend",
     name: "後端",
     skills: [
-      "Node.js", "Go", "Python", "C#", "RESTful API", "Firebase Auth", "MySQL", "SQLite", "DynamoDB", "Socket.IO"
+      "Node.js", "Python", "RESTful API", "Flask", "Socket.IO"
     ]
   },
   {
     id: "cloud-devops",
     name: "雲端與DevOps",
     skills: [
-      "AWS (EC2, DynamoDB, S3, CDK, Amplify, EventBridge, SES, Lambda)", "CI/CD", "GitHub Actions", "Cloudflare (DNS/SSL)", "Linux", "Nginx"
+      "AWS (EC2, DynamoDB, S3, CDK, Amplify, EventBridge, SES, Lambda)", "CI/CD", "GitHub Actions", "Cloudflare"
     ]
   },
   {
     id: "ai-ml-cv",
     name: "AI / ML / 電腦視覺",
     skills: [
-      "PyTorch", "YOLO", "OpenPCDet", "Open3D", "ONNX", "Hugging Face", "scikit-learn", "Doc2Vec", "SBERT", "BiLSTM", "rPPG", "EVM", "CUDA"
+      "PyTorch", "YOLO", "OpenPCDet", "Open3D", "ONNX", "OpenCV", "NumPy", "EVM", "CUDA"
     ]
   },
   {
     id: "xr-3d",
     name: "XR / 3D",
     skills: [
-      "Unity", "Meta Quest 3", "C#", "ComputeShader (HLSL)", "RealSense SDK", "3D Assets/UI"
+      "Unity", "Meta Quest 3", "C#", "ComputeShader (HLSL)", "RealSense SDK"
     ]
   },
   {
     id: "data-database",
     name: "數據與數據庫",
     skills: [
-      "SQL", "PostgreSQL", "PostGIS", "Hadoop/MapReduce", "DynamoDB", "ER Modelling", "Spatial Analysis"
+      "SQL", "PostgreSQL", "PostGIS", "Hadoop/MapReduce", "DynamoDB", "信號處理"
     ]
   },
   {
