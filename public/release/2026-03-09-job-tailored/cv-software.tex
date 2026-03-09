@@ -1,0 +1,109 @@
+%-------------------------
+% Software Engineer CV — Sihong Yu (Dale)
+% Focus: Software Engineering Fundamentals, Distributed Systems, Scalability
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\input{cv_preamble}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\makecvheader
+
+%----------SUMMARY----------
+\section{Summary}
+\small{
+Software Engineer specializing in solving complex system challenges — from distributed consensus algorithms to real-time clinical applications. Implemented Raft consensus algorithm achieving linearizable consistency, then applied system design principles to build real-time breath tracking pipeline meeting 40ms clinical requirements. Led 3-person team delivering 80+ production features with focus on code quality and maintainability. MSc Computer Science (Distinction) with expertise in concurrency, fault tolerance, and scalable architecture. Melbourne-based with full work rights.
+}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {The University of Melbourne}{Feb 2024 -- Dec 2025}
+      {Master of Computer Science (with Distinction) | WAM: 81.94/100}{Melbourne, Australia}
+    \resumeSubheading
+      {The Chinese University of Hong Kong}{Sep 2019 -- Jul 2023}
+      {Bachelor of Computer Science | MGPA: 3.364/4.0 | ELITE Stream, Dean's List 2022--2023}{Hong Kong}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Full Stack Developer (Tech Lead)}{Apr 2023 -- Feb 2024}
+      {ReCube — Reusable Container Rental Platform}{Hong Kong}
+      \resumeItemListStart
+        \resumeItem{Transformed team from ad-hoc development to structured Agile workflow, leading 3-person team to deliver 80+ production features with 100\% UAT pass while maintaining code quality standards}
+        \resumeItem{Architected scalable platform on Next.js SSR PWA + AWS with robust CI/CD pipelines, eliminating environment configuration drift and enabling rapid iteration}
+        \resumeItem{Engineered AWS DynamoDB data models with unique utensil IDs and lifecycle management, ensuring consistent access patterns for complex asset tracking requirements}
+        \resumeItem{Implemented authentication and payment systems with comprehensive error handling, ensuring system security and transaction reliability}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      %--- Raft Consensus ---
+      \resumeProjectHeading
+          {\textbf{Raft Consensus} — Distributed Systems $|$ \emph{Go, Concurrency, RPC} \href{https://github.com/shyu216/go-raft}{[GitHub]}}{Jan 2022 -- May 2022}
+          \resumeItemListStart
+            \resumeItem{Implemented Raft consensus algorithm to build fault-tolerant distributed systems, achieving linearizable consistency}
+            \resumeItem{Fixed lock contention and log commit issues for system reliability, ensuring data consistency}
+            \resumeItem{Designed RPC communication with fault tolerance to ensure communication robustness and maintain system availability}
+          \resumeItemListEnd
+
+      %--- Breath Tracking ---
+      \resumeProjectHeading
+         {\textbf{Breath Tracking} — Real-time Systems $|$ \emph{Python, Flask, YOLO, OpenCV} \href{https://youtu.be/p7o28IXwsrs}{[Demo]}}{Feb 2025 -- Nov 2025}
+          \resumeItemListStart
+            \resumeItem{Built real-time breath tracking pipeline for 4DMedical's clinical requirements, achieving 24.7 FPS / 40 ms latency}
+            \resumeItem{Optimized algorithm performance to meet clinical accuracy standards, ensuring reliable data processing}
+            \resumeItem{Designed error handling and recovery mechanisms for system robustness, maintaining real-time operation}
+          \resumeItemListEnd
+
+      %--- Easy Draw & Guess ---
+      \resumeProjectHeading
+          {\textbf{Easy Draw \& Guess} — Real-time Multiplayer Game $|$ \emph{Node.js, Socket.IO, MySQL}}{Jan 2022 -- May 2022}
+          \resumeItemListStart
+            \resumeItem{Built multiplayer backend with Socket.IO for real-time gaming experience, enabling cross-device interaction}
+            \resumeItem{Implemented WebSocket-based chat to ensure game synchronization and maintain real-time game state}
+            \resumeItem{Designed concurrent access architecture for scalability requirements, supporting multiple users}
+          \resumeItemListEnd
+
+      % %--- ShYu Resume ---
+      % \resumeProjectHeading
+      %     {\textbf{ShYu Resume} — Personal Project $|$ \emph{Next.js, GitHub Actions} \href{https://shyu216.github.io/shyu-resume/}{[Demo]} \href{https://github.com/shyu216/shyu-resume}{[GitHub]}}{Aug 2024 -- Present}
+      %     \resumeItemListStart
+      %       \resumeItem{Built tri-language generator with clean architecture to streamline resume generation}
+      %       \resumeItem{Implemented GitHub Actions CI/CD for automated deployment, enabling seamless deployment}
+      %     \resumeItemListEnd
+
+      %--- PostGIS Spatial Analysis ---
+      \resumeProjectHeading
+          {\textbf{PostGIS Spatial Analysis} — Geospatial Data Processing $|$ \emph{PostGIS, PostgreSQL, QGIS}}{Feb 2024 -- May 2024}
+          \resumeItemListStart
+            \resumeItem{Built PostGIS spatial SQL for spatial data analysis needs, enabling distance and routing calculations}
+            \resumeItem{Implemented spatial indexing to optimize query performance and improve analysis efficiency}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programming}{: Go, Python, TypeScript, JavaScript, C\#, Java} \\
+     \textbf{Distributed Systems}{: Raft Consensus, Concurrency, Linearizability, Fault Tolerance, RPC} \\
+     \textbf{Web Development}{: Next.js, React, Node.js, RESTful API, WebSocket} \\
+     \textbf{Database}{: DynamoDB, MySQL, PostgreSQL, Data Modeling, Query Optimization} \\
+     \textbf{Cloud}{: AWS (CDK, Amplify, DynamoDB, Lambda), CI/CD, GitHub Actions} \\
+     \textbf{Tools}{: Git, Docker, VS Code, WSL, Testing Frameworks} \\
+     \textbf{Methodologies}{: Agile, Code Review, Testing, Documentation, System Design} \\
+     \textbf{Languages}{: English (Fluent), Mandarin (Native), Cantonese (Fluent)}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}
