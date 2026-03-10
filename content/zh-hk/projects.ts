@@ -49,7 +49,7 @@ export const projects: Project[] = [
   {
     id: "carbon-2-garden",
     name: "Carbon 2 Garden",
-    subtitle: "傳感器互動應用 · COMP90018",
+    subtitle: "傳感器互動應用",  //   · COMP90018
     subtitleIcon: Icons.LayoutTemplate,
     link: "https://github.com/CRUVOD/CarbonTracker",
     dateRange: "2024年9月 - 2024年11月",
@@ -60,23 +60,23 @@ export const projects: Project[] = [
       "負責路由設計和專案骨架；完成 APK 打包發布",
     ],
   },
-  {
-    id: "poetry-card",
-    name: "詩詞小卡片",
-    subtitle: "本地數據庫 · 開源項目",
-    subtitleIcon: Icons.PackageOpen,
-    link: "https://github.com/shyu216/ccpoems",
-    dateRange: "2023年12月 - 2024年2月",
-    techStack: "React Native, SQLite",
-    bullets: [
-      "使用 React Native + SQLite 開發古詩詞 App，實現本地 CRUD、隨機抽取、歷史記錄",
-      "完成 Android APK 打包發布，為後續 React Native 專案累積工程經驗",
-    ],
-  },
+  // {
+  //   id: "poetry-card",
+  //   name: "詩詞小卡片",
+  //   subtitle: "本地數據庫 · 開源項目",
+  //   subtitleIcon: Icons.PackageOpen,
+  //   link: "https://github.com/shyu216/ccpoems",
+  //   dateRange: "2023年12月 - 2024年2月",
+  //   techStack: "React Native, SQLite",
+  //   bullets: [
+  //     "使用 React Native + SQLite 開發古詩詞 App，實現本地 CRUD、隨機抽取、歷史記錄",
+  //     "完成 Android APK 打包發布，為後續 React Native 專案累積工程經驗",
+  //   ],
+  // },
   {
     id: "3d-object-detection",
     name: "三維目標檢測",
-    subtitle: "點雲 · 本科畢業設計",
+    subtitle: "點雲 · 本科畢業項目",
     subtitleIcon: Icons.GraduationCap,
     link: "https://github.com/shyu216/DPC",
     dateRange: "2022年9月 - 2023年5月",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
   {
     id: "distributed-raft",
     name: "Raft 共識算法 Go 實現",
-    subtitle: "分布式系統 · CSCI4160",
+    subtitle: "分布式系統",  //  · CSCI4160
     subtitleIcon: Icons.Code,
     link: "https://github.com/shyu216/go-raft",
     dateRange: "2022年1月 - 2022年5月",
@@ -100,19 +100,19 @@ export const projects: Project[] = [
       "實現支援線性一致性的分布式 KV 儲存，修復鎖競爭與日誌提交推進等並發問題，穩定通過全部測試用例",
     ],
   },
-  {
-    id: "easy-draw-guess",
-    name: "你畫我猜",
-    subtitle: "即時多人遊戲 · CSCI3100",
-    subtitleIcon: Icons.BookOpen,
-    link: "https://github.com/easyDG",
-    dateRange: "2022年1月 - 2022年5月",
-    techStack: "NodeJS, Socket.IO",
-    bullets: [
-      "基於 MySQL 實現遊戲帳號管理，利用 Socket.IO 實現跨設備游標追蹤與即時聊天",
-      "部署於 AWS EC2，支援多設備流暢演示",
-    ],
-  },
+  // {
+  //   id: "easy-draw-guess",
+  //   name: "你畫我猜",
+  //   subtitle: "即時多人遊戲 · CSCI3100",
+  //   subtitleIcon: Icons.BookOpen,
+  //   link: "https://github.com/easyDG",
+  //   dateRange: "2022年1月 - 2022年5月",
+  //   techStack: "NodeJS, Socket.IO",
+  //   bullets: [
+  //     "基於 MySQL 實現遊戲帳號管理，利用 Socket.IO 實現跨設備游標追蹤與即時聊天",
+  //     "部署於 AWS EC2，支援多設備流暢演示",
+  //   ],
+  // },
   {
     id: "course-algorithm-practice",
     name: "數據與算法落地",

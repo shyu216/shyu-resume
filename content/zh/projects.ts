@@ -49,7 +49,7 @@ export const projects: Project[] = [
   {
     id: "carbon-2-garden",
     name: "Carbon 2 Garden",
-    subtitle: "传感器互动应用 · COMP90018",
+    subtitle: "传感器互动应用",  //   · COMP90018
     subtitleIcon: Icons.LayoutTemplate,
     link: "https://github.com/CRUVOD/CarbonTracker",
     dateRange: "2024年9月 - 2024年11月",
@@ -60,19 +60,19 @@ export const projects: Project[] = [
       "负责路由设计和项目骨架；完成 APK 打包发布",
     ],
   },
-  {
-    id: "poetry-card",
-    name: "诗词小卡片",
-    subtitle: "本地数据库 · 开源项目",
-    subtitleIcon: Icons.PackageOpen,
-    link: "https://github.com/shyu216/ccpoems",
-    dateRange: "2023年12月 - 2024年2月",
-    techStack: "React Native, SQLite",
-    bullets: [
-      "使用 React Native + SQLite 开发古诗词 App，实现本地 CRUD、随机抽取、历史记录",
-      "完成 Android APK 打包发布，为后续 React Native 项目积累工程经验",
-    ],
-  },
+  // {
+  //   id: "poetry-card",
+  //   name: "诗词小卡片",
+  //   subtitle: "本地数据库 · 开源项目",
+  //   subtitleIcon: Icons.PackageOpen,
+  //   link: "https://github.com/shyu216/ccpoems",
+  //   dateRange: "2023年12月 - 2024年2月",
+  //   techStack: "React Native, SQLite",
+  //   bullets: [
+  //     "使用 React Native + SQLite 开发古诗词 App，实现本地 CRUD、随机抽取、历史记录",
+  //     "完成 Android APK 打包发布，为后续 React Native 项目积累工程经验",
+  //   ],
+  // },
   {
     id: "3d-object-detection",
     name: "三维目标检测",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
   {
     id: "distributed-raft",
     name: "Raft 共识算法 Go 实现",
-    subtitle: "分布式系统 · CSCI4160",
+    subtitle: "分布式系统",  //  · CSCI4160
     subtitleIcon: Icons.Code,
     link: "https://github.com/shyu216/go-raft",
     dateRange: "2022年1月 - 2022年5月",
@@ -100,19 +100,19 @@ export const projects: Project[] = [
       "实现支持线性一致性的分布式 KV 存储，修复锁竞争、日志提交推进等分布式系统典型并发问题，稳定通过所有测试用例",
     ],
   },
-  {
-    id: "easy-draw-guess",
-    name: "你画我猜",
-    subtitle: "实时多人游戏 · CSCI3100",
-    subtitleIcon: Icons.BookOpen,
-    link: "https://github.com/easyDG",
-    dateRange: "2022年1月 - 2022年5月",
-    techStack: "NodeJS, Socket.IO",
-    bullets: [
-      "基于 MySQL 实现游戏账号管理，利用 Socket.IO 实现跨设备光标追踪与实时聊天",
-      "部署于 AWS EC2，支持多设备流畅演示",
-    ],
-  },
+  // {
+  //   id: "easy-draw-guess",
+  //   name: "你画我猜",
+  //   subtitle: "实时多人游戏 · CSCI3100",
+  //   subtitleIcon: Icons.BookOpen,
+  //   link: "https://github.com/easyDG",
+  //   dateRange: "2022年1月 - 2022年5月",
+  //   techStack: "NodeJS, Socket.IO",
+  //   bullets: [
+  //     "基于 MySQL 实现游戏账号管理，利用 Socket.IO 实现跨设备光标追踪与实时聊天",
+  //     "部署于 AWS EC2，支持多设备流畅演示",
+  //   ],
+  // },
   {
     id: "course-algorithm-practice",
     name: "数据与算法落地",

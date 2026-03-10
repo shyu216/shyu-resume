@@ -49,7 +49,7 @@ export const projects: Project[] = [
   {
     id: "carbon-2-garden",
     name: "Carbon 2 Garden",
-    subtitle: "Sensor Interactive App · COMP90018",
+    subtitle: "Sensor Interactive App",  //   · COMP90018
     subtitleIcon: Icons.LayoutTemplate,
     link: "https://github.com/CRUVOD/CarbonTracker",
     dateRange: "Sep 2024 – Nov 2024",
@@ -60,23 +60,23 @@ export const projects: Project[] = [
       "Owned routing and project skeleton; shipped the APK.",
     ],
   },
-  {
-    id: "poetry-card",
-    name: "Poetry Card",
-    subtitle: "Local Database · Open Source Project",
-    subtitleIcon: Icons.PackageOpen,
-    link: "https://github.com/shyu216/ccpoems",
-    dateRange: "Dec 2023 – Feb 2024",
-    techStack: "React Native, SQLite",
-    bullets: [
-      "Built a Chinese poetry app with React Native + SQLite, enabling local CRUD, random draws, and history.",
-      "Shipped the Android APK, accruing React Native delivery experience for later projects.",
-    ],
-  },
+  // {
+  //   id: "poetry-card",
+  //   name: "Poetry Card",
+  //   subtitle: "Local Database · Open Source Project",
+  //   subtitleIcon: Icons.PackageOpen,
+  //   link: "https://github.com/shyu216/ccpoems",
+  //   dateRange: "Dec 2023 – Feb 2024",
+  //   techStack: "React Native, SQLite",
+  //   bullets: [
+  //     "Built a Chinese poetry app with React Native + SQLite, enabling local CRUD, random draws, and history.",
+  //     "Shipped the Android APK, accruing React Native delivery experience for later projects.",
+  //   ],
+  // },
   {
     id: "3d-object-detection",
     name: "3D Object Detection",
-    subtitle: "Point Cloud · Bachelor Thesis",
+    subtitle: "Point Cloud · Research",
     subtitleIcon: Icons.GraduationCap,
     link: "https://github.com/shyu216/DPC",
     dateRange: "Sep 2022 – May 2023",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
   {
     id: "distributed-raft",
     name: "Raft Consensus Implementation in Go",
-    subtitle: "Distributed Systems · CSCI4160",
+    subtitle: "Distributed Systems",  //  · CSCI4160
     subtitleIcon: Icons.Code,
     link: "https://github.com/shyu216/go-raft",
     dateRange: "Jan 2022 – May 2022",
@@ -100,19 +100,19 @@ export const projects: Project[] = [
       "Delivered a linearizable distributed KV store; fixed lock contention and log commit issues; passed all tests.",
     ],
   },
-  {
-    id: "easy-draw-guess",
-    name: "Easy Draw & Guess",
-    subtitle: "Real-time Multiplayer Game · CSCI3100",
-    subtitleIcon: Icons.BookOpen,
-    link: "https://github.com/easyDG",
-    dateRange: "Jan 2022 – May 2022",
-    techStack: "NodeJS, Socket.IO",
-    bullets: [
-      "Built MySQL account management and Socket.IO cross-device cursor tracking plus real-time chat.",
-      "Deployed on AWS EC2 for smooth multi-device demos.",
-    ],
-  },
+  // {
+  //   id: "easy-draw-guess",
+  //   name: "Easy Draw & Guess",
+  //   subtitle: "Real-time Multiplayer Game · CSCI3100",
+  //   subtitleIcon: Icons.BookOpen,
+  //   link: "https://github.com/easyDG",
+  //   dateRange: "Jan 2022 – May 2022",
+  //   techStack: "NodeJS, Socket.IO",
+  //   bullets: [
+  //     "Built MySQL account management and Socket.IO cross-device cursor tracking plus real-time chat.",
+  //     "Deployed on AWS EC2 for smooth multi-device demos.",
+  //   ],
+  // },
   {
     id: "course-algorithm-practice",
     name: "Data & Algorithm Delivery",
