@@ -8,7 +8,7 @@ export const workExperience: WorkExperience[] = [
     companyLink: "https://www.re3.world",
     companyImage: "./images/recube.png",
     dateRange: "2023年4月 - 2024年2月",
-    techStack: "Next.js, AWS, DynamoDB, Stripe, Firebase, Cloudflare",
+    techStack: "Next.js, AWS",  //  , DynamoDB, Stripe, Firebase, Cloudflare",
     bullets: [
       "带领3人敏捷团队；使用Next.js SSR PWA和AWS云基础设施交付80+生产功能，涵盖消费者/餐厅应用，实现100% UAT通过率。",
       "构建全栈容器租赁平台，包含Next.js前端、AWS DynamoDB后端和RESTful API集成，实现独特餐具ID和借还追踪。",

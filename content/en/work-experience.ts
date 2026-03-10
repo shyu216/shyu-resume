@@ -8,7 +8,7 @@ export const workExperience: WorkExperience[] = [
 		companyLink: "https://www.re3.world",
 		companyImage: "./images/recube.png",
 		dateRange: "Apr 2023 - Feb 2024",
-		techStack: "Next.js, AWS, DynamoDB, Stripe, Firebase, Cloudflare",
+		techStack: "Next.js, AWS",  //  , DynamoDB, Stripe, Firebase, Cloudflare",
 		bullets: [
 			"Led a 3-person agile squad; shipped 80+ production features across consumer/restaurant apps using Next.js SSR PWA and AWS cloud infrastructure, achieving 100% UAT pass.",
 			"Built full-stack container rental platform with Next.js frontend, AWS DynamoDB backend, and RESTful API integrations for unique utensil IDs and borrow/return tracking.",
