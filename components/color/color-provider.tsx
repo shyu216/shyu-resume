@@ -25,11 +25,20 @@ interface ColorProviderProps {
 
 export function ColorProvider({ children }: ColorProviderProps) {
   const [headerColor, setHeaderColor] = useState<HeaderColorType>(() => {
+    const DEFAULT_COLOR: HeaderColorType = "red";
     if (typeof window !== 'undefined') {
       const savedColor = localStorage.getItem("headerColor");
-      return (savedColor as HeaderColorType) || "red";
+      console.log('[ColorProvider] localStorage headerColor:', savedColor);
+      if (savedColor) {
+        const validColors: HeaderColorType[] = ['blue', 'red', 'purple', 'green', 'orange', 'pink', 'teal', 'indigo'];
+        if (validColors.includes(savedColor as HeaderColorType)) {
+          return savedColor as HeaderColorType;
+        }
+      }
+      return DEFAULT_COLOR;
     }
-    return "red";
+    console.log('[ColorProvider] SSR mode, returning default: red');
+    return DEFAULT_COLOR;
   });
 
   useEffect(() => {

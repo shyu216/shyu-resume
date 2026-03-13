@@ -17,10 +17,10 @@ const isDevelopment = process.env?.NODE_ENV === "development";
 export function Header() {
   // Extract GitHub username from the GitHub URL
   const githubUsername = siteConfig.personal.contact.github.split('/').pop();
-  
+
   return (
     <Container className="mt-5 mb-10">
-      <nav className="relative flex flex-col sm:flex-row justify-between items-center gap-4">
+      <nav className="relative flex flex-col lg:flex-row justify-between items-center gap-4">
         <div>
           <Link href="/">
             <Image
@@ -32,20 +32,17 @@ export function Header() {
             />
           </Link>
         </div>
-        <div className="relative flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <div className="relative flex flex-col md:flex-row items-center gap-4 w-full sm:w-auto">
           <div className="pointer-events-auto w-full sm:w-auto flex justify-center sm:justify-start">
             <JobSwitcherWrapper />
           </div>
           <div className="pointer-events-auto flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start">
             <LanguageSwitcher />
             <ThemeSwitcher />
-            {/* 仅在开发环境显示字体和颜色切换器 */}
-            {isDevelopment && (
-              <>
-                <FontSwitcher />
-                <ColorSwitcher />
-              </>
-            )}
+          </div>
+          <div className="pointer-events-auto flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start">
+            <FontSwitcher />
+            <ColorSwitcher />
           </div>
         </div>
       </nav>

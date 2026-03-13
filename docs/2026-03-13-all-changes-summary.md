@@ -128,7 +128,62 @@
 
 ## 常见错误总结（Next.js 特性）
 
-### 1. Tailwind CSS 任意值语法错误
+### 1. SSR 与客户端状态不一致问题
+
+**问题描述**：
+- 服务端渲染（SSR）时 `useState` 初始化使用 `localStorage`，但服务端 `typeof window === 'undefined'`
+- 可能导致服务端和客户端初始状态不一致
+
+**常见症状**：
+- 刷新页面后颜色/字体突然变化
+- 控制台出现 "Text content did not match" 警告
+
+**解决方案**：
+- 使用 `useEffect` 在客户端挂载后再读取 localStorage
+- 或在 `useState` 初始化函数中同时处理 SSR 和客户端情况
+
+```tsx
+// ✅ 正确写法
+const [headerColor, setHeaderColor] = useState<HeaderColorType>(() => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem("headerColor");
+    if (validColors.includes(saved)) return saved;
+  }
+  return DEFAULT_COLOR;
+});
+```
+
+---
+
+### 2. LocalStorage 旧值导致的问题
+
+**问题描述**：
+- 开发过程中选择了某个颜色/字体并保存到 localStorage
+- 代码更新后默认值变了，但 localStorage 仍保留旧值
+
+**实际案例**：
+- 项目初始默认颜色是 `"blue"`，后改为 `"red"`
+- 用户在开发时选择了蓝色，localStorage 保存 `"blue"`
+- 部署新版本后，用户看到的是蓝色而非预期的红色
+
+**解决方案**：
+- 验证 localStorage 中的值是否在有效列表中
+- 无效值或空值时使用代码定义的默认值
+
+```tsx
+// ✅ 添加验证逻辑
+if (savedColor) {
+  const validColors = ['blue', 'red', 'purple', 'green', ...];
+  if (validColors.includes(savedColor)) {
+    return savedColor;
+  }
+}
+return DEFAULT_COLOR;
+```
+
+---
+
+### 3. Tailwind CSS 任意值语法错误
 
 **错误写法**：
 ```tsx
@@ -146,7 +201,7 @@ pdf: "text-[11px]"
 
 ---
 
-### 2. CSS 变量非响应式问题
+### 4. CSS 变量非响应式问题
 
 **错误写法**（theme-utils.ts 原始版本）：
 ```tsx
@@ -170,7 +225,7 @@ return colorPalettes[headerColor]?.[theme] || colorPalettes.red[theme];
 
 ---
 
-### 3. 循环导入问题
+### 5. 循环导入问题
 
 **风险**：在 `lib/theme-utils.ts` 中导入 `@/components/color/color-provider` 时需谨慎。
 
@@ -178,7 +233,7 @@ return colorPalettes[headerColor]?.[theme] || colorPalettes.red[theme];
 
 ---
 
-### 4. 默认值分散定义
+### 6. 默认值分散定义
 
 **问题**：字体和颜色的默认值在多个地方定义，容易不一致：
 
@@ -192,7 +247,7 @@ return colorPalettes[headerColor]?.[theme] || colorPalettes.red[theme];
 
 ---
 
-### 5. 未使用的配置
+### 7. 未使用的配置
 
 项目中存在已定义但未使用的配置：
 
@@ -203,7 +258,7 @@ return colorPalettes[headerColor]?.[theme] || colorPalettes.red[theme];
 
 ---
 
-### 6. Server-Side Rendering (SSR) 兼容性问题
+### 8. Server-Side Rendering (SSR) 兼容性问题
 
 **注意**：在 `useHeaderColor` 等 hook 中使用了 `typeof document !== "undefined"` 检查，这是正确的做法。
 
@@ -223,7 +278,7 @@ if (typeof document !== "undefined") {
 
 ---
 
-### 7. 颜色切换不生效的排查步骤
+### 9. 颜色切换不生效的排查步骤
 
 如果遇到颜色切换不生效：
 
