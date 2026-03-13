@@ -55,9 +55,27 @@ All resume content is stored in the `content` folder, organized by language:
 
 Simply edit the TypeScript files in these folders to update your resume information.
 
-### Change Theme
+### Theme Customization
 
-Modify the theme settings in `components/theme/theme-provider.tsx` to customize colors and styling.
+Modify the theme settings in the following files to customize colors and styling:
+
+| File | Description |
+|------|-------------|
+| `lib/theme-config.ts` | Color palette definitions (colorPalettes), font configurations |
+| `components/color/color-provider.tsx` | Default header color setting |
+| `components/font/font-provider.tsx` | Default font family setting |
+
+#### Available Header Colors
+
+The project supports 8 header colors: **blue**, **red**, **purple**, **green**, **orange**, **pink**, **teal**, **indigo**
+
+Users can switch colors via the color picker in the header. The default color is **red**.
+
+#### Available Fonts
+
+The project supports 5 fonts: **Inter**, **JetBrains Mono**, **System UI**, **Monospace**, **Serif**
+
+The default font is **JetBrains Mono**.
 
 ### Job-based Features
 

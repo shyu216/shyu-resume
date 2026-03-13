@@ -55,9 +55,27 @@
 
 只需編輯這些資料夾中的 TypeScript 檔案即可更新你的履歷資訊。
 
-### 更改主題
+### 主題定製
 
-修改 `components/theme/theme-provider.tsx` 中的主題設定以自訂顏色和樣式。
+修改以下文件中的主題設定來自訂顏色和樣式：
+
+| 文件 | 說明 |
+|------|------|
+| `lib/theme-config.ts` | 顏色配置 (colorPalettes)、字體配置 |
+| `components/color/color-provider.tsx` | 默認主題顏色設置 |
+| `components/font/font-provider.tsx` | 默認字體設置 |
+
+#### 可選主題顏色
+
+項目支持 8 種主題顏色：**藍色**、**紅色**、**紫色**、**綠色**、**橙色**、**粉色**、**青色**、**靛藍**
+
+用戶可以通過頂部的顏色選擇器切換顏色。默認顏色為**紅色**。
+
+#### 可選字體
+
+項目支持 5 種字體：**Inter**、**JetBrains Mono**、**System UI**、**Monospace**、**Serif**
+
+默認字體為 **JetBrains Mono**。
 
 ### 基於工作的功能
 

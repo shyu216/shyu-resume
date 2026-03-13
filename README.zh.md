@@ -55,9 +55,27 @@
 
 只需编辑这些文件夹中的 TypeScript 文件即可更新你的简历信息。
 
-### 更改主题
+### 主题定制
 
-修改 `components/theme/theme-provider.tsx` 中的主题设置以自定义颜色和样式。
+修改以下文件中的主题设置来自定义颜色和样式：
+
+| 文件 | 说明 |
+|------|------|
+| `lib/theme-config.ts` | 颜色配置 (colorPalettes)、字体配置 |
+| `components/color/color-provider.tsx` | 默认主题颜色设置 |
+| `components/font/font-provider.tsx` | 默认字体设置 |
+
+#### 可选主题颜色
+
+项目支持 8 种主题颜色：**蓝色**、**红色**、**紫色**、**绿色**、**橙色**、**粉色**、**青色**、**靛蓝**
+
+用户可以通过顶部的颜色选择器切换颜色。默认颜色为**红色**。
+
+#### 可选字体
+
+项目支持 5 种字体：**Inter**、**JetBrains Mono**、**System UI**、**Monospace**、**Serif**
+
+默认字体为 **JetBrains Mono**。
 
 ### 基于工作的功能
 
