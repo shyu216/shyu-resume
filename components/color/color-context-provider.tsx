@@ -13,6 +13,7 @@ export function ColorContextProvider({ children }: ColorContextProviderProps) {
 
   useEffect(() => {
     const colors = colorPalettes[headerColor];
+    console.log('[ColorContextProvider] headerColor:', headerColor, 'colors:', colors);
     if (colors) {
       document.documentElement.style.setProperty("--header-color-light", colors.light);
       document.documentElement.style.setProperty("--header-color-dark", colors.dark);

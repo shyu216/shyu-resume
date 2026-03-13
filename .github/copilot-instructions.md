@@ -59,8 +59,38 @@
 
 ## 组件与约定
 
-- **Label 组件**：`components/labels/` 下三种（纯文本/带链接/带图标）。
-- **Section 组件**：每个 section 先导入三语数据，统一用对象映射选内容与标题，再用对象映射切换 live/pdf 样式，最后包裹 `<Section>`。
+### Server/Client 组件约定
+
+- **Server 组件**（默认）：纯展示组件、只接收 props 渲染 UI、无交互逻辑
+- **Client 组件**（`"use client"`）：使用 React hooks、事件处理、浏览器 API、第三方客户端库
+- 详见 `docs/2026-03-13-server-client-analysis.md`
+
+### 当前组件分布
+
+- **Client 组件 (27个)**：所有 Provider、Switcher、Section 组件、需要动画的组件
+- **Server 组件 (14个)**：label 系列、icons、container、header
+
+### 开发原则
+
+- **组件默认是 Server**：不需要交互的组件保持 Server
+- **只在叶子组件使用 Client**：将 "use client" 放在组件树末端
+- **Context 需要 Providers**：所有 Context 提供者必须是 Client
+- **数据在 Server 获取**：尽量在 Server 获取数据，传递 props 到 Client
+
+- **Label 组件**：`components/labels/` 下三种：
+  - `label.tsx`：纯文本标签
+  - `label-with-link.tsx`：带链接标签
+  - `label-with-graphic.tsx`：带图标标签
+- **Section 组件**：每个 section 先导入三语数据，统一用对象映射选内容与标题，再用对象映射切换 live/pdf 样式，最后包裹 `<Section>`。包含以下 section 组件：
+  - `full-resume.tsx`：完整简历组件，控制 live/pdf 模式渲染
+  - `header-section.tsx`：头部信息 section
+  - `summary-section.tsx`：个人简介 section
+  - `work-section.tsx`：工作经验 section
+  - `education-section.tsx`：教育背景 section
+  - `skill-section.tsx`：技能 section
+  - `project-section.tsx`：项目 section
+  - `experience.tsx`：经历展示组件
+  - `section.tsx`：通用 section 容器组件
 - **动画**：仅 live 模式用 `Motion`（`components/ui/motion.tsx`），PDF 跳过动画。
 - **PrintProvider**（`components/print-provider.tsx`）：全局提供 `componentRef`、`handlePrint`，供 PDF 导出。
 - **ActionButton** 触发 PDF 导出。
@@ -69,10 +99,30 @@
 ### 切换器组件
 
 - **JobSwitcher**：工作类型切换组件，位于 `components/job/job-switcher.tsx`，支持 FULLSTACK、SOFTWARE、ML_RESEARCHER 三种工作类型切换。
+- **JobSwitcherWrapper**：工作类型切换包装器组件，位于 `components/job/job-switcher-wrapper.tsx`，用于包装 JobSwitcher 提供更好的交互体验。
+- **KeywordHighlighter**：关键词高亮组件，位于 `components/job/keyword-highlighter.tsx`，根据工作类型自动高亮相关内容。
+- **JobStackKeywords**：工作类型关键词数据，位于 `components/job/job-stack-keywords.ts`，定义各工作类型对应的关键词。
 - **LanguageSwitcher**：语言切换组件，位于 `components/lang/language-switcher.tsx`，支持英文、简体中文、繁体中文切换。
 - **ThemeSwitcher**：主题切换组件，位于 `components/theme/theme-switcher.tsx`，支持浅色/深色模式切换。
 - **FontSwitcher**：字体切换组件，位于 `components/font/font-switcher.tsx`，仅在开发环境显示。
 - **ColorSwitcher**：颜色切换组件，位于 `components/color/color-switcher.tsx`，仅在开发环境显示。
+
+### 其他组件
+
+- **Header**：头部导航组件，位于 `components/header.tsx`，包含站点标题和导航链接。
+- **Footer**：页脚组件，位于 `components/footer.tsx`，包含版权信息和社交链接。
+- **PdfResumeContainer**：PDF 简历容器，位于 `components/pdf-resume-container.tsx`，用于 PDF 导出布局。
+- **Container**：容器组件，位于 `components/ui/container.tsx`，提供统一的页面容器样式。
+- **Icons**：图标组件，位于 `components/ui/icons.tsx`，提供项目中使用的所有图标。
+
+### Context Providers
+
+- **JobTypeProvider**：工作类型上下文，位于 `components/job/job-type-provider.tsx`，管理全局工作类型状态。
+- **LanguageProvider**：语言上下文，位于 `components/lang/language-provider.tsx`，管理多语言切换。
+- **ThemeProvider**：主题上下文，位于 `components/theme/theme-provider.tsx`，管理深色/浅色模式。
+- **FontProvider**：字体上下文，位于 `components/font/font-provider.tsx`，管理字体切换。
+- **ColorProvider**：颜色上下文，位于 `components/color/color-provider.tsx`，管理主题色切换。
+- **PrintProvider**：打印上下文，位于 `components/print-provider.tsx`，管理 PDF 打印功能。
 
 ## 配置文件
 
@@ -80,6 +130,40 @@
 - **app/keywords.json**：存储关键词数据，用于关键词高亮功能，由 `scripts/gen-keywords.js` 自动生成。
 - **app/last-update.json**：存储最后更新时间，由 `scripts/gen-last-update.js` 自动生成。
 - **lib/theme-config.ts**：设计系统配置，包含颜色、字体等主题配置。
+
+## 工具库 (lib/)
+
+- **theme-config.ts**：设计系统配置，包含颜色、字体等主题配置（见上文设计系统章节）。
+- **theme-utils.ts**：主题工具函数，提供 `useThemeColor`, `useTextColor` 等 Hook。
+- **keyword-utils.ts**：关键词工具函数，用于处理关键词高亮逻辑。
+- **now-utils.ts**：时间工具函数，提供当前时间相关功能。
+- **utils.ts**：通用工具函数，包含 class 合并等常用工具。
+
+## 类型定义 (types/)
+
+- TypeScript 类型定义文件目录，包含以下类型：
+  - `education.d.ts`：教育经历类型定义
+  - `project.d.ts`：项目类型定义
+  - `skill-category.d.ts`：技能分类类型定义
+  - `summary.d.ts`：个人简介类型定义
+  - `work-experience.d.ts`：工作经验类型定义
+
+## API 路由
+
+- **GitHub Star API**：`app/api/github/star/route.ts`，用于获取 GitHub star 数量。
+
+## 文档 (docs/)
+
+项目开发过程中产生的文档目录，包含：
+- 重构计划文档
+- 问题分析文档
+- 简历集文档
+- ATS 指南文档
+- 关键词切换更新文档
+- Star 故事线分析文档
+- GitHub popularity 路线图文档
+- 变更汇总文档
+- **Server/Client 组件分析文档**：分析所有组件的渲染类型及 Next.js 最佳实践
 
 ## 依赖说明
 
