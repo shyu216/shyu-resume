@@ -17,9 +17,6 @@ export const metadata: Metadata = {
   keywords: siteConfig.keywords.join(", "),
 };
 
-// 检查是否为开发环境
-const isDevelopment = process.env.NODE_ENV === "development";
-
 export default function RootLayout({
   children,
 }: {
@@ -27,23 +24,19 @@ export default function RootLayout({
 }) {
   const pageTitle = siteConfig.title;
 
-  // 包装器组件，根据环境决定是否包含 Font/Color Provider
-  const DevProviders = ({ children }: { children: React.ReactNode }) => {
-    if (isDevelopment) {
-      return (
-        <FontProvider>
-          <FontContextProvider>
-            <ColorProvider>
-              <ColorContextProvider>
-                {children}
-              </ColorContextProvider>
-            </ColorProvider>
-          </FontContextProvider>
-        </FontProvider>
-      );
-    }
-    return <>{children}</>;
-  };
+  const AllProviders = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <FontProvider>
+      <FontContextProvider>
+        <ColorProvider>
+          <ColorContextProvider>
+            {children}
+          </ColorContextProvider>
+        </ColorProvider>
+      </FontContextProvider>
+    </FontProvider>
+  );
+};
 
   return (
     <html
@@ -57,7 +50,7 @@ export default function RootLayout({
       <body className="flex h-full flex-col">
         <LanguageProvider>
           <JobTypeProvider>
-            <DevProviders>
+            <AllProviders>
               <ThemeProvider attribute="class" defaultTheme="system">
                 <div
                   className="
@@ -81,7 +74,7 @@ export default function RootLayout({
                   <Footer />
                 </div>
               </ThemeProvider>
-            </DevProviders>
+            </AllProviders>
           </JobTypeProvider>
         </LanguageProvider>
       </body>
