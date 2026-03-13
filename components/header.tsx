@@ -7,7 +7,12 @@ import { Container } from "./ui/container";
 import Link from "next/link";
 import { LanguageSwitcher } from "./lang/language-switcher";
 import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
+import { FontSwitcher } from "./font/font-switcher";
+import { ColorSwitcher } from "./color/color-switcher";
 import { siteConfig } from "@/content/config";
+
+// 检查是否为开发环境
+const isDevelopment = process.env?.NODE_ENV === "development";
 
 export function Header() {
   // Extract GitHub username from the GitHub URL
@@ -34,6 +39,13 @@ export function Header() {
           <div className="pointer-events-auto flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start">
             <LanguageSwitcher />
             <ThemeSwitcher />
+            {/* 仅在开发环境显示字体和颜色切换器 */}
+            {isDevelopment && (
+              <>
+                <FontSwitcher />
+                <ColorSwitcher />
+              </>
+            )}
           </div>
         </div>
       </nav>

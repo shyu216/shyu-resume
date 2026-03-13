@@ -14,6 +14,7 @@ import Label from "@/components/labels/label";
 import { useJobType } from "@/components/job/job-type-provider";
 import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
 import { hasKeywordMatches } from "@/lib/keyword-utils";
+import { useLanguageMap } from "@/lib/utils";
 
 type Props = {
   usage: "live" | "pdf";
@@ -24,13 +25,11 @@ export default function ProjectSection({ usage }: Props) {
   const { jobType } = useJobType();
   const keywords = getJobStackKeywords(jobType);
 
-  const contentMap = {
+  const { data: projects, title } = useLanguageMap({
     en: { data: projectsEn, title: "PROJECT" },
     zh: { data: projectsZh, title: "项目经历" },
     "zh-hk": { data: projectsZhHk, title: "項目經歷" },
-  };
-  
-  const { data: projects, title } = contentMap[language];
+  }, language);
 
   // 新增：基于 jobType 关键词过滤 projects
   const filteredProjects = useMemo(() => {
@@ -51,7 +50,7 @@ export default function ProjectSection({ usage }: Props) {
         {filteredProjects.map((project) => (
           <Experience
             key={project.id}
-            head1={<LabelWithLink content={<Label content={project.name} />} link={project.link} />}
+            head1={<LabelWithLink content={<Label content={project.name} usage={usage} />} link={project.link} usage={usage} />}
             head2={
               project.subtitle
                 ? <LabelWithGraphic icon={project.subtitleIcon ?? Icons.FileBadge} content={project.subtitle} />

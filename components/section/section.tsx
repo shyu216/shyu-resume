@@ -1,6 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useUsageMap } from "@/lib/utils";
+import { usePrimaryColor, useBorderColor, useTextColor } from "@/lib/theme-utils";
 
 type Props = {
   title: string;
@@ -9,22 +11,30 @@ type Props = {
 };
 
 export default function Section({ title, children, usage }: Props) {
-  const titleSizeMap = {
+  const titleSize = useUsageMap({
     live: "text-md",
     pdf: "text-14px",
-  };
+  }, usage);
+  
+  const primaryColor = usePrimaryColor(usage);
+  const borderColor = useBorderColor(usage);
+  const textColor = useTextColor(usage);
   
   return (
     <section className="mt-2">
       <h3
-        className={cn(
-          titleSizeMap[usage],
-          "font-bold text-rose-600"
-        )}
-      >
+          className={cn(
+            titleSize,
+            "font-bold"
+          )}
+          style={{ color: primaryColor }}
+        >
         {title}
       </h3>
-      <div className="w-full border-t border-stone-700 dark:border-stone-300 mb-1"></div>
+      <div 
+        className="w-full border-t mb-1"
+        style={{ borderColor: borderColor }}
+      ></div>
       {children}
     </section>
   );

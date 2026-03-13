@@ -1,4 +1,6 @@
 import { cn } from "@/lib/utils";
+import { useUsageMap } from "@/lib/utils";
+import { useTextColor } from "@/lib/theme-utils";
 import { KeywordHighlighter } from "@/components/job/keyword-highlighter";
 
 type Props = {
@@ -27,14 +29,16 @@ export default function Experience({
   usage,
   keywords
 }: Props) {
-  const textSizeMap = {
+  const textSize = useUsageMap({
     live: "text-sm",
     pdf: "text-11px",
-  };
-
+  }, usage);
+  
+  const textColor = useTextColor(usage);
+  const secondaryTextColor = useTextColor(usage);
 
   return (
-    <section className={cn(textSizeMap[usage], "break-inside-avoid page-break-inside-avoid break-before-auto")}>
+    <section className={cn(textSize, "break-inside-avoid page-break-inside-avoid break-before-auto")} style={{ color: textColor }}>
       <div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="flex gap-x-4 flex-wrap">
@@ -42,11 +46,11 @@ export default function Experience({
             {head2 && <div>{head2}</div>}
             {head3 && <div>{head3}</div>}
           </div>
-          {head4 && <div>{head4}</div>}
+          {head4 && <div style={{ color: secondaryTextColor }}>{head4}</div>}
         </div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           {head5 && <div>{head5}</div>}
-          {head6 && <div>{head6}</div>}
+          {head6 && <div style={{ color: secondaryTextColor }}>{head6}</div>}
         </div>
       </div>
 

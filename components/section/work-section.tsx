@@ -14,6 +14,7 @@ import Label from "@/components/labels/label";
 import { type WorkExperience } from "@/types/work-experience";
 import { useJobType } from "@/components/job/job-type-provider";
 import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
+import { useLanguageMap } from "@/lib/utils";
 
 type Props = {
   usage: "live" | "pdf";
@@ -24,13 +25,11 @@ export default function WorkSection({ usage }: Props) {
   const { jobType } = useJobType();
   const keywords = getJobStackKeywords(jobType);
 
-  const contentMap = {
+  const { data: workExperience, title } = useLanguageMap({
     en: { data: workExperienceEn, title: "WORK EXPERIENCE" },
     zh: { data: workExperienceZh, title: "工作经历" },
     "zh-hk": { data: workExperienceZhHk, title: "工作經歷" },
-  };
-  
-  const { data: workExperience, title } = contentMap[language];
+  }, language);
 
   return (
     <Section title={title} usage={usage}>
@@ -38,12 +37,13 @@ export default function WorkSection({ usage }: Props) {
         {workExperience.map((e, index) => (
           <Experience
             key={index}
-            head1={<Label content={e.position} />}
+            head1={<Label content={e.position} usage={usage} />}
             head2={
               e.companyLink ? (
                 <LabelWithLink
                   content={<LabelWithGraphic image={e.companyImage} content={e.company} />}
                   link={e.companyLink}
+                  usage={usage}
                 />
               ) : (
                 <LabelWithGraphic image={e.companyImage} content={e.company} />

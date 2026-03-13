@@ -3,6 +3,9 @@
 import React, { useState, useContext } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "./language-provider";
+import { useLanguageMap } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { useHeaderColor, useThemeColor, useTextColor, useShadow, useSoftShadow } from "@/lib/theme-utils";
 
 const languages = [
   {
@@ -23,24 +26,25 @@ const languages = [
 ];
 
 
-
 export function LanguageSwitcher() {
   const [mounted, setMounted] = useState(false);
 
   React.useEffect(() => setMounted(true), []);
 
   const { language, setLanguage } = useContext(LanguageContext);
-
+  const primaryColor = useHeaderColor();
+  const surfaceColor = useThemeColor('surface');
+  const borderColor = useThemeColor('border', 'default');
+  const textColor = useTextColor();
+  const textMuted = useTextColor();
+  const shadow = useSoftShadow();
 
   // 统一提示文本
-  const tipTextMap = {
+  const tipText = useLanguageMap({
     en: "Click to switch language",
     zh: "点击切换语言",
     "zh-hk": "點擊切換語言",
-  };
-  const tipText = tipTextMap[language] || "Click to switch language";
-
-
+  }, language);
 
   if (!mounted) {
     return null;
@@ -54,14 +58,20 @@ export function LanguageSwitcher() {
             key={lang.value}
             type="button"
             aria-label={`Switch to ${lang.name}`}
-            className={
-              [
-                "rounded-full px-3 py-2 bg-gradient-to-b font-bold shadow-lg ring-1 transition backdrop-blur duration-200",
-                language === lang.value
-                  ? "from-stone-900/50 to-stone-700/90 shadow-stone-700/5 ring-white/10 dark:from-stone-200/50 dark:to-stone-400/90 dark:ring-stone-900/5  text-stone-100"
-                  : "from-stone-50/50 to-white/90 shadow-stone-700/5 ring-stone-900/5 dark:from-stone-900/50 dark:to-stone-700/90 dark:ring-white/10 dark:hover:ring-white/20 text-stone-500 hover:text-stone-700 dark:hover:text-stone-200",
-              ].join(" ")
-            }
+            className={cn(
+              "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition backdrop-blur duration-200",
+              language === lang.value 
+                ? "from-primary/90 to-primary/70 text-white"
+                : "hover:from-surface/90 hover:to-surface/100"
+            )}
+            style={{
+              boxShadow: shadow,
+              borderColor: borderColor,
+              background: language === lang.value 
+                ? `linear-gradient(to bottom, ${primaryColor}90, ${primaryColor}70)` 
+                : `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
+              color: language === lang.value ? '#ffffff' : textColor,
+            }}
             onClick={() => setLanguage(lang.value as any)}
           >
             {lang.label}

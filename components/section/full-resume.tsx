@@ -5,12 +5,15 @@ import React, { useContext } from "react";
 import ActionButton from "@/components/ui/action-button";
 import Motion from "@/components/ui/motion";
 import HeaderSection from "@/components/section/header-section";
+import SummarySection from "@/components/section/summary-section";
 import SkillSection from "@/components/section/skill-section";
 import WorkSection from "@/components/section/work-section";
 import ProjectSection from "@/components/section/project-section";
 import EducationSection from "@/components/section/education-section";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { useJobType } from "@/components/job/job-type-provider";
+import { useFontFamily } from "@/components/font/font-provider";
+import { useColor } from "@/components/color/color-provider";
 
 type Props = {
   usage: "live" | "pdf";
@@ -32,9 +35,12 @@ type AnimatedComponent = {
 export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
   const { language } = useContext(LanguageContext);
   const { jobType } = useJobType();
+  const { fontFamily } = useFontFamily();
+  const { headerColor } = useColor();
 
   const animatedComponents: AnimatedComponent[] = [
     { component: HeaderSection, props: { usage }, delay: 0.1 },
+    { component: SummarySection, props: { usage }, delay: 0.2 },
     { component: WorkSection, props: { usage }, delay: 0.3 },
     { component: ProjectSection, props: { usage }, delay: 0.5 },
     { component: EducationSection, props: { usage }, delay: 0.7 },
@@ -50,7 +56,7 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
       {animatedComponents.map(
         ({ component: Component, props = { usage: "live" }, delay }, index) =>
           usage === "live" ? (
-            <Motion key={language + jobType + index} delay={delay}>
+            <Motion key={language + jobType + fontFamily + headerColor + index} delay={delay}>
               <Component {...props} />
             </Motion>
           ) : (
@@ -61,7 +67,7 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
       {usage === "live" && (
         <div className="flex sm:hidden justify-center mt-10">
           <ActionButton
-            className="bg-stone-800 block sm:hidden"
+            className="block sm:hidden"
             usage="live"
           />
         </div>

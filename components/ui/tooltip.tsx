@@ -3,23 +3,37 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
 import * as React from "react";
+import { useTextColor, useThemeColor, useShadow } from "@/lib/theme-utils";
 
 const { Provider, Root, Trigger, Portal } = TooltipPrimitive;
 
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <TooltipPrimitive.Content
-    ref={ref}
-    sideOffset={sideOffset}
-    className={cn(
-      "z-50 overflow-hidden rounded-md bg-gradient-to-b from-neutral-50/50 to-white/95 px-3 py-1.5 text-xs font-medium text-neutral-900 shadow-lg shadow-neutral-600/5 ring-1 ring-neutral-900/5 backdrop-blur transition dark:from-neutral-900/50 dark:to-neutral-600/95 dark:text-neutral-200 dark:ring-white/10",
-      className
-    )}
-    {...props}
-  />
-));
+>(({ className, sideOffset = 4, ...props }, ref) => {
+  const bgColor = useThemeColor('card', 'default');
+  const textColor = useTextColor();
+  const borderColor = useThemeColor('border', 'default');
+  const mdShadow = useShadow();
+
+  return (
+    <TooltipPrimitive.Content
+      ref={ref}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 overflow-hidden rounded-md px-3 py-1.5 text-xs font-medium shadow-lg shadow-neutral-600/5 ring-1 backdrop-blur transition",
+        className
+      )}
+      style={{
+        backgroundColor: bgColor,
+        color: textColor,
+        borderColor: borderColor,
+        boxShadow: mdShadow,
+      }}
+      {...props}
+    />
+  );
+});
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
 export const Tooltip = {

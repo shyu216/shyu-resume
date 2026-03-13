@@ -12,6 +12,7 @@ import { education as educationZh } from "@/content/zh/education";
 import { education as educationZhHk } from "@/content/zh-hk/education";
 import Label from "@/components/labels/label";
 import { type Education } from "@/types/education";
+import { useLanguageMap } from "@/lib/utils";
 
 type Props = {
   usage: "live" | "pdf";
@@ -20,13 +21,11 @@ type Props = {
 export default function EducationSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
   
-  const contentMap = {
+  const { data: education, title } = useLanguageMap({
     en: { data: educationEn, title: "EDUCATION" },
     zh: { data: educationZh, title: "教育经历" },
     "zh-hk": { data: educationZhHk, title: "教育經歷" },
-  };
-  
-  const { data: education, title } = contentMap[language];
+  }, language);
 
   return (
     <Section title={title} usage={usage}>
@@ -34,12 +33,13 @@ export default function EducationSection({ usage }: Props) {
         {education.map((e, index) => (
           <Experience
             key={index}
-            head1={<Label content={e.degree} />}
+            head1={<Label content={e.degree} usage={usage} />}
             head4={
               e.institutionLink ? (
                 <LabelWithLink
                   content={<LabelWithGraphic image={e.institutionImage} content={e.institution} />}
                   link={e.institutionLink}
+                  usage={usage}
                 />
               ) : (
                 <LabelWithGraphic image={e.institutionImage} content={e.institution} />

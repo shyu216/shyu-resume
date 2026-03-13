@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { siteConfig } from "@/content/config";
+import { useHeaderColor, useTextColor, useThemeValue } from "@/lib/theme-utils";
 
 type Props = {
   usage: "live" | "pdf";
@@ -15,6 +16,9 @@ type Props = {
 export default function HeaderSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
   const { name, contact } = siteConfig.personal;
+  const headerColor = useHeaderColor(usage);
+  const textSecondary = useTextColor(usage);
+  const textPrimary = useTextColor(usage);
 
   const buttonTextMap = {
     live: {
@@ -30,20 +34,20 @@ export default function HeaderSection({ usage }: Props) {
   };
 
   const contactItemClass =
-    "group mx-1 text-xs inline-flex gap-1 items-center text-stone-600 transition hover:text-stone-900 dark:hover:text-stone-300";
+    "group mx-1 text-xs inline-flex gap-1 items-center transition";
 
   const renderName = () => {
     const nameData = name[language as keyof typeof name];
     if (language === 'en') {
       return (
         <div>
-          {nameData.first} <span className="text-rose-600">{nameData.last}</span>
+          {nameData.first} <span style={{ color: headerColor }}>{nameData.last}</span>
         </div>
       );
     } else {
       return (
         <div>
-          <span className="text-rose-600">{nameData.last}</span>
+          <span style={{ color: headerColor }}>{nameData.last}</span>
           {nameData.first}
         </div>
       );
@@ -60,8 +64,11 @@ export default function HeaderSection({ usage }: Props) {
             href={contact.linkedin}
             target="_blank"
             rel="noreferrer"
-            className={contactItemClass}
+            className={cn(contactItemClass)}
             aria-label="LinkedIn"
+            style={{ color: textSecondary }}
+            onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+            onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
           >
             <Icons.Linkedin size={16} className="group-hover:animate-shake" />
           </Link>
@@ -70,28 +77,40 @@ export default function HeaderSection({ usage }: Props) {
             href={contact.github}
             target="_blank"
             rel="noreferrer"
-            className={contactItemClass}
+            className={cn(contactItemClass)}
             aria-label="GitHub"
+            style={{ color: textSecondary }}
+            onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+            onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
           >
             <Icons.Github size={16} className="group-hover:animate-shake" />
           </Link>
 
           <Link
             href={`mailto:${contact.email}`}
-            className={contactItemClass}
+            className={cn(contactItemClass)}
+            style={{ color: textSecondary }}
+            onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+            onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
           >
             <Icons.Mail size={16} className="group-hover:animate-shake" />
             <span>{contact.email}</span>
           </Link>
           
-          <Link href={`tel:${contact.phone.replace(/\s/g, '')}`} className={contactItemClass}>
+          <Link 
+            href={`tel:${contact.phone.replace(/\s/g, '')}`} 
+            className={cn(contactItemClass)}
+            style={{ color: textSecondary }}
+            onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+            onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
+          >
             <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
             <span>{contact.phone}</span>
           </Link>
         </div>
         <ActionButton
           usage={usage}
-          className={cn("bg-stone-800", usage === "live" && "hidden sm:block")}
+          className={cn(usage === "live" && "hidden sm:block")}
         />
       </div>
     </section>

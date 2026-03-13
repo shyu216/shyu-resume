@@ -3,6 +3,15 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
+import { 
+  useSurfaceColor, 
+  usePrimaryColor, 
+  useTextColor, 
+  useCardColor,
+  useThemeValue,
+  useSoftShadow,
+  useAccentShadow
+} from "@/lib/theme-utils";
 
 const jobOptions = [
   { value: 'FULLSTACK', label: 'Full Stack', tooltipEn: 'Highlight keywords for Full Stack', tooltipZh: '高亮 Full Stack 关键词', tooltipZhHk: '高亮 Full Stack 關鍵詞' },
@@ -22,6 +31,13 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
   const [barPosition, setBarPosition] = useState(0);
   const [barWidth, setBarWidth] = useState(0);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  
+  const containerBg = useCardColor('live');
+  const primaryColor = usePrimaryColor();
+  const textPrimary = useTextColor();
+  const textSecondary = useTextColor();
+  const softShadow = useSoftShadow();
+  const accentShadow = useAccentShadow();
   
   // 获取对应语言的tooltip
   const getTooltip = (option: typeof jobOptions[0]) => {
@@ -63,13 +79,21 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
 
   return (
     <div className="relative inline-block">
-      <div className="flex bg-stone-200 dark:bg-stone-700 rounded-full p-1 overflow-hidden">
+      <div 
+        className="flex rounded-full p-1 overflow-hidden"
+        style={{ 
+          backgroundColor: containerBg,
+          boxShadow: softShadow
+        }}
+      >
         {/* 背景滑动条 */}
         <div 
-          className="absolute top-1 bottom-1 bg-gradient-to-b from-stone-900/50 to-stone-700/90 dark:from-stone-200/50 dark:to-stone-400/90 shadow-stone-700/5 ring-1 ring-white/10 rounded-full transition-all duration-300 ease-in-out"
+          className="absolute top-1 bottom-1 rounded-full transition-all duration-300 ease-in-out"
           style={{ 
             left: `${barPosition + 1}px`, // +1 to match the parent's p-1 padding
-            width: `${barWidth}px`
+            width: `${barWidth}px`,
+            background: `linear-gradient(to bottom, ${primaryColor}90, ${primaryColor}70)`,
+            boxShadow: accentShadow
           }}
         />
         
@@ -79,11 +103,20 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
             <button
               ref={el => buttonRefs.current[index] = el}
               onClick={() => onJobTypeChange(option.value as JobType)}
-              className={`relative z-10 px-4 py-1 rounded-full transition-all duration-200 ${
-                jobType === option.value 
-                  ? 'text-white font-medium' 
-                  : 'text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white'
-              }`}
+              className={`relative z-10 px-4 py-1 rounded-full transition-all duration-200 font-medium`}
+              style={{
+                color: jobType === option.value ? '#ffffff' : textSecondary
+              }}
+              onMouseEnter={(e) => {
+                if (jobType !== option.value) {
+                  e.currentTarget.style.color = textPrimary;
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (jobType !== option.value) {
+                  e.currentTarget.style.color = textSecondary;
+                }
+              }}
             >
               {option.label}
             </button>
