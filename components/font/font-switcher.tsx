@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { useFontFamily } from "./font-provider";
 import { FontFamilyType, fontFamilies } from "@/lib/theme-config";
-import { useThemeColor, useTextColor, useSoftShadow } from "@/lib/theme-utils";
+import { useThemeColor, useTextColor, useSoftShadow, useHeaderColor } from "@/lib/theme-utils";
 import { cn } from "@/lib/utils";
 
 
@@ -12,9 +12,9 @@ import { cn } from "@/lib/utils";
 const fontOptions: { value: FontFamilyType; label: string }[] = [
   { value: "inter", label: "Inter" },
   { value: "jetbrains-mono", label: "JetBrains Mono" },
+  { value: "system-ui", label: "System UI" },
   { value: "monospace", label: "Monospace" },
-  { value: "sans-serif", label: "Sans-serif" },
-  { value: "serif", label: "Custom Serif" },
+  { value: "serif", label: "Serif" },
 ];
 
 export function FontSwitcher() {
@@ -24,7 +24,7 @@ export function FontSwitcher() {
   const surfaceColor = useThemeColor('surface');
   const borderColor = useThemeColor('border', 'default');
   const textColor = useTextColor();
-  const primaryColor = useThemeColor('primary');
+  const headerColor = useHeaderColor();
   const shadow = useSoftShadow();
 
   // 字体切换时输出console.log
@@ -75,7 +75,7 @@ export function FontSwitcher() {
                 )}
                 style={{
                   color: fontFamily === font.value ? '#ffffff' : textColor,
-                  backgroundColor: fontFamily === font.value ? primaryColor : undefined,
+                  backgroundColor: fontFamily === font.value ? headerColor : undefined,
                 }}
                 onClick={() => {
                   setFontFamily(font.value);

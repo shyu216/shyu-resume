@@ -4,6 +4,7 @@
 
 import { useTheme } from "next-themes";
 import { themeColors, colorPalettes, fontFamilies, type FontFamilyType } from "@/lib/theme-config";
+import { useColor } from "@/components/color/color-provider";
 
 // ==========================================
 // 颜色获取工具
@@ -67,22 +68,9 @@ export function useHeaderColor(usage: "live" | "pdf" = "live"): string {
   const isDark = resolvedTheme === "dark";
   const theme = usage === "pdf" ? "light" : (isDark ? "dark" : "light");
   
-  // 优先从 CSS 变量获取动态颜色
-  if (typeof document !== "undefined") {
-    const cssVar = getComputedStyle(document.documentElement)
-      .getPropertyValue(`--header-color-${theme}`)
-      .trim();
-    if (cssVar) return cssVar;
-  }
+  const { headerColor } = useColor();
   
-  return themeColors.header[theme];
-}
-
-/**
- * 获取当前主题下的主色调
- */
-export function usePrimaryColor(usage: "live" | "pdf" = "live"): string {
-  return useThemeColor("primary", undefined, usage);
+  return colorPalettes[headerColor]?.[theme] || colorPalettes.red[theme];
 }
 
 /**
@@ -171,18 +159,25 @@ export function useThemeValue<T>(lightValue: T, darkValue: T): T {
 // 字体获取工具
 // ==========================================
 
-/**
- * 获取字体家族字符串
- */
-export function useFontFamilyType(family: "sans" | "mono" = "sans"): string {
-  return fontFamilies[family === "mono" ? "jetbrains-mono" : "inter"].fontStack.join(", ");
+const defaultFontStack = fontFamilies['jetbrains-mono'].fontStack.join(", ");
+
+export function useFontFamilyType(family: FontFamilyType = "jetbrains-mono"): string {
+  return fontFamilies[family]?.fontStack.join(", ") || defaultFontStack;
 }
 
-/**
- * 获取指定字体的字体栈
- */
 export function getFontStack(fontFamily: FontFamilyType): string {
-  return fontFamilies[fontFamily]?.fontStack.join(", ") || fontFamilies.inter.fontStack.join(", ");
+  return fontFamilies[fontFamily]?.fontStack.join(", ") || defaultFontStack;
+}
+
+export function getFontName(fontFamily: FontFamilyType): string {
+  return fontFamilies[fontFamily]?.name || "Inter";
+}
+
+export function getAllFontOptions(): { value: FontFamilyType; name: string }[] {
+  return Object.entries(fontFamilies).map(([value, config]) => ({
+    value: value as FontFamilyType,
+    name: config.name,
+  }));
 }
 
 // ==========================================

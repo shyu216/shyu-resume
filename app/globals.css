@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-grid: #d6d3d1;
+  --color-glow: rgba(34,197,94,0.5);
+  --color-page: rgb(250 250 249 / 0.7);
+}
+
+.dark {
+  --color-grid: #57534e;
+  --color-glow: rgba(59,130,246,0.5);
+  --color-page: rgb(28 25 23 / 0.8);
+}
+
+@layer components {
+  .bg-grid-pattern {
+    @apply pointer-events-none fixed inset-0 select-none opacity-50;
+    background-image: 
+      repeating-linear-gradient(to right, var(--color-grid) 0 1px, transparent 1px 8px),
+      repeating-linear-gradient(to bottom, var(--color-grid) 0 1px, transparent 1px 8px);
+  }
+
+  .bg-radial-glow {
+    @apply pointer-events-none fixed top-0 block h-[600px] w-full select-none;
+    background: radial-gradient(103.72% 46.58% at 50% 0%, var(--color-glow) 0%, rgba(0,0,0,0) 100%);
+  }
+
+  .bg-page-container {
+    @apply w-full;
+    background-color: var(--color-page);
+    @apply ring-1 ring-stone-500/50;
+  }
+}
+
 @keyframes shake {
   0%,
   100% {

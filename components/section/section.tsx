@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useUsageMap } from "@/lib/utils";
-import { usePrimaryColor, useBorderColor, useTextColor } from "@/lib/theme-utils";
+import { useHeaderColor, useBorderColor, useTextColor } from "@/lib/theme-utils";
 
 type Props = {
   title: string;
@@ -13,10 +13,10 @@ type Props = {
 export default function Section({ title, children, usage }: Props) {
   const titleSize = useUsageMap({
     live: "text-md",
-    pdf: "text-14px",
+    pdf: "text-[14px]",
   }, usage);
   
-  const primaryColor = usePrimaryColor(usage);
+  const headerColor = useHeaderColor(usage);
   const borderColor = useBorderColor(usage);
   const textColor = useTextColor(usage);
   
@@ -27,7 +27,7 @@ export default function Section({ title, children, usage }: Props) {
             titleSize,
             "font-bold"
           )}
-          style={{ color: primaryColor }}
+          style={{ color: headerColor }}
         >
         {title}
       </h3>

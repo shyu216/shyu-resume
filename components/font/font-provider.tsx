@@ -26,9 +26,9 @@ export function FontProvider({ children }: FontProviderProps) {
   const [fontFamily, setFontFamily] = useState<FontFamilyType>(() => {
     if (typeof window !== 'undefined') {
       const savedFont = localStorage.getItem("fontFamily");
-      return (savedFont as FontFamilyType) || "inter";
+      return (savedFont as FontFamilyType) || "jetbrains-mono";
     }
-    return "inter";
+    return "jetbrains-mono";
   });
 
   useEffect(() => {

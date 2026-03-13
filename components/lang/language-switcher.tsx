@@ -32,7 +32,7 @@ export function LanguageSwitcher() {
   React.useEffect(() => setMounted(true), []);
 
   const { language, setLanguage } = useContext(LanguageContext);
-  const primaryColor = useHeaderColor();
+  const headerColor = useHeaderColor();
   const surfaceColor = useThemeColor('surface');
   const borderColor = useThemeColor('border', 'default');
   const textColor = useTextColor();
@@ -68,7 +68,7 @@ export function LanguageSwitcher() {
               boxShadow: shadow,
               borderColor: borderColor,
               background: language === lang.value 
-                ? `linear-gradient(to bottom, ${primaryColor}90, ${primaryColor}70)` 
+                ? `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)` 
                 : `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
               color: language === lang.value ? '#ffffff' : textColor,
             }}

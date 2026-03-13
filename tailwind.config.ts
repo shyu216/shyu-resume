@@ -16,6 +16,12 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-family)', ...themeConfig.theme?.extend?.fontFamily?.sans || []],
       },
+      colors: {
+        ...themeConfig.theme?.extend?.colors,
+        grid: 'var(--color-grid)',
+        glow: 'var(--color-glow)',
+        page: 'var(--color-page)',
+      },
       animation: {
         shake: "shake 0.5s ease-in-out both",
       },

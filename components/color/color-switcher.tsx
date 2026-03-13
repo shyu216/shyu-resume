@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { useColor, HeaderColorType } from "./color-provider";
+import { useTheme } from "next-themes";
 import { useThemeColor, useTextColor, useSoftShadow } from "@/lib/theme-utils";
 import { colorPalettes } from "@/lib/theme-config";
 import { cn } from "@/lib/utils";
@@ -21,6 +22,7 @@ const colorOptions: { value: HeaderColorType; label: string; color: string }[] =
 
 export function ColorSwitcher() {
   const { headerColor, setHeaderColor } = useColor();
+  const { resolvedTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   
   const surfaceColor = useThemeColor('surface');
@@ -46,7 +48,7 @@ export function ColorSwitcher() {
           <div 
             className="w-4 h-4 rounded-full border-2 border-white" 
             style={{ 
-              backgroundColor: colorPalettes[headerColor]?.light || colorPalettes.blue.light
+              backgroundColor: colorPalettes[headerColor]?.[resolvedTheme === 'dark' ? 'dark' : 'light'] || colorPalettes.red.light
             }}
           />
         </button>

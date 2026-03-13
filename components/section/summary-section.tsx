@@ -21,7 +21,7 @@ export default function SummarySection({ usage }: Props) {
   
   const fontSize = useUsageMap({
     live: "text-sm",
-    pdf: "text-11px",
+    pdf: "text-[11px]",
   }, usage);
 
   const { data: summary, title } = useLanguageMap({

@@ -27,9 +27,9 @@ export function ColorProvider({ children }: ColorProviderProps) {
   const [headerColor, setHeaderColor] = useState<HeaderColorType>(() => {
     if (typeof window !== 'undefined') {
       const savedColor = localStorage.getItem("headerColor");
-      return (savedColor as HeaderColorType) || "blue";
+      return (savedColor as HeaderColorType) || "red";
     }
-    return "blue";
+    return "red";
   });
 
   useEffect(() => {

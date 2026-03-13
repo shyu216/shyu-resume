@@ -13,7 +13,6 @@ export interface ThemeColorPair {
 }
 
 export interface ThemeColors {
-  primary: ThemeColorPair;
   background: ThemeColorPair;
   surface: ThemeColorPair;
   text: {
@@ -25,13 +24,14 @@ export interface ThemeColors {
   card: {
     default: ThemeColorPair;
   };
-  button: {
-    primary: ThemeColorPair;
+  layout: {
+    grid: ThemeColorPair;
+    glow: ThemeColorPair;
+    page: ThemeColorPair;
   };
-  header: ThemeColorPair;
 }
 
-export type FontFamilyType = 'inter' | 'jetbrains-mono' | 'monospace' | 'sans-serif' | 'serif';
+export type FontFamilyType = 'inter' | 'jetbrains-mono' | 'system-ui' | 'monospace' | 'serif';
 
 export interface DesignSystem {
   colors: ThemeColors;
@@ -48,11 +48,6 @@ export interface DesignSystem {
 // ==========================================
 
 export const themeColors: ThemeColors = {
-  // 主色调
-  primary: {
-    light: '#1e40af',
-    dark: '#60a5fa',
-  },
   // 背景色
   background: {
     light: '#fafafa',
@@ -84,17 +79,20 @@ export const themeColors: ThemeColors = {
       dark: '#1e293b',
     },
   },
-  // 按钮色
-  button: {
-    primary: {
-      light: '#1e40af',
-      dark: '#3b82f6',
+  // 布局背景色
+  layout: {
+    grid: {
+      light: '#d6d3d1', // stone-300
+      dark: '#57534e',  // stone-700
     },
-  },
-  // 头部颜色
-  header: {
-    light: '#1e40af',
-    dark: '#3b82f6',
+    glow: {
+      light: 'rgba(34,197,94,0.5)',  // green
+      dark: 'rgba(59,130,246,0.5)', // blue
+    },
+    page: {
+      light: '#fafaf9',  // stone-50
+      dark: '#1c1917',   // stone-900
+    },
   },
 };
 
@@ -105,23 +103,23 @@ export const themeColors: ThemeColors = {
 export const fontFamilies: DesignSystem['fontFamilies'] = {
   'inter': {
     name: 'Inter',
-    fontStack: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+    fontStack: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
   },
   'jetbrains-mono': {
     name: 'JetBrains Mono',
-    fontStack: ['JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', 'monospace'],
+    fontStack: ['JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+  },
+  'system-ui': {
+    name: 'System UI',
+    fontStack: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
   },
   'monospace': {
     name: 'Monospace',
-    fontStack: ['monospace'],
-  },
-  'sans-serif': {
-    name: 'Sans-serif',
-    fontStack: ['sans-serif'],
+    fontStack: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
   },
   'serif': {
-    name: 'Custom Serif',
-    fontStack: ['serif'],
+    name: 'Serif',
+    fontStack: ['Charter', 'Bitstream Charter', 'Sitka Text', 'Cambria', 'serif'],
   },
 };
 
@@ -182,11 +180,6 @@ export function generateTailwindConfig() {
     theme: {
       extend: {
         colors: {
-          primary: {
-            DEFAULT: themeColors.primary.light,
-            light: themeColors.primary.light,
-            dark: themeColors.primary.dark,
-          },
           background: {
             DEFAULT: themeColors.background.light,
             light: themeColors.background.light,
@@ -214,17 +207,22 @@ export function generateTailwindConfig() {
             light: themeColors.card.default.light,
             dark: themeColors.card.default.dark,
           },
-          button: {
-            primary: {
-              DEFAULT: themeColors.button.primary.light,
-              light: themeColors.button.primary.light,
-              dark: themeColors.button.primary.dark,
+          layout: {
+            grid: {
+              DEFAULT: themeColors.layout.grid.light,
+              light: themeColors.layout.grid.light,
+              dark: themeColors.layout.grid.dark,
             },
-          },
-          header: {
-            DEFAULT: themeColors.header.light,
-            light: themeColors.header.light,
-            dark: themeColors.header.dark,
+            glow: {
+              DEFAULT: themeColors.layout.glow.light,
+              light: themeColors.layout.glow.light,
+              dark: themeColors.layout.glow.dark,
+            },
+            page: {
+              DEFAULT: themeColors.layout.page.light,
+              light: themeColors.layout.page.light,
+              dark: themeColors.layout.page.dark,
+            },
           },
         },
         fontFamily: {

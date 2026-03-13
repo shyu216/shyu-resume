@@ -43,12 +43,12 @@ export default function SkillSection({ usage }: Props) {
 
   const style = useUsageMap({
     live: "font-bold whitespace-nowrap text-sm",
-    pdf: "font-bold whitespace-nowrap text-11px",
+    pdf: "font-bold whitespace-nowrap text-[11px]",
   }, usage);
   
   const descStyle = useUsageMap({
     live: "ml-8 text-sm",
-    pdf: "ml-8 text-11px",
+    pdf: "ml-8 text-[11px]",
   }, usage);
   
   const textColor = useTextColor(usage);

@@ -31,7 +31,7 @@ export default function Experience({
 }: Props) {
   const textSize = useUsageMap({
     live: "text-sm",
-    pdf: "text-11px",
+    pdf: "text-[11px]",
   }, usage);
   
   const textColor = useTextColor(usage);

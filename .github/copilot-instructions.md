@@ -30,7 +30,7 @@
   - `header`: 头部强调色
 - **颜色选项**：`colorPalettes` 提供 8 种主题色（blue, red, purple, green, orange, pink, teal, indigo）
 - **字体配置**：`fontFamilies` 支持 5 种字体（inter, jetbrains-mono, monospace, sans-serif, serif）
-- **设计工具函数**：`lib/theme-utils.ts` 提供 `useThemeColor`, `usePrimaryColor`, `useTextColor` 等 Hook
+- **设计工具函数**：`lib/theme-utils.ts` 提供 `useThemeColor`, `useTextColor` 等 Hook
 
 ## 关键开发工作流
 

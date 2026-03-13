@@ -5,7 +5,7 @@ import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { 
   useSurfaceColor, 
-  usePrimaryColor, 
+  useHeaderColor, 
   useTextColor, 
   useCardColor,
   useThemeValue,
@@ -33,7 +33,7 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   
   const containerBg = useCardColor('live');
-  const primaryColor = usePrimaryColor();
+  const headerColor = useHeaderColor();
   const textPrimary = useTextColor();
   const textSecondary = useTextColor();
   const softShadow = useSoftShadow();
@@ -92,7 +92,7 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
           style={{ 
             left: `${barPosition + 1}px`, // +1 to match the parent's p-1 padding
             width: `${barWidth}px`,
-            background: `linear-gradient(to bottom, ${primaryColor}90, ${primaryColor}70)`,
+            background: `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)`,
             boxShadow: accentShadow
           }}
         />
