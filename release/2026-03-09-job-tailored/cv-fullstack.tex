@@ -1,0 +1,108 @@
+%-------------------------
+% Full Stack Developer CV — Sihong Yu (Dale)
+% Focus: Full Stack Development, Team Leadership, Production Experience
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\input{cv_preamble}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\makecvheader
+
+%----------SUMMARY----------
+\section{Summary}
+\small{
+Full Stack Developer with 10 months production experience transforming startup development processes. Led 3-person team to deliver 80+ features on Next.js/AWS platform, cutting manual deployment effort by 90\%. Expert in solving end-to-end challenges — from React/React Native mobile apps to AWS cloud infrastructure and real-time systems. Transitioned from concept validation to scalable production platform, establishing CI/CD and environment management. MSc Computer Science (Distinction) from University of Melbourne. Melbourne-based with full work rights.
+}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {The University of Melbourne}{Feb 2024 -- Dec 2025}
+      {Master of Computer Science (with Distinction) | WAM: 81.94/100}{Melbourne, Australia}
+    \resumeSubheading
+      {The Chinese University of Hong Kong}{Sep 2019 -- Jul 2023}
+      {Bachelor of Computer Science | MGPA: 3.364/4.0 | ELITE Stream, Dean's List 2022--2023}{Hong Kong}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Full Stack Developer (Tech Lead) \href{https://app.recube.hk/}{[Consumer app]}}{Apr 2023 -- Feb 2024}
+      {ReCube — Reusable Container Rental Platform}{Hong Kong}
+      \resumeItemListStart
+        \resumeItem{Transformed team from ad-hoc development to structured Agile workflow, leading 3-person team to deliver 80+ production features with 100\% UAT pass using Asana for requirement tracking}
+        \resumeItem{Architected Next.js SSR PWA on AWS CDK/Amplify with automated CI/CD pipelines, eliminating environment configuration drift and cutting manual deployment by 90\%}
+        \resumeItem{Engineered AWS DynamoDB data models with unique utensil IDs and lifecycle management, enabling complete asset tracking from borrow to return with consistent access patterns}
+        \resumeItem{Integrated Stripe API with pre-authorization and smart refund mechanisms, ensuring secure payment processing while managing complex deposit workflows}
+        \resumeItem{Implemented Firebase Auth with JWT/OAuth 2.0 authentication, providing secure role-based access and multi-language support for international users}
+        \resumeItem{Built AWS EventBridge/SES notification pipeline with automated event scheduling and cleanup workflows, enhancing user engagement through timely communications}
+        \resumeItem{Managed Cloudflare DNS routing with SSL/TLS configuration across dev/test/prod environments, ensuring consistent access and operational stability}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      %--- ShYu Resume ---
+      \resumeProjectHeading
+          {\textbf{ShYu Resume} — Resume Generator $|$ \emph{Next.js, GitHub Actions} \href{https://shyu216.github.io/shyu-resume/}{[Demo]} \href{https://github.com/shyu216/shyu-resume}{[GitHub]}}{Aug 2024 -- Present}
+          \resumeItemListStart
+            \resumeItem{Built tri-language generator with one-click switching and A4 PDF export to streamline resume generation process}
+            \resumeItem{Implemented GitHub Actions CI/CD for automated deployment needs, enabling seamless GitHub Pages deployment}
+          \resumeItemListEnd
+
+      %--- Carbon 2 Garden ---
+      \resumeProjectHeading
+          {\textbf{Carbon 2 Garden} — Eco-habit Mobile App $|$ \emph{React Native, Expo, Google Maps API}}{Sep 2024 -- Nov 2024}
+          \resumeItemListStart
+            \resumeItem{Built React Native app with tasks and leaderboards to promote eco-friendly habits and user engagement}
+            \resumeItem{Integrated gyroscope and Google Maps API for health monitoring, providing sedentary alerts and park recommendations}
+          \resumeItemListEnd
+
+      %--- Poetry Card ---
+      \resumeProjectHeading
+          {\textbf{Poetry Card} — Local Database App $|$ \emph{React Native, SQLite, Android SDK}}{Dec 2023 -- Feb 2024}
+          \resumeItemListStart
+            \resumeItem{Built React Native app with SQLite for offline poetry access, enabling local CRUD operations}
+            \resumeItem{Shipped Android APK with offline-friendly design to ensure production readiness}
+          \resumeItemListEnd
+
+      % %--- Easy Draw & Guess ---
+      % \resumeProjectHeading
+      %     {\textbf{Easy Draw \& Guess} — Real-time Multiplayer Game $|$ \emph{Node.js, Socket.IO, MySQL}}{Jan 2022 -- May 2022}
+      %     \resumeItemListStart
+      %       \resumeItem{Built multiplayer backend with Socket.IO for real-time gaming experience, enabling cross-device interaction}
+      %       \resumeItem{Implemented WebSocket-based chat to ensure game synchronization and maintain real-time game state}
+      %     \resumeItemListEnd
+
+      % %--- Raft Consensus ---
+      % \resumeProjectHeading
+      %     {\textbf{Raft Consensus} — Distributed Systems $|$ \emph{Go, Concurrency, RPC} \href{https://github.com/shyu216/go-raft}{[GitHub]}}{Jan 2022 -- May 2022}
+      %     \resumeItemListStart
+      %       \resumeItem{Implemented Raft consensus algorithm to build fault-tolerant distributed systems, achieving linearizable consistency}
+      %       \resumeItem{Fixed lock contention and log commit issues for system reliability, ensuring data consistency}
+      %     \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Frontend}{: Next.js, React, TypeScript, Tailwind CSS, PWA, SSR} \\
+     \textbf{Backend}{: Node.js, Go, Python, RESTful API, WebSocket, Serverless} \\
+     \textbf{Cloud \& DevOps}{: AWS (CDK, Amplify, DynamoDB, EventBridge, Lambda), CI/CD, GitHub Actions, Cloudflare} \\
+     \textbf{Database}{: DynamoDB, MySQL, PostgreSQL, SQLite, Data Modeling} \\
+     \textbf{Integrations}{: Stripe API, Firebase Auth, Google Maps API, OAuth 2.0} \\
+     \textbf{Tools}{: Git, Asana/Jira, VS Code, WSL, Docker} \\
+     \textbf{Languages}{: English (Fluent), Mandarin (Native), Cantonese (Fluent)}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}

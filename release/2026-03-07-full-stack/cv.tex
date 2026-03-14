@@ -1,0 +1,99 @@
+%-------------------------
+% Comprehensive CV — Sihong Yu (Dale)
+% This is the MASTER CV containing ALL experience and projects.
+% Tailored versions should trim from this file.
+% Based off of: https://github.com/sb2nov/resume
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\input{cv_preamble}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\makecvheader
+
+%----------SUMMARY----------
+\section{Summary}
+\small{
+Full Stack Developer with 10 months production experience leading 3-person team to deliver 80+ features on Next.js/AWS. Expert in end-to-end development — React/React Native frontends, Node.js/Go backends, AWS cloud infrastructure (CDK, Amplify, DynamoDB, EventBridge), CI/CD, and third-party integrations (Stripe, Firebase Auth). Strong background in real-time systems with computer vision and biosensing research. MSc Computer Science (Distinction) from University of Melbourne. Fluent in English, Mandarin, Cantonese. Melbourne-based with full work rights — no sponsorship needed.
+}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {The University of Melbourne}{Feb 2024 -- Dec 2025}
+      {Master of Computer Science (with Distinction) | WAM: 81.94/100}{Melbourne, Australia}
+    \resumeSubheading
+      {The Chinese University of Hong Kong}{Sep 2019 -- Jul 2023}
+      {Bachelor of Computer Science | MGPA: 3.364/4.0 | ELITE Stream, Dean's List 2022--2023}{Hong Kong}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Full Stack Developer (Tech Lead) \href{https://app.recube.hk/}{[Consumer app]}}{Apr 2023 -- Feb 2024}
+      {ReCube — Reusable Container Rental Platform}{Hong Kong}
+      \resumeItemListStart
+        \resumeItem{Led 3-person agile team delivering 80+ production features; achieved 100\% UAT pass; coordinated sprints/reviews using \textbf{Asana}}
+    \resumeItem{Architected platform on \textbf{Next.js SSR PWA + AWS} (CDK/Amplify CI/CD); established branch isolation/environment parity; automated deployment, cutting manual effort 90\%}
+    \resumeItem{Designed \textbf{AWS DynamoDB} asset tracking with unique IDs and borrow/return lifecycle; ensured traceability and consistent access patterns}
+    \resumeItem{Integrated \textbf{Stripe} payment API with deposit pre-auth/refunds; handled webhooks for secure payment processing}
+    \resumeItem{Integrated \textbf{Firebase Auth} (email/SMS) for authentication and role-based access; implemented JWT/OAuth 2.0}
+    \resumeItem{Built \textbf{AWS EventBridge/SES} notification pipeline with automated scheduling and reusable email templates}
+    \resumeItem{Managed \textbf{Cloudflare} DNS routing across environments; configured SSL/TLS and CDN for stable access}
+    \resumeItem{Designed reusable \textbf{i18n hook} for one-click English/Traditional Chinese switching}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      %--- Breath Tracking ---
+      \resumeProjectHeading
+         {\textbf{Breath Tracking} — Master Thesis $|$ \emph{Python, Flask, YOLO, OpenCV} \href{https://youtu.be/p7o28IXwsrs}{\underline{[Demo]}}}{Feb 2025 -- Nov 2025}
+          \resumeItemListStart
+            \resumeItem{Collaborated with 4DMedical to develop a real-time breath tracking system for their XV Scanner}
+            \resumeItem{Trained YOLOv11n for depth map human detection, boosting signal stability (correlation ↑0.5, MSE ↓59.1\%)}
+            \resumeItem{Built real-time breath tracking pipeline; optimized \textbf{Flask} demo (1000ms→150ms rendering)}
+          \resumeItemListEnd
+
+      %--- ShYu Resume ---
+      \resumeProjectHeading
+          {\textbf{ShYu Resume} — Resume Generator $|$ \emph{Next.js, GitHub Actions} \href{https://shyu216.github.io/shyu-resume/}{\underline{[Demo]}} \href{https://github.com/shyu216/shyu-resume}{\underline{[GitHub]}}}{Aug 2024 -- Present}
+          \resumeItemListStart
+            \resumeItem{Built tri-language (ZH/EN/HK) resume generator with one-click switching and \textbf{A4 PDF export}}
+            \resumeItem{Deployed to \textbf{GitHub Pages} via GitHub Actions CI/CD; optimized bundle for fast rendering}
+          \resumeItemListEnd
+
+      %--- ESG Hackathon ---
+      \resumeProjectHeading
+          {\textbf{ESG Hackathon} — University of Melbourne, FEIT Festival}{Sep 2024}
+          \resumeItemListStart
+            \resumeItem{Participated in 3-day ESG hackathon on carbon footprint analysis and AI-powered ESG identification}
+            \resumeItem{Created presentation deck; advanced to final round}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Frontend}{: Next.js, React, TypeScript, Tailwind CSS} \\
+     \textbf{Backend}{: Node.js, Go, Python, RESTful API, WebSocket, Serverless, Microservices} \\
+     \textbf{Cloud \& DevOps}{: AWS (CDK, Amplify, DynamoDB, EventBridge, Lambda), CI/CD, GitHub Actions, Cloudflare} \\
+     \textbf{Database}{: DynamoDB, MySQL, PostgreSQL, SQLite, Data Modeling, Query Optimization} \\
+     \textbf{Mobile}{: React Native, Android SDK, Sensor Integration} \\
+     \textbf{Integrations}{: Stripe API, Firebase Auth, Google Maps API, OAuth 2.0} \\
+     \textbf{AI / ML / CV}{: PyTorch, YOLO, OpenCV, rPPG, EVM, OpenPCDet, Real-time Optimization} \\
+     \textbf{XR / 3D}{: Unity, Meta Quest 3, C\#, ComputeShader, RealSense SDK} \\
+     \textbf{Tools}{: Git, Asana/Jira, VS Code, WSL, Docker} \\
+     \textbf{Languages}{: English (Fluent), Mandarin (Native), Cantonese (Fluent)}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}
