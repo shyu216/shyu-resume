@@ -75,12 +75,28 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
 
     // 初始计算
     updateBarPosition();
-    setIsInitialized(true);
+    
+    // 等待字体加载完成后再显示 bar
+    const initBar = () => {
+      updateBarPosition();
+      setIsInitialized(true);
+    };
+    
+    if (document.fonts) {
+      document.fonts.ready.then(initBar);
+    } else {
+      // 降级方案：不支持 document.fonts 的浏览器
+      initBar();
+    }
+    
+    // 额外保险：延迟再检查一次（移动端兼容）
+    const fallbackTimer = setTimeout(initBar, 300);
     
     // 监听窗口 resize
     window.addEventListener('resize', updateBarPosition);
     
     return () => {
+      clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
     };
   }, [jobType, fontFamily]);
