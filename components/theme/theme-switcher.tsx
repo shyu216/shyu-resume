@@ -40,17 +40,17 @@ export function ThemeSwitcher() {
   }
 
   const tooltipMap = useLanguageMap({
-    en: {
-      light: "Switch to Dark",
-      dark: "Switch to Light",
-    },
     zh: {
       light: "切换至深色",
       dark: "切换至浅色",
     },
-    'zh-hk': {
-      light: "切換至深色",
-      dark: "切換至淺色",
+    ja: {
+      light: "ダークモードに切り替え",
+      dark: "ライトモードに切り替え",
+    },
+    fr: {
+      light: "Passer en mode sombre",
+      dark: "Passer en mode clair",
     },
   }, language);
   
@@ -78,12 +78,10 @@ export function ThemeSwitcher() {
         }}
         onClick={toggleTheme}
       >
-        <ThemeIcon 
-          className="h-6 w-6 p-0.5 transition-all duration-200 group-hover:rotate-12"
-          style={{ 
-            stroke: textColor, 
-            transition: 'stroke 0.2s ease, transform 0.2s ease'
-          }}
+        <ThemeIcon
+          size={16}
+          className="transition-transform duration-300 group-hover:rotate-12"
+          style={{ color: textColor }}
         />
       </button>
     </ElegantTooltip>

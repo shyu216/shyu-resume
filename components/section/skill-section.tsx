@@ -3,9 +3,9 @@
 import { useContext, useMemo } from "react";
 import Section from "@/components/section/section";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { skills as skillsEn } from "@/content/en/skills";
 import { skills as skillsZh } from "@/content/zh/skills";
-import { skills as skillsZhHk } from "@/content/zh-hk/skills";
+import { skills as skillsJa } from "@/content/ja/skills";
+import { skills as skillsFr } from "@/content/fr/skills";
 import Label from "../labels/label";
 import { useUsageMap, useLanguageMap } from "@/lib/utils";
 import { useTextColor } from "@/lib/theme-utils";
@@ -24,21 +24,30 @@ export default function SkillSection({ usage }: Props) {
   const keywords = getJobStackKeywords(jobType);
 
   const { data: skills, title } = useLanguageMap({
-    en: { data: skillsEn, title: "SKILLS" },
     zh: { data: skillsZh, title: "技能" },
-    "zh-hk": { data: skillsZhHk, title: "技能" },
+    ja: { data: skillsJa, title: "スキル" },
+    fr: { data: skillsFr, title: "Compétences" },
   }, language);
 
   // 基于 jobType 关键词过滤 skills
+  // 策略：先用中文技能数据过滤获取索引，再用索引过滤当前语言的技能
   const filteredSkills = useMemo(() => {
     // 如果没有关键词，返回所有技能
     if (!keywords || keywords.length === 0) {
       return skills;
     }
-    // 过滤逻辑：检查技能类别中是否有至少一个技能匹配关键词
-    return skills.filter(skill => 
-      skill.skills.some(skillName => hasKeywordMatches(skillName, keywords))
-    );
+    
+    // 第一步：用中文数据过滤，获取匹配的技能索引/ID
+    const matchedIndices = skillsZh
+      .map((skill, index) => ({ skill, index }))
+      .filter(({ skill }) => 
+        skill.skills.some(skillName => hasKeywordMatches(skillName, keywords))
+      )
+      .map(({ index }) => index);
+    
+    // 第二步：用索引过滤当前语言的技能数据
+    // 假设各语言技能数组顺序一致
+    return skills.filter((_, index) => matchedIndices.includes(index));
   }, [skills, keywords]);
 
   const style = useUsageMap({
@@ -58,13 +67,13 @@ export default function SkillSection({ usage }: Props) {
       <div className="break-inside-avoid page-break-inside-avoid break-before-auto">
         <div className="grid grid-cols-1 grid-cols-[max-content,1fr] items-start">
           {filteredSkills.map((skill, index) => [
-            <div key={`title-${index}`} className={style}>
-              <Label content={skill.name} usage={usage} />
+            <div key={`${skill.id}-label`} className={style} style={{ color: textColor }}>
+              {skill.name}
             </div>,
-            <div key={`desc-${index}`} className={descStyle} style={{ color: textColor }}>
-              <p>{skill.skills.join(" · ")}</p>
+            <div key={`${skill.id}-desc`} className={descStyle} style={{ color: textColor }}>
+              {skill.skills.join("、")}
             </div>
-          ])}
+          ]).flat()}
         </div>
       </div>
     </Section>

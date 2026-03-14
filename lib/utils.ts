@@ -13,8 +13,8 @@ export function useUsageMap<T>(
 }
 
 export function useLanguageMap<T>(
-  map: Record<"en" | "zh" | "zh-hk", T>,
-  language: "en" | "zh" | "zh-hk"
+  map: Record<"zh" | "ja" | "fr", T>,
+  language: "zh" | "ja" | "fr"
 ): T {
   return map[language];
 }

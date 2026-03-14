@@ -3,14 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "@/lib/storage";
 
-export type LanguageType = "en" | "zh" | "zh-hk";
+export type LanguageType = "zh" | "ja" | "fr";
 
 export const LanguageContext = React.createContext<{
   language: LanguageType;
   setLanguage: (lang: LanguageType) => void;
   isInitialized: boolean;
 }>({
-  language: "en",
+  language: "zh",
   setLanguage: () => {},
   isInitialized: false,
 });

@@ -3,9 +3,9 @@
 import { useContext } from "react";
 import Section from "@/components/section/section";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { summary as summaryEn } from "@/content/en/summary";
 import { summary as summaryZh } from "@/content/zh/summary";
-import { summary as summaryZhHk } from "@/content/zh-hk/summary";
+import { summary as summaryJa } from "@/content/ja/summary";
+import { summary as summaryFr } from "@/content/fr/summary";
 import { useJobType } from "@/components/job/job-type-provider";
 import { useLanguageMap, useUsageMap } from "@/lib/utils";
 import { useTextColor } from "@/lib/theme-utils";
@@ -25,21 +25,21 @@ export default function SummarySection({ usage }: Props) {
   }, usage);
 
   const { data: summary, title } = useLanguageMap({
-    en: { data: summaryEn, title: "SUMMARY" },
     zh: { data: summaryZh, title: "个人简介" },
-    "zh-hk": { data: summaryZhHk, title: "個人簡介" },
+    ja: { data: summaryJa, title: "プロフィール" },
+    fr: { data: summaryFr, title: "Profil" },
   }, language);
 
   const getSummaryContent = () => {
     switch (jobType) {
-      case "FULLSTACK":
-        return summary.fullstack;
-      case "SOFTWARE":
-        return summary.software;
-      case "ML_RESEARCHER":
-        return summary.ml;
+      case "PERFORMER":
+        return summary.performer;
+      case "COMPOSER":
+        return summary.composer;
+      case "DIRECTOR":
+        return summary.director;
       default:
-        return summary.fullstack;
+        return summary.performer;
     }
   };
 
