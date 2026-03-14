@@ -17,7 +17,7 @@ export function Header() {
         <div>
           <Link href="/">
             <Image
-              src="/images/yunjin.png"
+              src="./images/yunjin.png"
               alt="云堇"
               width={48}
               height={48}
