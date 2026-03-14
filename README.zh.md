@@ -1,5 +1,9 @@
 # ShYu 简历
 
+<div align="right">
+  <a href="README.md">English</a> | <a href="README.zh.md">简体中文</a> | <a href="README.zh-hk.md">繁體中文</a>
+</div>
+
 ![Banner](public/images/banner.png)
 
 一个现代化的双语简历构建器，使用 Next.js 和 React 构建，为网页和 PDF 格式进行了优化。这个项目是 [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume) 的增强版本，旨在创建专业的简历，在 HR 和 ATS 系统中脱颖而出。
@@ -190,8 +194,3 @@
 用 ❤️ 构建 by ShYu
 
 ---
-
-### 其他语言版本
-
-- [English](README.md) - 英文版
-- [繁體中文](README.zh-hk.md) - 繁体中文版

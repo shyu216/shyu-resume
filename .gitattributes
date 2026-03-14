@@ -1,0 +1,5 @@
+# GitHub Linguist 语言识别配置
+# 确保多语言 README 被正确识别为 Markdown
+
+README.zh.md linguist-language=Markdown
+README.zh-HK.md linguist-language=Markdown

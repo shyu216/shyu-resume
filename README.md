@@ -1,5 +1,9 @@
 # ShYu Resume
 
+<div align="right">
+  <a href="README.md">English</a> | <a href="README.zh.md">简体中文</a> | <a href="README.zh-hk.md">繁體中文</a>
+</div>
+
 ![Banner](public/images/banner.png)
 
 A modern, bilingual resume builder built with Next.js and React, optimized for both web and PDF formats. This project is a enhanced version of [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume), designed to create professional resumes that stand out to HR and ATS systems.
@@ -190,8 +194,3 @@ If you find this project helpful, please give it a ⭐️ on GitHub!
 Built with ❤️ by ShYu
 
 ---
-
-### Other Language Versions
-
-- [简体中文](README.zh.md) - Chinese (Simplified)
-- [繁體中文](README.zh-hk.md) - Chinese (Traditional)
