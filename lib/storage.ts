@@ -22,20 +22,20 @@ export interface AppSettings {
   color: HeaderColorType;
   language: LanguageType;
   fontFamily: FontFamilyType;
-  jobType: 'FULLSTACK' | 'SOFTWARE' | 'ML_RESEARCHER';
+  jobType: 'PERFORMER' | 'COMPOSER' | 'DIRECTOR';
 }
 
 // 数据格式版本（当数据结构变化时递增）
-const DATA_VERSION = "1";
+const DATA_VERSION = "2";
 
 // 默认值
 export const DEFAULT_SETTINGS: AppSettings = {
   buildVersion: getBuildVersion(),
   dataVersion: DATA_VERSION,
   color: "red",
-  language: "en",
+  language: "zh",
   fontFamily: "inter",
-  jobType: "FULLSTACK",
+  jobType: "PERFORMER",
 };
 
 // 验证颜色值是否有效
@@ -44,7 +44,7 @@ const validColors: HeaderColorType[] = [
 ];
 
 // 验证语言值是否有效
-const validLanguages: LanguageType[] = ['en', 'zh', 'zh-hk'];
+const validLanguages: LanguageType[] = ['zh', 'ja', 'fr'];
 
 // 验证字体值是否有效
 const validFonts: FontFamilyType[] = [
@@ -52,7 +52,7 @@ const validFonts: FontFamilyType[] = [
 ];
 
 // 验证职位值是否有效
-const validJobTypes = ['FULLSTACK', 'SOFTWARE', 'ML_RESEARCHER'] as const;
+const validJobTypes = ['PERFORMER', 'COMPOSER', 'DIRECTOR'] as const;
 
 /**
  * 从 localStorage 读取所有设置

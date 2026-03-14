@@ -26,20 +26,17 @@ export function Footer() {
     }
     if (!isNaN(date.getTime())) {
       const dateFormatMap = {
-        en: {
-          label: "Last updated: ",
-          format: (d: Date) => {
-            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            return `${monthNames[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-          }
-        },
         zh: {
           label: "最近更新：",
           format: (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
         },
-        "zh-hk": {
-          label: "最後更新：",
+        ja: {
+          label: "最終更新：",
           format: (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+        },
+        fr: {
+          label: "Dernière mise à jour : ",
+          format: (d: Date) => `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
         }
       };
       

@@ -23,7 +23,7 @@ interface JobTypeProviderProps {
 }
 
 export const JobTypeProvider: React.FC<JobTypeProviderProps> = ({ children }) => {
-  const [jobType, setJobType] = useState<JobType>('FULLSTACK');
+  const [jobType, setJobType] = useState<JobType>('PERFORMER');
 
   return (
     <JobTypeContext.Provider value={{ jobType, setJobType }}>

@@ -1,5 +1,5 @@
 export interface Summary {
-  fullstack: string;
-  software: string;
-  ml: string;
+  performer: string;
+  composer: string;
+  director: string;
 }

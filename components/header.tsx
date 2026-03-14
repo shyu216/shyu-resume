@@ -9,23 +9,16 @@ import { LanguageSwitcher } from "./lang/language-switcher";
 import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
 import { FontSwitcher } from "./font/font-switcher";
 import { ColorSwitcher } from "./color/color-switcher";
-import { siteConfig } from "@/content/config";
-
-// 检查是否为开发环境
-const isDevelopment = process.env?.NODE_ENV === "development";
 
 export function Header() {
-  // Extract GitHub username from the GitHub URL
-  const githubUsername = siteConfig.personal.contact.github.split('/').pop();
-
   return (
     <Container className="mt-5 mb-10">
       <nav className="relative flex flex-col lg:flex-row justify-between items-center gap-4">
         <div>
           <Link href="/">
             <Image
-              src={`https://github.com/${githubUsername}.png`}
-              alt="Portrait"
+              src="/images/yunjin.png"
+              alt="云堇"
               width={48}
               height={48}
               className="w-10 h-10 rounded-full ring-2 ring-stone-200 dark:ring-stone-300/40"

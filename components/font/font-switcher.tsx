@@ -11,29 +11,29 @@ import { useLanguageMap } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 const fontLabels: Record<FontFamilyType, Record<LanguageType, string>> = {
-  "inter": { en: "Inter", zh: "Inter", "zh-hk": "Inter" },
-  "jetbrains-mono": { en: "JetBrains Mono", zh: "JetBrains Mono", "zh-hk": "JetBrains Mono" },
-  "system-ui": { en: "System UI", zh: "系统字体", "zh-hk": "系統字體" },
-  "monospace": { en: "Monospace", zh: "等宽字体", "zh-hk": "等寬字體" },
-  "serif": { en: "Serif", zh: "衬线体", "zh-hk": "襯線體" },
+  "inter": { zh: "Inter", ja: "Inter", fr: "Inter" },
+  "jetbrains-mono": { zh: "JetBrains Mono", ja: "JetBrains Mono", fr: "JetBrains Mono" },
+  "system-ui": { zh: "系统字体", ja: "システムフォント", fr: "Police système" },
+  "monospace": { zh: "等宽字体", ja: "等幅フォント", fr: "Police monospace" },
+  "serif": { zh: "衬线体", ja: "明朝体", fr: "Police à empattements" },
 };
 
 const fontPreviewText: Record<LanguageType, string> = {
-  en: "The quick brown fox",
   zh: "天地玄黄宇宙洪荒",
-  "zh-hk": "天地玄黃宇宙洪荒",
+  ja: "あいうえおかきくけこ",
+  fr: "Le renard brun rapide",
 };
 
 const tooltipText: Record<LanguageType, string> = {
-  en: "Change font",
   zh: "切换字体",
-  "zh-hk": "切換字體",
+  ja: "フォントを変更",
+  fr: "Changer la police",
 };
 
 const headerText: Record<LanguageType, string> = {
-  en: "Typography",
   zh: "字体",
-  "zh-hk": "字體",
+  ja: "フォント",
+  fr: "Typographie",
 };
 
 export function FontSwitcher() {

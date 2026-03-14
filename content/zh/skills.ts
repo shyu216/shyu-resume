@@ -2,74 +2,75 @@ import { type SkillCategory } from "@/types/skill-category";
 
 export const skills: SkillCategory[] = [
   {
-    id: "soft-skills",
-    name: "软实力",
+    id: "performance",
+    name: "表演艺术",
     skills: [
-      "团队领导力", "项目管理", "敏捷/Scrum", "远程协作", "问题解决",
-      "技术文档", "代码审查", "利益相关者沟通", "独立研究"
+      "京剧演唱", "昆曲表演", "花旦/青衣", "武戏身段", "唱腔设计", "角色塑造", "舞台表现力",
+      "水袖功", "扇子功", "手绢功", "台步", "圆场", "眼神运用", "表情管理", "念白功底"
     ]
   },
   {
-    id: "frontend",
-    name: "前端",
+    id: "creation",
+    name: "创作能力",
     skills: [
-      "Next.js", "React", "React Native", "Tailwind CSS", "TypeScript", "JavaScript", "PWA", "SSR"
+      "剧本创作", "唱词编写", "舞台编排", "音乐设计", "动作指导", "导演",
+      "故事构思", "人物设定", "情节编排", "对白设计", "曲牌选择", "板式变化"
     ]
   },
   {
-    id: "backend",
-    name: "后端",
+    id: "management",
+    name: "剧团管理",
     skills: [
-      "Node.js", "Python", "RESTful API", "Flask", "Socket.IO"
+      "团队领导", "演出策划", "演员培训", "剧目运营", "商业合作", "品牌推广",
+      "财务管理", "人员调度", "场地协调", "票务管理", "赞助商洽谈", "媒体公关"
     ]
   },
   {
-    id: "cloud-devops",
-    name: "云计算与DevOps",
+    id: "innovation",
+    name: "艺术创新",
     skills: [
-      "AWS (EC2, DynamoDB, S3, CDK, Amplify, EventBridge, SES, Lambda)", "CI/CD", "GitHub Actions", "Cloudflare"
+      "传统与现代融合", "跨界合作", "摇滚元素", "新媒体传播", "国际文化交流",
+      "多媒体舞台", "沉浸式演出", "互动式表演", "AR/VR技术应用", "数字化呈现"
     ]
   },
   {
-    id: "ai-ml-cv",
-    name: "AI / ML / 计算机视觉",
+    id: "instruments",
+    name: "乐器技能",
     skills: [
-      "PyTorch", "YOLO", "OpenPCDet", "Open3D", "ONNX", "OpenCV", "NumPy", "EVM", "CUDA"
+      "二胡", "琵琶", "笛子", "锣鼓打击乐", "基础乐理",
+      "古筝", "扬琴", "唢呐", "京胡", "月琴", "三弦"
     ]
   },
   {
-    id: "xr-3d",
-    name: "XR / 3D",
+    id: "vocal",
+    name: "声乐技巧",
     skills: [
-      "Unity", "Meta Quest 3", "C#", "ComputeShader (HLSL)", "RealSense SDK"
+      "真假声转换", "气息控制", "共鸣运用", "音域拓展", "音色变化",
+      "拖腔技巧", "甩腔技巧", "颤音", "滑音", "装饰音"
     ]
   },
   {
-    id: "data-database",
-    name: "数据与数据库",
+    id: "dance",
+    name: "舞蹈功底",
     skills: [
-      "SQL", "PostgreSQL", "PostGIS", "Hadoop/MapReduce", "DynamoDB", "信号处理"
+      "古典舞", "民族舞", "身段组合", "毯子功", "把子功",
+      "软开度", "跳跃技巧", "旋转技巧", "翻滚技巧"
     ]
   },
   {
-    id: "payments-auth",
-    name: "支付与认证",
+    id: "other",
+    name: "其他技能",
     skills: [
-      "Stripe API", "Firebase Auth", "JWT", "OAuth 2.0"
-  ]
-},
-{
-  "id": "other",
-  "name": "其他",
-  "skills": [
-    "Distributed Systems (Raft)", "Git", "i18n", "Agile/Scrum", "SLURM HPC", "WakaTime"
-  ]
-},
-{
-  "id": "languages",
-  "name": "语言",
-  "skills": [
-    "英语 (流利)", "普通话 (母语)", "粤语 (流利)"
-  ]
-}
+      "戏曲化妆", "服饰搭配", "舞台灯光基础", "视频剪辑", "社交媒体运营",
+      "头饰制作", "脸谱绘制", "道具使用", "摄影构图", "文案撰写", "活动策划"
+    ]
+  },
+  {
+    id: "languages",
+    name: "语言能力",
+    skills: [
+      "中文（母语）", "日语（流利）", "法语（工作水平）",
+      "璃月方言", "戏曲韵白"
+    ]
+  }
 ];

@@ -16,12 +16,12 @@ import {
 } from "@/lib/theme-utils";
 
 const jobOptions = [
-  { value: 'FULLSTACK', label: 'Full Stack', tooltipEn: 'Full Stack Engineer — End-to-end development', tooltipZh: '全栈工程师 — 端到端开发', tooltipZhHk: '全棧工程師 — 端到端開發' },
-  { value: 'SOFTWARE', label: 'SWE', tooltipEn: 'Software Engineer — System & architecture', tooltipZh: '软件工程师 — 系统与架构', tooltipZhHk: '軟件工程師 — 系統與架構' },
-  { value: 'ML_RESEARCHER', label: 'ML', tooltipEn: 'ML Researcher — AI & algorithms', tooltipZh: '机器学习研究员 — AI 与算法', tooltipZhHk: '機器學習研究員 — AI 與算法' },
+  { value: 'PERFORMER', label: '表演', tooltipZh: '戏曲表演家 — 舞台演出与唱腔', tooltipJa: '戏曲俳優 — 舞台演技と歌唱', tooltipFr: 'Artiste d\'opéra — Performance scénique' },
+  { value: 'COMPOSER', label: '创作', tooltipZh: '剧作家 — 剧本与音乐创作', tooltipJa: '劇作家 — 脚本と音楽創作', tooltipFr: 'Dramaturge — Écriture et composition' },
+  { value: 'DIRECTOR', label: '管理', tooltipZh: '云翰社当家 — 剧团管理与传承', tooltipJa: '雲翰社当主 — 劇団運営と伝承', tooltipFr: 'Directrice — Gestion et transmission' },
 ];
 
-export type JobType = 'FULLSTACK' | 'SOFTWARE' | 'ML_RESEARCHER';
+export type JobType = 'PERFORMER' | 'COMPOSER' | 'DIRECTOR';
 
 interface JobSwitcherProps {
   jobType: JobType;
@@ -50,8 +50,9 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
   const getTooltip = (option: typeof jobOptions[0]) => {
     switch (language) {
       case 'zh': return option.tooltipZh;
-      case 'zh-hk': return option.tooltipZhHk;
-      default: return option.tooltipEn;
+      case 'ja': return option.tooltipJa;
+      case 'fr': return option.tooltipFr;
+      default: return option.tooltipZh;
     }
   };
 
@@ -99,77 +100,65 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
       clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
     };
-  }, [jobType, fontFamily]);
+  }, [jobType]);
+
+  const handleClick = (value: JobType) => {
+    onJobTypeChange(value);
+  };
 
   return (
-    <div className="relative inline-block">
-      <div 
-        className="flex rounded-full p-1 overflow-hidden backdrop-blur-sm"
-        style={{ 
-          backgroundColor: `${containerBg}80`,
-          boxShadow: softShadow
+    <div 
+      className={cn(
+        "relative inline-flex items-center rounded-full p-1.5 gap-1",
+        "transition-all duration-300"
+      )}
+      style={{ 
+        backgroundColor: containerBg,
+        boxShadow: softShadow,
+        fontFamily: fontFamily
+      }}
+    >
+      {/* 滑动背景条 */}
+      <div
+        className={cn(
+          "absolute top-1.5 bottom-1.5 rounded-full transition-all duration-300 ease-out",
+          isInitialized ? "opacity-100" : "opacity-0"
+        )}
+        style={{
+          left: `${barPosition}px`,
+          width: `${barWidth}px`,
+          backgroundColor: headerColor,
+          boxShadow: accentShadow,
         }}
-      >
-        {/* 背景滑动条 */}
-        <div 
-          className={cn(
-            "absolute rounded-full transition-all duration-300 flex items-center justify-between px-1",
-            !isInitialized && "opacity-0"
-          )}
-          style={{ 
-            top: '4px',
-            bottom: '4px',
-            left: `${barPosition}px`,
-            width: `${barWidth}px`,
-            background: `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)`,
-            boxShadow: accentShadow,
-            transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
-          }}
-        >
-          {hoveredIndex !== null && hoveredIndex !== activeIndex && (
-            <>
-              {hoveredIndex < activeIndex && (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white/70" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              )}
-              {hoveredIndex > activeIndex && (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white/70 ml-auto" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              )}
-            </>
-          )}
-        </div>
+      />
+      
+      {jobOptions.map((option, index) => {
+        const isActive = jobType === option.value;
+        const isHovered = hoveredIndex === index;
         
-        {/* 按钮 */}
-        {jobOptions.map((option, index) => (
-          <ElegantTooltip key={option.value} content={getTooltip(option)} side="bottom">
+        return (
+          <ElegantTooltip key={option.value} content={getTooltip(option)}>
             <button
-              ref={el => buttonRefs.current[index] = el}
-              onClick={() => onJobTypeChange(option.value as JobType)}
-              className="relative z-10 px-4 py-1 rounded-full transition-all duration-200 font-medium"
+              ref={(el) => { buttonRefs.current[index] = el; }}
+              onClick={() => handleClick(option.value as JobType)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className={cn(
+                "relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                isActive 
+                  ? "text-white" 
+                  : "hover:text-opacity-80"
+              )}
               style={{
-                color: jobType === option.value ? '#ffffff' : textSecondary
-              }}
-              onMouseEnter={(e) => {
-                setHoveredIndex(index);
-                if (jobType !== option.value) {
-                  e.currentTarget.style.color = textPrimary;
-                }
-              }}
-              onMouseLeave={(e) => {
-                setHoveredIndex(null);
-                if (jobType !== option.value) {
-                  e.currentTarget.style.color = textSecondary;
-                }
+                color: isActive ? '#ffffff' : textSecondary,
               }}
             >
               {option.label}
             </button>
           </ElegantTooltip>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 };

@@ -1,7 +1,0 @@
-import { type Summary } from "@/types/summary";
-
-export const summary: Summary = {
-  fullstack: "Full Stack Developer with 10 months production experience transforming startup development processes. Led 3-person team to deliver 80+ features on Next.js/AWS platform, cutting manual deployment effort by 90%. Expert in solving end-to-end challenges — from React/React Native mobile apps to AWS cloud infrastructure and real-time systems. Transitioned from concept validation to scalable production platform, establishing CI/CD and environment management. MSc Computer Science (Distinction) from University of Melbourne. Melbourne-based with full work rights.",
-  software: "Software Engineer with strong foundation in distributed systems and data processing. Experienced in building high-performance backend systems using Go, Python, and cloud technologies. Proficient in consensus algorithms, parallel computing, and spatial analysis. MSc Computer Science (Distinction) from University of Melbourne with expertise in algorithms and system design.",
-  ml: "ML Researcher with experience in computer vision, biosensing, and mixed reality. Conducted research on real-time breath tracking and rPPG technology, validating algorithms on UBFC dataset with promising results. Proficient in PyTorch, YOLO, OpenCV, and Unity development. MSc Computer Science (Distinction) from University of Melbourne with focus on machine learning and computer vision."
-};

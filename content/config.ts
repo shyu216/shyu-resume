@@ -14,14 +14,14 @@ export interface Name {
 
 export interface PersonalInfo {
   name: {
-    en: Name;
     zh: Name;
-    'zh-hk': Name;
+    ja: Name;
+    fr: Name;
   };
   shortName: {
-    en: string;
     zh: string;
-    'zh-hk': string;
+    ja: string;
+    fr: string;
   };
   contact: ContactInfo;
 }
@@ -34,34 +34,34 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  title: "ShYu Resume",
-  description: "A Resume",
-  keywords: ["YUSIHONG", "SIHONG", "Resume", "CV", "Portfolio", "余思宏"],
+  title: "云堇 Resume",
+  description: "璃月戏曲名角 · 云翰社当家 · 虹章座",
+  keywords: ["云堇", "Yunjin", "云翰社", "戏曲", "京剧", "神女劈观", "虹章座", "红毹婵娟"],
   personal: {
     name: {
-      en: {
-        first: "Sihong",
-        last: "Yu"
-      },
       zh: {
-        first: "思宏",
-        last: "余"
+        first: "堇",
+        last: "云"
       },
-      'zh-hk': {
-        first: "思宏",
-        last: "余"
+      ja: {
+        first: "Yun",
+        last: "Jin"
+      },
+      fr: {
+        first: "Yun",
+        last: "Jin"
       }
     },
     shortName: {
-      en: "Dale",
-      zh: "余",
-      'zh-hk': "余"
+      zh: "云堇",
+      ja: "雲菫",
+      fr: "Yunjin"
     },
     contact: {
-      linkedin: "https://www.linkedin.com/in/sihong-yu/",
-      github: "https://github.com/shyu216",
-      email: "yusihong073@gmail.com",
-      phone: "+61 431 083 127"
+      linkedin: "https://www.linkedin.com/in/yunjin-yunhanshe/",
+      github: "https://github.com/yunjin-yunhanshe",
+      email: "yunjin@yunhanshe.liyue",
+      phone: "+86 138-8888-5210"
     }
   }
 };

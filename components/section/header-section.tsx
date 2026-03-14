@@ -22,14 +22,14 @@ export default function HeaderSection({ usage }: Props) {
 
   const buttonTextMap = {
     live: {
-      en: "Save PDF",
       zh: "保存PDF",
-      "zh-hk": "儲存PDF",
+      ja: "PDFを保存",
+      fr: "Enregistrer PDF",
     },
     pdf: {
-      en: "Open",
       zh: "前往",
-      "zh-hk": "打開",
+      ja: "開く",
+      fr: "Ouvrir",
     },
   };
 
@@ -38,20 +38,13 @@ export default function HeaderSection({ usage }: Props) {
 
   const renderName = () => {
     const nameData = name[language as keyof typeof name];
-    if (language === 'en') {
-      return (
-        <div>
-          {nameData.first} <span style={{ color: headerColor }}>{nameData.last}</span>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <span style={{ color: headerColor }}>{nameData.last}</span>
-          {nameData.first}
-        </div>
-      );
-    }
+    // 中文、日语、法语都使用姓在前名在后的格式
+    return (
+      <div>
+        <span style={{ color: headerColor }}>{nameData.last}</span>
+        {nameData.first}
+      </div>
+    );
   };
 
   return (

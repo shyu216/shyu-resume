@@ -2,22 +2,36 @@ import { type WorkExperience } from "@/types/work-experience";
 
 export const workExperience: WorkExperience[] = [
   {
-    id: "recube",
-    position: "全栈开发工程师（技术负责人）",
-    company: "ReCube（香港）",
-    companyLink: "https://www.re3.world",
-    companyImage: "./images/recube.png",
-    dateRange: "2023年4月 - 2024年2月",
-    techStack: "Next.js, AWS",  //  , DynamoDB, Stripe, Firebase, Cloudflare",
+    id: "yunhanshe",
+    position: "当家 / 首席表演艺术家",
+    company: "云翰社（璃月港）",
+    companyLink: "https://www.yunhanshe.liyue",
+    companyImage: "./images/liyue.png",
+    dateRange: "2018年至今",
+    techStack: "京剧, 昆曲, 剧本创作",
     bullets: [
-      "带领3人敏捷团队；使用Next.js SSR PWA和AWS云基础设施交付80+生产功能，涵盖消费者/餐厅应用，实现100% UAT通过率。",
-      "构建全栈容器租赁平台，包含Next.js前端、AWS DynamoDB后端和RESTful API集成，实现独特餐具ID和借还追踪。",
-      "在AWS上架构可扩展后端系统（DynamoDB、EventBridge、SES、Lambda），处理支付工作流和通知管道，支持自动化事件调度。",
-      "集成Stripe支付处理，支持押金预授权和Firebase Auth（邮箱/SMS）认证，确保安全的用户认证和访问控制。",
-      "使用AWS CDK/Amplify设计CI/CD管道，支持分支隔离和环境一致性，消除合并冲突，减少90%部署工作量。",
-      "管理Cloudflare DNS/路由，覆盖开发/测试/生产环境；实现i18n国际化，支持英文/繁体中文切换，使用可复用React钩子。",
-      "构建事件驱动通知系统，使用AWS EventBridge/SES和可定制HTML模板，通过自动化提醒提高按时借还率。",
-      "制作并部署 App 内教程视频，降低用户使用门槛，提升用户留存与上手效率。"
+      "担任云翰社当家，管理剧团日常运营与演出安排，带领团队完成200+场商业演出",
+      "创作并主演代表作《神女劈观》，融合传统京剧唱腔与现代音乐元素",
+      "负责新剧目的剧本创作与编排，近年推出10+部原创剧目",
+      "培养新人演员15+名，建立完善的戏曲传承体系",
+      "与璃月港多家知名企业合作，开展戏曲文化推广活动",
+      "创新表演形式，将摇滚音乐元素融入传统戏曲，开创「戏曲摇滚」新流派",
+      "组织并参与多场慈善义演，为璃月港文化教育事业筹集善款"
+    ],
+  },
+  {
+    id: "liyue-opera",
+    position: "特邀表演艺术家",
+    company: "璃月大剧院",
+    companyLink: "https://www.liyueopera.com",
+    companyImage: "./images/liyue2.png",
+    dateRange: "2016年 - 2018年",
+    techStack: "传统戏曲, 舞台表演",
+    bullets: [
+      "作为特邀演员参与璃月大剧院年度大戏演出，饰演多个经典角色",
+      "与多位资深戏曲艺术家合作，学习传统表演技艺",
+      "参与璃月港传统戏曲节演出，代表年轻一代戏曲演员展示传统艺术魅力",
+      "获得「璃月港青年戏曲演员金奖」，成为当时最年轻的金奖获得者"
     ],
   },
 ];

@@ -32,21 +32,21 @@ export default function ActionButton({ className, usage }: Props) {
 
   const text = useUsageMap({
     live: useLanguageMap({
-      en: "Save PDF",
       zh: "保存PDF",
-      "zh-hk": "儲存PDF",
+      ja: "PDFを保存",
+      fr: "Enregistrer PDF",
     }, language),
     pdf: useLanguageMap({
-      en: "Open",
       zh: "前往",
-      "zh-hk": "打開",
+      ja: "開く",
+      fr: "Ouvrir",
     }, language),
   }, usage);
 
   const tooltip = useLanguageMap({
-    en: "Recommended to use Chrome to print PDF for best pagination and link support",
     zh: "建议在 Chrome 浏览器打印，确保最佳排版和链接完整",
-    "zh-hk": "建議在 Chrome 瀏覽器列印，以確保最佳排版和連結完整",
+    ja: "Chromeブラウザで印刷することをお勧めします。最適なレイアウトとリンクの完全性を確保",
+    fr: "Recommandé d'utiliser Chrome pour imprimer le PDF pour une meilleure pagination et support des liens",
   }, language);
 
   return usage === "live" ? (

@@ -11,7 +11,19 @@ export const buildKeywordRegexPattern = (keywords: string[]): string => {
   return keywords
     .map(keyword => {
       const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return `\\b${escapedKeyword}\\b`;
+      
+      // 判断是否包含中文字符
+      const hasChinese = /[\u4e00-\u9fa5]/.test(keyword);
+      
+      if (hasChinese) {
+        // 中文：使用前后瞻断言，确保前后不是汉字字符
+        // (?<![\u4e00-\u9fa5]) 前面不是汉字
+        // (?![\u4e00-\u9fa5]) 后面不是汉字
+        return `(?<![\\u4e00-\\u9fa5])${escapedKeyword}(?![\\u4e00-\\u9fa5])`;
+      } else {
+        // 英文/数字：使用单词边界
+        return `\\b${escapedKeyword}\\b`;
+      }
     })
     .join('|');
 };

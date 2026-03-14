@@ -7,9 +7,9 @@ import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
 import { useContext, useMemo } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { projects as projectsEn } from "@/content/en/projects";
 import { projects as projectsZh } from "@/content/zh/projects";
-import { projects as projectsZhHk } from "@/content/zh-hk/projects";
+import { projects as projectsJa } from "@/content/ja/projects";
+import { projects as projectsFr } from "@/content/fr/projects";
 import Label from "@/components/labels/label";
 import { useJobType } from "@/components/job/job-type-provider";
 import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
@@ -26,9 +26,9 @@ export default function ProjectSection({ usage }: Props) {
   const keywords = getJobStackKeywords(jobType);
 
   const { data: projects, title } = useLanguageMap({
-    en: { data: projectsEn, title: "PROJECT" },
     zh: { data: projectsZh, title: "项目经历" },
-    "zh-hk": { data: projectsZhHk, title: "項目經歷" },
+    ja: { data: projectsJa, title: "プロジェクト" },
+    fr: { data: projectsFr, title: "Projets" },
   }, language);
 
   // 新增：基于 jobType 关键词过滤 projects
