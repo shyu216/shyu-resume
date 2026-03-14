@@ -1,0 +1,115 @@
+%-------------------------
+% AI/ML Engineer CV — Sihong Yu (Dale)
+% Focus: AI/ML Research, Real-time Systems, Computer Vision
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\input{cv_preamble}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\makecvheader
+
+%----------SUMMARY----------
+\section{Summary}
+\small{
+AI/ML Engineer transitioning from full-stack development to specialized AI research. Led 3-person team delivering 80+ production features, then focused on solving clinical-grade real-time biosensing challenges. Developed real-time breath tracking pipeline achieving 24.7 FPS / 40 ms latency for 4DMedical's XV Scanner. Expert in YOLO object detection, OpenCV, PyTorch, and mobile AI deployment on Meta Quest 3. MSc Computer Science (Distinction) with publications in mixed reality biosensing. Melbourne-based with full work rights.
+}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {The University of Melbourne}{Feb 2024 -- Dec 2025}
+      {Master of Computer Science (with Distinction) | WAM: 81.94/100}{Melbourne, Australia}
+    \resumeSubheading
+      {The Chinese University of Hong Kong}{Sep 2019 -- Jul 2023}
+      {Bachelor of Computer Science | MGPA: 3.364/4.0 | ELITE Stream, Dean's List 2022--2023}{Hong Kong}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Full Stack Developer (Tech Lead)}{Apr 2023 -- Feb 2024}
+      {ReCube — Reusable Container Rental Platform}{Hong Kong}
+      \resumeItemListStart
+        \resumeItem{Transformed team from ad-hoc development to structured Agile workflow, leading 3-person team to deliver 80+ production features with 100\% UAT pass using Asana for requirement tracking}
+        \resumeItem{Architected Next.js SSR PWA on AWS CDK/Amplify with automated CI/CD pipelines, eliminating environment configuration drift and cutting manual deployment by 90\%}
+        \resumeItem{Designed AWS EventBridge/SES notification pipeline with automated event scheduling and cleanup workflows, enhancing user engagement through timely communications}
+        \resumeItem{Engineered AWS DynamoDB data models with unique utensil IDs and lifecycle management, enabling complete asset tracking from borrow to return with consistent access patterns}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      %--- Breath Tracking ---
+      \resumeProjectHeading
+         {\textbf{Breath Tracking} — Master Thesis $|$ \emph{Python, Flask, YOLO, OpenCV} \href{https://youtu.be/p7o28IXwsrs}{[Demo]}}{Feb 2025 -- Nov 2025}
+          \resumeItemListStart
+            \resumeItem{Collaborated with 4DMedical to develop XV Scanner real-time breath tracking pipeline, achieving 24.7 FPS / 40ms latency on GPU to meet clinical trigger requirements}
+            \resumeItem{Rebuilt MATLAB EVM algorithm in Python with OpenCV/NumPy, optimizing Laplacian pyramid and Butterworth filtering for real-time performance on GPU}
+            \resumeItem{Trained YOLOv11n with differential ROI fusion for depth map human detection, improving motion scenario correlation from 0.16 to 0.66 and reducing MSE by 59.1\%}
+            \resumeItem{Optimized Flask demo rendering by replacing matplotlib with OpenCV hand-drawn waveforms, reducing display latency from 1000ms to 150ms}
+            \resumeItem{Processed three respiratory datasets with Z-score standardization and end-exhalation estimation, enabling clinical-grade timing accuracy on dPPG PFT data}
+          \resumeItemListEnd
+
+      %--- BioVis ---
+      \resumeProjectHeading
+          {\textbf{BioVis} — Mixed Reality Biosensing $|$ \emph{Unity, C\#, Meta Quest 3} \href{https://youtu.be/zOPQXXpSRbg}{[Demo]}}{May 2025 -- Nov 2025}
+          \resumeItemListStart
+            \resumeItem{Co-authored Siggraph Asia XR submission and built mixed reality biosensing prototype with 6 scenes and 40+ scripts, exploring rPPG in XR headset environments}
+            \resumeItem{Applied ComputeShader for parallel image processing on Meta Quest 3, maintaining 30 FPS real-time performance despite mobile device computational constraints}
+            \resumeItem{Migrated EVM algorithm from MATLAB to C\# for Unity deployment, enabling real-time physiological sensing on mobile XR platforms}
+            \resumeItem{Validated system accuracy achieving heart-rate MAE 3.75 BPM and breath-rate MAE 2.45 BPM on UBFC dataset, demonstrating XR biosensing feasibility}
+            \resumeItem{Benchmarked ONNX vs Sentis quantization for YOLOv11n deployment on Quest 3, optimizing inference performance for real-time edge computing}
+          \resumeItemListEnd
+
+      %--- 3D Object Detection ---
+      \resumeProjectHeading
+          {\textbf{3D Object Detection} — Bachelor Thesis $|$ \emph{Python, PyTorch, OpenPCDet}}{Sep 2022 -- May 2023}
+          \resumeItemListStart
+            \resumeItem{Implemented 3D object detection using LiDAR point cloud data for autonomous driving obstacle identification}
+            \resumeItem{Leveraged OpenPCDet framework for object detection, accelerating development timeline}
+            \resumeItem{Optimized model inference performance to meet real-time autonomous system latency requirements}
+          \resumeItemListEnd
+
+      %--- Climate Fact-Checking System ---
+      \resumeProjectHeading
+          {\textbf{Climate Fact-Checking System} — NLP $|$ \emph{PyTorch, BiLSTM}}{Feb 2024 -- May 2024}
+          \resumeItemListStart
+            \resumeItem{Built end-to-end climate fact-checking system processing 1.2M+ evidence sentences, achieving 64.9\% classification accuracy vs 44.2\% baseline on claim verification}
+            \resumeItem{Engineered semantic embeddings using SBERT and Doc2Vec, implementing BiLSTM classifier for accurate claim-evidence matching}
+            \resumeItem{Designed complete NLP pipeline with data cleaning, feature engineering, and model evaluation workflow for reproducible experiments}
+            \resumeItem{Optimized model performance through threshold tuning and cross-validation, establishing foundation for AI/LLM-related data preparation}
+          \resumeItemListEnd
+
+      %--- Splendor AI Agent ---
+      \resumeProjectHeading
+          {\textbf{Splendor AI Agent} — Reinforcement Learning $|$ \emph{Python}}{Jan 2023 -- Apr 2023}
+          \resumeItemListStart
+            \resumeItem{Developed AI agent for Splendor board game to explore reinforcement learning applications and strategic decision-making}
+            \resumeItem{Implemented neural network architecture for complex game state evaluation and accurate move prediction}
+            \resumeItem{Achieved competitive results against human players, validating agent performance and RL effectiveness}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{AI/ML}{: PyTorch, YOLO, OpenCV, rPPG, EVM, OpenPCDet, Real-time Optimization} \\
+     \textbf{Computer Vision}{: Object Detection, Image Processing, Motion Analysis, Depth Sensing} \\
+     \textbf{Real-time Systems}{: Flask, Unity, ComputeShader, 24.7 FPS pipelines, GPU Computing} \\
+     \textbf{Programming}{: Python, C\#, Go, Node.js, TypeScript} \\
+     \textbf{Research}{: Academic Publications, Dataset Validation, Algorithm Development} \\
+     \textbf{Tools}{: Git, VS Code, WSL, Docker, ONNX Runtime} \\
+     \textbf{Languages}{: English (Fluent), Mandarin (Native), Cantonese (Fluent)}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}

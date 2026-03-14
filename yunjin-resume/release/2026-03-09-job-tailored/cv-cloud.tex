@@ -1,0 +1,110 @@
+%-------------------------
+% Cloud/DevOps Engineer CV — Sihong Yu (Dale)
+% Focus: Cloud Infrastructure, Automation, DevOps Practices
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\input{cv_preamble}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\makecvheader
+
+%----------SUMMARY----------
+\section{Summary}
+\small{
+Cloud/DevOps Engineer specializing in transforming manual processes into automated, scalable infrastructure. Automated deployment processes cutting manual effort by 90\% using AWS CDK/Amplify, eliminating environment configuration inconsistencies. Designed event-driven systems with AWS EventBridge/SES and established multi-environment management with Cloudflare. Applied infrastructure as code principles to build reliable, maintainable cloud platforms. MSc Computer Science (Distinction) with expertise in scalable systems and DevOps practices. Melbourne-based with full work rights.
+}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {The University of Melbourne}{Feb 2024 -- Dec 2025}
+      {Master of Computer Science (with Distinction) | WAM: 81.94/100}{Melbourne, Australia}
+    \resumeSubheading
+      {The Chinese University of Hong Kong}{Sep 2019 -- Jul 2023}
+      {Bachelor of Computer Science | MGPA: 3.364/4.0 | ELITE Stream, Dean's List 2022--2023}{Hong Kong}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Full Stack Developer (Tech Lead)}{Apr 2023 -- Feb 2024}
+      {ReCube — Reusable Container Rental Platform}{Hong Kong}
+      \resumeItemListStart
+        \resumeItem{Automated deployment via AWS Amplify CI/CD with branch isolation and environment parity, cutting manual deployment effort by 90\% and eliminating environment configuration drift}
+        \resumeItem{Architected platform on AWS CDK/Amplify with infrastructure as code principles, enabling automated provisioning and consistent infrastructure management}
+        \resumeItem{Built AWS EventBridge/SES notification pipeline with automated event scheduling and cleanup workflows, enhancing user engagement through timely communications}
+        \resumeItem{Managed Cloudflare DNS routing with SSL/TLS configuration across dev/test/prod environments, ensuring consistent access and operational stability}
+        \resumeItem{Engineered AWS DynamoDB data models with unique utensil IDs and lifecycle management, ensuring consistent access patterns for complex asset tracking requirements}
+        \resumeItem{Established Git branching strategy and environment management workflows, eliminating environment bugs and improving team development efficiency}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      %--- ShYu Resume ---
+      \resumeProjectHeading
+          {\textbf{ShYu Resume} — Infrastructure Automation $|$ \emph{Next.js, GitHub Actions} \href{https://shyu216.github.io/shyu-resume/}{[Demo]} \href{https://github.com/shyu216/shyu-resume}{[GitHub]}}{Aug 2024 -- Present}
+          \resumeItemListStart
+            \resumeItem{Deployed via GitHub Actions CI/CD, establishing automated build pipeline for deployment needs}
+            \resumeItem{Optimized bundle size and performance to ensure fast rendering and efficient resource usage}
+          \resumeItemListEnd
+
+      %--- Hadoop/MapReduce Pipelines ---
+      \resumeProjectHeading
+          {\textbf{Hadoop/MapReduce Pipelines} — Big Data Processing $|$ \emph{Hadoop, Java, MapReduce}}{Jan 2023 -- May 2023}
+          \resumeItemListStart
+            \resumeItem{Designed Hadoop/MapReduce pipelines for big data processing, enabling parallel algorithm execution}
+            \resumeItem{Implemented efficient data partitioning to optimize processing efficiency and improve shuffle performance}
+          \resumeItemListEnd
+
+      %--- Raft Consensus ---
+      \resumeProjectHeading
+          {\textbf{Raft Consensus} — Distributed Infrastructure $|$ \emph{Go, Concurrency, RPC} \href{https://github.com/shyu216/go-raft}{[GitHub]}}{Jan 2022 -- May 2022}
+          \resumeItemListStart
+            \resumeItem{Implemented distributed consensus algorithm to build fault-tolerant infrastructure and ensure system reliability}
+            \resumeItem{Built distributed key-value store with proper concurrency control for data consistency requirements}
+          \resumeItemListEnd
+
+      %--- SQL Database Design ---
+      % \resumeProjectHeading
+      %     {\textbf{SQL Database Design} — Analytics System $|$ \emph{SQL, Relational Database, ER Modelling}}{Sep 2021 -- Dec 2022}
+      %     \resumeItemListStart
+      %       \resumeItem{Designed 5-table PK/FK schema for analytics system needs, enabling complex data analysis}
+      %       \resumeItem{Implemented multi-table joins and subqueries to support complex queries and provide comprehensive analytics}
+      %     \resumeItemListEnd
+
+      % %--- Breath Tracking ---
+      % \resumeProjectHeading
+      %    {\textbf{Breath Tracking} — Real-time Pipeline $|$ \emph{Python, Flask, YOLO, OpenCV} \href{https://youtu.be/p7o28IXwsrs}{[Demo]}}{Feb 2025 -- Nov 2025}
+      %     \resumeItemListStart
+      %       \resumeItem{Built breath tracking pipeline optimized for GPU performance to meet clinical real-time requirements}
+      %       \resumeItem{Designed data processing with error handling to ensure pipeline reliability and maintain system stability}
+      %     \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Cloud Platforms}{: AWS (CDK, Amplify, DynamoDB, EventBridge, SES, Lambda, CloudFormation)} \\
+     \textbf{CI/CD}{: GitHub Actions, AWS Amplify, Automated Deployment, Branch Management} \\
+     \textbf{Infrastructure as Code}{: AWS CDK, CloudFormation, Terraform (conceptual)} \\
+     \textbf{Monitoring}{: CloudWatch, Log Analysis, Performance Optimization} \\
+     \textbf{Networking}{: Cloudflare DNS, SSL/TLS, CDN, Environment Routing} \\
+     \textbf{Database}{: DynamoDB, MySQL, Data Modeling, Query Optimization} \\
+     \textbf{Scripting}{: Python, Bash, PowerShell, Automation Scripts} \\
+     \textbf{Containerization}{: Docker, Container Orchestration (conceptual)} \\
+     \textbf{Tools}{: Git, VS Code, WSL, Command Line, System Administration} \\
+     \textbf{Languages}{: English (Fluent), Mandarin (Native), Cantonese (Fluent)}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}
