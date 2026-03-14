@@ -1,12 +1,14 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "@/lib/storage";
 
 export type HeaderColorType = 'blue' | 'red' | 'purple' | 'green' | 'orange' | 'pink' | 'teal' | 'indigo';
 
 interface ColorContextType {
   headerColor: HeaderColorType;
   setHeaderColor: (color: HeaderColorType) => void;
+  isInitialized: boolean;
 }
 
 const ColorContext = createContext<ColorContextType | undefined>(undefined);
@@ -24,31 +26,26 @@ interface ColorProviderProps {
 }
 
 export function ColorProvider({ children }: ColorProviderProps) {
-  const [headerColor, setHeaderColor] = useState<HeaderColorType>(() => {
-    const DEFAULT_COLOR: HeaderColorType = "red";
-    if (typeof window !== 'undefined') {
-      const savedColor = localStorage.getItem("headerColor");
-      console.log('[ColorProvider] localStorage headerColor:', savedColor);
-      if (savedColor) {
-        const validColors: HeaderColorType[] = ['blue', 'red', 'purple', 'green', 'orange', 'pink', 'teal', 'indigo'];
-        if (validColors.includes(savedColor as HeaderColorType)) {
-          return savedColor as HeaderColorType;
-        }
-      }
-      return DEFAULT_COLOR;
-    }
-    console.log('[ColorProvider] SSR mode, returning default: red');
-    return DEFAULT_COLOR;
-  });
+  const [headerColor, setHeaderColorState] = useState<HeaderColorType>(DEFAULT_SETTINGS.color);
+  const [isInitialized, setIsInitialized] = useState(false);
 
+  // 客户端挂载后从统一存储读取
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem("headerColor", headerColor);
+    const settings = loadSettings();
+    setHeaderColorState(settings.color);
+    setIsInitialized(true);
+  }, []);
+
+  // 保存到统一存储
+  const setHeaderColor = (color: HeaderColorType) => {
+    setHeaderColorState(color);
+    if (isInitialized) {
+      saveSettings({ color });
     }
-  }, [headerColor]);
+  };
 
   return (
-    <ColorContext.Provider value={{ headerColor, setHeaderColor }}>
+    <ColorContext.Provider value={{ headerColor, setHeaderColor, isInitialized }}>
       {children}
     </ColorContext.Provider>
   );

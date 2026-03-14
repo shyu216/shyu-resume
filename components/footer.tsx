@@ -5,6 +5,7 @@
 import Link from "next/link";
 import { ContainerInner, ContainerOuter } from "@/components/ui/container";
 import lastUpdateData from "@/app/last-update.json";
+import buildInfo from "@/app/build-info.json";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { siteConfig } from "@/content/config";
@@ -47,6 +48,9 @@ export function Footer() {
     }
   }
 
+  // 版本信息
+  const versionText = buildInfo?.version ? `v${buildInfo.version}` : "";
+
   return (
     <footer className="mt-32 flex-none">
       <ContainerOuter>
@@ -57,6 +61,9 @@ export function Footer() {
                 &copy; {new Date().getFullYear()} {shortName[language as keyof typeof shortName]}
                 {lastUpdateData?.lastUpdate && (
                   <> | {lastUpdateLabel}{lastUpdateDate} </>
+                )}
+                {versionText && (
+                  <> | {versionText}</>
                 )}
               </p>
             </div>

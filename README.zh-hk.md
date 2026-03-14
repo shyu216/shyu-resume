@@ -1,5 +1,7 @@
 # ShYu 履歷
 
+![Banner](public/images/banner.png)
+
 一個現代化的雙語履歷構建器，使用 Next.js 和 React 構建，為網頁和 PDF 格式進行了優化。這個專案是 [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume) 的增強版本，旨在創建專業的履歷，在 HR 和 ATS 系統中脫穎而出。
 
 ## ✨ 特性

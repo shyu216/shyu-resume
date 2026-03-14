@@ -2,10 +2,12 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { FontFamilyType } from "@/lib/theme-config";
+import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "@/lib/storage";
 
 interface FontContextType {
   fontFamily: FontFamilyType;
   setFontFamily: (fontFamily: FontFamilyType) => void;
+  isInitialized: boolean;
 }
 
 const FontContext = createContext<FontContextType | undefined>(undefined);
@@ -23,22 +25,26 @@ interface FontProviderProps {
 }
 
 export function FontProvider({ children }: FontProviderProps) {
-  const [fontFamily, setFontFamily] = useState<FontFamilyType>(() => {
-    if (typeof window !== 'undefined') {
-      const savedFont = localStorage.getItem("fontFamily");
-      return (savedFont as FontFamilyType) || "jetbrains-mono";
-    }
-    return "jetbrains-mono";
-  });
+  const [fontFamily, setFontFamilyState] = useState<FontFamilyType>(DEFAULT_SETTINGS.fontFamily);
+  const [isInitialized, setIsInitialized] = useState(false);
 
+  // 客户端挂载后从统一存储读取
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem("fontFamily", fontFamily);
+    const settings = loadSettings();
+    setFontFamilyState(settings.fontFamily);
+    setIsInitialized(true);
+  }, []);
+
+  // 保存到统一存储
+  const setFontFamily = (font: FontFamilyType) => {
+    setFontFamilyState(font);
+    if (isInitialized) {
+      saveSettings({ fontFamily: font });
     }
-  }, [fontFamily]);
+  };
 
   return (
-    <FontContext.Provider value={{ fontFamily, setFontFamily }}>
+    <FontContext.Provider value={{ fontFamily, setFontFamily, isInitialized }}>
       {children}
     </FontContext.Provider>
   );
