@@ -32,15 +32,15 @@ export function Header() {
             />
           </Link>
         </div>
-        <div className="relative flex flex-col md:flex-row items-center gap-4 w-full sm:w-auto">
-          <div className="pointer-events-auto w-full sm:w-auto flex justify-center sm:justify-start">
+        <div className="relative flex flex-col md:flex-row items-center gap-4">
+          <div className="pointer-events-auto flex justify-center">
             <JobSwitcherWrapper />
           </div>
-          <div className="pointer-events-auto flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start">
+          <div className="pointer-events-auto flex items-center space-x-2 justify-center">
             <LanguageSwitcher />
             <ThemeSwitcher />
           </div>
-          <div className="pointer-events-auto flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start">
+          <div className="pointer-events-auto flex items-center space-x-2 justify-center">
             <FontSwitcher />
             <ColorSwitcher />
           </div>

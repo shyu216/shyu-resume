@@ -2,12 +2,11 @@
 
 import React, { useState, useContext } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
-import { LanguageContext } from "./language-provider";
-import { useLanguageMap } from "@/lib/utils";
+import { LanguageContext, type LanguageType } from "./language-provider";
 import { cn } from "@/lib/utils";
-import { useHeaderColor, useThemeColor, useTextColor, useShadow, useSoftShadow } from "@/lib/theme-utils";
+import { useHeaderColor, useThemeColor, useTextColor, useSoftShadow } from "@/lib/theme-utils";
 
-const languages = [
+const languages: { label: string; value: LanguageType; name: string }[] = [
   {
     label: "ENG",
     value: "en",
@@ -25,9 +24,9 @@ const languages = [
   },
 ];
 
-
 export function LanguageSwitcher() {
   const [mounted, setMounted] = useState(false);
+  const [hoveredLang, setHoveredLang] = useState<LanguageType | null>(null);
 
   React.useEffect(() => setMounted(true), []);
 
@@ -36,48 +35,53 @@ export function LanguageSwitcher() {
   const surfaceColor = useThemeColor('surface');
   const borderColor = useThemeColor('border', 'default');
   const textColor = useTextColor();
-  const textMuted = useTextColor();
   const shadow = useSoftShadow();
-
-  // 统一提示文本
-  const tipText = useLanguageMap({
-    en: "Click to switch language",
-    zh: "点击切换语言",
-    "zh-hk": "點擊切換語言",
-  }, language);
 
   if (!mounted) {
     return null;
   }
 
   return (
-    <ElegantTooltip content={tipText} side="bottom">
-      <div className="flex gap-1">
-        {languages.map((lang) => (
-          <button
-            key={lang.value}
-            type="button"
-            aria-label={`Switch to ${lang.name}`}
-            className={cn(
-              "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition backdrop-blur duration-200",
-              language === lang.value 
-                ? "from-primary/90 to-primary/70 text-white"
-                : "hover:from-surface/90 hover:to-surface/100"
-            )}
-            style={{
-              boxShadow: shadow,
-              borderColor: borderColor,
-              background: language === lang.value 
-                ? `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)` 
-                : `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
-              color: language === lang.value ? '#ffffff' : textColor,
-            }}
-            onClick={() => setLanguage(lang.value as any)}
-          >
-            {lang.label}
-          </button>
-        ))}
-      </div>
-    </ElegantTooltip>
+    <div className="flex gap-1">
+      {languages.map((lang) => {
+        const isSelected = language === lang.value;
+        const isHovered = hoveredLang === lang.value;
+        const hasHover = hoveredLang !== null;
+        
+        // 同时只有一个放大：hover 的优先，否则选中状态放大
+        const shouldScale = isHovered || (isSelected && !hasHover);
+        
+        return (
+          <ElegantTooltip key={lang.value} content={lang.name} side="bottom">
+            <button
+              type="button"
+              aria-label={`Switch to ${lang.name}`}
+              className={cn(
+                "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition-all duration-200 backdrop-blur",
+                shouldScale && "scale-105"
+              )}
+              style={{
+                boxShadow: shadow,
+                borderColor: borderColor,
+                background: isSelected 
+                  ? `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)` 
+                  : `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
+                color: isSelected ? '#ffffff' : textColor,
+              }}
+              onClick={() => setLanguage(lang.value)}
+              onMouseEnter={() => setHoveredLang(lang.value)}
+              onMouseLeave={() => setHoveredLang(null)}
+            >
+              <span className={cn(
+                "transition-transform duration-200 inline-block",
+                shouldScale ? "scale-105" : "scale-100"
+              )}>
+                {lang.label}
+              </span>
+            </button>
+          </ElegantTooltip>
+        );
+      })}
+    </div>
   );
 }

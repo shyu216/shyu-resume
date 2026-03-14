@@ -286,3 +286,186 @@ if (typeof document !== "undefined") {
 2. **检查状态更新**：在 `setHeaderColor` 后添加 console.log 确认状态是否变化
 3. **检查 CSS 变量**：在浏览器控制台执行 `getComputedStyle(document.documentElement).getPropertyValue('--header-color-light')` 确认变量是否设置
 4. **检查是否使用了错误的读取方式**：确认使用的是 React Context 而非直接读取 CSS 变量
+
+---
+
+## UI 交互优化引发的问题
+
+### 10. 字体切换导致 JobSwitcher Bar 错位
+
+**问题描述**：
+切换字体后，JobSwitcher 的滑动 bar 位置发生偏移，没有对齐到正确的按钮。
+
+**原因**：
+字体变化会影响按钮的宽度和位置，但 bar 的位置计算只在 `jobType` 变化时触发。
+
+**解决方案**：
+在 `useEffect` 依赖中添加 `fontFamily`，字体变化时重新计算 bar 位置：
+
+```tsx
+import { useFontFamily } from "@/components/font/font-provider";
+
+const { fontFamily } = useFontFamily();
+
+useEffect(() => {
+  // 计算 bar 位置...
+}, [jobType, fontFamily]); // 添加 fontFamily 依赖
+```
+
+---
+
+### 11. ThemeSwitcher 初次加载显示闪电图标
+
+**问题描述**：
+页面初次加载时，主题切换按钮显示闪电图标（`Icons.Lightning`）而非太阳/月亮。
+
+**原因**：
+`theme` 初始值为 `undefined`，fallback 到闪电图标。
+
+**解决方案**：
+使用 `resolvedTheme` 替代 `theme`，它始终有确定的值：
+
+```tsx
+const ThemeIcon = React.useMemo(
+  () => themes.find((t) => t.value === resolvedTheme)?.icon ?? Icons.Sun,
+  [resolvedTheme]
+);
+```
+
+---
+
+### 12. ThemeSwitcher Tooltip 初次加载为空
+
+**问题描述**：
+初次进入页面时，主题切换按钮的 tooltip 内容为空。
+
+**原因**：
+`tooltipContent` 使用 `theme[theme]` 取值，但 `theme` 初始为 `undefined`。
+
+**解决方案**：
+改用 `resolvedTheme` 判断：
+
+```tsx
+const tooltipContent = resolvedTheme === "dark" ? tooltipMap.dark : tooltipMap.light;
+```
+
+---
+
+### 13. JobSwitcher Bar 初始动画异常（扇形变圆柱）
+
+**问题描述**：
+页面加载时，JobSwitcher 的滑动 bar 先显示为一个点（扇形），然后突然变成正确宽度（圆柱）。
+
+**原因**：
+`barWidth` 初始值为 0，useEffect 计算需要时间，导致视觉上的"变形"过程。
+
+**解决方案**：
+添加 `isInitialized` 状态，初始时隐藏 bar，计算完成后再显示：
+
+```tsx
+const [isInitialized, setIsInitialized] = useState(false);
+
+useEffect(() => {
+  updateBarPosition();
+  setIsInitialized(true); // 计算完成后显示
+}, [jobType, fontFamily]);
+
+// bar 样式
+className={cn(
+  "absolute rounded-full transition-all duration-300",
+  !isInitialized && "opacity-0" // 未初始化时隐藏
+)}
+```
+
+---
+
+### 14. 头像旋转动画的交互细节
+
+**需求**：
+头像 hover 时旋转 360 度，离开后转完再复位。
+
+**实现要点**：
+- 使用 React state 管理旋转角度
+- `transition: 'transform 1s ease'` 设置 1 秒过渡
+- `setTimeout` 延迟复位，确保转完一圈
+
+```tsx
+const [rotation, setRotation] = useState(0);
+
+const handleMouseEnter = () => {
+  setRotation(rotation + 360);
+};
+
+const handleMouseLeave = () => {
+  setTimeout(() => setRotation(0), 1000); // 1秒后复位
+};
+```
+
+---
+
+### 15. LanguageSwitcher 同时多个按钮放大
+
+**问题描述**：
+hover 语言按钮时，选中的按钮和 hover 的按钮同时放大，视觉混乱。
+
+**解决方案**：
+添加 `hoveredLang` 状态，确保同时只有一个按钮放大：
+
+```tsx
+const [hoveredLang, setHoveredLang] = useState<LanguageType | null>(null);
+
+const shouldScale = isHovered || (isSelected && !hasHover);
+// hover 的优先，没有 hover 时选中状态放大
+```
+
+---
+
+## 文案优化记录
+
+### 16. JobSwitcher Tooltip 文案改进
+
+**原文案**：
+- "Highlight keywords for Full Stack"
+- "Highlight keywords for SWE"
+- "Highlight keywords for ML"
+
+**问题**：过于技术化，用户不理解"Highlight keywords"是什么意思。
+
+**优化后**：
+- "Full Stack Engineer — End-to-end development"
+- "Software Engineer — System & architecture"
+- "ML Researcher — AI & algorithms"
+
+使用职位定位 + 能力描述，更清晰专业。
+
+---
+
+### 17. ThemeSwitcher Tooltip 文案改进
+
+**原文案**：
+- "Click to switch to Dark Mode"
+- "Click to switch to Light Mode"
+
+**问题**：过于啰嗦，"Click to" 是多余的。
+
+**优化后**：
+- "Switch to Dark"
+- "Switch to Light"
+
+简洁的动作导向文案。
+
+---
+
+## 联系链接优化
+
+### 18. 手机号链接从 tel: 改为 sms:
+
+**考虑**：简历场景下，HR/招聘方更可能发送短信而非直接拨打电话。
+
+**改动**：
+```tsx
+// 从
+href={`tel:${contact.phone.replace(/\s/g, '')}`}
+// 改为
+href={`sms:${contact.phone.replace(/\s/g, '')}`}
+```

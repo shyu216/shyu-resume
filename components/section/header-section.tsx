@@ -98,7 +98,7 @@ export default function HeaderSection({ usage }: Props) {
           </Link>
           
           <Link 
-            href={`tel:${contact.phone.replace(/\s/g, '')}`} 
+            href={`sms:${contact.phone.replace(/\s/g, '')}`} 
             className={cn(contactItemClass)}
             style={{ color: textSecondary }}
             onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
