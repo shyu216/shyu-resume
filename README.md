@@ -8,6 +8,7 @@
 
 A modern, bilingual resume builder built with Next.js and React, optimized for both web and PDF formats. This project is a enhanced version of [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume), designed to create professional resumes that stand out to HR and ATS systems.
 
+
 ## ✨ Features
 
 - **Bilingual Support**: Create resumes in Chinese (Simplified and Traditional) and English
@@ -160,7 +161,7 @@ To customize the footer:
 4. Select **Save as PDF** as the destination
 5. Click **Save** to download your resume as a PDF
 
-> **Note**: For best results, use Chrome's "Save as PDF" feature. Firefox and Edge may not support all features.
+> **Important note**: For the best PDF output (layout and link preservation), open the site in Chrome and choose "Save as PDF" as the print destination. Other browsers (Edge, Firefox) may render differently. Mobile browsers may not fully support custom fonts. For optimal results, enable background graphics and set margins to "None" in the print dialog.
 
 ## 🤝 Contributing
 

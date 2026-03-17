@@ -35,7 +35,6 @@
     "technical documentation",
     "code review",
     "stakeholder communication",
-    "independent research",
     "deployment",
     "automation"
   ],
@@ -80,6 +79,8 @@
     "Python",
     "Flask",
     "MySQL",
+    "CI/CD",
+    "CLI",
     "Go",
     "Raft",
     "distributed systems",

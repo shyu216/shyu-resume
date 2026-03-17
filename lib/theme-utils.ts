@@ -104,8 +104,8 @@ const shadows = {
     dark: '0 2px 8px rgba(0, 0, 0, 0.3)',
   },
   accent: {
-    light: '0 4px 12px rgba(30, 64, 175, 0.15)',
-    dark: '0 4px 12px rgba(59, 130, 246, 0.2)',
+    light: '0 4px 11px rgba(30, 64, 175, 0.15)',
+    dark: '0 4px 11px rgba(59, 130, 246, 0.2)',
   },
   md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
 };

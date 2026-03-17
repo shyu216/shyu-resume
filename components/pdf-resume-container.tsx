@@ -1,6 +1,9 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { usePrint } from "./print-provider";
+import { useFontFamily } from "@/components/font/font-provider";
+import { fontFamilies } from "@/lib/theme-config";
 
 export default function PDFResumeContainer({
   children,
@@ -8,6 +11,20 @@ export default function PDFResumeContainer({
   children: React.ReactNode;
 }) {
   const { componentRef } = usePrint();
+  const { fontFamily } = useFontFamily();
+  const fontStack = fontFamilies[fontFamily].fontStack.join(", ");
 
-  return <div ref={componentRef}>{children}</div>;
+  const pdfStyle: CSSProperties & { "--font-family"?: string } = {
+    fontFamily: fontStack,
+    "--font-family": fontStack,
+  };
+
+  return (
+    <div
+      ref={componentRef}
+      style={pdfStyle}
+    >
+      {children}
+    </div>
+  );
 }

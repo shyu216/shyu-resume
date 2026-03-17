@@ -2,14 +2,14 @@
 import { type SkillCategory } from "@/types/skill-category";
 
 export const skills: SkillCategory[] = [
-  {
-    id: "soft-skills",
-    name: "軟實力",
-    skills: [
-      "團隊領導力", "項目管理", "敏捷/Scrum", "遠程協作", "問題解決",
-      "技術文檔", "代碼審查", "利益相關者溝通", "獨立研究"
-    ]
-  },
+  // {
+  //   id: "soft-skills",
+  //   name: "軟實力",
+  //   skills: [
+  //     "團隊領導力", "項目管理", "敏捷/Scrum", "遠程協作", "問題解決",
+  //     "技術文檔", "代碼審查", "利益相關者溝通", "獨立研究"
+  //   ]
+  // },
   {
     id: "frontend",
     name: "前端",

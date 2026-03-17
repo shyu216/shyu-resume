@@ -7,7 +7,7 @@ export const projects: Project[] = [
     name: "Breath Tracking",
     subtitle: "Real-time Biosensing · Research",
     subtitleIcon: Icons.GraduationCap,
-    link: "",
+    link: "https://youtu.be/p7o28IXwsrs",
     dateRange: "Feb 2025 - Nov 2025",
     techStack: "Python, Flask, YOLO, OpenCV",
     bullets: [

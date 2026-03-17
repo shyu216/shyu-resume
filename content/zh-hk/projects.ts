@@ -7,7 +7,7 @@ export const projects: Project[] = [
     name: "Breath Tracking",
     subtitle: "實時呼吸監測 · 研究項目",
     subtitleIcon: Icons.GraduationCap,
-    link: "",
+    link: "https://youtu.be/p7o28IXwsrs",
     dateRange: "2025年2月 - 2025年11月",
     techStack: "Python, Flask, YOLO, OpenCV",
     bullets: [

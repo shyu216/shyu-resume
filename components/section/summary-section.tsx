@@ -23,6 +23,10 @@ export default function SummarySection({ usage }: Props) {
     live: "text-sm",
     pdf: "text-[11px]",
   }, usage);
+  const bodyLineHeight = useUsageMap({
+    live: "leading-normal",
+    pdf: "leading-[13px]",
+  }, usage);
 
   const { data: summary, title } = useLanguageMap({
     en: { data: summaryEn, title: "SUMMARY" },
@@ -45,7 +49,7 @@ export default function SummarySection({ usage }: Props) {
 
   return (
     <Section title={title} usage={usage}>
-      <div className={fontSize} style={{ color: textSecondary }}>
+      <div className={`${fontSize} ${bodyLineHeight}`} style={{ color: textSecondary }}>
         {getSummaryContent()}
       </div>
     </Section>

@@ -33,6 +33,10 @@ export default function Experience({
     live: "text-sm",
     pdf: "text-[11px]",
   }, usage);
+  const bodyLineHeight = useUsageMap({
+    live: "leading-normal",
+    pdf: "leading-[13px]",
+  }, usage);
   
   const textColor = useTextColor(usage);
   const secondaryTextColor = useTextColor(usage);
@@ -63,7 +67,7 @@ export default function Experience({
       )}
 
       {bulletPoints && bulletPoints.length > 0 && (
-        <ul className="list-disc ml-4 mt-1">
+        <ul className={cn("list-disc ml-4 mt-1", bodyLineHeight)}>
           {bulletPoints?.map((point, index) => (
             <li key={index}><KeywordHighlighter text={point} keywords={keywords || []} /></li>
           ))}
