@@ -60,7 +60,20 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
     if (!isNoneActive && jobType !== animatingJobType) {
       const currentIndex = jobOptions.findIndex(option => option.value === animatingJobType);
       const newIndex = jobOptions.findIndex(option => option.value === jobType);
-      setAnimationDirection(newIndex > currentIndex ? 'right' : 'left');
+      
+      // 计算差值，处理循环情况
+      const diff = newIndex - currentIndex;
+      
+      // 如果是循环切换（跨越边界）
+      if (Math.abs(diff) > 1) {
+        // 从后往前（如 3->0）：新文字从左边进入
+        // 从前往后（如 0->3）：新文字从右边进入
+        setAnimationDirection(diff > 0 ? 'left' : 'right');
+      } else {
+        // 正常情况：newIndex > currentIndex 表示向右切换，新文字从右边进入
+        setAnimationDirection(diff > 0 ? 'right' : 'left');
+      }
+      
       setIsAnimating(true);
       setTimeout(() => {
         setAnimatingJobType(jobType);

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { useFontFamily } from "./font-provider";
 import { FontFamilyType, fontFamilies } from "@/lib/theme-config";
@@ -40,7 +40,10 @@ export function FontSwitcher() {
   const { fontFamily, setFontFamily } = useFontFamily();
   const [isOpen, setIsOpen] = useState(false);
   const [isHovering, setIsHovering] = useState<FontFamilyType | null>(null);
-  
+  const [menuPosition, setMenuPosition] = useState<{ left?: number; right?: number }>({ right: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const { language } = useContext(LanguageContext);
   const surfaceColor = useThemeColor('surface');
   const borderColor = useThemeColor('border', 'default');
@@ -55,8 +58,53 @@ export function FontSwitcher() {
 
   const previewFont = isHovering || fontFamily;
 
+  // 智能边界检测
+  useEffect(() => {
+    if (isOpen && containerRef.current && menuRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const menuWidth = 256; // w-64 = 16rem = 256px
+      const margin = 16; // 页面边距
+      const windowWidth = window.innerWidth;
+
+      // 计算右侧空间
+      const rightSpace = windowWidth - containerRect.right;
+      // 计算左侧空间
+      const leftSpace = containerRect.left;
+
+      if (rightSpace >= menuWidth + margin) {
+        // 右侧空间足够，右对齐（相对按钮）
+        setMenuPosition({ right: 0, left: undefined });
+      } else if (leftSpace >= menuWidth + margin) {
+        // 右侧不够但左侧够，左对齐（相对按钮）
+        setMenuPosition({ left: 0, right: undefined });
+      } else {
+        // 两边都不够，固定到视口右边缘
+        // 计算从按钮到视口右边缘的距离，再减去边距
+        const rightOffset = windowWidth - containerRect.right - margin;
+        setMenuPosition({ right: -rightOffset, left: undefined });
+      }
+    }
+  }, [isOpen]);
+
+  // 点击外部自动关闭
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <ElegantTooltip content={tipText} side="bottom">
         <button
           type="button"
@@ -103,11 +151,13 @@ export function FontSwitcher() {
       
       {isOpen && (
         <div
-          className="absolute top-full right-0 mt-2 w-64 rounded-xl shadow-lg bg-surface ring-1 ring-border-default z-50 overflow-hidden"
+          ref={menuRef}
+          className="absolute top-full mt-2 w-64 rounded-xl shadow-lg bg-surface ring-1 ring-border-default z-50 overflow-hidden"
           style={{
             boxShadow: shadow,
             borderColor: borderColor,
             backgroundColor: surfaceColor,
+            ...menuPosition,
           }}
         >
           <div 

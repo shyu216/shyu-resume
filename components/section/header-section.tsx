@@ -86,27 +86,65 @@ export default function HeaderSection({ usage }: Props) {
             <Icons.Github size={16} className="group-hover:animate-shake" />
           </Link>
 
-          <Link
-            href={`mailto:${contact.email}`}
-            className={cn(contactItemClass)}
-            style={{ color: textSecondary }}
-            onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
-            onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
-          >
-            <Icons.Mail size={16} className="group-hover:animate-shake" />
-            <span>{contact.email}</span>
-          </Link>
-          
-          <Link 
-            href={`sms:${contact.phone.replace(/\s/g, '')}`} 
-            className={cn(contactItemClass)}
-            style={{ color: textSecondary }}
-            onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
-            onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
-          >
-            <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
-            <span>{contact.phone}</span>
-          </Link>
+          {language === 'en' ? (
+            <>
+              <Link
+                href={`mailto:${contact.email}`}
+                className={cn(contactItemClass)}
+                style={{ color: textSecondary }}
+                onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+                onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
+              >
+                <Icons.Mail size={16} className="group-hover:animate-shake" />
+                <span>{contact.email}</span>
+              </Link>
+              
+              <Link 
+                href={`sms:${contact.phone.replace(/\s/g, '')}`} 
+                className={cn(contactItemClass)}
+                style={{ color: textSecondary }}
+                onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+                onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
+              >
+                <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
+                <span>{contact.phone}</span>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href={`mailto:${contact.cnEmail}`}
+                className={cn(contactItemClass)}
+                style={{ color: textSecondary }}
+                onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+                onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
+              >
+                <Icons.Mail size={16} className="group-hover:animate-shake" />
+                <span>{contact.cnEmail}</span>
+              </Link>
+              
+              <Link 
+                href={`sms:${contact.cnPhone}`} 
+                className={cn(contactItemClass)}
+                style={{ color: textSecondary }}
+                onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+                onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
+              >
+                <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
+                <span>{contact.cnPhone}</span>
+              </Link>
+
+              <span
+                className={cn(contactItemClass, "cursor-pointer")}
+                style={{ color: textSecondary }}
+                onMouseEnter={(e) => e.currentTarget.style.color = textPrimary}
+                onMouseLeave={(e) => e.currentTarget.style.color = textSecondary}
+              >
+                <Icons.Wechat size={16} className="group-hover:animate-shake" />
+                <span>{contact.wechat}</span>
+              </span>
+            </>
+          )}
         </div>
         <ActionButton
           usage={usage}

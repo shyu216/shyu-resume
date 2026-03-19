@@ -5,6 +5,9 @@ export interface ContactInfo {
   github: string;
   email: string;
   phone: string;
+  wechat?: string;
+  cnEmail?: string;
+  cnPhone?: string;
 }
 
 export interface Name {
@@ -61,7 +64,10 @@ export const siteConfig: SiteConfig = {
       linkedin: "https://www.linkedin.com/in/sihong-yu/",
       github: "https://github.com/shyu216",
       email: "yusihong073@gmail.com",
-      phone: "+61 431 083 127"
+      phone: "0431083127",
+      wechat: "seinbaolio",
+      cnEmail: "shyu0@qq.com",
+      cnPhone: "13697555391"
     }
   }
 };
