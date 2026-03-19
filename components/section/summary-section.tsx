@@ -11,6 +11,12 @@ type Props = {
   usage: "live" | "pdf";
 };
 
+const placeholders = {
+  en: "What keywords are in the JD? Think about your soft skills & quantified achievements! Good luck! 🚀",
+  zh: "JD里有什么关键词？想想你的软技能和量化成绩！祝你好运！🚀",
+  "zh-hk": "JD有咩關鍵詞？諗下你嘅軟技能同量化成績！Good Luck！🚀",
+};
+
 export default function SummarySection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
   const { jobType } = useJobType();
@@ -41,7 +47,7 @@ export default function SummarySection({ usage }: Props) {
             bodyLineHeight
           )}
           style={{ color: 'var(--color-text-primary)' }}
-          placeholder="请输入个人简介..."
+          placeholder={placeholders[language]}
         />
       ) : (
         <div
