@@ -58,7 +58,7 @@ export function LanguageSwitcher() {
               aria-label={`Switch to ${lang.name}`}
               className={cn(
                 "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition-all duration-200 backdrop-blur",
-                shouldScale && "scale-105"
+                !shouldScale && "scale-90"
               )}
               style={{
                 boxShadow: shadow,
@@ -74,7 +74,7 @@ export function LanguageSwitcher() {
             >
               <span className={cn(
                 "transition-transform duration-200 inline-block",
-                shouldScale ? "scale-105" : "scale-100"
+                shouldScale ? "scale-100" : "scale=90"
               )}>
                 {lang.label}
               </span>

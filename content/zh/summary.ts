@@ -1,7 +1,9 @@
 import { type Summary } from "@/types/summary";
 
 export const summary: Summary = {
-  fullstack: "全栈开发工程师，拥有10个月生产环境经验，致力于转变初创公司开发流程。领导3人团队在Next.js/AWS平台上交付80+功能，将手动部署工作减少90%。擅长解决端到端挑战——从React/React Native移动应用到AWS云基础设施和实时系统。将概念验证转变为可扩展的生产平台，建立CI/CD和环境管理。墨尔本大学计算机科学硕士（优秀）。现居墨尔本，拥有完整工作权利。",
-  software: "软件工程师，在分布式系统和数据处理方面有坚实基础。经验丰富，使用Go、Python和云技术构建高性能后端系统。精通共识算法、并行计算和空间分析。墨尔本大学计算机科学硕士（优秀），专注于算法和系统设计。",
-  ml: "机器学习研究员，在计算机视觉、生物传感和混合现实方面有经验。开展了实时呼吸追踪和rPPG技术的研究，在UBFC数据集上验证了算法并取得有前景的结果。精通PyTorch、YOLO、OpenCV和Unity开发。墨尔本大学计算机科学硕士（优秀），专注于机器学习和计算机视觉。"
+  fullstack: "全栈开发工程师，拥有 10 个月生产环境经验，在敏捷环境中交付端到端解决方案。领导 3 人跨职能团队在云原生 Next.js/AWS 平台上交付 80+ 功能，实施 CI/CD 流水线将部署工作量减少 90%。精通 TypeScript、React、Node.js 和 REST API 开发——从 React Native 移动应用到 AWS 云基础设施。向非技术利益相关者传达技术概念，同时构建可扩展的微服务架构。",
+  software: "软件工程师，拥有生产环境可扩展系统设计经验——从事件驱动支付架构到实时临床数据流水线。架构设计 AWS 事件驱动后端（EventBridge、Lambda、DynamoDB）处理支付工作流和自动化通知。构建实时生物传感数据流水线，达到 24.7 FPS / 40ms 延迟，使用 Python、Flask 和优化数据处理。领导跨职能团队在敏捷环境中交付 80+ 生产功能。精通系统设计、API 开发、并发和微服务架构，使用 TypeScript、Python 和 Node.js。",
+  ml: "AI/ML 工程师，拥有生成式 AI 和计算机视觉应用的生产经验。领导跨职能团队交付 80+ 功能后专注于临床级 AI 系统。使用 PyTorch、YOLO 目标检测和 OpenCV 为 4DMedical 的 XV Scanner 构建实时数据流水线，达到 24.7 FPS / 40ms 延迟。精通 Python、机器学习框架和移动 AI 部署。",
+  devops: "云/DevOps/SRE 工程师，专注于可扩展云原生平台的基础设施即代码和可观测性。使用 AWS CDK、Terraform 和 GitHub Actions 自动化 CI/CD 流水线，将部署工作量减少 90%。实施基础设施即代码实践，包括自动回滚和环境管理。构建带有 AWS EventBridge/SES 的事件驱动系统，并使用云原生可观测性工具建立监控。领导跨职能团队向非技术利益相关者传达技术概念。",
+  default: "多才多艺的技术专业人士，拥有计算机科学硕士学位和 10+ 个月生产环境经验，涵盖全栈开发、软件工程、AI/ML 和 DevOps。领导跨职能团队在 Next.js/AWS 平台上交付 80+ 云原生功能，通过 CI/CD 自动化将部署工作量减少 90%。专注于构建可扩展系统——从事件驱动支付架构（AWS EventBridge/Lambda/DynamoDB）到实时临床 AI 流水线（24.7 FPS / 40ms 延迟，使用 PyTorch/YOLO/OpenCV）。精通 TypeScript、Python、React、Node.js 和云基础设施，具有连接技术和非技术利益相关者的能力。"
 };

@@ -110,7 +110,7 @@ export default function HeaderSection({ usage }: Props) {
         </div>
         <ActionButton
           usage={usage}
-          className={cn(usage === "live" && "hidden sm:block")}
+          className={cn(usage === "live" && "hidden md:block")}
         />
       </div>
     </section>

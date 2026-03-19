@@ -1,40 +1,32 @@
 import { type SkillCategory } from "@/types/skill-category";
 
 export const skills: SkillCategory[] = [
-  // {
-  //   id: "soft-skills",
-  //   name: "软实力",
-  //   skills: [
-  //     "团队领导力", "项目管理", "敏捷/Scrum", "远程协作", "问题解决",
-  //     "技术文档", "代码审查", "利益相关者沟通", "独立研究"
-  //   ]
-  // },
   {
     id: "frontend",
     name: "前端",
     skills: [
-      "Next.js", "React", "React Native", "Tailwind CSS", "TypeScript", "JavaScript", "PWA", "SSR"
+      "React", "Next.js", "React Native", "TypeScript", "JavaScript", "Tailwind CSS", "PWA"
     ]
   },
   {
     id: "backend",
     name: "后端",
     skills: [
-      "Node.js", "Python", "RESTful API", "Flask", "Socket.IO"
+      "Node.js", "Python", "Go", "Flask", "RESTful API", "Socket.IO"
     ]
   },
   {
     id: "cloud-devops",
     name: "云计算与DevOps",
     skills: [
-      "AWS (EC2, DynamoDB, S3, CDK, Amplify, EventBridge, SES, Lambda)", "CI/CD", "GitHub Actions", "Cloudflare"
+      "AWS", "CI/CD", "GitHub Actions", "Cloudflare", "Infrastructure as Code"
     ]
   },
   {
-    id: "ai-ml-cv",
-    name: "AI / ML / 计算机视觉",
+    id: "ml-ai",
+    name: "机器学习与AI",
     skills: [
-      "PyTorch", "YOLO", "OpenPCDet", "Open3D", "ONNX", "OpenCV", "NumPy", "EVM", "CUDA"
+      "PyTorch", "YOLO", "OpenCV", "点云处理", "rPPG", "EVM"
     ]
   },
   {
@@ -45,31 +37,17 @@ export const skills: SkillCategory[] = [
     ]
   },
   {
-    id: "data-database",
-    name: "数据与数据库",
+    id: "data",
+    name: "数据工程",
     skills: [
-      "SQL", "PostgreSQL", "PostGIS", "Hadoop/MapReduce", "DynamoDB", "信号处理"
+      "SQL", "PostGIS", "Hadoop", "分布式计算", "分块"
     ]
   },
   {
-    id: "payments-auth",
-    name: "支付与认证",
+    id: "languages",
+    name: "语言",
     skills: [
-      "Stripe API", "Firebase Auth", "JWT", "OAuth 2.0"
-  ]
-},
-{
-  "id": "other",
-  "name": "其他",
-  "skills": [
-    "Distributed Systems (Raft)", "Git", "i18n", "Agile/Scrum", "SLURM HPC", "WakaTime"
-  ]
-},
-{
-  "id": "languages",
-  "name": "语言",
-  "skills": [
-    "英语 (流利)", "普通话 (母语)", "粤语 (流利)"
-  ]
-}
+      "英语 (流利)", "普通话 (母语)", "粤语 (流利)"
+    ]
+  }
 ];

@@ -1,41 +1,32 @@
-
 import { type SkillCategory } from "@/types/skill-category";
 
 export const skills: SkillCategory[] = [
-  // {
-  //   id: "soft-skills",
-  //   name: "Soft Skills",
-  //   skills: [
-  //     "Team Leadership", "Project Management", "Agile/Scrum", "Remote Collaboration", "Problem Solving",
-  //     "Technical Documentation", "Code Review", "Stakeholder Communication", "Independent Research"
-  //   ]
-  // },
   {
     id: "frontend",
     name: "Frontend",
     skills: [
-      "Next.js", "React", "React Native", "Tailwind CSS", "TypeScript", "JavaScript", "PWA", "SSR"
+      "React", "Next.js", "React Native", "TypeScript", "JavaScript", "Tailwind CSS", "PWA"
     ]
   },
   {
     id: "backend",
     name: "Backend",
     skills: [
-      "Node.js", "Python", "RESTful API", "Flask", "Socket.IO"
+      "Node.js", "Python", "Go", "Flask", "RESTful API", "Socket.IO"
     ]
   },
   {
     id: "cloud-devops",
     name: "Cloud & DevOps",
     skills: [
-      "AWS (EC2, DynamoDB, S3, CDK, Amplify, EventBridge, SES, Lambda)", "CI/CD", "GitHub Actions", "Cloudflare"
+      "AWS", "CI/CD", "GitHub Actions", "Cloudflare", "Infrastructure as Code"
     ]
   },
   {
-    id: "ai-ml-cv",
-    name: "AI / ML / CV",
+    id: "ml-ai",
+    name: "Machine Learning & AI",
     skills: [
-      "PyTorch", "YOLO", "OpenPCDet", "Open3D", "ONNX", "OpenCV", "NumPy", "EVM", "CUDA"
+      "PyTorch", "YOLO", "OpenCV", "Point Cloud Processing", "rPPG", "EVM"
     ]
   },
   {
@@ -46,24 +37,10 @@ export const skills: SkillCategory[] = [
     ]
   },
   {
-    id: "data-database",
-    name: "Data & Database",
+    id: "data",
+    name: "Data Engineering",
     skills: [
-      "SQL", "PostgreSQL", "PostGIS", "Hadoop/MapReduce", "DynamoDB", "Signal Processing"
-    ]
-  },
-  {
-    id: "payments-auth",
-    name: "Payments & Auth",
-    skills: [
-      "Stripe API", "Firebase Auth", "JWT", "OAuth 2.0"
-    ]
-  },
-  {
-    id: "other",
-    name: "Other",
-    skills: [
-      "Distributed Systems (Raft)", "Git", "i18n", "SLURM HPC", "Real-time Systems"
+      "SQL", "PostGIS", "Hadoop", "Distributed Computing", "Chunking"
     ]
   },
   {

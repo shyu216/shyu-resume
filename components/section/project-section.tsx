@@ -31,17 +31,17 @@ export default function ProjectSection({ usage }: Props) {
     "zh-hk": { data: projectsZhHk, title: "項目經歷" },
   }, language);
 
-  // 新增：基于 jobType 关键词过滤 projects
+  // 基于 jobType 关键词过滤 projects
   const filteredProjects = useMemo(() => {
-    // 如果没有关键词，返回所有项目
-    if (!keywords || keywords.length === 0) {
+    // 如果是 NONE 或没有关键词，返回所有项目
+    if (jobType === 'NONE' || !keywords || keywords.length === 0) {
       return projects;
     }
     // 过滤逻辑：检查项目的 bullet points 中是否有至少一个匹配关键词
     return projects.filter(project => 
       project.bullets?.some(bullet => hasKeywordMatches(bullet, keywords)) || false
     );
-  }, [projects, keywords]);
+  }, [projects, keywords, jobType]);
 
   return (
     <Section title={title} usage={usage}>

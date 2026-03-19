@@ -55,7 +55,7 @@ export function SummaryEditButton({
               color: '#ffffff',
             }}
           >
-            <Check className="h-5 w-5" />
+            <Check className="h-6 w-6 p-0.5" />
           </motion.button>
         </ElegantTooltip>
         <ElegantTooltip content={tooltipMap.cancel} side="bottom">
@@ -75,7 +75,7 @@ export function SummaryEditButton({
               color: textColor,
             }}
           >
-            <X className="h-5 w-5" />
+            <X className="h-6 w-6 p-0.5" />
           </motion.button>
         </ElegantTooltip>
       </div>
@@ -99,7 +99,7 @@ export function SummaryEditButton({
           background: `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
         }}
       >
-        <Pencil className="h-5 w-5 transition-all duration-200 group-hover:rotate-12" style={{ color: textColor }} />
+        <Pencil className="h-6 w-6 p-0.5 transition-all duration-200 group-hover:rotate-12" style={{ color: textColor }} />
       </motion.button>
     </ElegantTooltip>
   );

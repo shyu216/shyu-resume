@@ -22,7 +22,7 @@ export interface AppSettings {
   color: HeaderColorType;
   language: LanguageType;
   fontFamily: FontFamilyType;
-  jobType: 'FULLSTACK' | 'SOFTWARE' | 'ML_RESEARCHER';
+  jobType: 'FULLSTACK' | 'SOFTWARE' | 'DEVOPS' | 'ML_RESEARCHER';
 }
 
 // 数据格式版本（当数据结构变化时递增）
@@ -52,7 +52,7 @@ const validFonts: FontFamilyType[] = [
 ];
 
 // 验证职位值是否有效
-const validJobTypes = ['FULLSTACK', 'SOFTWARE', 'ML_RESEARCHER'] as const;
+const validJobTypes = ['FULLSTACK', 'SOFTWARE', 'DEVOPS', 'ML_RESEARCHER'] as const;
 
 /**
  * 从 localStorage 读取所有设置

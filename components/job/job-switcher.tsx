@@ -18,10 +18,11 @@ import {
 const jobOptions = [
   { value: 'FULLSTACK', label: 'Full Stack', tooltipEn: 'Full Stack Engineer — End-to-end development', tooltipZh: '全栈工程师 — 端到端开发', tooltipZhHk: '全棧工程師 — 端到端開發' },
   { value: 'SOFTWARE', label: 'SWE', tooltipEn: 'Software Engineer — System & architecture', tooltipZh: '软件工程师 — 系统与架构', tooltipZhHk: '軟件工程師 — 系統與架構' },
+  { value: 'DEVOPS', label: 'DevOps', tooltipEn: 'Cloud/DevOps/SRE — Infrastructure & CI/CD', tooltipZh: '云/DevOps 工程师 — 基础设施与 CI/CD', tooltipZhHk: '雲/DevOps 工程師 — 基礎設施與 CI/CD' },
   { value: 'ML_RESEARCHER', label: 'ML', tooltipEn: 'ML Researcher — AI & algorithms', tooltipZh: '机器学习研究员 — AI 与算法', tooltipZhHk: '機器學習研究員 — AI 與算法' },
 ];
 
-export type JobType = 'FULLSTACK' | 'SOFTWARE' | 'ML_RESEARCHER';
+export type JobType = 'FULLSTACK' | 'SOFTWARE' | 'DEVOPS' | 'ML_RESEARCHER' | 'NONE';
 
 interface JobSwitcherProps {
   jobType: JobType;
@@ -35,9 +36,19 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
   const [barWidth, setBarWidth] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [previousJobType, setPreviousJobType] = useState<JobType>('FULLSTACK');
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const xButtonRef = useRef<HTMLButtonElement | null>(null);
   
   const activeIndex = jobOptions.findIndex(option => option.value === jobType);
+  const isNoneActive = jobType === 'NONE';
+  
+  // 记录上一次的职位选择
+  useEffect(() => {
+    if (!isNoneActive) {
+      setPreviousJobType(jobType);
+    }
+  }, [jobType, isNoneActive]);
   
   const containerBg = useCardColor('live');
   const headerColor = useHeaderColor();
@@ -45,6 +56,9 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
   const textSecondary = useTextColor();
   const softShadow = useSoftShadow();
   const accentShadow = useAccentShadow();
+  
+  // 获取 dark 主题下的卡片色作为 NONE 状态的背景
+  const noneBarBg = '#1e293b';
   
   // 获取对应语言的tooltip
   const getTooltip = (option: typeof jobOptions[0]) => {
@@ -55,20 +69,28 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
     }
   };
 
-  // 计算bar的位置和宽度
+  // 计算 bar 的位置和宽度
   useEffect(() => {
     const updateBarPosition = () => {
-      const activeIndex = jobOptions.findIndex(option => option.value === jobType);
-      const activeButton = buttonRefs.current[activeIndex];
-      
-      if (activeButton) {
-        const rect = activeButton.getBoundingClientRect();
-        const containerRect = activeButton.parentElement?.getBoundingClientRect();
-        
+      if (isNoneActive) {
+        const containerRect = buttonRefs.current[0]?.parentElement?.getBoundingClientRect();
         if (containerRect) {
-          const position = rect.left - containerRect.left;
-          setBarPosition(position);
-          setBarWidth(rect.width);
+          setBarPosition(4);
+          setBarWidth(containerRect.width - 8);
+        }
+      } else {
+        const activeIndex = jobOptions.findIndex(option => option.value === jobType);
+        const activeButton = buttonRefs.current[activeIndex];
+        
+        if (activeButton) {
+          const rect = activeButton.getBoundingClientRect();
+          const containerRect = activeButton.parentElement?.getBoundingClientRect();
+          
+          if (containerRect) {
+            const position = rect.left - containerRect.left;
+            setBarPosition(position);
+            setBarWidth(rect.width);
+          }
         }
       }
     };
@@ -85,21 +107,17 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
     if (document.fonts) {
       document.fonts.ready.then(initBar);
     } else {
-      // 降级方案：不支持 document.fonts 的浏览器
       initBar();
     }
     
-    // 额外保险：延迟再检查一次（移动端兼容）
     const fallbackTimer = setTimeout(initBar, 300);
-    
-    // 监听窗口 resize
     window.addEventListener('resize', updateBarPosition);
     
     return () => {
       clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
     };
-  }, [jobType, fontFamily]);
+  }, [jobType, fontFamily, isNoneActive]);
 
   return (
     <div className="relative inline-block">
@@ -121,12 +139,16 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
             bottom: '4px',
             left: `${barPosition}px`,
             width: `${barWidth}px`,
-            background: `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)`,
-            boxShadow: accentShadow,
+            background: isNoneActive 
+              ? `${noneBarBg}80`
+              : `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)`,
+            boxShadow: isNoneActive 
+              ? softShadow
+              : accentShadow,
             transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
           }}
         >
-          {hoveredIndex !== null && hoveredIndex !== activeIndex && (
+          {!isNoneActive && hoveredIndex !== null && hoveredIndex !== activeIndex && (
             <>
               {hoveredIndex < activeIndex && (
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white/70" viewBox="0 0 20 20" fill="currentColor">
@@ -169,6 +191,41 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
             </button>
           </ElegantTooltip>
         ))}
+        
+        {/* X 按钮 - 最右侧 */}
+        <ElegantTooltip 
+          content={
+            language === 'zh' ? '显示全部经历' : 
+            language === 'zh-hk' ? '顯示全部經歷' : 
+            'Show all experiences'
+          } 
+          side="bottom"
+        >
+          <button
+            ref={xButtonRef}
+            onClick={() => {
+              if (isNoneActive) {
+                // 如果当前是 NONE，点击 X 返回上一次的职位
+                onJobTypeChange(previousJobType);
+              } else {
+                // 否则切换到 NONE
+                onJobTypeChange('NONE');
+              }
+            }}
+            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1"
+            style={{
+              color: isNoneActive ? '#ffffff' : textSecondary,
+              minWidth: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </button>
+        </ElegantTooltip>
       </div>
     </div>
   );

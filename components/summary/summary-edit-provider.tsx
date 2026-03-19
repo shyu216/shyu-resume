@@ -39,10 +39,12 @@ export function SummaryEditProvider({ children }: { children: React.ReactNode })
         return summary.fullstack;
       case "SOFTWARE":
         return summary.software;
+      case "DEVOPS":
+        return summary.devops;
       case "ML_RESEARCHER":
         return summary.ml;
       default:
-        return summary.fullstack;
+        return summary.default;
     }
   }, [jobType, language]);
 

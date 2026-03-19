@@ -47,7 +47,7 @@ export function Header({
   return (
     <>
       <Container className="mt-5 mb-10">
-        <nav className="relative flex flex-col lg:flex-row justify-between items-center gap-4">
+        <nav className="flex flex-col xl:flex-row justify-between items-center gap-4">
           <div>
             <Link href="/">
               <Image
@@ -59,29 +59,28 @@ export function Header({
               />
             </Link>
           </div>
-          <div className="relative flex flex-col md:flex-row items-center gap-4">
-            <div className="pointer-events-auto flex justify-center">
-              <JobSwitcherWrapper />
+          <div className="flex flex-col lg:flex-row items-center gap-4">
+            <div className="flex  gap-x-2 justify-between items-center">
+              <JobSwitcherWrapper /> {/* Summary 编辑按钮 */}{onToggleEditSummary && (
+                <div className="flex items-center justify-center">
+                  <SummaryEditButton
+                    isEditing={isEditingSummary}
+                    onToggleEdit={onToggleEditSummary}
+                    onSave={onSaveSummary}
+                    onCancel={onCancelEditSummary}
+                  />
+                </div>
+              )}
             </div>
-            <div className="pointer-events-auto flex items-center space-x-2 justify-center">
-              <LanguageSwitcher />
-              <ThemeSwitcher />
-            </div>
-            <div className="pointer-events-auto flex items-center space-x-2 justify-center">
-              <FontSwitcher />
-              <ColorSwitcher />
-            </div>
-            {/* Summary 编辑按钮 */}
-            {onToggleEditSummary && (
-              <div className="pointer-events-auto flex items-center justify-center">
-                <SummaryEditButton
-                  isEditing={isEditingSummary}
-                  onToggleEdit={onToggleEditSummary}
-                  onSave={onSaveSummary}
-                  onCancel={onCancelEditSummary}
-                />
+
+            <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+              <div className="flex gap-x-2 justify-between items-center ">
+                <FontSwitcher /><ColorSwitcher />
               </div>
-            )}
+              <div className="flex gap-x-2 justify-between items-center">
+                <LanguageSwitcher /><ThemeSwitcher />
+              </div>
+            </div>
           </div>
         </nav>
       </Container>
@@ -89,7 +88,7 @@ export function Header({
       {/* 浮动历史记录小球 - 仅在编辑时显示 */}
       <SummaryBubbles
         isOpen={isEditingSummary}
-        onClose={() => {}}
+        onClose={() => { }}
         jobType={jobType}
         language={language}
         onSelectSummary={handleSelectSummary}

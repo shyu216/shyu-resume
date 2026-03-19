@@ -31,15 +31,15 @@ export default function SkillSection({ usage }: Props) {
 
   // 基于 jobType 关键词过滤 skills
   const filteredSkills = useMemo(() => {
-    // 如果没有关键词，返回所有技能
-    if (!keywords || keywords.length === 0) {
+    // 如果是 NONE 或没有关键词，返回所有技能
+    if (jobType === 'NONE' || !keywords || keywords.length === 0) {
       return skills;
     }
     // 过滤逻辑：检查技能类别中是否有至少一个技能匹配关键词
     return skills.filter(skill => 
       skill.skills.some(skillName => hasKeywordMatches(skillName, keywords))
     );
-  }, [skills, keywords]);
+  }, [skills, keywords, jobType]);
 
   const style = useUsageMap({
     live: "font-bold whitespace-nowrap text-sm",

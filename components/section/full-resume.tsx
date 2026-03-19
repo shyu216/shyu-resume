@@ -52,7 +52,14 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
       className="mt-9 max-w-6xl mx-auto"
       ref={ref as React.RefObject<HTMLDivElement>}
     >
-
+      {usage === "live" && (
+        <div className="flex md:hidden justify-center mb-2">
+          <ActionButton
+            className="block"
+            usage="live"
+          />
+        </div>
+      )}
       {animatedComponents.map(
         ({ component: Component, props = { usage: "live" }, delay }, index) =>
           usage === "live" ? (
@@ -63,14 +70,6 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
             // disable animation for pdf
             <Component key={index} {...props} />
           )
-      )}
-      {usage === "live" && (
-        <div className="flex sm:hidden justify-center mt-10">
-          <ActionButton
-            className="block sm:hidden"
-            usage="live"
-          />
-        </div>
       )}
     </Container>
   );
