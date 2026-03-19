@@ -5,31 +5,11 @@ import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { useFontFamily } from "@/components/font/font-provider";
 import { cn } from "@/lib/utils";
-import { 
-  useSurfaceColor, 
-  useHeaderColor, 
-  useTextColor, 
-  useCardColor,
-  useThemeValue,
-  useSoftShadow,
-  useAccentShadow
-} from "@/lib/theme-utils";
+import { jobOptions, type JobType, type JobSwitcherProps } from "./job-types";
 
-const jobOptions = [
-  { value: 'FULLSTACK', label: 'Full Stack', tooltipEn: 'Full Stack Engineer — End-to-end development', tooltipZh: '全栈工程师 — 端到端开发', tooltipZhHk: '全棧工程師 — 端到端開發' },
-  { value: 'SOFTWARE', label: 'SWE', tooltipEn: 'Software Engineer — System & architecture', tooltipZh: '软件工程师 — 系统与架构', tooltipZhHk: '軟件工程師 — 系統與架構' },
-  { value: 'DEVOPS', label: 'DevOps', tooltipEn: 'Cloud/DevOps/SRE — Infrastructure & CI/CD', tooltipZh: '云/DevOps 工程师 — 基础设施与 CI/CD', tooltipZhHk: '雲/DevOps 工程師 — 基礎設施與 CI/CD' },
-  { value: 'ML_RESEARCHER', label: 'ML', tooltipEn: 'ML Researcher — AI & algorithms', tooltipZh: '机器学习研究员 — AI 与算法', tooltipZhHk: '機器學習研究員 — AI 與算法' },
-];
+export { JobType, JobSwitcherProps };
 
-export type JobType = 'FULLSTACK' | 'SOFTWARE' | 'DEVOPS' | 'ML_RESEARCHER' | 'NONE';
-
-interface JobSwitcherProps {
-  jobType: JobType;
-  onJobTypeChange: (jobType: JobType) => void;
-}
-
-export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChange }) => {
+export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const { language } = useContext(LanguageContext);
   const { fontFamily } = useFontFamily();
   const [barPosition, setBarPosition] = useState(0);
@@ -43,37 +23,32 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const xButtonRef = useRef<HTMLButtonElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  
+
   const activeIndex = jobOptions.findIndex(option => option.value === jobType);
   const isNoneActive = jobType === 'NONE';
-    
+
   const prevIndex = (activeIndex - 1 + jobOptions.length) % jobOptions.length;
   const nextIndex = (activeIndex + 1) % jobOptions.length;
-  
+
   useEffect(() => {
     if (!isNoneActive) {
       setPreviousJobType(jobType);
     }
   }, [jobType, isNoneActive]);
-  
+
   useEffect(() => {
     if (!isNoneActive && jobType !== animatingJobType) {
       const currentIndex = jobOptions.findIndex(option => option.value === animatingJobType);
       const newIndex = jobOptions.findIndex(option => option.value === jobType);
-      
-      // 计算差值，处理循环情况
+
       const diff = newIndex - currentIndex;
-      
-      // 如果是循环切换（跨越边界）
+
       if (Math.abs(diff) > 1) {
-        // 从后往前（如 3->0）：新文字从左边进入
-        // 从前往后（如 0->3）：新文字从右边进入
         setAnimationDirection(diff > 0 ? 'left' : 'right');
       } else {
-        // 正常情况：newIndex > currentIndex 表示向右切换，新文字从右边进入
         setAnimationDirection(diff > 0 ? 'right' : 'left');
       }
-      
+
       setIsAnimating(true);
       setTimeout(() => {
         setAnimatingJobType(jobType);
@@ -81,17 +56,8 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
       }, 300);
     }
   }, [jobType, isNoneActive, animatingJobType]);
-  
-  const containerBg = useCardColor('live');
-  const headerColor = useHeaderColor();
-  const textPrimary = useTextColor();
-  const textSecondary = useTextColor();
-  const softShadow = useSoftShadow();
-  const accentShadow = useAccentShadow();
-  
-  const noneBarBg = '#1e293b';
-  
-  const getTooltip = (option: typeof jobOptions[0]) => {
+
+  const getTooltip = (option: typeof jobOptions[number]) => {
     switch (language) {
       case 'zh': return option.tooltipZh;
       case 'zh-hk': return option.tooltipZhHk;
@@ -109,7 +75,7 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
         setBarWidth(containerRect.width - 8);
       } else {
         const activeButton = buttonRefs.current[activeIndex];
-        
+
         if (activeButton) {
           const rect = activeButton.getBoundingClientRect();
           const position = rect.left - containerRect.left;
@@ -120,21 +86,21 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
     };
 
     updateBarPosition();
-    
+
     const initBar = () => {
       updateBarPosition();
       setIsInitialized(true);
     };
-    
+
     if (document.fonts) {
       document.fonts.ready.then(initBar);
     } else {
       initBar();
     }
-    
+
     const fallbackTimer = setTimeout(initBar, 300);
     window.addEventListener('resize', updateBarPosition);
-    
+
     return () => {
       clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
@@ -155,30 +121,30 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
 
   return (
     <div className="relative inline-block" ref={containerRef}>
-      <div 
+      <div
         className="flex rounded-full p-1 overflow-hidden backdrop-blur-sm items-center relative"
-        style={{ 
-          backgroundColor: `${containerBg}80`,
-          boxShadow: softShadow
+        style={{
+          backgroundColor: 'color-mix(in srgb, var(--color-card-default) 50%, transparent)',
+          boxShadow: 'var(--shadow-soft)'
         }}
       >
         {/* 背景滑动条 */}
-        <div 
+        <div
           className={cn(
             "absolute z-0 rounded-full transition-all duration-300 flex items-center justify-between px-1",
             !isInitialized && "opacity-0"
           )}
-          style={{ 
+          style={{
             top: '4px',
             bottom: '4px',
             left: `${barPosition}px`,
             width: `${barWidth}px`,
-            background: isNoneActive 
-              ? `${noneBarBg}80`
-              : `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)`,
-            boxShadow: isNoneActive 
-              ? softShadow
-              : accentShadow,
+            background: isNoneActive
+              ? '#1e293b80'
+              : `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`,
+            boxShadow: isNoneActive
+              ? 'var(--shadow-soft)'
+              : 'var(--shadow-accent)',
             transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
           }}
         >
@@ -197,7 +163,7 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
             </>
           )}
         </div>
-        
+
         {/* 左箭头按钮 */}
         <ElegantTooltip
           content={getTooltip(jobOptions[prevIndex])}
@@ -205,16 +171,10 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
         >
           <button
             onClick={handlePrevious}
-            className="relative z-10 w-6 h-8 rounded-full flex items-center justify-center transition-all duration-200"
+            className="relative z-10 w-6 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:text-[var(--color-text-primary)]"
             style={{
-              color: textSecondary,
+              color: 'var(--color-text-primary)',
               flexShrink: 0
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = textPrimary;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = textSecondary;
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" style={{ pointerEvents: 'none' }}>
@@ -222,13 +182,13 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
             </svg>
           </button>
         </ElegantTooltip>
-        
+
         {/* 当前选中的选项 */}
         <div className="flex-1 min-w-0 px-2">
           <div className="relative overflow-hidden" style={{ width: '96px' }}>
             {!isNoneActive && (
-              <ElegantTooltip 
-                content={getTooltip(jobOptions[activeIndex])} 
+              <ElegantTooltip
+                content={getTooltip(jobOptions[activeIndex])}
                 side="bottom"
               >
                 <div
@@ -242,7 +202,7 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
                     className="absolute left-0 top-0 w-full h-full flex items-center justify-center"
                     style={{
                       transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                      transform: isAnimating 
+                      transform: isAnimating
                         ? `translateX(${animationDirection === 'left' ? '100%' : '-100%'})`
                         : 'translateX(0)'
                     }}
@@ -253,8 +213,8 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
                     <span
                       className="absolute left-0 top-0 w-full h-full flex items-center justify-center"
                       style={{
-                        transform: animationDirection === 'left' 
-                          ? 'translateX(-100%)' 
+                        transform: animationDirection === 'left'
+                          ? 'translateX(-100%)'
                           : 'translateX(100%)',
                         transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                         pointerEvents: 'none'
@@ -278,7 +238,7 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
             )}
           </div>
         </div>
-        
+
         {/* 右箭头按钮 */}
         <ElegantTooltip
           content={getTooltip(jobOptions[nextIndex])}
@@ -286,16 +246,10 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
         >
           <button
             onClick={handleNext}
-            className="relative z-10 w-6 h-8 rounded-full flex items-center justify-center transition-all duration-200"
+            className="relative z-10 w-6 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:text-[var(--color-text-primary)]"
             style={{
-              color: textSecondary,
+              color: 'var(--color-text-primary)',
               flexShrink: 0
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = textPrimary;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = textSecondary;
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" style={{ pointerEvents: 'none' }}>
@@ -303,14 +257,14 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
             </svg>
           </button>
         </ElegantTooltip>
-        
+
         {/* X 按钮 */}
-        <ElegantTooltip 
+        <ElegantTooltip
           content={
-            language === 'zh' ? '显示全部经历' : 
-            language === 'zh-hk' ? '顯示全部經歷' : 
+            language === 'zh' ? '显示全部经历' :
+            language === 'zh-hk' ? '顯示全部經歷' :
             'Show all experiences'
-          } 
+          }
           side="bottom"
         >
           <button
@@ -322,23 +276,13 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
                 onJobTypeChange('NONE');
               }
             }}
-            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1"
+            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-[var(--color-text-primary)]"
             style={{
-              color: isNoneActive ? '#ffffff' : textSecondary,
+              color: isNoneActive ? '#ffffff' : 'var(--color-text-primary)',
               minWidth: '24px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
-            }}
-            onMouseEnter={(e) => {
-              if (!isNoneActive) {
-                e.currentTarget.style.color = textPrimary;
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isNoneActive) {
-                e.currentTarget.style.color = textSecondary;
-              }
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
@@ -349,4 +293,4 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
       </div>
     </div>
   );
-};
+}

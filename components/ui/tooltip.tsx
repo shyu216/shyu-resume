@@ -3,7 +3,6 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
 import * as React from "react";
-import { useTextColor, useThemeColor, useShadow } from "@/lib/theme-utils";
 
 const { Provider, Root, Trigger, Portal } = TooltipPrimitive;
 
@@ -11,11 +10,6 @@ const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
 >(({ className, sideOffset = 4, ...props }, ref) => {
-  const bgColor = useThemeColor('card', 'default');
-  const textColor = useTextColor();
-  const borderColor = useThemeColor('border', 'default');
-  const mdShadow = useShadow();
-
   return (
     <TooltipPrimitive.Content
       ref={ref}
@@ -25,10 +19,10 @@ const TooltipContent = React.forwardRef<
         className
       )}
       style={{
-        backgroundColor: bgColor,
-        color: textColor,
-        borderColor: borderColor,
-        boxShadow: mdShadow,
+        backgroundColor: 'var(--color-card-default)',
+        color: 'var(--color-text-primary)',
+        borderColor: 'var(--color-border-default)',
+        boxShadow: 'var(--shadow-md)',
       }}
       {...props}
     />

@@ -5,31 +5,11 @@ import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { useFontFamily } from "@/components/font/font-provider";
 import { cn } from "@/lib/utils";
-import { 
-  useSurfaceColor, 
-  useHeaderColor, 
-  useTextColor, 
-  useCardColor,
-  useThemeValue,
-  useSoftShadow,
-  useAccentShadow
-} from "@/lib/theme-utils";
+import { jobOptions, type JobType, type JobSwitcherProps } from "./job-types";
 
-const jobOptions = [
-  { value: 'FULLSTACK', label: 'Full Stack', tooltipEn: 'Full Stack Engineer — End-to-end development', tooltipZh: '全栈工程师 — 端到端开发', tooltipZhHk: '全棧工程師 — 端到端開發' },
-  { value: 'SOFTWARE', label: 'SWE', tooltipEn: 'Software Engineer — System & architecture', tooltipZh: '软件工程师 — 系统与架构', tooltipZhHk: '軟件工程師 — 系統與架構' },
-  { value: 'DEVOPS', label: 'DevOps', tooltipEn: 'Cloud/DevOps/SRE — Infrastructure & CI/CD', tooltipZh: '云/DevOps 工程师 — 基础设施与 CI/CD', tooltipZhHk: '雲/DevOps 工程師 — 基礎設施與 CI/CD' },
-  { value: 'ML_RESEARCHER', label: 'ML', tooltipEn: 'ML Researcher — AI & algorithms', tooltipZh: '机器学习研究员 — AI 与算法', tooltipZhHk: '機器學習研究員 — AI 與算法' },
-];
+export { JobType, JobSwitcherProps };
 
-export type JobType = 'FULLSTACK' | 'SOFTWARE' | 'DEVOPS' | 'ML_RESEARCHER' | 'NONE';
-
-interface JobSwitcherProps {
-  jobType: JobType;
-  onJobTypeChange: (jobType: JobType) => void;
-}
-
-export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChange }) => {
+export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const { language } = useContext(LanguageContext);
   const { fontFamily } = useFontFamily();
   const [barPosition, setBarPosition] = useState(0);
@@ -39,29 +19,19 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
   const [previousJobType, setPreviousJobType] = useState<JobType>('FULLSTACK');
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const xButtonRef = useRef<HTMLButtonElement | null>(null);
-  
+
   const activeIndex = jobOptions.findIndex(option => option.value === jobType);
   const isNoneActive = jobType === 'NONE';
-  
+
   // 记录上一次的职位选择
   useEffect(() => {
     if (!isNoneActive) {
       setPreviousJobType(jobType);
     }
   }, [jobType, isNoneActive]);
-  
-  const containerBg = useCardColor('live');
-  const headerColor = useHeaderColor();
-  const textPrimary = useTextColor();
-  const textSecondary = useTextColor();
-  const softShadow = useSoftShadow();
-  const accentShadow = useAccentShadow();
-  
-  // 获取 dark 主题下的卡片色作为 NONE 状态的背景
-  const noneBarBg = '#1e293b';
-  
+
   // 获取对应语言的tooltip
-  const getTooltip = (option: typeof jobOptions[0]) => {
+  const getTooltip = (option: typeof jobOptions[number]) => {
     switch (language) {
       case 'zh': return option.tooltipZh;
       case 'zh-hk': return option.tooltipZhHk;
@@ -81,11 +51,11 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
       } else {
         const activeIndex = jobOptions.findIndex(option => option.value === jobType);
         const activeButton = buttonRefs.current[activeIndex];
-        
+
         if (activeButton) {
           const rect = activeButton.getBoundingClientRect();
           const containerRect = activeButton.parentElement?.getBoundingClientRect();
-          
+
           if (containerRect) {
             const position = rect.left - containerRect.left;
             setBarPosition(position);
@@ -97,22 +67,22 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
 
     // 初始计算
     updateBarPosition();
-    
+
     // 等待字体加载完成后再显示 bar
     const initBar = () => {
       updateBarPosition();
       setIsInitialized(true);
     };
-    
+
     if (document.fonts) {
       document.fonts.ready.then(initBar);
     } else {
       initBar();
     }
-    
+
     const fallbackTimer = setTimeout(initBar, 300);
     window.addEventListener('resize', updateBarPosition);
-    
+
     return () => {
       clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
@@ -121,30 +91,30 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
 
   return (
     <div className="relative inline-block">
-      <div 
+      <div
         className="flex rounded-full p-1 overflow-hidden backdrop-blur-sm"
-        style={{ 
-          backgroundColor: `${containerBg}80`,
-          boxShadow: softShadow
+        style={{
+          backgroundColor: 'color-mix(in srgb, var(--color-card-default) 50%, transparent)',
+          boxShadow: 'var(--shadow-soft)'
         }}
       >
         {/* 背景滑动条 */}
-        <div 
+        <div
           className={cn(
             "absolute rounded-full transition-all duration-300 flex items-center justify-between px-1",
             !isInitialized && "opacity-0"
           )}
-          style={{ 
+          style={{
             top: '4px',
             bottom: '4px',
             left: `${barPosition}px`,
             width: `${barWidth}px`,
-            background: isNoneActive 
-              ? `${noneBarBg}80`
-              : `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)`,
-            boxShadow: isNoneActive 
-              ? softShadow
-              : accentShadow,
+            background: isNoneActive
+              ? '#1e293b80'
+              : `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`,
+            boxShadow: isNoneActive
+              ? 'var(--shadow-soft)'
+              : 'var(--shadow-accent)',
             transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
           }}
         >
@@ -163,42 +133,32 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
             </>
           )}
         </div>
-        
+
         {/* 按钮 */}
         {jobOptions.map((option, index) => (
           <ElegantTooltip key={option.value} content={getTooltip(option)} side="bottom">
             <button
               ref={el => buttonRefs.current[index] = el}
               onClick={() => onJobTypeChange(option.value as JobType)}
-              className="relative z-10 px-4 py-1 rounded-full transition-all duration-200 font-medium"
+              className="relative z-10 px-4 py-1 rounded-full transition-all duration-200 font-medium hover:text-[var(--color-text-primary)]"
               style={{
-                color: jobType === option.value ? '#ffffff' : textSecondary
+                color: jobType === option.value ? '#ffffff' : 'var(--color-text-primary)'
               }}
-              onMouseEnter={(e) => {
-                setHoveredIndex(index);
-                if (jobType !== option.value) {
-                  e.currentTarget.style.color = textPrimary;
-                }
-              }}
-              onMouseLeave={(e) => {
-                setHoveredIndex(null);
-                if (jobType !== option.value) {
-                  e.currentTarget.style.color = textSecondary;
-                }
-              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               {option.label}
             </button>
           </ElegantTooltip>
         ))}
-        
+
         {/* X 按钮 - 最右侧 */}
-        <ElegantTooltip 
+        <ElegantTooltip
           content={
-            language === 'zh' ? '显示全部经历' : 
-            language === 'zh-hk' ? '顯示全部經歷' : 
+            language === 'zh' ? '显示全部经历' :
+            language === 'zh-hk' ? '顯示全部經歷' :
             'Show all experiences'
-          } 
+          }
           side="bottom"
         >
           <button
@@ -212,9 +172,9 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
                 onJobTypeChange('NONE');
               }
             }}
-            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1"
+            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-[var(--color-text-primary)]"
             style={{
-              color: isNoneActive ? '#ffffff' : textSecondary,
+              color: isNoneActive ? '#ffffff' : 'var(--color-text-primary)',
               minWidth: '24px',
               display: 'flex',
               alignItems: 'center',
@@ -229,4 +189,4 @@ export const JobSwitcher: React.FC<JobSwitcherProps> = ({ jobType, onJobTypeChan
       </div>
     </div>
   );
-};
+}

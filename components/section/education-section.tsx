@@ -11,7 +11,6 @@ import { education as educationEn } from "@/content/en/education";
 import { education as educationZh } from "@/content/zh/education";
 import { education as educationZhHk } from "@/content/zh-hk/education";
 import Label from "@/components/labels/label";
-import { type Education } from "@/types/education";
 import { useLanguageMap } from "@/lib/utils";
 
 type Props = {
@@ -20,7 +19,7 @@ type Props = {
 
 export default function EducationSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
-  
+
   const { data: education, title } = useLanguageMap({
     en: { data: educationEn, title: "EDUCATION" },
     zh: { data: educationZh, title: "教育经历" },

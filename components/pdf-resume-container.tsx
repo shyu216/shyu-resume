@@ -5,7 +5,7 @@ import { usePrint } from "./print-provider";
 import { useFontFamily } from "@/components/font/font-provider";
 import { fontFamilies } from "@/lib/theme-config";
 
-export default function PDFResumeContainer({
+export function PDFResumeContainer({
   children,
 }: {
   children: React.ReactNode;

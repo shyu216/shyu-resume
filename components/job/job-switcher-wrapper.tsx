@@ -2,7 +2,7 @@
 
 import React from "react";
 import { JobSwitcher } from "./job-switcher";
-import { JobSwitcher as JobSwitcherSm } from "./job-switcher-sm";
+import { JobSwitcherMobile } from "./job-switcher-mobile";
 import { useJobType } from "./job-type-provider";
 
 export function JobSwitcherWrapper() {
@@ -10,7 +10,7 @@ export function JobSwitcherWrapper() {
 
   return <>
   <div className="sm:hidden">
-    <JobSwitcherSm jobType={jobType} onJobTypeChange={setJobType} />
+    <JobSwitcherMobile jobType={jobType} onJobTypeChange={setJobType} />
   </div>
   <div className="hidden sm:block">
     <JobSwitcher jobType={jobType} onJobTypeChange={setJobType} />

@@ -7,12 +7,10 @@ import { skills as skillsEn } from "@/content/en/skills";
 import { skills as skillsZh } from "@/content/zh/skills";
 import { skills as skillsZhHk } from "@/content/zh-hk/skills";
 import Label from "../labels/label";
-import { useUsageMap, useLanguageMap } from "@/lib/utils";
-import { useTextColor } from "@/lib/theme-utils";
 import { useJobType } from "@/components/job/job-type-provider";
 import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
 import { hasKeywordMatches } from "@/lib/keyword-utils";
-import { type SkillCategory } from "@/types/skill-category";
+import { useLanguageMap } from "@/lib/utils";
 
 type Props = {
   usage: "live" | "pdf";
@@ -36,22 +34,13 @@ export default function SkillSection({ usage }: Props) {
       return skills;
     }
     // 过滤逻辑：检查技能类别中是否有至少一个技能匹配关键词
-    return skills.filter(skill => 
+    return skills.filter(skill =>
       skill.skills.some(skillName => hasKeywordMatches(skillName, keywords))
     );
   }, [skills, keywords, jobType]);
 
-  const style = useUsageMap({
-    live: "font-bold whitespace-nowrap text-sm",
-    pdf: "font-bold whitespace-nowrap text-[11px]",
-  }, usage);
-  
-  const descStyle = useUsageMap({
-    live: "ml-8 text-sm",
-    pdf: "ml-8 text-[11px]",
-  }, usage);
-  
-  const textColor = useTextColor(usage);
+  const style = usage === "live" ? "font-bold whitespace-nowrap text-sm" : "font-bold whitespace-nowrap text-[11px]";
+  const descStyle = usage === "live" ? "ml-8 text-sm" : "ml-8 text-[11px]";
 
   return (
     <Section title={title} usage={usage}>
@@ -61,7 +50,7 @@ export default function SkillSection({ usage }: Props) {
             <div key={`title-${index}`} className={style}>
               <Label content={skill.name} usage={usage} />
             </div>,
-            <div key={`desc-${index}`} className={descStyle} style={{ color: textColor }}>
+            <div key={`desc-${index}`} className={descStyle} style={{ color: 'var(--color-text-primary)' }}>
               <p>{skill.skills.join(" · ")}</p>
             </div>
           ])}

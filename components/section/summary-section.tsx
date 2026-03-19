@@ -4,7 +4,6 @@ import { useContext } from "react";
 import Section from "@/components/section/section";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { useJobType } from "@/components/job/job-type-provider";
-import { useTextColor } from "@/lib/theme-utils";
 import { useSummaryEdit } from "@/components/summary/summary-edit-provider";
 import { cn } from "@/lib/utils";
 
@@ -15,17 +14,14 @@ type Props = {
 export default function SummarySection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
   const { jobType } = useJobType();
-  const textSecondary = useTextColor(usage);
   const { isEditing, editedContent, updateContent, getCurrentContent } = useSummaryEdit();
-  
+
   const fontSize = usage === "live" ? "text-sm" : "text-[11px]";
   const bodyLineHeight = usage === "live" ? "leading-normal" : "leading-[13px]";
 
   const title = language === "en" ? "SUMMARY" : language === "zh" ? "个人简介" : "個人簡介";
-  
-  const currentContent = getCurrentContent();
 
-  // PDF模式下始终使用静态内容
+  const currentContent = getCurrentContent();
   const displayContent = usage === "pdf" ? currentContent : currentContent;
 
   return (
@@ -44,13 +40,13 @@ export default function SummarySection({ usage }: Props) {
             fontSize,
             bodyLineHeight
           )}
-          style={{ color: textSecondary }}
+          style={{ color: 'var(--color-text-primary)' }}
           placeholder="请输入个人简介..."
         />
       ) : (
-        <div 
-          className={`${fontSize} ${bodyLineHeight}`} 
-          style={{ color: textSecondary }}
+        <div
+          className={`${fontSize} ${bodyLineHeight}`}
+          style={{ color: 'var(--color-text-primary)' }}
         >
           {displayContent}
         </div>

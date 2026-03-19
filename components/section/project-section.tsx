@@ -38,7 +38,7 @@ export default function ProjectSection({ usage }: Props) {
       return projects;
     }
     // 过滤逻辑：检查项目的 bullet points 中是否有至少一个匹配关键词
-    return projects.filter(project => 
+    return projects.filter(project =>
       project.bullets?.some(bullet => hasKeywordMatches(bullet, keywords)) || false
     );
   }, [projects, keywords, jobType]);
@@ -46,7 +46,6 @@ export default function ProjectSection({ usage }: Props) {
   return (
     <Section title={title} usage={usage}>
       <div className="flex flex-col gap-y-1">
-        {/* 替换成 filteredProjects.map */}
         {filteredProjects.map((project) => (
           <Experience
             key={project.id}

@@ -3,7 +3,7 @@
  * @param keywords 关键词数组
  * @returns 正则模式字符串（未加 flags）
  */
-export const buildKeywordRegexPattern = (keywords: string[]): string => {
+export function buildKeywordRegexPattern(keywords: string[]): string {
   if (!keywords || keywords.length === 0) {
     return '';
   }
@@ -11,10 +11,10 @@ export const buildKeywordRegexPattern = (keywords: string[]): string => {
   return keywords
     .map(keyword => {
       const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      
+
       // 判断是否包含中文字符
       const hasChinese = /[\u4e00-\u9fa5]/.test(keyword);
-      
+
       if (hasChinese) {
         // 中文：使用前后瞻断言，确保前后不是汉字字符
         // (?<![\u4e00-\u9fa5]) 前面不是汉字
@@ -26,7 +26,7 @@ export const buildKeywordRegexPattern = (keywords: string[]): string => {
       }
     })
     .join('|');
-};
+}
 
 /**
  * 检查文本是否包含任意关键词
@@ -34,7 +34,7 @@ export const buildKeywordRegexPattern = (keywords: string[]): string => {
  * @param keywords 关键词数组
  * @returns 是否匹配
  */
-export const hasKeywordMatches = (text: string, keywords: string[]): boolean => {
+export function hasKeywordMatches(text: string, keywords: string[]): boolean {
   if (!text || !text.trim() || !keywords || keywords.length === 0) {
     return false;
   }
@@ -44,4 +44,4 @@ export const hasKeywordMatches = (text: string, keywords: string[]): boolean => 
 
   const keywordRegex = new RegExp(`(${pattern})`, 'gi');
   return keywordRegex.test(text);
-};
+}

@@ -2,22 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================
+   CSS Variables for Theming
+   - Supports both light/dark modes
+   - Enables SSR for theme-dependent components
+   ========================================== */
+
 :root {
+  /* Layout colors */
   --color-grid: #d6d3d1;
   --color-glow: rgba(34,197,94,0.5);
   --color-page: rgb(250 250 249 / 0.7);
+
+  /* Theme colors - Light mode defaults */
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
+  --color-text-primary: #0f172a;
+  --color-border-default: #e2e8f0;
+  --color-card-default: #ffffff;
+
+  /* Header colors - Default (red) */
+  --header-color: #dc2626;
+
+  /* Shadows */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-accent: 0 4px 11px rgba(30, 64, 175, 0.15);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+
+  /* Font family */
+  --font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .dark {
+  /* Layout colors */
   --color-grid: #57534e;
   --color-glow: rgba(59,130,246,0.5);
   --color-page: rgb(28 25 23 / 0.8);
+
+  /* Theme colors - Dark mode */
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-text-primary: #f1f5f9;
+  --color-border-default: #334155;
+  --color-card-default: #1e293b;
+
+  /* Shadows - Dark mode */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-accent: 0 4px 11px rgba(59, 130, 246, 0.2);
 }
+
+/* Header color variants */
+[data-header-color="blue"] { --header-color: #1e40af; }
+[data-header-color="red"] { --header-color: #dc2626; }
+[data-header-color="purple"] { --header-color: #7e22ce; }
+[data-header-color="green"] { --header-color: #059669; }
+[data-header-color="orange"] { --header-color: #ea580c; }
+[data-header-color="pink"] { --header-color: #db2777; }
+[data-header-color="teal"] { --header-color: #0d9488; }
+[data-header-color="indigo"] { --header-color: #4338ca; }
+
+.dark[data-header-color="blue"] { --header-color: #60a5fa; }
+.dark[data-header-color="red"] { --header-color: #fca5a5; }
+.dark[data-header-color="purple"] { --header-color: #d8b4fe; }
+.dark[data-header-color="green"] { --header-color: #6ee7b7; }
+.dark[data-header-color="orange"] { --header-color: #fdba74; }
+.dark[data-header-color="pink"] { --header-color: #f9a8d4; }
+.dark[data-header-color="teal"] { --header-color: #5eead4; }
+.dark[data-header-color="indigo"] { --header-color: #a5b4fc; }
 
 @layer components {
   .bg-grid-pattern {
     @apply pointer-events-none fixed inset-0 select-none opacity-50;
-    background-image: 
+    background-image:
       repeating-linear-gradient(to right, var(--color-grid) 0 1px, transparent 1px 8px),
       repeating-linear-gradient(to bottom, var(--color-grid) 0 1px, transparent 1px 8px);
   }
@@ -55,9 +111,6 @@
 }
 
 @media print {
-  /* section ul li {
-    font-size: 10pt;
-  } */
   @page:first {
     margin-top: 0cm;
   }
@@ -65,6 +118,5 @@
     size: 210mm 297mm;
     margin-top: 1cm;
     margin-bottom: 0.5cm;
-    /* 你可以加其他 margin 设置，比如 margin-left/right/bottom */
   }
 }

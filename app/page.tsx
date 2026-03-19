@@ -1,7 +1,7 @@
 import React from "react";
 import { FullResume } from "@/components/section/full-resume";
-import PrintProvider from "@/components/print-provider";
-import PDFResumeContainer from "@/components/pdf-resume-container";
+import { PrintProvider } from "@/components/print-provider";
+import { PDFResumeContainer } from "@/components/pdf-resume-container";
 
 export default function CVPage() {
   return (

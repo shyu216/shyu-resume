@@ -1,9 +1,10 @@
+// Experience Component - Server Component
+// Displays work/project/education experience entries
+
 import { cn } from "@/lib/utils";
-import { useUsageMap } from "@/lib/utils";
-import { useTextColor } from "@/lib/theme-utils";
 import { KeywordHighlighter } from "@/components/job/keyword-highlighter";
 
-type Props = {
+interface ExperienceProps {
   head1: string | JSX.Element;
   head2?: string | JSX.Element;
   head3?: string | JSX.Element;
@@ -14,8 +15,7 @@ type Props = {
   bulletPointsShort?: string[];
   usage: "live" | "pdf";
   keywords?: string[];
-};
-
+}
 
 export default function Experience({
   head1,
@@ -28,21 +28,15 @@ export default function Experience({
   bulletPointsShort,
   usage,
   keywords
-}: Props) {
-  const textSize = useUsageMap({
-    live: "text-sm",
-    pdf: "text-[11px]",
-  }, usage);
-  const bodyLineHeight = useUsageMap({
-    live: "leading-normal",
-    pdf: "leading-[13px]",
-  }, usage);
-  
-  const textColor = useTextColor(usage);
-  const secondaryTextColor = useTextColor(usage);
+}: ExperienceProps) {
+  const textSize = usage === "live" ? "text-sm" : "text-[11px]";
+  const bodyLineHeight = usage === "live" ? "leading-normal" : "leading-[13px]";
 
   return (
-    <section className={cn(textSize, "break-inside-avoid page-break-inside-avoid break-before-auto")} style={{ color: textColor }}>
+    <section
+      className={cn(textSize, "break-inside-avoid page-break-inside-avoid break-before-auto")}
+      style={{ color: 'var(--color-text-primary)' }}
+    >
       <div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           <div className="flex gap-x-4 flex-wrap">
@@ -50,11 +44,11 @@ export default function Experience({
             {head2 && <div>{head2}</div>}
             {head3 && <div>{head3}</div>}
           </div>
-          {head4 && <div style={{ color: secondaryTextColor }}>{head4}</div>}
+          {head4 && <div style={{ color: 'var(--color-text-primary)' }}>{head4}</div>}
         </div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           {head5 && <div>{head5}</div>}
-          {head6 && <div style={{ color: secondaryTextColor }}>{head6}</div>}
+          {head6 && <div style={{ color: 'var(--color-text-primary)' }}>{head6}</div>}
         </div>
       </div>
 
@@ -69,9 +63,12 @@ export default function Experience({
       {bulletPoints && bulletPoints.length > 0 && (
         <ul className={cn("list-disc ml-4 mt-1", bodyLineHeight)}>
           {bulletPoints?.map((point, index) => (
-            <li key={index}><KeywordHighlighter text={point} keywords={keywords || []} /></li>
+            <li key={index}>
+              <KeywordHighlighter text={point} keywords={keywords || []} />
+            </li>
           ))}
-        </ul>)}
+        </ul>
+      )}
     </section>
   );
 }

@@ -4,24 +4,11 @@ import React, { useState, useContext } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext, type LanguageType } from "./language-provider";
 import { cn } from "@/lib/utils";
-import { useHeaderColor, useThemeColor, useTextColor, useSoftShadow } from "@/lib/theme-utils";
 
 const languages: { label: string; value: LanguageType; name: string }[] = [
-  {
-    label: "ENG",
-    value: "en",
-    name: "English",
-  },
-  {
-    label: "简",
-    value: "zh",
-    name: "简体中文",
-  },
-  {
-    label: "繁",
-    value: "zh-hk",
-    name: "繁體中文",
-  },
+  { label: "ENG", value: "en", name: "English" },
+  { label: "简", value: "zh", name: "简体中文" },
+  { label: "繁", value: "zh-hk", name: "繁體中文" },
 ];
 
 export function LanguageSwitcher() {
@@ -31,11 +18,6 @@ export function LanguageSwitcher() {
   React.useEffect(() => setMounted(true), []);
 
   const { language, setLanguage } = useContext(LanguageContext);
-  const headerColor = useHeaderColor();
-  const surfaceColor = useThemeColor('surface');
-  const borderColor = useThemeColor('border', 'default');
-  const textColor = useTextColor();
-  const shadow = useSoftShadow();
 
   if (!mounted) {
     return null;
@@ -47,10 +29,8 @@ export function LanguageSwitcher() {
         const isSelected = language === lang.value;
         const isHovered = hoveredLang === lang.value;
         const hasHover = hoveredLang !== null;
-        
-        // 同时只有一个放大：hover 的优先，否则选中状态放大
         const shouldScale = isHovered || (isSelected && !hasHover);
-        
+
         return (
           <ElegantTooltip key={lang.value} content={lang.name} side="bottom">
             <button
@@ -61,12 +41,12 @@ export function LanguageSwitcher() {
                 !shouldScale && "scale-90"
               )}
               style={{
-                boxShadow: shadow,
-                borderColor: borderColor,
-                background: isSelected 
-                  ? `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)` 
-                  : `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
-                color: isSelected ? '#ffffff' : textColor,
+                boxShadow: 'var(--shadow-soft)',
+                borderColor: 'var(--color-border-default)',
+                background: isSelected
+                  ? `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`
+                  : `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
+                color: isSelected ? '#ffffff' : 'var(--color-text-primary)',
               }}
               onClick={() => setLanguage(lang.value)}
               onMouseEnter={() => setHoveredLang(lang.value)}
@@ -74,7 +54,7 @@ export function LanguageSwitcher() {
             >
               <span className={cn(
                 "transition-transform duration-200 inline-block",
-                shouldScale ? "scale-100" : "scale=90"
+                shouldScale ? "scale-100" : "scale-90"
               )}>
                 {lang.label}
               </span>

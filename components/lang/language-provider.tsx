@@ -15,7 +15,7 @@ export const LanguageContext = React.createContext<{
   isInitialized: false,
 });
 
-export default function LanguageProvider({
+export function LanguageProvider({
   children,
 }: {
   children: React.ReactNode;

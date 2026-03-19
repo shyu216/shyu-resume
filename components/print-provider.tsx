@@ -17,7 +17,7 @@ const PrintContext = createContext<PrintContext>({
   handlePrint: () => {},
 });
 
-export default function PrintProvider({
+export function PrintProvider({
   children,
 }: {
   children: React.ReactNode;
@@ -26,9 +26,7 @@ export default function PrintProvider({
   const fontStack = fontFamilies[fontFamily].fontStack.join(", ");
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
-    // wait animation or image loading for a while before printing?
     onBeforePrint: () => {
-      // 用 as 断言绕过类型检查
       const el = componentRef.current as HTMLElement | null;
       if (el) {
         console.log("这是打印的HTML内容：");
@@ -47,11 +45,6 @@ export default function PrintProvider({
         targetDoc.documentElement.style.setProperty("--font-family", fontStack);
         targetDoc.body?.style.setProperty("font-family", fontStack);
       }
-      // return new Promise<void>((resolve) => {
-      //   setTimeout(() => {
-      //     resolve();
-      //   }, 500);
-      // });
     },
     onPrintError: (error) => console.log(error),
 
@@ -73,7 +66,7 @@ export default function PrintProvider({
   );
 }
 
-export const usePrint = () => {
+export function usePrint() {
   const { componentRef, handlePrint } = React.useContext(PrintContext);
   if (!componentRef) {
     throw new Error("usePrint must be used within a PrintProvider");
@@ -82,4 +75,4 @@ export const usePrint = () => {
     throw new Error("usePrint must be used within a PrintProvider");
   }
   return { componentRef, handlePrint };
-};
+}

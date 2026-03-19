@@ -8,7 +8,6 @@ import { ElegantTooltip } from "@/components/ui/tooltip";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useUsageMap, useLanguageMap } from "@/lib/utils";
-import { useHeaderColor, useTextColor, useIsDarkTheme } from "@/lib/theme-utils";
 
 type Props = {
   className?: string;
@@ -18,12 +17,6 @@ type Props = {
 export default function ActionButton({ className, usage }: Props) {
   const { handlePrint } = usePrint();
   const { language } = useContext(LanguageContext);
-  const buttonBg = useHeaderColor(usage);
-  const buttonHoverBg = useHeaderColor(usage);
-  const isDark = useIsDarkTheme();
-  const textColor = useTextColor(usage);
-  // PDF模式下按钮文本始终为白色
-  const buttonText = usage === "pdf" ? '#ffffff' : (isDark ? textColor : '#ffffff');
 
   const baseButtonClass = cn(
     "inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none",
@@ -56,8 +49,8 @@ export default function ActionButton({ className, usage }: Props) {
         onClick={handlePrint}
         className={cn(baseButtonClass, "font-semibold")}
         style={{
-          backgroundColor: buttonBg,
-          color: buttonText,
+          backgroundColor: 'var(--header-color)',
+          color: '#ffffff',
         }}
       >
         {text}
@@ -68,8 +61,8 @@ export default function ActionButton({ className, usage }: Props) {
       className={cn(baseButtonClass, "font-semibold")}
       href="https://shyu216.github.io/shyu-resume/"
       style={{
-        backgroundColor: buttonBg,
-        color: buttonText,
+        backgroundColor: 'var(--header-color)',
+        color: '#ffffff',
       }}
     >
       {text}

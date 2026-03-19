@@ -4,7 +4,6 @@ import React, { useState, useContext, useRef, useEffect } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { useFontFamily } from "./font-provider";
 import { FontFamilyType, fontFamilies } from "@/lib/theme-config";
-import { useThemeColor, useTextColor, useSoftShadow, useHeaderColor } from "@/lib/theme-utils";
 import { LanguageContext } from "@/components/lang/language-provider";
 import type { LanguageType } from "@/components/lang/language-provider";
 import { useLanguageMap } from "@/lib/utils";
@@ -45,11 +44,6 @@ export function FontSwitcher() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const { language } = useContext(LanguageContext);
-  const surfaceColor = useThemeColor('surface');
-  const borderColor = useThemeColor('border', 'default');
-  const textColor = useTextColor();
-  const headerColor = useHeaderColor();
-  const shadow = useSoftShadow();
 
   const currentLabel = useLanguageMap(fontLabels[fontFamily], language);
   const tipText = useLanguageMap(tooltipText, language);
@@ -62,24 +56,18 @@ export function FontSwitcher() {
   useEffect(() => {
     if (isOpen && containerRef.current && menuRef.current) {
       const containerRect = containerRef.current.getBoundingClientRect();
-      const menuWidth = 256; // w-64 = 16rem = 256px
-      const margin = 16; // 页面边距
+      const menuWidth = 256;
+      const margin = 16;
       const windowWidth = window.innerWidth;
 
-      // 计算右侧空间
       const rightSpace = windowWidth - containerRect.right;
-      // 计算左侧空间
       const leftSpace = containerRect.left;
 
       if (rightSpace >= menuWidth + margin) {
-        // 右侧空间足够，右对齐（相对按钮）
         setMenuPosition({ right: 0, left: undefined });
       } else if (leftSpace >= menuWidth + margin) {
-        // 右侧不够但左侧够，左对齐（相对按钮）
         setMenuPosition({ left: 0, right: undefined });
       } else {
-        // 两边都不够，固定到视口右边缘
-        // 计算从按钮到视口右边缘的距离，再减去边距
         const rightOffset = windowWidth - containerRect.right - margin;
         setMenuPosition({ right: -rightOffset, left: undefined });
       }
@@ -113,10 +101,10 @@ export function FontSwitcher() {
             "hover:brightness-105 hover:scale-105"
           )}
           style={{
-            boxShadow: shadow,
-            borderColor: borderColor,
-            background: `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
-            color: textColor,
+            boxShadow: 'var(--shadow-soft)',
+            borderColor: 'var(--color-border-default)',
+            background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
+            color: 'var(--color-text-primary)',
           }}
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -135,7 +123,7 @@ export function FontSwitcher() {
             </svg>
           ) : (
             <>
-              <span 
+              <span
                 className="text-xs"
                 style={{ fontFamily: fontFamilies[fontFamily].fontStack.join(", ") }}
               >
@@ -148,42 +136,42 @@ export function FontSwitcher() {
           )}
         </button>
       </ElegantTooltip>
-      
+
       {isOpen && (
         <div
           ref={menuRef}
-          className="absolute top-full mt-2 w-64 rounded-xl shadow-lg bg-surface ring-1 ring-border-default z-50 overflow-hidden"
+          className="absolute top-full mt-2 w-64 rounded-xl shadow-lg z-50 overflow-hidden"
           style={{
-            boxShadow: shadow,
-            borderColor: borderColor,
-            backgroundColor: surfaceColor,
+            boxShadow: 'var(--shadow-soft)',
+            borderColor: 'var(--color-border-default)',
+            backgroundColor: 'var(--color-surface)',
             ...menuPosition,
           }}
         >
-          <div 
+          <div
             className="px-4 py-3 border-b"
-            style={{ borderColor: borderColor }}
+            style={{ borderColor: 'var(--color-border-default)' }}
           >
-            <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: textColor, opacity: 0.7 }}>
+            <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-primary)', opacity: 0.7 }}>
               {headerLabel}
             </h4>
-            <p 
+            <p
               className="text-lg mt-1 transition-all duration-150"
-              style={{ 
+              style={{
                 fontFamily: fontFamilies[previewFont].fontStack.join(", "),
-                color: headerColor,
+                color: 'var(--header-color)',
               }}
             >
               {previewText}
             </p>
           </div>
-          
+
           <div className="py-1 max-h-64 overflow-y-auto">
             {Object.entries(fontLabels).map(([value, labels]) => {
               const fontValue = value as FontFamilyType;
               const isSelected = fontFamily === fontValue;
               const isHover = isHovering === fontValue;
-              
+
               return (
                 <button
                   key={fontValue}
@@ -194,8 +182,8 @@ export function FontSwitcher() {
                     isHover && !isSelected && "bg-surface/80"
                   )}
                   style={{
-                    color: isSelected ? headerColor : textColor,
-                    backgroundColor: isSelected ? `${headerColor}15` : undefined,
+                    color: isSelected ? 'var(--header-color)' : 'var(--color-text-primary)',
+                    backgroundColor: isSelected ? 'color-mix(in srgb, var(--header-color) 15%, transparent)' : undefined,
                   }}
                   onClick={() => {
                     setFontFamily(fontValue);
@@ -204,7 +192,7 @@ export function FontSwitcher() {
                   onMouseEnter={() => setIsHovering(fontValue)}
                   onMouseLeave={() => setIsHovering(null)}
                 >
-                  <span 
+                  <span
                     className="flex items-center gap-2"
                     style={{ fontFamily: fontFamilies[fontValue].fontStack.join(", ") }}
                   >
@@ -217,6 +205,7 @@ export function FontSwitcher() {
                       className="h-4 w-4"
                       viewBox="0 0 20 20"
                       fill="currentColor"
+                      style={{ color: 'var(--header-color)' }}
                     >
                       <path
                         fillRule="evenodd"

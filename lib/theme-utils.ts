@@ -1,5 +1,5 @@
 // ==========================================
-// 主题工具函数 - Theme Utilities (简化版)
+// 主题工具函数 - Theme Utilities
 // ==========================================
 
 import { useTheme } from "next-themes";
@@ -7,14 +7,30 @@ import { themeColors, colorPalettes, fontFamilies, type FontFamilyType } from "@
 import { useColor } from "@/components/color/color-provider";
 
 // ==========================================
-// 颜色获取工具
+// CSS Variable Constants (for SSR)
+// ==========================================
+
+export const CSS_VARS = {
+  headerColor: 'var(--header-color)',
+  textPrimary: 'var(--color-text-primary)',
+  borderDefault: 'var(--color-border-default)',
+  surfaceColor: 'var(--color-surface)',
+  cardColor: 'var(--color-card-default)',
+  shadowSoft: 'var(--shadow-soft)',
+  shadowAccent: 'var(--shadow-accent)',
+  shadowMd: 'var(--shadow-md)',
+  fontFamily: 'var(--font-family)',
+} as const;
+
+// ==========================================
+// Color Hooks (Client-side only)
 // ==========================================
 
 /**
  * 获取当前主题下的颜色值
  */
 export function useThemeColor(
-  key: keyof typeof themeColors, 
+  key: keyof typeof themeColors,
   subKey?: string,
   usage: "live" | "pdf" = "live"
 ): string {
@@ -51,12 +67,12 @@ export function useThemeColor(
 export function useTextColor(usage: "live" | "pdf" = "live"): string {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
-  
+
   // PDF模式下强制使用纯黑色文本
   if (usage === "pdf") {
     return "#000000";
   }
-  
+
   return themeColors.text.primary[isDark ? "dark" : "light"];
 }
 
@@ -67,9 +83,9 @@ export function useHeaderColor(usage: "live" | "pdf" = "live"): string {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
   const theme = usage === "pdf" ? "light" : (isDark ? "dark" : "light");
-  
+
   const { headerColor } = useColor();
-  
+
   return colorPalettes[headerColor]?.[theme] || colorPalettes.red[theme];
 }
 
@@ -95,7 +111,7 @@ export function useCardColor(usage: "live" | "pdf" = "live"): string {
 }
 
 // ==========================================
-// 阴影获取工具
+// Shadow Hooks
 // ==========================================
 
 const shadows = {
@@ -136,7 +152,7 @@ export function useShadow(): string {
 }
 
 // ==========================================
-// 主题检测工具
+// Theme Detection
 // ==========================================
 
 /**
@@ -147,53 +163,13 @@ export function useIsDarkTheme(): boolean {
   return resolvedTheme === "dark";
 }
 
+// ==========================================
+// Font Utilities
+// ==========================================
+
 /**
- * 根据主题条件返回值
+ * 获取字体栈
  */
-export function useThemeValue<T>(lightValue: T, darkValue: T): T {
-  const { resolvedTheme } = useTheme();
-  return resolvedTheme === "dark" ? darkValue : lightValue;
-}
-
-// ==========================================
-// 字体获取工具
-// ==========================================
-
-const defaultFontStack = fontFamilies['jetbrains-mono'].fontStack.join(", ");
-
-export function useFontFamilyType(family: FontFamilyType = "jetbrains-mono"): string {
-  return fontFamilies[family]?.fontStack.join(", ") || defaultFontStack;
-}
-
 export function getFontStack(fontFamily: FontFamilyType): string {
-  return fontFamilies[fontFamily]?.fontStack.join(", ") || defaultFontStack;
-}
-
-export function getFontName(fontFamily: FontFamilyType): string {
-  return fontFamilies[fontFamily]?.name || "Inter";
-}
-
-export function getAllFontOptions(): { value: FontFamilyType; name: string }[] {
-  return Object.entries(fontFamilies).map(([value, config]) => ({
-    value: value as FontFamilyType,
-    name: config.name,
-  }));
-}
-
-// ==========================================
-// 颜色调色板工具 (供 ColorSwitcher 使用)
-// ==========================================
-
-/**
- * 获取颜色调色板
- */
-export function getColorPalettes(): typeof colorPalettes {
-  return colorPalettes;
-}
-
-/**
- * 获取指定颜色的调色板
- */
-export function getColorPalette(color: string): { light: string; dark: string } | undefined {
-  return colorPalettes[color];
+  return fontFamilies[fontFamily]?.fontStack.join(", ") || fontFamilies.inter.fontStack.join(", ");
 }

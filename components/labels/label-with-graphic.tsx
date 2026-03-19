@@ -1,18 +1,21 @@
+// LabelWithGraphic Component - Server Component
+// Displays content with optional icon or image
+
 import { type Icon } from "@/components/ui/icons";
 import Image, { type ImageProps } from "next/image";
 import React from "react";
 
-type Props = {
+interface LabelWithGraphicProps {
   icon?: Icon;
   image?: ImageProps["src"];
   content: React.ReactNode;
-};
+}
 
 export default function LabelWithGraphic({
   icon: Icon,
   image,
   content,
-}: Props) {
+}: LabelWithGraphicProps) {
   return (
     <div className="flex items-center gap-1.5">
       {Icon && <Icon size={11} />}

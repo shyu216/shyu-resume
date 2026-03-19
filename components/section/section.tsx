@@ -1,39 +1,28 @@
-"use client";
+// Section Component - Server Component
+// Section wrapper with title and border
 
 import { cn } from "@/lib/utils";
-import { useUsageMap } from "@/lib/utils";
-import { useHeaderColor, useBorderColor, useTextColor } from "@/lib/theme-utils";
 
-type Props = {
+interface SectionProps {
   title: string;
   children: React.ReactNode;
   usage: "live" | "pdf";
-};
+}
 
-export default function Section({ title, children, usage }: Props) {
-  const titleSize = useUsageMap({
-    live: "text-md",
-    pdf: "text-[14px]",
-  }, usage);
-  
-  const headerColor = useHeaderColor(usage);
-  const borderColor = useBorderColor(usage);
-  const textColor = useTextColor(usage);
-  
+export default function Section({ title, children, usage }: SectionProps) {
+  const titleSize = usage === "live" ? "text-md" : "text-[14px]";
+
   return (
     <section className="mt-2">
       <h3
-          className={cn(
-            titleSize,
-            "font-bold"
-          )}
-          style={{ color: headerColor }}
-        >
+        className={cn(titleSize, "font-bold")}
+        style={{ color: 'var(--header-color)' }}
+      >
         {title}
       </h3>
-      <div 
+      <div
         className="w-full border-t mb-1"
-        style={{ borderColor: borderColor }}
+        style={{ borderColor: 'var(--color-border-default)' }}
       ></div>
       {children}
     </section>

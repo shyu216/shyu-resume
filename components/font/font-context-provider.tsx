@@ -15,8 +15,6 @@ export function FontContextProvider({ children }: FontContextProviderProps) {
     const fontStack = fontFamilies[fontFamily]?.fontStack.join(", ");
     if (fontStack) {
       document.documentElement.style.setProperty("--font-family", fontStack);
-      console.log(`[FontContextProvider] Applied font: ${fontFamily}`);
-      console.log(`[FontContextProvider] CSS variable --font-family set to: ${fontStack}`);
     }
   }, [fontFamily]);
 

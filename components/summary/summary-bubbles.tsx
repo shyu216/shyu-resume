@@ -10,7 +10,6 @@ import {
 } from "@/lib/summary-storage";
 import { X, History, Sparkles, MousePointerClick, Trash2, HardDrive } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useThemeColor, useTextColor, useSoftShadow, useHeaderColor } from "@/lib/theme-utils";
 
 interface SummaryBubblesProps {
   isOpen: boolean;
@@ -60,12 +59,6 @@ export function SummaryBubbles({
   const [historyItems, setHistoryItems] = useState<SummaryHistoryItem[]>([]);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
-
-  const headerColor = useHeaderColor();
-  const surfaceColor = useThemeColor("surface");
-  const borderColor = useThemeColor("border", "default");
-  const textColor = useTextColor();
-  const shadow = useSoftShadow();
 
   const t = translations[language as keyof typeof translations] || translations.en;
 
@@ -128,13 +121,13 @@ export function SummaryBubbles({
             transition={{ delay: 0.1 }}
             className="flex items-center gap-2 mb-1 px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm"
             style={{
-              background: `linear-gradient(to bottom, ${surfaceColor}95, ${surfaceColor}90)`,
-              boxShadow: shadow,
-              border: `1px solid ${borderColor}`,
+              background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 95%, transparent), color-mix(in srgb, var(--color-surface) 90%, transparent))`,
+              boxShadow: 'var(--shadow-soft)',
+              border: `1px solid var(--color-border-default)`,
             }}
           >
-            <History className="w-3.5 h-3.5" style={{ color: headerColor }} />
-            <span className="text-xs font-medium" style={{ color: textColor }}>
+            <History className="w-3.5 h-3.5" style={{ color: 'var(--header-color)' }} />
+            <span className="text-xs font-medium" style={{ color: 'var(--color-text-primary)' }}>
               {t.history}
             </span>
           </motion.div>
@@ -147,26 +140,26 @@ export function SummaryBubbles({
                 animate={{ opacity: 1, scale: 1 }}
                 className="flex flex-col items-center gap-3 px-4 py-6 rounded-xl shadow-md backdrop-blur-sm max-w-[160px]"
                 style={{
-                  background: `linear-gradient(to bottom, ${surfaceColor}90, ${surfaceColor}85)`,
-                  boxShadow: shadow,
-                  border: `1px solid ${borderColor}`,
+                  background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 90%, transparent), color-mix(in srgb, var(--color-surface) 85%, transparent))`,
+                  boxShadow: 'var(--shadow-soft)',
+                  border: `1px solid var(--color-border-default)`,
                 }}
               >
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: `${headerColor}20` }}
+                  style={{ backgroundColor: 'color-mix(in srgb, var(--header-color) 20%, transparent)' }}
                 >
-                  <Sparkles className="w-5 h-5" style={{ color: headerColor }} />
+                  <Sparkles className="w-5 h-5" style={{ color: 'var(--header-color)' }} />
                 </div>
                 <p
                   className="text-xs text-center font-medium"
-                  style={{ color: textColor }}
+                  style={{ color: 'var(--color-text-primary)' }}
                 >
                   {t.noHistory}
                 </p>
                 <p
                   className="text-[10px] text-center leading-relaxed"
-                  style={{ color: textColor, opacity: 0.6 }}
+                  style={{ color: 'var(--color-text-primary)', opacity: 0.6 }}
                 >
                   {t.noHistoryHint}
                 </p>
@@ -202,32 +195,32 @@ export function SummaryBubbles({
                           exit={{ opacity: 0, x: 8, scale: 0.95 }}
                           className="absolute right-full mr-3 px-3 py-2.5 rounded-lg shadow-lg z-50 min-w-[200px] max-w-[280px]"
                           style={{
-                            background: `linear-gradient(to bottom, ${surfaceColor}98, ${surfaceColor}95)`,
-                            boxShadow: shadow,
-                            border: `1px solid ${borderColor}`,
+                            background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 98%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
+                            boxShadow: 'var(--shadow-soft)',
+                            border: `1px solid var(--color-border-default)`,
                           }}
                         >
                           <p
                             className="text-xs leading-relaxed line-clamp-3"
-                            style={{ color: textColor }}
+                            style={{ color: 'var(--color-text-primary)' }}
                           >
                             {item.preview}
                           </p>
                           <div
                             className="flex items-center gap-1.5 mt-2 pt-2"
                             style={{
-                              borderTop: `1px solid ${borderColor}`,
+                              borderTop: `1px solid var(--color-border-default)`,
                               opacity: 0.5,
                             }}
                           >
-                            <MousePointerClick className="w-3 h-3" style={{ color: headerColor }} />
-                            <span className="text-[10px]" style={{ color: textColor }}>
+                            <MousePointerClick className="w-3 h-3" style={{ color: 'var(--header-color)' }} />
+                            <span className="text-[10px]" style={{ color: 'var(--color-text-primary)' }}>
                               {t.clickToRestore}
                             </span>
                           </div>
                           <p
                             className="text-[10px] mt-1"
-                            style={{ color: textColor, opacity: 0.5 }}
+                            style={{ color: 'var(--color-text-primary)', opacity: 0.5 }}
                           >
                             {new Date(item.createdAt).toLocaleString(
                               language === "en" ? "en-US" : "zh-CN",
@@ -285,8 +278,8 @@ export function SummaryBubbles({
                   style={{
                     backgroundColor: showClearConfirm
                       ? "rgba(239, 68, 68, 0.15)"
-                      : `${surfaceColor}80`,
-                    color: showClearConfirm ? "#ef4444" : textColor,
+                      : 'color-mix(in srgb, var(--color-surface) 80%, transparent)',
+                    color: showClearConfirm ? "#ef4444" : 'var(--color-text-primary)',
                     opacity: 0.7,
                   }}
                   onMouseEnter={(e) => {
@@ -311,8 +304,8 @@ export function SummaryBubbles({
             className="flex items-center gap-1.5 px-2 py-1 rounded-md mt-1"
             style={{ opacity: 0.5 }}
           >
-            <HardDrive className="w-3 h-3" style={{ color: textColor }} />
-            <span className="text-[10px]" style={{ color: textColor }}>
+            <HardDrive className="w-3 h-3" style={{ color: 'var(--color-text-primary)' }} />
+            <span className="text-[10px]" style={{ color: 'var(--color-text-primary)' }}>
               {t.localStorage}
             </span>
           </motion.div>

@@ -4,7 +4,6 @@ import React, { useState, useContext, useRef, useEffect } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { useColor, HeaderColorType } from "./color-provider";
 import { useTheme } from "next-themes";
-import { useThemeColor, useTextColor, useSoftShadow } from "@/lib/theme-utils";
 import { colorPalettes } from "@/lib/theme-config";
 import { LanguageContext } from "@/components/lang/language-provider";
 import type { LanguageType } from "@/components/lang/language-provider";
@@ -44,10 +43,6 @@ export function ColorSwitcher() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const { language } = useContext(LanguageContext);
-  const surfaceColor = useThemeColor('surface');
-  const borderColor = useThemeColor('border', 'default');
-  const textColor = useTextColor();
-  const shadow = useSoftShadow();
 
   const tipText = useLanguageMap(tooltipText, language);
   const headerLabel = useLanguageMap(headerText, language);
@@ -60,24 +55,18 @@ export function ColorSwitcher() {
   useEffect(() => {
     if (isOpen && containerRef.current && menuRef.current) {
       const containerRect = containerRef.current.getBoundingClientRect();
-      const menuWidth = 224; // w-56 = 14rem = 224px
-      const margin = 16; // 页面边距
+      const menuWidth = 224;
+      const margin = 16;
       const windowWidth = window.innerWidth;
 
-      // 计算右侧空间
       const rightSpace = windowWidth - containerRect.right;
-      // 计算左侧空间
       const leftSpace = containerRect.left;
 
       if (rightSpace >= menuWidth + margin) {
-        // 右侧空间足够，右对齐（相对按钮）
         setMenuPosition({ right: 0, left: undefined });
       } else if (leftSpace >= menuWidth + margin) {
-        // 右侧不够但左侧够，左对齐（相对按钮）
         setMenuPosition({ left: 0, right: undefined });
       } else {
-        // 两边都不够，固定到视口右边缘
-        // 计算从按钮到视口右边缘的距离，再减去边距
         const rightOffset = windowWidth - containerRect.right - margin;
         setMenuPosition({ right: -rightOffset, left: undefined });
       }
@@ -111,9 +100,9 @@ export function ColorSwitcher() {
             "hover:brightness-105 hover:scale-105"
           )}
           style={{
-            boxShadow: shadow,
-            borderColor: borderColor,
-            background: `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
+            boxShadow: 'var(--shadow-soft)',
+            borderColor: 'var(--color-border-default)',
+            background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
           }}
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -123,7 +112,7 @@ export function ColorSwitcher() {
               className="h-4 w-4"
               viewBox="0 0 20 20"
               fill="currentColor"
-              style={{ color: textColor }}
+              style={{ color: 'var(--color-text-primary)' }}
             >
               <path
                 fillRule="evenodd"
@@ -132,47 +121,43 @@ export function ColorSwitcher() {
               />
             </svg>
           ) : (
-            <div 
+            <div
               className="w-4 h-4 rounded-full border-2 border-white"
-              style={{ 
-                backgroundColor: currentColorValue,
-              }}
+              style={{ backgroundColor: currentColorValue }}
             />
           )}
         </button>
       </ElegantTooltip>
-      
+
       {isOpen && (
         <div
           ref={menuRef}
-          className="absolute top-full mt-2 w-56 rounded-xl shadow-lg bg-surface ring-1 ring-border-default z-50 overflow-hidden"
+          className="absolute top-full mt-2 w-56 rounded-xl shadow-lg z-50 overflow-hidden"
           style={{
-            boxShadow: shadow,
-            borderColor: borderColor,
-            backgroundColor: surfaceColor,
+            boxShadow: 'var(--shadow-soft)',
+            borderColor: 'var(--color-border-default)',
+            backgroundColor: 'var(--color-surface)',
             ...menuPosition,
           }}
         >
-          <div 
+          <div
             className="px-4 py-3 border-b transition-all duration-200"
-            style={{ 
-              borderColor: borderColor,
+            style={{
+              borderColor: 'var(--color-border-default)',
               background: `linear-gradient(to right, ${currentColorValue}20, transparent)`,
             }}
           >
-            <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: textColor, opacity: 0.7 }}>
+            <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-primary)', opacity: 0.7 }}>
               {headerLabel}
             </h4>
-            <p 
+            <p
               className="text-sm mt-1 font-medium transition-all duration-200"
-              style={{ 
-                color: currentColorValue,
-              }}
+              style={{ color: currentColorValue }}
             >
               {colorLabels[currentColor][language]}
             </p>
           </div>
-          
+
           <div className="py-3 px-4">
             <div className="grid grid-cols-4 gap-3">
               {Object.entries(colorLabels).map(([value, labels]) => {
@@ -181,23 +166,26 @@ export function ColorSwitcher() {
                 const isHover = isHovering === colorValue;
                 const palette = colorPalettes[colorValue];
                 const colorHex = palette?.[resolvedTheme === 'dark' ? 'dark' : 'light'];
-                
+
                 return (
-                  <ElegantTooltip 
-                    key={colorValue} 
-                    content={labels[language]} 
+                  <ElegantTooltip
+                    key={colorValue}
+                    content={labels[language]}
                     side="bottom"
                   >
                     <button
                       type="button"
                       className={cn(
                         "group relative w-10 h-10 rounded-xl transition-all duration-200 flex items-center justify-center",
-                        isSelected && "ring-2 ring-offset-2 ring-offset-surface",
+                        isSelected && "ring-2 ring-offset-2",
                         isHover && !isSelected && "scale-110"
                       )}
                       style={{
                         backgroundColor: colorHex,
-                        ...(isSelected ? { ringColor: colorHex } : {}),
+                        ...(isSelected ? {
+                          ringColor: colorHex,
+                          '--tw-ring-offset-color': 'var(--color-surface)',
+                        } as React.CSSProperties : {}),
                       }}
                       onClick={() => {
                         setHeaderColor(colorValue);
@@ -206,12 +194,12 @@ export function ColorSwitcher() {
                       onMouseEnter={() => setIsHovering(colorValue)}
                       onMouseLeave={() => setIsHovering(null)}
                     >
-                      <span 
+                      <span
                         className={cn(
                           "absolute -bottom-5 text-[10px] font-medium whitespace-nowrap transition-opacity duration-150",
                           isHover ? "opacity-100" : "opacity-0"
                         )}
-                        style={{ color: textColor }}
+                        style={{ color: 'var(--color-text-primary)' }}
                       >
                         {labels[language]}
                       </span>

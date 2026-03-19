@@ -1,12 +1,16 @@
-// The main keyword of section components
+// Label Component - Server Component
+// Uses CSS variables for theme support
 
 import React from "react";
-import { useTextColor } from "@/lib/theme-utils";
 
-export default function Label({ content, usage = "live" }: { content: React.ReactNode; usage?: "live" | "pdf" }) {
-  const textPrimary = useTextColor(usage);
+interface LabelProps {
+  content: React.ReactNode;
+  usage?: "live" | "pdf";
+}
+
+export default function Label({ content }: LabelProps) {
   return (
-    <div className="font-bold" style={{ color: textPrimary }}>
+    <div className="font-bold" style={{ color: 'var(--color-text-primary)' }}>
       {content}
     </div>
   );

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Pencil, Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ElegantTooltip } from "@/components/ui/tooltip";
-import { useThemeColor, useTextColor, useSoftShadow, useHeaderColor } from "@/lib/theme-utils";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { useLanguageMap } from "@/lib/utils";
@@ -23,11 +22,6 @@ export function SummaryEditButton({
   onCancel,
 }: SummaryEditButtonProps) {
   const { language } = useContext(LanguageContext);
-  const headerColor = useHeaderColor();
-  const surfaceColor = useThemeColor('surface');
-  const borderColor = useThemeColor('border', 'default');
-  const textColor = useTextColor();
-  const shadow = useSoftShadow();
 
   const tooltipMap = useLanguageMap({
     en: { edit: "Edit Summary", save: "Save", cancel: "Cancel" },
@@ -49,9 +43,9 @@ export function SummaryEditButton({
               "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition-all duration-200 backdrop-blur"
             )}
             style={{
-              boxShadow: shadow,
-              borderColor: borderColor,
-              background: `linear-gradient(to bottom, ${headerColor}90, ${headerColor}70)`,
+              boxShadow: 'var(--shadow-soft)',
+              borderColor: 'var(--color-border-default)',
+              background: `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`,
               color: '#ffffff',
             }}
           >
@@ -69,10 +63,10 @@ export function SummaryEditButton({
               "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition-all duration-200 backdrop-blur"
             )}
             style={{
-              boxShadow: shadow,
-              borderColor: borderColor,
-              background: `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
-              color: textColor,
+              boxShadow: 'var(--shadow-soft)',
+              borderColor: 'var(--color-border-default)',
+              background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
+              color: 'var(--color-text-primary)',
             }}
           >
             <X className="h-6 w-6 p-0.5" />
@@ -94,12 +88,12 @@ export function SummaryEditButton({
           "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 backdrop-blur transition-all duration-200"
         )}
         style={{
-          boxShadow: shadow,
-          borderColor: borderColor,
-          background: `linear-gradient(to bottom, ${surfaceColor}80, ${surfaceColor}95)`,
+          boxShadow: 'var(--shadow-soft)',
+          borderColor: 'var(--color-border-default)',
+          background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
         }}
       >
-        <Pencil className="h-6 w-6 p-0.5 transition-all duration-200 group-hover:rotate-12" style={{ color: textColor }} />
+        <Pencil className="h-6 w-6 p-0.5 transition-all duration-200 group-hover:rotate-12" style={{ color: 'var(--color-text-primary)' }} />
       </motion.button>
     </ElegantTooltip>
   );
