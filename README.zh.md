@@ -8,6 +8,16 @@
 
 一个现代化的双语简历构建器，使用 Next.js 和 React 构建，为网页和 PDF 格式进行了优化。这个项目是 [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume) 的增强版本，旨在创建专业的简历，在 HR 和 ATS 系统中脱颖而出。
 
+## 📄 PDF 生成
+
+1. 在 Chrome 中打开你的简历
+2. 点击页面上的 **保存PDF** 按钮（由 Action Button 组件提供）
+3. 打印对话框会自动打开
+4. 选择 **另存为 PDF** 作为目标
+5. 点击 **保存** 下载你的简历为 PDF 格式
+
+> **重要提示**：为获得最佳的 PDF 输出（版面与链接保留），请使用 Chrome，并在打印对话框中选择"另存为 PDF"。其他浏览器（Edge、Firefox 等）可能呈现不同。移动设备浏览器可能无法完全支持自定义字体。建议启用背景图形并将页边距设为"无"。
+
 ## ✨ 特性
 
 - **双语支持**：创建中文（简体和繁体）和英文简历
@@ -22,6 +32,8 @@
 
 ## 🚀 开始使用
 
+解锁简历定制实战！基于 yunjin-resume  [分支](https://github.com/shyu216/shyu-resume/tree/yunjin-resume)与[网页](https://shyu216.github.io/shyu-resume/yunjin-resume/) 模板，[需完成 50 + 文件深度改造](https://github.com/shyu216/shyu-resume/pull/1)，覆盖内容语言适配、工作种类重构全维度。这不仅是一次简历定制练习，更是上手 NextJS 开发、玩转 GitHub CI/CD 自动化部署的绝佳实战机会，从代码修改到流程配置，全程实操吃透前端工程化核心技能，快来动手试试！
+
 ### 先决条件
 
 - Node.js 18+
@@ -29,32 +41,25 @@
 
 ### 安装
 
-1. Fork 仓库
-2. 克隆你的 fork
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/shyu-resume.git
-   cd shyu-resume
-   ```
-3. 安装依赖
+1. 安装依赖
    ```bash
    npm install
    # 或
    yarn install
    ```
-4. 启动开发服务器
+2. 启动开发服务器
    ```bash
    npm run dev
    # 或
    yarn dev
    ```
-5. 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
-
-## 📝 定制
+3. 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
 
 ### 编辑内容
 
 所有简历内容都存储在 `content` 文件夹中，按语言组织：
 
+- `content/config.ts` - 配置文件，包含网站元数据、个人信息、联系方式等
 - `content/en/` - 英文内容
 - `content/zh/` - 简体中文内容
 - `content/zh-hk/` - 繁体中文内容
@@ -70,18 +75,6 @@
 | `lib/theme-config.ts` | 颜色配置 (colorPalettes)、字体配置 |
 | `components/color/color-provider.tsx` | 默认主题颜色设置 |
 | `components/font/font-provider.tsx` | 默认字体设置 |
-
-#### 可选主题颜色
-
-项目支持 8 种主题颜色：**蓝色**、**红色**、**紫色**、**绿色**、**橙色**、**粉色**、**青色**、**靛蓝**
-
-用户可以通过顶部的颜色选择器切换颜色。默认颜色为**红色**。
-
-#### 可选字体
-
-项目支持 5 种字体：**Inter**、**JetBrains Mono**、**System UI**、**Monospace**、**Serif**
-
-默认字体为 **JetBrains Mono**。
 
 ### 基于工作的功能
 
@@ -109,58 +102,7 @@
 
 这个 AI 生成的关键词列表将帮助优化你的简历以适应不同的工作类型，并提高 ATS 兼容性。
 
-### 自定义关键词生成脚本
-
 你也可以修改 `scripts/gen-keywords.js` 文件来自定义关键词生成过程。这个脚本会被 workflow 调用，但具体实现细节仍在完善中。欢迎发挥你的才智，实现自己的关键词生成逻辑！
-
-### 集中配置
-
-所有可定制内容现在集中在一个配置文件中，便于维护：
-
-**文件**：`content/config.ts`
-
-此文件包含：
-- 网站元数据（标题、描述、关键词）
-- 个人信息（不同语言的姓名）
-- 联系方式（LinkedIn、GitHub、邮箱、电话）
-
-### 自定义页眉和页脚
-
-#### 页眉
-
-页眉组件位于 `components/header.tsx`，包括：
-- 导航栏
-- 个人资料图片（根据配置中的 GitHub URL 自动从 GitHub 拉取）
-- 工作类型切换器
-- 语言切换器
-- 主题切换器
-
-要自定义页眉：
-1. 编辑 `content/config.ts` 更新你的 GitHub URL（用于个人资料图片）
-2. 编辑 `components/header.tsx` 修改布局或添加/删除元素
-3. 使用 Tailwind CSS 类调整样式
-
-#### 页脚
-
-页脚组件位于 `components/footer.tsx`，包括：
-- 版权信息（从配置中获取姓名）
-- 最后更新日期（自动生成）
-- 多语言支持
-
-要自定义页脚：
-1. 编辑 `content/config.ts` 更新不同语言的姓名
-2. 编辑 `components/footer.tsx` 修改布局或添加/删除元素
-3. 调整日期格式或添加其他信息
-
-## 📄 PDF 生成
-
-1. 在 Chrome 中打开你的简历
-2. 点击页面上的 **保存PDF** 按钮（由 Action Button 组件提供）
-3. 打印对话框会自动打开
-4. 选择 **另存为 PDF** 作为目标
-5. 点击 **保存** 下载你的简历为 PDF 格式
-
-> **重要提示**：为获得最佳的 PDF 输出（版面与链接保留），请使用 Chrome，并在打印对话框中选择“另存为 PDF”。其他浏览器（Edge、Firefox 等）可能呈现不同。移动设备浏览器可能无法完全支持自定义字体。建议启用背景图形并将页边距设为“无”。
 
 ## 🤝 贡献
 

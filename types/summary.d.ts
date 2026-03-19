@@ -1,5 +1,3 @@
 export interface Summary {
-  fullstack: string;
-  software: string;
-  ml: string;
+  [key: string]: string;
 }

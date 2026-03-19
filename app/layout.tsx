@@ -9,6 +9,8 @@ import { FontProvider } from "@/components/font/font-provider";
 import { FontContextProvider } from "@/components/font/font-context-provider";
 import { ColorProvider } from "@/components/color/color-provider";
 import { ColorContextProvider } from "@/components/color/color-context-provider";
+import { SummaryEditProvider } from "@/components/summary/summary-edit-provider";
+import { HeaderWithEdit } from "@/components/header-with-edit";
 import { siteConfig } from "@/content/config";
 
 export const metadata: Metadata = {
@@ -52,20 +54,22 @@ export default function RootLayout({
           <JobTypeProvider>
             <AllProviders>
               <ThemeProvider attribute="class" defaultTheme="system">
-                <div className="bg-grid-pattern" />
-                <span className="bg-radial-glow" />
+                <SummaryEditProvider>
+                  <div className="bg-grid-pattern" />
+                  <span className="bg-radial-glow" />
 
-                <div className="fixed inset-0 flex justify-center sm:px-8">
-                  <div className="flex w-full max-w-7xl lg:px-8">
-                    <div className="bg-page-container" />
+                  <div className="fixed inset-0 flex justify-center sm:px-8">
+                    <div className="flex w-full max-w-7xl lg:px-8">
+                      <div className="bg-page-container" />
+                    </div>
                   </div>
-                </div>
 
-                <div className="relative text-stone-700 dark:text-stone-300">
-                  <Header />
-                  <main>{children}</main>
-                  <Footer />
-                </div>
+                  <div className="relative text-stone-700 dark:text-stone-300">
+                    <HeaderWithEdit />
+                    <main>{children}</main>
+                    <Footer />
+                  </div>
+                </SummaryEditProvider>
               </ThemeProvider>
             </AllProviders>
           </JobTypeProvider>
