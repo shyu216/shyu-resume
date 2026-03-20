@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { useFontFamily } from "./font-provider";
 import { FontFamilyType, fontFamilies } from "@/lib/theme-config";
@@ -8,6 +8,7 @@ import { LanguageContext } from "@/components/lang/language-provider";
 import type { LanguageType } from "@/components/lang/language-provider";
 import { useLanguageMap } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { useDropdownMenu } from "@/lib/hooks/use-dropdown-menu";
 
 const fontLabels: Record<FontFamilyType, Record<LanguageType, string>> = {
   "inter": { en: "Inter", zh: "Inter", "zh-hk": "Inter" },
@@ -37,11 +38,7 @@ const headerText: Record<LanguageType, string> = {
 
 export function FontSwitcher() {
   const { fontFamily, setFontFamily } = useFontFamily();
-  const [isOpen, setIsOpen] = useState(false);
   const [isHovering, setIsHovering] = useState<FontFamilyType | null>(null);
-  const [menuPosition, setMenuPosition] = useState<{ left?: number; right?: number }>({ right: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
 
   const { language } = useContext(LanguageContext);
 
@@ -52,44 +49,9 @@ export function FontSwitcher() {
 
   const previewFont = isHovering || fontFamily;
 
-  // 智能边界检测
-  useEffect(() => {
-    if (isOpen && containerRef.current && menuRef.current) {
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const menuWidth = 256;
-      const margin = 16;
-      const windowWidth = window.innerWidth;
-
-      const rightSpace = windowWidth - containerRect.right;
-      const leftSpace = containerRect.left;
-
-      if (rightSpace >= menuWidth + margin) {
-        setMenuPosition({ right: 0, left: undefined });
-      } else if (leftSpace >= menuWidth + margin) {
-        setMenuPosition({ left: 0, right: undefined });
-      } else {
-        const rightOffset = windowWidth - containerRect.right - margin;
-        setMenuPosition({ right: -rightOffset, left: undefined });
-      }
-    }
-  }, [isOpen]);
-
-  // 点击外部自动关闭
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen]);
+  const { isOpen, setIsOpen, containerRef, menuRef, menuPosition } = useDropdownMenu({
+    menuWidth: 256
+  });
 
   return (
     <div className="relative" ref={containerRef}>

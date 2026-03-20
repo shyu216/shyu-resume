@@ -5,7 +5,8 @@ import { useReactToPrint } from "react-to-print";
 import React from "react";
 import { createContext } from "react";
 import { useFontFamily } from "@/components/font/font-provider";
-import { fontFamilies } from "@/lib/theme-config";
+import { useColor } from "@/components/color/color-provider";
+import { fontFamilies, colorPalettes } from "@/lib/theme-config";
 
 type PrintContext = {
   componentRef: React.MutableRefObject<null> | null;
@@ -23,6 +24,7 @@ export function PrintProvider({
   children: React.ReactNode;
 }) {
   const { fontFamily } = useFontFamily();
+  const { headerColor } = useColor();
   const fontStack = fontFamilies[fontFamily].fontStack.join(", ");
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
@@ -44,6 +46,11 @@ export function PrintProvider({
       if (targetDoc) {
         targetDoc.documentElement.style.setProperty("--font-family", fontStack);
         targetDoc.body?.style.setProperty("font-family", fontStack);
+        
+        // 传递颜色变量
+        const isDark = document.documentElement.classList.contains('dark');
+        const headerColorValue = colorPalettes[headerColor][isDark ? 'dark' : 'light'];
+        targetDoc.documentElement.style.setProperty("--header-color", headerColorValue);
       }
     },
     onPrintError: (error) => console.log(error),
@@ -54,7 +61,10 @@ export function PrintProvider({
     pageStyle: `
       @page:first { margin-top: 0cm; }
       @page { size: 210mm 297mm; margin-top: 1cm; margin-bottom: 0.5cm; }
-      :root { --font-family: ${fontStack}; }
+      :root { 
+        --font-family: ${fontStack}; 
+        --header-color: ${colorPalettes[headerColor].light};
+      }
       html, body { font-family: ${fontStack}; margin: 0; }
     `,
   });

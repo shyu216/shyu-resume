@@ -11,6 +11,7 @@ import { ColorProvider } from "@/components/color/color-provider";
 import { ColorContextProvider } from "@/components/color/color-context-provider";
 import { SummaryEditProvider } from "@/components/summary/summary-edit-provider";
 import { HeaderWithEdit } from "@/components/header-with-edit";
+import { DynamicTitle } from "@/components/dynamic-title";
 import { siteConfig } from "@/content/config";
 
 export const metadata: Metadata = {
@@ -44,6 +45,7 @@ export default function RootLayout({
                   <ColorContextProvider>
                     <ThemeProvider attribute="class" defaultTheme="system">
                       <SummaryEditProvider>
+                        <DynamicTitle />
                         <div className="bg-grid-pattern" />
                         <span className="bg-radial-glow" />
 
