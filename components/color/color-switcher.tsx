@@ -130,7 +130,8 @@ export function ColorSwitcher() {
                 const colorHex = palette?.[resolvedTheme === 'dark' ? 'dark' : 'light'];
 
                 return (
-                    <button
+                    <button 
+                      key={colorValue}
                       type="button"
                       className={cn(
                         "group relative w-10 h-10 rounded-xl transition-all duration-200 flex items-center justify-center",
