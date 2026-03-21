@@ -2,16 +2,16 @@
 
 import React, { useState, useContext } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
-import { useColor, HeaderColorType } from "./color-provider";
+import { useColor } from "./color-provider";
 import { useTheme } from "next-themes";
-import { colorPalettes } from "@/lib/theme-config";
+import { colorPalettes, ColorPalette } from "@/lib/theme-config";
 import { LanguageContext } from "@/components/lang/language-provider";
 import type { LanguageType } from "@/components/lang/language-provider";
 import { useLanguageMap } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { useDropdownMenu } from "@/lib/hooks/use-dropdown-menu";
 
-const colorLabels: Record<HeaderColorType, Record<LanguageType, string>> = {
+const colorLabels: Record<ColorPalette, Record<LanguageType, string>> = {
   blue: { en: "Ocean", zh: "海洋蓝", "zh-hk": "海洋藍" },
   red: { en: "Coral", zh: "珊瑚红", "zh-hk": "珊瑚紅" },
   purple: { en: "Violet", zh: "紫罗兰", "zh-hk": "紫羅蘭" },
@@ -37,7 +37,7 @@ const headerText: Record<LanguageType, string> = {
 export function ColorSwitcher() {
   const { headerColor, setHeaderColor } = useColor();
   const { resolvedTheme } = useTheme();
-  const [isHovering, setIsHovering] = useState<HeaderColorType | null>(null);
+  const [isHovering, setIsHovering] = useState<ColorPalette | null>(null);
 
   const { language } = useContext(LanguageContext);
 
@@ -123,18 +123,13 @@ export function ColorSwitcher() {
           <div className="py-3 px-4">
             <div className="grid grid-cols-4 gap-3">
               {Object.entries(colorLabels).map(([value, labels]) => {
-                const colorValue = value as HeaderColorType;
+                const colorValue = value as ColorPalette;
                 const isSelected = headerColor === colorValue;
                 const isHover = isHovering === colorValue;
                 const palette = colorPalettes[colorValue];
                 const colorHex = palette?.[resolvedTheme === 'dark' ? 'dark' : 'light'];
 
                 return (
-                  <ElegantTooltip
-                    key={colorValue}
-                    content={labels[language]}
-                    side="bottom"
-                  >
                     <button
                       type="button"
                       className={cn(
@@ -163,7 +158,7 @@ export function ColorSwitcher() {
                         )}
                         style={{ color: 'var(--color-text-primary)' }}
                       >
-                        {labels[language]}
+                        {/* {labels[language]} */}
                       </span>
                       {isSelected && (
                         <svg
@@ -180,7 +175,6 @@ export function ColorSwitcher() {
                         </svg>
                       )}
                     </button>
-                  </ElegantTooltip>
                 );
               })}
             </div>

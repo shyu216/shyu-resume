@@ -144,7 +144,7 @@
 
 ```tsx
 // ✅ 正确写法
-const [headerColor, setHeaderColor] = useState<HeaderColorType>(() => {
+const [headerColor, setHeaderColor] = useState<ColorPalette>(() => {
   if (typeof window !== 'undefined') {
     const saved = localStorage.getItem("headerColor");
     if (validColors.includes(saved)) return saved;

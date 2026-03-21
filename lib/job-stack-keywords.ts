@@ -1,4 +1,4 @@
-import { JobType } from './job-switcher';
+import { JobType } from '@/components/job/job-switcher';
 
 // 从 JSON 文件导入关键词数据
 import keywordsData from '@/app/keywords.json';

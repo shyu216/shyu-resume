@@ -5,7 +5,7 @@ import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { useFontFamily } from "@/components/font/font-provider";
 import { cn } from "@/lib/utils";
-import { jobOptions, type JobType, type JobSwitcherProps } from "./job-types";
+import { jobOptions, type JobType, type JobSwitcherProps } from "@/lib/job-types";
 
 export { JobType, JobSwitcherProps };
 
@@ -110,7 +110,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
             left: `${barPosition}px`,
             width: `${barWidth}px`,
             background: isNoneActive
-              ? '#1e293b80'
+              ? 'var(--color-overlay)'
               : `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`,
             boxShadow: isNoneActive
               ? 'var(--shadow-soft)'
@@ -142,7 +142,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
               onClick={() => onJobTypeChange(option.value as JobType)}
               className="relative z-10 px-4 py-1 rounded-full transition-all duration-200 font-medium hover:text-[var(--color-text-primary)]"
               style={{
-                color: jobType === option.value ? '#ffffff' : 'var(--color-text-primary)'
+                color: jobType === option.value ? 'var(--color-white)' : 'var(--color-text-primary)'
               }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -174,7 +174,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
             }}
             className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-[var(--color-text-primary)]"
             style={{
-              color: isNoneActive ? '#ffffff' : 'var(--color-text-primary)',
+              color: isNoneActive ? 'var(--color-white)' : 'var(--color-text-primary)',
               minWidth: '24px',
               display: 'flex',
               alignItems: 'center',

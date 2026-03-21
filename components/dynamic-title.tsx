@@ -1,7 +1,7 @@
 "use client";
 
 import { useJobType } from "@/components/job/job-type-provider";
-import { jobOptions } from "@/components/job/job-types";
+import { jobOptions } from "@/lib/job-types";
 import { siteConfig } from "@/content/config";
 import { useEffect } from "react";
 

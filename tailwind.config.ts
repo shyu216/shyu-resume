@@ -1,7 +1,4 @@
 import type { Config } from "tailwindcss";
-import { generateTailwindConfig } from "./lib/theme-config";
-
-const themeConfig = generateTailwindConfig();
 
 const config: Config = {
   content: [
@@ -12,12 +9,11 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
-      ...themeConfig.theme?.extend,
       fontFamily: {
-        sans: ['var(--font-family)', ...themeConfig.theme?.extend?.fontFamily?.sans || []],
+        sans: ['var(--font-family)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
       },
       colors: {
-        ...themeConfig.theme?.extend?.colors,
         grid: 'var(--color-grid)',
         glow: 'var(--color-glow)',
         page: 'var(--color-page)',

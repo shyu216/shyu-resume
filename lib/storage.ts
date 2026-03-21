@@ -3,9 +3,8 @@
 // 支持版本控制、数据迁移、类型安全
 // ==========================================
 
-import type { HeaderColorType } from "@/components/color/color-provider";
 import type { LanguageType } from "@/components/lang/language-provider";
-import type { FontFamilyType } from "@/lib/theme-config";
+import type { FontFamilyType, ColorPalette } from "@/lib/theme-config";
 import buildInfo from "@/app/build-info.json";
 
 // 存储版本号，用于数据迁移（使用构建版本）
@@ -19,7 +18,7 @@ const STORAGE_KEY = "resume-settings";
 export interface AppSettings {
   buildVersion: string;
   dataVersion: string;
-  color: HeaderColorType;
+  color: ColorPalette;
   language: LanguageType;
   fontFamily: FontFamilyType;
   jobType: 'FULLSTACK' | 'SOFTWARE' | 'DEVOPS' | 'ML_RESEARCHER';
@@ -39,7 +38,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
 };
 
 // 验证颜色值是否有效
-const validColors: HeaderColorType[] = [
+const validColors: ColorPalette[] = [
   'blue', 'red', 'purple', 'green', 'orange', 'pink', 'teal', 'indigo'
 ];
 
@@ -153,8 +152,8 @@ function migrateFromOldStorage(oldData?: any): AppSettings {
 
     // 回退：迁移旧版独立存储的数据
     const oldColor = localStorage.getItem("headerColor");
-    if (oldColor && validColors.includes(oldColor as HeaderColorType)) {
-      settings.color = oldColor as HeaderColorType;
+    if (oldColor && validColors.includes(oldColor as ColorPalette)) {
+      settings.color = oldColor as ColorPalette;
     }
 
     const oldFont = localStorage.getItem("fontFamily");
@@ -227,7 +226,7 @@ export function useAppSettings() {
     fontFamily: settings.fontFamily,
     jobType: settings.jobType,
     // 便捷更新
-    setColor: useCallback((color: HeaderColorType) => updateSettings({ color }), [updateSettings]),
+    setColor: useCallback((color: ColorPalette) => updateSettings({ color }), [updateSettings]),
     setLanguage: useCallback((language: LanguageType) => updateSettings({ language }), [updateSettings]),
     setFontFamily: useCallback((fontFamily: FontFamilyType) => updateSettings({ fontFamily }), [updateSettings]),
     setJobType: useCallback((jobType: AppSettings['jobType']) => updateSettings({ jobType }), [updateSettings]),

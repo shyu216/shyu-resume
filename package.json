@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.0.7",
+    "chroma-js": "^3.2.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.284.0",
@@ -21,6 +22,7 @@
     "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
+    "@types/chroma-js": "^3.1.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

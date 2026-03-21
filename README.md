@@ -6,133 +6,146 @@
 
 ![Banner](public/images/banner.png)
 
-A modern, bilingual resume builder built with Next.js and React, optimized for both web and PDF formats. This project is a enhanced version of [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume), designed to create professional resumes that stand out to HR and ATS systems.
+Hey there! 👋 Welcome to **ShYu Resume** – a modern, bilingual resume builder crafted with Next.js and React! 
 
-## 📄 PDF Generation
+This little gem is here to help you create stunning resumes that not only look amazing on the web but also export beautifully to PDF. It's a fancy fork of [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume), supercharged with extra goodies to make your resume pop and shine in front of HR and ATS systems!
 
-1. Open your resume in Chrome
-2. Click the **Save PDF** button on the page (provided by the Action Button component)
-3. The print dialog will open automatically
-4. Select **Save as PDF** as the destination
-5. Click **Save** to download your resume as a PDF
+## 📄 How to Generate PDF
 
-> **Important note**: For the best PDF output (layout and link preservation), open the site in Chrome and choose "Save as PDF" as the print destination. Other browsers (Edge, Firefox) may render differently. Mobile browsers may not fully support custom fonts. For optimal results, enable background graphics and set margins to "None" in the print dialog.
+No worries, it's super easy! Just follow these steps:
 
-## ✨ Features
+1. Open your resume in Chrome (trust us, it works best!)
+2. Hit the **Save as PDF** button on the page
+3. The print dialog will pop up – pretty cool, right?
+4. Choose **Save as PDF** as your destination
+5. Click **Save** and boom! Your PDF is ready! 🎉
 
-- **Bilingual Support**: Create resumes in Chinese (Simplified and Traditional) and English
-- **Optimized PDF Layout**: Perfect A4 formatting with proper pagination and styling
-- **Responsive Design**: Looks great on both desktop and mobile devices
-- **Theme Customization**: Red theme with customizable options
-- **Content Separation**: All text content stored in organized `content` folder for easy editing
-- **ATS Friendly**: Optimized for Applicant Tracking Systems
-- **Job-based Keyword Highlighter**: Automatically highlights relevant skills and experiences based on selected job type
-- **Project Filter**: Dynamically filters projects to show only those relevant to the selected job type
-- **Print to PDF**: One-click PDF generation with proper formatting
+> **Pro Tip**: For the *most* gorgeous PDF output with perfect layout and clickable links, Chrome is your best friend. Other browsers like Edge or Firefox might show things a bit differently. On mobile? Custom fonts might not render fully. For that *chef's kiss* result: enable background graphics and set margins to "None" in the print dialog. You're welcome! 😉
 
-## 🚀 Getting Started
+## ✨ What's Cool About This
 
-Unlock resume customization practice! Based on the yunjin-resume [branch](https://github.com/shyu216/shyu-resume/tree/yunjin-resume) and [webpage](https://shyu216.github.io/shyu-resume/yunjin-resume/) template, [requires 50+ files deep transformation](https://github.com/shyu216/shyu-resume/pull/1), covering content language adaptation and job type reconstruction. This is not only a resume customization exercise, but also an excellent hands-on opportunity to learn NextJS development and GitHub CI/CD automated deployment. From code modification to process configuration, you can master core frontend engineering skills throughout the entire process. Come and try it!
+- **Bilingual Vibes** ✌️ – Switch between Chinese (Simplified & Traditional) and English effortlessly
+- **PDF-Ready Layout** 📄 – Perfect A4 formatting with smart pagination – no more broken pages!
+- **Mobile-Friendly** 📱 – Looks fabulous on both desktop and mobile devices
+- **Theme Customization** 🎨 – Red theme with tons of customizable options to match your style
+- **Easy Content Management** 📝 – All your text lives in the organized `content` folder – just edit and go!
+- **JD-Tailored** 🤖 – Tailor your Summary based on the job description so your resume gets noticed
+- **Smart Keyword Highlighter** 🔍 – Automatically highlights skills and experiences based on the job you're targeting
+- **Project Filter** 🎯 – Dynamically shows only the most relevant projects for each job type
+- **One-Click PDF Export** 🖨️ – Generate beautifully formatted PDFs with a single click
 
-### Prerequisites
+## 🚀 Let's Get You Started
+
+Ready to craft your dream resume? Let's go! 🌟
+
+This project includes a customization example based on the yunjin-resume [branch](https://github.com/shyu216/shyu-resume/tree/yunjin-resume) and [webpage](https://shyu216.github.io/shyu-resume/yunjin-resume/) template. Check out [PR #1](https://github.com/shyu216/shyu-resume/pull/1) to see what it takes to create your own personalized resume – we're talking 50+ files transformed, covering content language adaptation and job type reconstruction! Pretty cool, right? This isn't just a resume customization exercise – it's a fantastic hands-on opportunity to learn NextJS development and GitHub CI/CD automated deployment! From code tweaking to process configuration, you'll master core frontend engineering skills throughout the entire journey. Come on, give it a try!
+
+### What You'll Need
 
 - Node.js 18+
 - npm or yarn
 
 ### Installation
 
-1. Install dependencies
+1. Install all the dependencies
    ```bash
    npm install
    # or
    yarn install
    ```
-2. Start the development server
+2. Fire up the development server
    ```bash
    npm run dev
    # or
    yarn dev
    ```
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. Open [http://localhost:3000](http://localhost:3000) in your browser – ta-da! 🎊
 
-### Edit Content
+### 🎨 Customization Modules
 
-All resume content is stored in the `content` folder, organized by language:
+Here's the fun part – making this resume *yours*! We've organized everything into cute little modules:
 
-- `content/config.ts` - Configuration file containing site metadata, personal information, contact details, etc.
-- `content/en/` - English content
-- `content/zh/` - Simplified Chinese content
-- `content/zh-hk/` - Traditional Chinese content
+#### 1️⃣ Content Editing
 
-Simply edit the TypeScript files in these folders to update your resume information.
+All your resume content lives happily in the `content` folder, organized by language:
 
-### Theme Customization
+| Folder | What's Inside |
+|--------|---------------|
+| `content/config.ts` | Your personal info, contact details, website settings |
+| `content/en/` | English version |
+| `content/zh/` | Simplified Chinese version |
+| `content/zh-hk/` | Traditional Chinese version |
 
-Modify the theme settings in the following files to customize colors and styling:
+Just hop into these TypeScript files and sprinkle your magic – I mean, update your info! ✨
 
-| File | Description |
-|------|-------------|
-| `lib/theme-config.ts` | Color palette definitions (colorPalettes), font configurations |
+#### 2️⃣ Theme Customization
+
+Want to change the colors and fonts? Easy peasy! Check out these files:
+
+| File | What It Does |
+|------|--------------|
+| `lib/theme-config.ts` | Color palettes and font configurations – all the visual goodness |
 | `components/color/color-provider.tsx` | Default header color setting |
 | `components/font/font-provider.tsx` | Default font family setting |
 
-### Job-based Features
+#### 3️⃣ Job-Based Superpowers
 
-The resume builder includes intelligent job-based features:
+This is the really cool part! 🎯
 
-1. **Job Type Selection**: Use the job switcher in the interface to select the type of job you're applying for
-2. **Keyword Highlighting**: Automatically highlights skills and experiences relevant to the selected job type
-3. **Project Filtering**: Dynamically filters your projects to show only those most relevant to the selected job type
+- **Job Type Switcher**: Use the job switcher in the interface to select the type of job you're after
+- **Keyword Highlighter**: Automatically highlights skills and experiences that match your target job
+- **Project Filter**: Dynamically shows only the projects that are most relevant to the selected job type
 
-### Customize Job Types
+##### Adding Your Own Job Types
 
-To add or modify job types and their associated keywords:
+Want to add more job types? Here's how:
 
-1. Edit the job types in `components/job/job-switcher.tsx`
+1. Edit job types in `components/job/job-switcher.tsx`
 2. Update keyword mappings in `components/job/job-stack-keywords.ts`
 
-### AI-Powered Keyword Generation
+#### 4️⃣ AI-Powered Keyword Generation (How Fancy! 🤖)
 
-The keyword matching system is enhanced by AI. After writing your work experience and projects, you can:
+We've got an AI-enhanced keyword matching system! Here's the magic recipe:
 
-1. Package your resume content (work experience and projects)
-2. Send it to an AI assistant like Doubao
-3. Request it to generate a comprehensive `keywords.json` file
-4. Replace the existing `app/keywords.json` file with the generated one
+1. Package up your resume content (work experience + projects)
+2. Send it to an AI buddy like Doubao
+3. Ask nicely for a comprehensive `keywords.json` file
+4. Replace the existing `app/keywords.json` with the AI-generated one
 
-This AI-generated keyword list will help optimize your resume for different job types and improve ATS compatibility.
+Boom! Your resume is now super optimized for different job types and ATS compatibility! 🚀
 
-You can also modify the `scripts/gen-keywords.js` file to customize the keyword generation process. This script is called by the workflow, but the implementation details are still being finalized. Feel free to unleash your creativity and implement your own keyword generation logic!
+You can also tweak `scripts/gen-keywords.js` to create your own keyword generation magic. This script gets called by the workflow, but feel free to unleash your creativity and implement your own keyword generation logic!
 
-## 🤝 Contributing
+## 🤝 Join the Fun!
 
-Contributions are welcome! If you have ideas for improvements or bug fixes, please:
+We'd love to have you! If you've got ideas for improvements or found any bugs:
 
 1. Fork the repository
 2. Create a new branch (`git checkout -b feature/your-feature`)
-3. Make your changes
+3. Make your amazing changes
 4. Commit your changes (`git commit -m 'Add your feature'`)
 5. Push to the branch (`git push origin feature/your-feature`)
-6. Open a Pull Request
+6. Open a Pull Request – you're a contributor now! 🎉
 
-## 📚 Tech Stack
+## 📚 The Tech Stuff
 
 - Next.js 14
 - React 18
 - TypeScript
 - Tailwind CSS
-- Framer Motion (for animations)
+- Framer Motion (for those smooth, silky animations)
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source under the [MIT License](LICENSE). Feel free to use it, share it, love it! 💖
 
-## 🌟 Show Your Support
+## 🌟 Show Some Love
 
-If you find this project helpful, please give it a ⭐️ on GitHub!
+If you find this project helpful or just think it's neat, please give it a ⭐️ on GitHub! It makes our day! ☀️
+
+---
+
+Made with ❤️ by ShYu
 
 ---
 
-Built with ❤️ by ShYu
-
----

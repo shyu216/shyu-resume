@@ -277,9 +277,9 @@ export function SummaryBubbles({
                   className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[10px] font-medium transition-colors mt-1"
                   style={{
                     backgroundColor: showClearConfirm
-                      ? "rgba(239, 68, 68, 0.15)"
+                      ? "var(--color-danger-bg)"
                       : 'color-mix(in srgb, var(--color-surface) 80%, transparent)',
-                    color: showClearConfirm ? "#ef4444" : 'var(--color-text-primary)',
+                    color: showClearConfirm ? 'var(--color-danger)' : 'var(--color-text-primary)',
                     opacity: 0.7,
                   }}
                   onMouseEnter={(e) => {

@@ -46,7 +46,7 @@ export function SummaryEditButton({
               boxShadow: 'var(--shadow-soft)',
               borderColor: 'var(--color-border-default)',
               background: `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`,
-              color: '#ffffff',
+              color: 'var(--color-white)',
             }}
           >
             <Check className="h-6 w-6 p-0.5" />

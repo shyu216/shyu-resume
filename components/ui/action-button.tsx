@@ -50,7 +50,7 @@ export default function ActionButton({ className, usage }: Props) {
         className={cn(baseButtonClass, "font-semibold")}
         style={{
           backgroundColor: 'var(--header-color)',
-          color: '#ffffff',
+          color: 'var(--color-white)',
         }}
       >
         {text}
@@ -62,7 +62,7 @@ export default function ActionButton({ className, usage }: Props) {
       href="https://shyu216.github.io/shyu-resume/"
       style={{
         backgroundColor: 'var(--header-color)',
-        color: '#ffffff',
+        color: 'var(--color-white)',
       }}
     >
       {text}

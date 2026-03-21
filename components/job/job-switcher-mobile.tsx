@@ -5,7 +5,7 @@ import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { useFontFamily } from "@/components/font/font-provider";
 import { cn } from "@/lib/utils";
-import { jobOptions, type JobType, type JobSwitcherProps } from "./job-types";
+import { jobOptions, type JobType, type JobSwitcherProps } from "@/lib/job-types";
 
 export { JobType, JobSwitcherProps };
 
@@ -140,7 +140,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
             left: `${barPosition}px`,
             width: `${barWidth}px`,
             background: isNoneActive
-              ? '#1e293b80'
+              ? 'var(--color-overlay)'
               : `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`,
             boxShadow: isNoneActive
               ? 'var(--shadow-soft)'
@@ -195,7 +195,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
                   ref={el => { buttonRefs.current[activeIndex] = el as HTMLButtonElement | null; }}
                   className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap overflow-hidden"
                   style={{
-                    color: '#ffffff'
+                    color: 'var(--color-white)'
                   }}
                 >
                   <span
@@ -230,7 +230,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
               <button
                 className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap"
                 style={{
-                  color: '#ffffff'
+                  color: 'var(--color-white)'
                 }}
               >
                 {jobOptions.find(opt => opt.value === previousJobType)?.label}
@@ -278,7 +278,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
             }}
             className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-[var(--color-text-primary)]"
             style={{
-              color: isNoneActive ? '#ffffff' : 'var(--color-text-primary)',
+              color: isNoneActive ? 'var(--color-white)' : 'var(--color-text-primary)',
               minWidth: '24px',
               display: 'flex',
               alignItems: 'center',

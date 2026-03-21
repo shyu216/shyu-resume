@@ -52,9 +52,9 @@ export function Footer() {
   const versionText = buildInfo?.version ? `v${buildInfo.version}` : "";
 
   return (
-    <footer className="mt-32 flex-none">
+    <footer className="mt-12 flex-none">
       <ContainerOuter>
-        <div className="border-t border-stone-500/50 pb-16 pt-10 ">
+        <div className="border-t border-stone-500/50 pb-10 pt-10 ">
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
               <p className="text-sm">

@@ -2,12 +2,11 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "@/lib/storage";
-
-export type HeaderColorType = 'blue' | 'red' | 'purple' | 'green' | 'orange' | 'pink' | 'teal' | 'indigo';
+import { ColorPalette } from "@/lib/theme-config";
 
 interface ColorContextType {
-  headerColor: HeaderColorType;
-  setHeaderColor: (color: HeaderColorType) => void;
+  headerColor: ColorPalette;
+  setHeaderColor: (color: ColorPalette) => void;
   isInitialized: boolean;
 }
 
@@ -26,7 +25,7 @@ interface ColorProviderProps {
 }
 
 export function ColorProvider({ children }: ColorProviderProps) {
-  const [headerColor, setHeaderColorState] = useState<HeaderColorType>(DEFAULT_SETTINGS.color);
+  const [headerColor, setHeaderColorState] = useState<ColorPalette>(DEFAULT_SETTINGS.color);
   const [isInitialized, setIsInitialized] = useState(false);
 
   // 客户端挂载后从统一存储读取
@@ -37,7 +36,7 @@ export function ColorProvider({ children }: ColorProviderProps) {
   }, []);
 
   // 保存到统一存储
-  const setHeaderColor = (color: HeaderColorType) => {
+  const setHeaderColor = (color: ColorPalette) => {
     setHeaderColorState(color);
     if (isInitialized) {
       saveSettings({ color });

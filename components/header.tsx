@@ -46,7 +46,7 @@ export function Header({
 
   return (
     <>
-      <Container className="mt-5 mb-10">
+      <Container className="mt-5">
         <nav className="flex flex-col xl:flex-row justify-between items-center gap-4">
           <div>
             <Link href="/">

@@ -13,7 +13,7 @@ import { workExperience as workExperienceZhHk } from "@/content/zh-hk/work-exper
 import Label from "@/components/labels/label";
 import { type WorkExperience } from "@/types/work-experience";
 import { useJobType } from "@/components/job/job-type-provider";
-import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
+import { getJobStackKeywords } from "@/lib/job-stack-keywords";
 import { useLanguageMap } from "@/lib/utils";
 
 type Props = {

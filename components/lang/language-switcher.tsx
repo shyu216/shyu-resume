@@ -46,7 +46,7 @@ export function LanguageSwitcher() {
                 background: isSelected
                   ? `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`
                   : `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
-                color: isSelected ? '#ffffff' : 'var(--color-text-primary)',
+                color: isSelected ? 'var(--color-white)' : 'var(--color-text-primary)',
               }}
               onClick={() => setLanguage(lang.value)}
               onMouseEnter={() => setHoveredLang(lang.value)}

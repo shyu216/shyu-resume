@@ -8,7 +8,7 @@ import { skills as skillsZh } from "@/content/zh/skills";
 import { skills as skillsZhHk } from "@/content/zh-hk/skills";
 import Label from "../labels/label";
 import { useJobType } from "@/components/job/job-type-provider";
-import { getJobStackKeywords } from "@/components/job/job-stack-keywords";
+import { getJobStackKeywords } from "@/lib/job-stack-keywords";
 import { hasKeywordMatches } from "@/lib/keyword-utils";
 import { useLanguageMap } from "@/lib/utils";
 
