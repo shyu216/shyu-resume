@@ -7,9 +7,9 @@ import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
 import { useContext, useMemo } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { projects as projectsEn } from "@/content/en/projects";
 import { projects as projectsZh } from "@/content/zh/projects";
-import { projects as projectsZhHk } from "@/content/zh-hk/projects";
+import { projects as projectsJa } from "@/content/ja/projects";
+import { projects as projectsFr } from "@/content/fr/projects";
 import Label from "@/components/labels/label";
 import { useJobType } from "@/components/job/job-type-provider";
 import { getJobStackKeywords } from "@/lib/job-stack-keywords";
@@ -26,26 +26,53 @@ export default function ProjectSection({ usage }: Props) {
   const keywords = getJobStackKeywords(jobType);
 
   const { data: projects, title } = useLanguageMap({
-    en: { data: projectsEn, title: "PROJECT" },
     zh: { data: projectsZh, title: "项目经历" },
-    "zh-hk": { data: projectsZhHk, title: "項目經歷" },
+    ja: { data: projectsJa, title: "プロジェクト" },
+    fr: { data: projectsFr, title: "Projets" },
   }, language);
 
   // 基于 jobType 关键词过滤 projects
+  // 跨语言匹配：检查所有语言版本的项目内容，只要任一语言版本匹配，就显示该项目
   const filteredProjects = useMemo(() => {
-    // 如果是 NONE 或没有关键词，返回所有项目
-    if (jobType === 'NONE' || !keywords || keywords.length === 0) {
+    // 如果没有关键词，返回所有项目
+    if (!keywords || keywords.length === 0) {
       return projects;
     }
-    // 过滤逻辑：检查项目的 bullet points 中是否有至少一个匹配关键词
-    return projects.filter(project =>
-      project.bullets?.some(bullet => hasKeywordMatches(bullet, keywords)) || false
-    );
-  }, [projects, keywords, jobType]);
+    
+    // 获取所有语言的项目数据用于跨语言匹配
+    const allLanguageProjects = {
+      zh: projectsZh,
+      ja: projectsJa,
+      fr: projectsFr
+    };
+    
+    // 过滤逻辑：检查当前语言的项目
+    // 同时通过项目ID关联，检查其他语言版本的bullet points是否匹配关键词
+    return projects.filter(project => {
+      // 首先检查当前语言版本是否匹配
+      const currentLangMatch = project.bullets?.some(bullet => hasKeywordMatches(bullet, keywords)) || false;
+      if (currentLangMatch) return true;
+      
+      // 如果当前语言不匹配，检查其他语言版本
+      // 通过项目ID找到对应的其他语言版本
+      const projectId = project.id;
+      for (const [lang, langProjects] of Object.entries(allLanguageProjects)) {
+        if (lang === language) continue; // 跳过当前语言，已经检查过了
+        
+        const langProject = langProjects.find(p => p.id === projectId);
+        if (langProject?.bullets?.some(bullet => hasKeywordMatches(bullet, keywords))) {
+          return true;
+        }
+      }
+      
+      return false;
+    });
+  }, [projects, keywords, jobType, language]);
 
   return (
     <Section title={title} usage={usage}>
       <div className="flex flex-col gap-y-1">
+        {/* 替换成 filteredProjects.map */}
         {filteredProjects.map((project) => (
           <Experience
             key={project.id}

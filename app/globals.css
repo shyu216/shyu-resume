@@ -45,6 +45,9 @@
 }
 
 @media print {
+  @page:first {
+    margin-top: 0cm;
+  }
   @page {
     size: 210mm 297mm;
     margin-top: 1cm;

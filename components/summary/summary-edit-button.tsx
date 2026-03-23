@@ -24,9 +24,9 @@ export function SummaryEditButton({
   const { language } = useContext(LanguageContext);
 
   const tooltipMap = useLanguageMap({
-    en: { edit: "Edit Summary", save: "Save", cancel: "Cancel" },
     zh: { edit: "编辑简介", save: "保存", cancel: "取消" },
-    'zh-hk': { edit: "編輯簡介", save: "儲存", cancel: "取消" },
+    ja: { edit: "概要を編集", save: "保存", cancel: "キャンセル" },
+    fr: { edit: "Modifier le résumé", save: "Enregistrer", cancel: "Annuler" },
   }, language);
 
   if (isEditing) {

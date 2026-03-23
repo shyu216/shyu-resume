@@ -16,7 +16,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const [barWidth, setBarWidth] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [previousJobType, setPreviousJobType] = useState<JobType>('FULLSTACK');
+  const [previousJobType, setPreviousJobType] = useState<JobType>('PERFORMER');
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const xButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -34,8 +34,9 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const getTooltip = (option: typeof jobOptions[number]) => {
     switch (language) {
       case 'zh': return option.tooltipZh;
-      case 'zh-hk': return option.tooltipZhHk;
-      default: return option.tooltipEn;
+      case 'ja': return option.tooltipJa;
+      case 'fr': return option.tooltipFr;
+      default: return option.tooltipZh;
     }
   };
 
@@ -156,8 +157,8 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
         <ElegantTooltip
           content={
             language === 'zh' ? '显示全部经历' :
-            language === 'zh-hk' ? '顯示全部經歷' :
-            'Show all experiences'
+            language === 'ja' ? 'すべての経歴を表示' :
+            'Afficher toutes les expériences'
           }
           side="bottom"
         >

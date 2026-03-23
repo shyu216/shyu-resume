@@ -30,9 +30,9 @@ export function ThemeSwitcher() {
   }
 
   const tooltipMap = useLanguageMap({
-    en: { light: "Switch to Dark", dark: "Switch to Light" },
     zh: { light: "切换至深色", dark: "切换至浅色" },
-    'zh-hk': { light: "切換至深色", dark: "切換至淺色" },
+    ja: { light: "ダークモードに切替", dark: "ライトモードに切替" },
+    fr: { light: "Passer au sombre", dark: "Passer au clair" },
   }, language);
 
   const tooltipContent = resolvedTheme === "dark" ? tooltipMap.dark : tooltipMap.light;
