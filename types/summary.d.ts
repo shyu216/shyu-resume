@@ -1,3 +1,5 @@
 export interface Summary {
-  [key: string]: string;
+  performer: string;
+  composer: string;
+  director: string;
 }

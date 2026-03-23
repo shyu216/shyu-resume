@@ -1,10 +1,9 @@
 // Job Types - Centralized type definitions for job-related components
 
 export const jobOptions = [
-  { value: 'FULLSTACK', label: 'Full Stack', tooltipEn: 'Full Stack Engineer — End-to-end development', tooltipZh: '全栈工程师 — 端到端开发', tooltipZhHk: '全棧工程師 — 端到端開發' },
-  { value: 'SOFTWARE', label: 'SWE', tooltipEn: 'Software Engineer — System & architecture', tooltipZh: '软件工程师 — 系统与架构', tooltipZhHk: '軟件工程師 — 系統與架構' },
-  { value: 'DEVOPS', label: 'DevOps', tooltipEn: 'Cloud/DevOps/SRE — Infrastructure & CI/CD', tooltipZh: '云/DevOps 工程师 — 基础设施与 CI/CD', tooltipZhHk: '雲/DevOps 工程師 — 基礎設施與 CI/CD' },
-  { value: 'ML_RESEARCHER', label: 'ML', tooltipEn: 'ML Researcher — AI & algorithms', tooltipZh: '机器学习研究员 — AI 与算法', tooltipZhHk: '機器學習研究員 — AI 與算法' },
+  { value: 'PERFORMER', label: '表演', tooltipZh: '戏曲表演家 — 舞台演出与唱腔', tooltipJa: '戏曲俳優 — 舞台演技と歌唱', tooltipFr: 'Artiste d\'opéra — Performance scénique' },
+  { value: 'COMPOSER', label: '创作', tooltipZh: '剧作家 — 剧本与音乐创作', tooltipJa: '劇作家 — 脚本と音楽創作', tooltipFr: 'Dramaturge — Écriture et composition' },
+  { value: 'DIRECTOR', label: '管理', tooltipZh: '云翰社当家 — 剧团管理与传承', tooltipJa: '雲翰社当主 — 劇団運営と伝承', tooltipFr: 'Directrice — Gestion et transmission' },
 ] as const;
 
 export type JobType = typeof jobOptions[number]['value'] | 'NONE';

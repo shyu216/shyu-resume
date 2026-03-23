@@ -6,9 +6,21 @@ import { LanguageContext, type LanguageType } from "./language-provider";
 import { cn } from "@/lib/utils";
 
 const languages: { label: string; value: LanguageType; name: string }[] = [
-  { label: "ENG", value: "en", name: "English" },
-  { label: "简", value: "zh", name: "简体中文" },
-  { label: "繁", value: "zh-hk", name: "繁體中文" },
+  {
+    label: "简",
+    value: "zh",
+    name: "简体中文",
+  },
+  {
+    label: "日",
+    value: "ja",
+    name: "日本語",
+  },
+  {
+    label: "FR",
+    value: "fr",
+    name: "Français",
+  },
 ];
 
 export function LanguageSwitcher() {

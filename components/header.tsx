@@ -1,5 +1,3 @@
-"use client";
-
 // The header of the webpage, not in PDF
 
 import { ThemeSwitcher } from "@/components/theme/theme-switcher";
@@ -11,75 +9,47 @@ import { LanguageSwitcher } from "./lang/language-switcher";
 import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
 import { FontSwitcher } from "./font/font-switcher";
 import { ColorSwitcher } from "./color/color-switcher";
-import { siteConfig } from "@/content/config";
-import { SummaryEditButton } from "./summary/summary-edit-button";
 import { SummaryBubbles } from "./summary/summary-bubbles";
+import { useSummaryEdit } from "./summary/summary-edit-provider";
 import { useJobType } from "./job/job-type-provider";
 import { useContext } from "react";
 import { LanguageContext } from "./lang/language-provider";
 
-interface HeaderProps {
-  isEditingSummary?: boolean;
-  onToggleEditSummary?: () => void;
-  onSaveSummary?: () => void;
-  onCancelEditSummary?: () => void;
-  onSelectHistorySummary?: (content: string) => void;
-  currentSummaryContent?: string;
-}
-
-export function Header({
-  isEditingSummary = false,
-  onToggleEditSummary,
-  onSaveSummary,
-  onCancelEditSummary,
-  onSelectHistorySummary,
-  currentSummaryContent = "",
-}: HeaderProps) {
-  // Extract GitHub username from the GitHub URL
-  const githubUsername = siteConfig.personal.contact.github.split('/').pop();
+export function Header() {
+  const { isEditing, setContentFromHistory, getCurrentContent } = useSummaryEdit();
   const { jobType } = useJobType();
   const { language } = useContext(LanguageContext);
 
   const handleSelectSummary = (content: string) => {
-    onSelectHistorySummary?.(content);
+    setContentFromHistory(content);
   };
 
   return (
     <>
-      <Container className="mt-5">
-        <nav className="flex flex-col xl:flex-row justify-between items-center gap-4">
+      <Container className="mt-5 mb-10">
+        <nav className="relative flex flex-col lg:flex-row justify-between items-center gap-4">
           <div>
             <Link href="/">
               <Image
-                src={`https://github.com/${githubUsername}.png`}
-                alt="Portrait"
+                src="./images/yunjin.png"
+                alt="云堇"
                 width={48}
                 height={48}
                 className="w-10 h-10 rounded-full ring-2 ring-stone-200 dark:ring-stone-300/40"
               />
             </Link>
           </div>
-          <div className="flex flex-col lg:flex-row items-center gap-4">
-            <div className="flex  gap-x-2 justify-between items-center">
-              <JobSwitcherWrapper /> {/* Summary 编辑按钮 */}{onToggleEditSummary && (
-                <div className="flex items-center justify-center">
-                  <SummaryEditButton
-                    isEditing={isEditingSummary}
-                    onToggleEdit={onToggleEditSummary}
-                    onSave={onSaveSummary}
-                    onCancel={onCancelEditSummary}
-                  />
-                </div>
-              )}
+          <div className="relative flex flex-col md:flex-row items-center gap-4">
+            <div className="pointer-events-auto flex justify-center">
+              <JobSwitcherWrapper />
             </div>
-
-            <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-              <div className="flex gap-x-2 justify-between items-center ">
-                <FontSwitcher /><ColorSwitcher />
-              </div>
-              <div className="flex gap-x-2 justify-between items-center">
-                <LanguageSwitcher /><ThemeSwitcher />
-              </div>
+            <div className="pointer-events-auto flex items-center space-x-2 justify-center">
+              <LanguageSwitcher />
+              <ThemeSwitcher />
+            </div>
+            <div className="pointer-events-auto flex items-center space-x-2 justify-center">
+              <FontSwitcher />
+              <ColorSwitcher />
             </div>
           </div>
         </nav>
@@ -87,12 +57,12 @@ export function Header({
 
       {/* 浮动历史记录小球 - 仅在编辑时显示 */}
       <SummaryBubbles
-        isOpen={isEditingSummary}
+        isOpen={isEditing}
         onClose={() => { }}
         jobType={jobType}
         language={language}
         onSelectSummary={handleSelectSummary}
-        currentContent={currentSummaryContent}
+        currentContent={getCurrentContent()}
       />
     </>
   );

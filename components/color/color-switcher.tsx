@@ -12,26 +12,26 @@ import { cn } from "@/lib/utils";
 import { useDropdownMenu } from "@/lib/hooks/use-dropdown-menu";
 
 const colorLabels: Record<ColorPalette, Record<LanguageType, string>> = {
-  blue: { en: "Ocean", zh: "海洋蓝", "zh-hk": "海洋藍" },
-  red: { en: "Coral", zh: "珊瑚红", "zh-hk": "珊瑚紅" },
-  purple: { en: "Violet", zh: "紫罗兰", "zh-hk": "紫羅蘭" },
-  green: { en: "Forest", zh: "森林绿", "zh-hk": "森林綠" },
-  orange: { en: "Sunset", zh: "日落橙", "zh-hk": "日落橙" },
-  pink: { en: "Sakura", zh: "樱花粉", "zh-hk": "櫻花粉" },
-  teal: { en: "Teal", zh: "青绿色", "zh-hk": "青綠色" },
-  indigo: { en: "Indigo", zh: "靛青色", "zh-hk": "靛青色" },
+  blue: { zh: "海洋蓝", ja: "オーシャン", fr: "Océan" },
+  red: { zh: "珊瑚红", ja: "コーラル", fr: "Corail" },
+  purple: { zh: "紫罗兰", ja: "バイオレット", fr: "Violet" },
+  green: { zh: "森林绿", ja: "フォレスト", fr: "Forêt" },
+  orange: { zh: "日落橙", ja: "サンセット", fr: "Coucher de soleil" },
+  pink: { zh: "樱花粉", ja: "桜", fr: "Sakura" },
+  teal: { zh: "青绿色", ja: "ティール", fr: "Sarcelle" },
+  indigo: { zh: "靛青色", ja: "インディゴ", fr: "Indigo" },
 };
 
 const tooltipText: Record<LanguageType, string> = {
-  en: "Change header color",
   zh: "切换标题颜色",
-  "zh-hk": "切換標題顏色",
+  ja: "ヘッダー色を変更",
+  fr: "Changer la couleur de l'en-tête",
 };
 
 const headerText: Record<LanguageType, string> = {
-  en: "Header Color",
   zh: "标题颜色",
-  "zh-hk": "標題顏色",
+  ja: "ヘッダー色",
+  fr: "Couleur de l'en-tête",
 };
 
 export function ColorSwitcher() {

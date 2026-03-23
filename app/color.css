@@ -86,7 +86,7 @@
   }
 
   .bg-radial-glow {
-    @apply pointer-events-none fixed top-0 block h-[600px] w-full select-none;
+    @apply pointer-events-none fixed top-0 block h-[600px] w-full select-none;  
     background: radial-gradient(103.72% 46.58% at 50% 0%, var(--color-glow) 0%, rgba(0,0,0,0) 100%);
   }
 

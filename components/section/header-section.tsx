@@ -21,20 +21,13 @@ export default function HeaderSection({ usage }: Props) {
 
   const renderName = () => {
     const nameData = name[language as keyof typeof name];
-    if (language === 'en') {
-      return (
-        <div>
-          {nameData.first} <span className="text-[var(--header-color)]">{nameData.last}</span>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <span className="text-[var(--header-color)]">{nameData.last}</span>
-          {nameData.first}
-        </div>
-      );
-    }
+    // yunjin 使用 zh/ja/fr，都是"姓在前"的格式
+    return (
+      <div>
+        <span className="text-[var(--header-color)]">{nameData.last}</span>
+        {nameData.first}
+      </div>
+    );
   };
 
   return (
@@ -63,50 +56,21 @@ export default function HeaderSection({ usage }: Props) {
             <Icons.Github size={16} className="group-hover:animate-shake" />
           </Link>
 
-          {language === 'en' ? (
-            <>
-              <Link
-                href={`mailto:${contact.email}`}
-                className={cn(contactItemClass, "text-[var(--color-text-primary)]")}
-              >
-                <Icons.Mail size={16} className="group-hover:animate-shake" />
-                <span>{contact.email}</span>
-              </Link>
+          <Link
+            href={`mailto:${contact.email}`}
+            className={cn(contactItemClass, "text-[var(--color-text-primary)]")}
+          >
+            <Icons.Mail size={16} className="group-hover:animate-shake" />
+            <span>{contact.email}</span>
+          </Link>
 
-              <Link
-                href={`sms:${contact.phone.replace(/\s/g, '')}`}
-                className={cn(contactItemClass, "text-[var(--color-text-primary)]")}
-              >
-                <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
-                <span>{contact.phone}</span>
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link
-                href={`mailto:${contact.cnEmail}`}
-                className={cn(contactItemClass, "text-[var(--color-text-primary)]")}
-              >
-                <Icons.Mail size={16} className="group-hover:animate-shake" />
-                <span>{contact.cnEmail}</span>
-              </Link>
-
-              <Link
-                href={`sms:${contact.cnPhone}`}
-                className={cn(contactItemClass, "text-[var(--color-text-primary)]")}
-              >
-                <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
-                <span>{contact.cnPhone}</span>
-              </Link>
-
-              <span
-                className={cn(contactItemClass, "cursor-pointer text-[var(--color-text-primary)]")}
-              >
-                <Icons.Wechat size={16} className="group-hover:animate-shake" />
-                <span>{contact.wechat}</span>
-              </span>
-            </>
-          )}
+          <Link
+            href={`sms:${contact.phone}`}
+            className={cn(contactItemClass, "text-[var(--color-text-primary)]")}
+          >
+            <Icons.PhoneCall size={16} className="group-hover:animate-shake" />
+            <span>{contact.phone}</span>
+          </Link>
         </div>
         <ActionButton
           usage={usage}

@@ -2,52 +2,75 @@ import { type SkillCategory } from "@/types/skill-category";
 
 export const skills: SkillCategory[] = [
   {
-    id: "frontend",
-    name: "前端",
+    id: "performance",
+    name: "表演艺术",
     skills: [
-      "React", "Next.js", "React Native", "TypeScript", "JavaScript", "Tailwind CSS", "PWA"
+      "京剧演唱", "昆曲表演", "花旦/青衣", "武戏身段", "唱腔设计", "角色塑造", "舞台表现力",
+      "水袖功", "扇子功", "手绢功", "台步", "圆场", "眼神运用", "表情管理", "念白功底"
     ]
   },
   {
-    id: "backend",
-    name: "后端",
+    id: "creation",
+    name: "创作能力",
     skills: [
-      "Node.js", "Python", "Go", "Flask", "RESTful API", "Socket.IO"
+      "剧本创作", "唱词编写", "舞台编排", "音乐设计", "动作指导", "导演",
+      "故事构思", "人物设定", "情节编排", "台词设计", "曲牌选择", "板式变化"
     ]
   },
   {
-    id: "cloud-devops",
-    name: "云计算与DevOps",
+    id: "management",
+    name: "剧团管理",
     skills: [
-      "AWS", "CI/CD", "GitHub Actions", "Cloudflare", "Infrastructure as Code"
+      "团队领导", "演出策划", "演员培养", "剧目运营", "商业合作", "品牌推广",
+      "财务管理", "人员调配", "场地协调", "票务管理", "赞助洽谈", "媒体公关"
     ]
   },
   {
-    id: "ml-ai",
-    name: "机器学习与AI",
+    id: "innovation",
+    name: "艺术革新",
     skills: [
-      "PyTorch", "YOLO", "OpenCV", "点云处理", "rPPG", "EVM"
+      "传统与现代融合", "跨界合作", "摇滚元素", "新媒体传播", "国际文化交流",
+      "多媒体舞台", "沉浸式演出", "互动表演", "AR/VR技术应用", "数字表现"
     ]
   },
   {
-    id: "xr-3d",
-    name: "XR / 3D",
+    id: "instruments",
+    name: "乐器技能",
     skills: [
-      "Unity", "Meta Quest 3", "C#", "ComputeShader (HLSL)", "RealSense SDK"
+      "二胡", "琵琶", "笛子", "锣鼓打击乐", "基础乐理",
+      "古筝", "扬琴", "唢呐", "京胡", "月琴", "三弦"
     ]
   },
   {
-    id: "data",
-    name: "数据工程",
+    id: "vocal",
+    name: "声乐技巧",
     skills: [
-      "SQL", "PostGIS", "Hadoop", "分布式计算", "分块"
+      "真假声转换", "气息控制", "共鸣运用", "音域扩展", "音色变化",
+      "拖腔技巧", "甩腔技巧", "颤音", "滑音", "装饰音"
+    ]
+  },
+  {
+    id: "dance",
+    name: "舞蹈功底",
+    skills: [
+      "古典舞", "民族舞", "身段组合", "毯子功", "把子功",
+      "柔韧性", "跳跃技巧", "旋转技巧", "翻滚技巧"
+    ]
+  },
+  {
+    id: "other",
+    name: "其他技能",
+    skills: [
+      "戏曲化妆", "服装搭配", "舞台灯光基础", "视频剪辑", "社交媒体运营",
+      "头饰制作", "脸谱描画", "小道具使用", "摄影构图", "文案撰写", "活动策划"
     ]
   },
   {
     id: "languages",
-    name: "语言",
+    name: "语言能力",
     skills: [
-      "英语 (流利)", "普通话 (母语)", "粤语 (流利)"
+      "中文（母语）", "日语（流利）", "法语（商务水平）",
+      "璃月方言", "戏曲韵白"
     ]
   }
 ];

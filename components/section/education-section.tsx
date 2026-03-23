@@ -7,9 +7,9 @@ import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import Experience from "@/components/section/experience";
 import LabelWithLink from "@/components/labels/label-with-link";
-import { education as educationEn } from "@/content/en/education";
 import { education as educationZh } from "@/content/zh/education";
-import { education as educationZhHk } from "@/content/zh-hk/education";
+import { education as educationJa } from "@/content/ja/education";
+import { education as educationFr } from "@/content/fr/education";
 import Label from "@/components/labels/label";
 import { useLanguageMap } from "@/lib/utils";
 
@@ -21,9 +21,9 @@ export default function EducationSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
 
   const { data: education, title } = useLanguageMap({
-    en: { data: educationEn, title: "EDUCATION" },
     zh: { data: educationZh, title: "教育经历" },
-    "zh-hk": { data: educationZhHk, title: "教育經歷" },
+    ja: { data: educationJa, title: "学歴" },
+    fr: { data: educationFr, title: "Formation" },
   }, language);
 
   return (

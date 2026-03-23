@@ -4,9 +4,9 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 import { useJobType } from "@/components/job/job-type-provider";
 import { useContext as useLanguageContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { summary as summaryEn } from "@/content/en/summary";
 import { summary as summaryZh } from "@/content/zh/summary";
-import { summary as summaryZhHk } from "@/content/zh-hk/summary";
+import { summary as summaryJa } from "@/content/ja/summary";
+import { summary as summaryFr } from "@/content/fr/summary";
 import { addSummaryToHistory } from "@/lib/summary-storage";
 
 interface SummaryEditContextType {
@@ -33,18 +33,26 @@ export function SummaryEditProvider({ children }: { children: React.ReactNode })
 
   // 获取当前应该显示的summary内容
   const getSummaryContent = useCallback(() => {
-    const summary = language === "en" ? summaryEn : language === "zh" ? summaryZh : summaryZhHk;
+    // yunjin分支：JobType是'PERFORMER' | 'COMPOSER' | 'DIRECTOR'
+    // zh使用 Yunjin 的 performer/composer/director
+    // ja/fr 也使用 performer/composer/director
     switch (jobType) {
-      case "FULLSTACK":
-        return summary.fullstack;
-      case "SOFTWARE":
-        return summary.software;
-      case "DEVOPS":
-        return summary.devops;
-      case "ML_RESEARCHER":
-        return summary.ml;
+      case "PERFORMER":
+        return language === "zh" ? summaryZh.performer :
+               language === "ja" ? summaryJa.performer :
+               summaryFr.performer;
+      case "COMPOSER":
+        return language === "zh" ? summaryZh.composer :
+               language === "ja" ? summaryJa.composer :
+               summaryFr.composer;
+      case "DIRECTOR":
+        return language === "zh" ? summaryZh.director :
+               language === "ja" ? summaryJa.director :
+               summaryFr.director;
       default:
-        return summary.default;
+        return language === "zh" ? summaryZh.performer :
+               language === "ja" ? summaryJa.performer :
+               summaryFr.performer;
     }
   }, [jobType, language]);
 

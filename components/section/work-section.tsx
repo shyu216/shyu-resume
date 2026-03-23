@@ -7,9 +7,9 @@ import { Icons } from "@/components/ui/icons";
 import LabelWithLink from "@/components/labels/label-with-link";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { workExperience as workExperienceEn } from "@/content/en/work-experience";
 import { workExperience as workExperienceZh } from "@/content/zh/work-experience";
-import { workExperience as workExperienceZhHk } from "@/content/zh-hk/work-experience";
+import { workExperience as workExperienceJa } from "@/content/ja/work-experience";
+import { workExperience as workExperienceFr } from "@/content/fr/work-experience";
 import Label from "@/components/labels/label";
 import { type WorkExperience } from "@/types/work-experience";
 import { useJobType } from "@/components/job/job-type-provider";
@@ -26,9 +26,9 @@ export default function WorkSection({ usage }: Props) {
   const keywords = getJobStackKeywords(jobType);
 
   const { data: workExperience, title } = useLanguageMap({
-    en: { data: workExperienceEn, title: "WORK EXPERIENCE" },
     zh: { data: workExperienceZh, title: "工作经历" },
-    "zh-hk": { data: workExperienceZhHk, title: "工作經歷" },
+    ja: { data: workExperienceJa, title: "職務経歴" },
+    fr: { data: workExperienceFr, title: "Expérience Professionnelle" },
   }, language);
 
   return (
