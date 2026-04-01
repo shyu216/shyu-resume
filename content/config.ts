@@ -65,7 +65,7 @@ export const siteConfig: SiteConfig = {
       github: "https://github.com/shyu216",
       email: "yusihong073@gmail.com",
       phone: "0431083127",
-      wechat: "seinbaolio",
+      wechat: "seinbaulio",
       cnEmail: "shyu0@qq.com",
       cnPhone: "13697555391"
     }
