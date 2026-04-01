@@ -1,9 +1,13 @@
 import { type Summary } from "@/types/summary";
 
 export const summary: Summary = {
-  fullstack: "全栈开发工程师，拥有 10 个月生产环境经验，在敏捷环境中交付端到端解决方案。领导 3 人跨职能团队在云原生 Next.js/AWS 平台上交付 80+ 功能，实施 CI/CD 流水线将部署工作量减少 90%。精通 TypeScript、React、Node.js 和 REST API 开发——从 React Native 移动应用到 AWS 云基础设施。向非技术利益相关者传达技术概念，同时构建可扩展的微服务架构。",
-  software: "软件工程师，拥有生产环境可扩展系统设计经验——从事件驱动支付架构到实时临床数据流水线。架构设计 AWS 事件驱动后端（EventBridge、Lambda、DynamoDB）处理支付工作流和自动化通知。构建实时生物传感数据流水线，达到 24.7 FPS / 40ms 延迟，使用 Python、Flask 和优化数据处理。领导跨职能团队在敏捷环境中交付 80+ 生产功能。精通系统设计、API 开发、并发和微服务架构，使用 TypeScript、Python 和 Node.js。",
-  ml: "AI/ML 工程师，拥有生成式 AI 和计算机视觉应用的生产经验。领导跨职能团队交付 80+ 功能后专注于临床级 AI 系统。使用 PyTorch、YOLO 目标检测和 OpenCV 为 4DMedical 的 XV Scanner 构建实时数据流水线，达到 24.7 FPS / 40ms 延迟。精通 Python、机器学习框架和移动 AI 部署。",
-  devops: "云/DevOps/SRE 工程师，专注于可扩展云原生平台的基础设施即代码和可观测性。使用 AWS CDK、Terraform 和 GitHub Actions 自动化 CI/CD 流水线，将部署工作量减少 90%。实施基础设施即代码实践，包括自动回滚和环境管理。构建带有 AWS EventBridge/SES 的事件驱动系统，并使用云原生可观测性工具建立监控。领导跨职能团队向非技术利益相关者传达技术概念。",
-  default: "多才多艺的技术专业人士，拥有计算机科学硕士学位和 10+ 个月生产环境经验，涵盖全栈开发、软件工程、AI/ML 和 DevOps。领导跨职能团队在 Next.js/AWS 平台上交付 80+ 云原生功能，通过 CI/CD 自动化将部署工作量减少 90%。专注于构建可扩展系统——从事件驱动支付架构（AWS EventBridge/Lambda/DynamoDB）到实时临床 AI 流水线（24.7 FPS / 40ms 延迟，使用 PyTorch/YOLO/OpenCV）。精通 TypeScript、Python、React、Node.js 和云基础设施，具有连接技术和非技术利益相关者的能力。"
+  fullstack: "全栈开发工程师，拥有10个月初创公司生产环境经验，在敏捷流程中交付端到端云原生解决方案。领导3人跨职能团队基于Next.js/AWS平台交付80+功能，通过CI/CD流水线自动化将部署工作量减少90%。精通TypeScript、React、Node.js与REST API开发，覆盖React Native移动应用到AWS云基础设施全链路，具备向非技术利益相关者清晰传达技术方案的能力。",
+  
+  software: "软件工程师，拥有生产环境可扩展系统设计与落地经验——从事件驱动支付架构到实时数据处理流水线。架构设计AWS事件驱动后端（EventBridge、Lambda、DynamoDB）支撑支付工作流与自动化通知；构建实时生物传感数据流水线，实现24.7 FPS / 40ms低延迟处理。领导跨职能团队在敏捷环境中交付80+生产功能，精通系统设计、API开发、并发编程与微服务架构，技术栈覆盖TypeScript、Python与Node.js。",
+  
+  ml: "AI/ML工程师，拥有计算机视觉（CV）与混合现实（MR）系统的开发经验。硕士期间专注于临床级CV/MR系统构建，使用PyTorch、YOLO目标检测和OpenCV为4DMedical的XV Scanner开发实时数据流水线，实现24.7 FPS / 40ms低延迟处理。本科阶段参与9个月3D物体识别CV科研项目，精通Python、机器学习框架及计算机视觉算法落地。",
+  
+  devops: "云/DevOps工程师，专注于云原生平台的基础设施即代码（IaC）与可观测性建设。在初创公司期间，使用AWS CDK、Terraform和GitHub Actions自动化CI/CD流水线，将部署工作量减少90%；实施IaC实践，涵盖自动回滚与环境管理。构建基于AWS EventBridge/SES的事件驱动系统，并通过云原生可观测性工具建立全链路监控，具备跨团队技术沟通能力。",
+  
+  default: "技术背景全面的专业人士，拥有计算机科学硕士学位，累计近3年实践经验——从CV科研到全栈开发。本科阶段参与9个月3D物体识别计算机视觉科研项目；随后在初创公司担任全栈开发工程师10个月，领导跨职能团队基于Next.js/AWS平台交付80+云原生功能，通过CI/CD自动化将部署工作量减少90%；硕士期间专注于CV/混合现实（MR）系统开发，使用PyTorch、YOLO与OpenCV构建临床级实时数据流水线，实现24.7 FPS / 40ms低延迟。精通TypeScript、Python、React、Node.js及AWS云基础设施，具备连接技术与非技术利益相关者的跨领域沟通能力。"
 };
