@@ -34,6 +34,13 @@ export interface SiteConfig {
   description: string;
   keywords: string[];
   personal: PersonalInfo;
+  ui: {
+    controls: {
+      summaryEdit: boolean;
+      fontSwitcher: boolean;
+      colorSwitcher: boolean;
+    };
+  };
 }
 
 export const siteConfig: SiteConfig = {
@@ -69,5 +76,12 @@ export const siteConfig: SiteConfig = {
       cnEmail: "shyu0@qq.com",
       cnPhone: "13697555391"
     }
-  }
+  },
+  ui: {
+    controls: {
+      summaryEdit: false,
+      fontSwitcher: false,
+      colorSwitcher: false,
+    },
+  },
 };

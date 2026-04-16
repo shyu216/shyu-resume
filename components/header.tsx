@@ -39,6 +39,7 @@ export function Header({
   const githubUsername = siteConfig.personal.contact.github.split('/').pop();
   const { jobType } = useJobType();
   const { language } = useContext(LanguageContext);
+  const controls = siteConfig.ui.controls;
 
   const handleSelectSummary = (content: string) => {
     onSelectHistorySummary?.(content);
@@ -61,7 +62,7 @@ export function Header({
           </div>
           <div className="flex flex-col lg:flex-row items-center gap-4">
             <div className="flex  gap-x-2 justify-between items-center">
-              <JobSwitcherWrapper /> {/* Summary 编辑按钮 */}{onToggleEditSummary && (
+              <JobSwitcherWrapper /> {/* Summary 编辑按钮 */}{controls.summaryEdit && onToggleEditSummary && (
                 <div className="flex items-center justify-center">
                   <SummaryEditButton
                     isEditing={isEditingSummary}
@@ -75,7 +76,8 @@ export function Header({
 
             <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
               <div className="flex gap-x-2 justify-between items-center ">
-                <FontSwitcher /><ColorSwitcher />
+                {controls.fontSwitcher && <FontSwitcher />}
+                {controls.colorSwitcher && <ColorSwitcher />}
               </div>
               <div className="flex gap-x-2 justify-between items-center">
                 <LanguageSwitcher /><ThemeSwitcher />
@@ -86,14 +88,16 @@ export function Header({
       </Container>
 
       {/* 浮动历史记录小球 - 仅在编辑时显示 */}
-      <SummaryBubbles
-        isOpen={isEditingSummary}
-        onClose={() => { }}
-        jobType={jobType}
-        language={language}
-        onSelectSummary={handleSelectSummary}
-        currentContent={currentSummaryContent}
-      />
+      {controls.summaryEdit && (
+        <SummaryBubbles
+          isOpen={isEditingSummary}
+          onClose={() => { }}
+          jobType={jobType}
+          language={language}
+          onSelectSummary={handleSelectSummary}
+          currentContent={currentSummaryContent}
+        />
+      )}
     </>
   );
 }
