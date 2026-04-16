@@ -38,8 +38,6 @@
 
 準備好打造你夢想中的履歷了嗎？走起！🌟
 
-這個專案包含了一個基於 yunjin-resume [分支](https://github.com/shyu216/shyu-resume/tree/yunjin-resume) 和[網頁](https://shyu216.github.io/shyu-resume/yunjin-resume/) 模板的客製化範例。看看 [PR #1](https://github.com/shyu216/shyu-resume/pull/1) 就能知道建立一個個性化履歷需要多少工作量——50+ 文件改造，覆蓋內容語言適配、工作種類重構全維度！超酷的對不對？這不僅是一次履歷定製練習，更是上手 NextJS 開發、玩轉 GitHub CI/CD 自動化部署的絕佳實戰機會！從代碼修改到流程配置，全程實操吃透前端工程化核心技能，快來動手試試吧！
-
 ### 準備工作
 
 - Node.js 18+

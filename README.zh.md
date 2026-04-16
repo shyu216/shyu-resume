@@ -38,7 +38,6 @@
 
 准备好打造你梦想中的简历了吗？走起！🌟
 
-这个项目包含了一个基于 yunjin-resume [分支](https://github.com/shyu216/shyu-resume/tree/yunjin-resume) 和[网页](https://shyu216.github.io/shyu-resume/yunjin-resume/) 模板的客制化示例。看看 [PR #1](https://github.com/shyu216/shyu-resume/pull/1) 就能知道创建一个个性化简历需要多少工作量——50+ 文件改造，覆盖内容语言适配、工作种类重构全维度！超酷的对不对？这不仅是一次简历定制练习，更是上手 NextJS 开发、玩转 GitHub CI/CD 自动化部署的绝佳实战机会！从代码修改到流程配置，全程实操吃透前端工程化核心技能，快来动手试试吧！
 
 ### 准备工作
 

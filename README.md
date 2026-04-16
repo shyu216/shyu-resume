@@ -38,8 +38,6 @@ No worries, it's super easy! Just follow these steps:
 
 Ready to craft your dream resume? Let's go! 🌟
 
-This project includes a customization example based on the yunjin-resume [branch](https://github.com/shyu216/shyu-resume/tree/yunjin-resume) and [webpage](https://shyu216.github.io/shyu-resume/yunjin-resume/) template. Check out [PR #1](https://github.com/shyu216/shyu-resume/pull/1) to see what it takes to create your own personalized resume – we're talking 50+ files transformed, covering content language adaptation and job type reconstruction! Pretty cool, right? This isn't just a resume customization exercise – it's a fantastic hands-on opportunity to learn NextJS development and GitHub CI/CD automated deployment! From code tweaking to process configuration, you'll master core frontend engineering skills throughout the entire journey. Come on, give it a try!
-
 ### What You'll Need
 
 - Node.js 18+
