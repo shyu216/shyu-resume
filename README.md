@@ -30,7 +30,6 @@ No worries, it's super easy! Just follow these steps:
 - **Theme Customization** 🎨 – Red theme with tons of customizable options to match your style
 - **Easy Content Management** 📝 – All your text lives in the organized `content` folder – just edit and go!
 - **JD-Tailored** 🤖 – Tailor your Summary based on the job description so your resume gets noticed
-- **Smart Keyword Highlighter** 🔍 – Automatically highlights skills and experiences based on the job you're targeting
 - **Project Filter** 🎯 – Dynamically shows only the most relevant projects for each job type
 - **One-Click PDF Export** 🖨️ – Generate beautifully formatted PDFs with a single click
 
@@ -78,20 +77,17 @@ Just hop into these TypeScript files and sprinkle your magic – I mean, update 
 
 #### 2️⃣ Theme Customization
 
-Want to change the colors and fonts? Easy peasy! Check out these files:
+Want to change the colors and fonts? Configure them statically via this file:
 
 | File | What It Does |
 |------|--------------|
-| `lib/theme-config.ts` | Color palettes and font configurations – all the visual goodness |
-| `components/color/color-provider.tsx` | Default header color setting |
-| `components/font/font-provider.tsx` | Default font family setting |
+| `content/config.ts` | Centralized theme, font, color, and utility helpers (including `getColor` / `getFont`) |
 
 #### 3️⃣ Job-Based Superpowers
 
 This is the really cool part! 🎯
 
 - **Job Type Switcher**: Use the job switcher in the interface to select the type of job you're after
-- **Keyword Highlighter**: Automatically highlights skills and experiences that match your target job
 - **Project Filter**: Dynamically shows only the projects that are most relevant to the selected job type
 
 ##### Adding Your Own Job Types
@@ -99,20 +95,7 @@ This is the really cool part! 🎯
 Want to add more job types? Here's how:
 
 1. Edit job types in `components/job/job-switcher.tsx`
-2. Update keyword mappings in `components/job/job-stack-keywords.ts`
-
-#### 4️⃣ AI-Powered Keyword Generation (How Fancy! 🤖)
-
-We've got an AI-enhanced keyword matching system! Here's the magic recipe:
-
-1. Package up your resume content (work experience + projects)
-2. Send it to an AI buddy like Doubao
-3. Ask nicely for a comprehensive `keywords.json` file
-4. Replace the existing `app/keywords.json` with the AI-generated one
-
-Boom! Your resume is now super optimized for different job types and ATS compatibility! 🚀
-
-You can also tweak `scripts/gen-keywords.js` to create your own keyword generation magic. This script gets called by the workflow, but feel free to unleash your creativity and implement your own keyword generation logic!
+2. Tag entries with `jobTypes` in `content/*/work-experience.ts` and `content/*/projects.ts`
 
 ## 🤝 Join the Fun!
 

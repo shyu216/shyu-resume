@@ -2,14 +2,9 @@
 
 import React, { useState, useContext } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
-import { LanguageContext, type LanguageType } from "./language-provider";
-import { cn } from "@/lib/utils";
-
-const languages: { label: string; value: LanguageType; name: string }[] = [
-  { label: "ENG", value: "en", name: "English" },
-  { label: "简", value: "zh", name: "简体中文" },
-  { label: "繁", value: "zh-hk", name: "繁體中文" },
-];
+import { LanguageContext } from "./language-provider";
+import { languageOptions, type LanguageType } from "@/content/copy";
+import { cn } from "@/content/config";
 
 export function LanguageSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -25,7 +20,7 @@ export function LanguageSwitcher() {
 
   return (
     <div className="flex gap-1">
-      {languages.map((lang) => {
+      {languageOptions.map((lang) => {
         const isSelected = language === lang.value;
         const isHovered = hoveredLang === lang.value;
         const hasHover = hoveredLang !== null;
@@ -46,7 +41,7 @@ export function LanguageSwitcher() {
                 background: isSelected
                   ? `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`
                   : `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
-                color: isSelected ? 'var(--color-white)' : 'var(--color-text-primary)',
+                color: isSelected ? 'var(--color-text-secondary)' : 'var(--color-text-primary)',
               }}
               onClick={() => setLanguage(lang.value)}
               onMouseEnter={() => setHoveredLang(lang.value)}

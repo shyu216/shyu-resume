@@ -3,8 +3,9 @@
 // 支持版本控制、数据迁移、类型安全
 // ==========================================
 
-import type { LanguageType } from "@/components/lang/language-provider";
-import type { FontFamilyType, ColorPalette } from "@/lib/theme-config";
+import { jobOptions, type JobType } from "@/content/config";
+import { copy } from "@/content/copy";
+import type { LanguageType } from "@/content/copy";
 import buildInfo from "@/app/build-info.json";
 
 // 存储版本号，用于数据迁移（使用构建版本）
@@ -18,11 +19,13 @@ const STORAGE_KEY = "resume-settings";
 export interface AppSettings {
   buildVersion: string;
   dataVersion: string;
-  color: ColorPalette;
   language: LanguageType;
-  fontFamily: FontFamilyType;
-  jobType: 'FULLSTACK' | 'SOFTWARE' | 'DEVOPS' | 'ML_RESEARCHER';
+  jobType: JobType;
 }
+
+const validLanguages = Object.keys(copy) as LanguageType[];
+const defaultLanguage = validLanguages[0];
+const defaultJobType = jobOptions[0]?.value;
 
 // 数据格式版本（当数据结构变化时递增）
 const DATA_VERSION = "1";
@@ -31,27 +34,12 @@ const DATA_VERSION = "1";
 export const DEFAULT_SETTINGS: AppSettings = {
   buildVersion: getBuildVersion(),
   dataVersion: DATA_VERSION,
-  color: "red",
-  language: "en",
-  fontFamily: "inter",
-  jobType: "FULLSTACK",
+  language: defaultLanguage,
+  jobType: defaultJobType,
 };
 
-// 验证颜色值是否有效
-const validColors: ColorPalette[] = [
-  'blue', 'red', 'purple', 'green', 'orange', 'pink', 'teal', 'indigo'
-];
-
-// 验证语言值是否有效
-const validLanguages: LanguageType[] = ['en', 'zh', 'zh-hk'];
-
-// 验证字体值是否有效
-const validFonts: FontFamilyType[] = [
-  'inter', 'jetbrains-mono', 'system-ui', 'monospace', 'serif'
-];
-
 // 验证职位值是否有效
-const validJobTypes = ['FULLSTACK', 'SOFTWARE', 'DEVOPS', 'ML_RESEARCHER'] as const;
+const validJobTypes = jobOptions.map((option) => option.value) as readonly JobType[];
 
 /**
  * 从 localStorage 读取所有设置
@@ -89,9 +77,7 @@ export function loadSettings(): AppSettings {
     return {
       buildVersion: currentBuildVersion,
       dataVersion: DATA_VERSION,
-      color: validColors.includes(parsed.color) ? parsed.color : DEFAULT_SETTINGS.color,
       language: validLanguages.includes(parsed.language) ? parsed.language : DEFAULT_SETTINGS.language,
-      fontFamily: validFonts.includes(parsed.fontFamily) ? parsed.fontFamily : DEFAULT_SETTINGS.fontFamily,
       jobType: validJobTypes.includes(parsed.jobType) ? parsed.jobType : DEFAULT_SETTINGS.jobType,
     };
   } catch (e) {
@@ -136,29 +122,12 @@ function migrateFromOldStorage(oldData?: any): AppSettings {
   try {
     // 如果有旧数据，优先使用旧数据中的有效值
     if (oldData) {
-      if (oldData.color && validColors.includes(oldData.color)) {
-        settings.color = oldData.color;
-      }
       if (oldData.language && validLanguages.includes(oldData.language)) {
         settings.language = oldData.language;
-      }
-      if (oldData.fontFamily && validFonts.includes(oldData.fontFamily)) {
-        settings.fontFamily = oldData.fontFamily;
       }
       if (oldData.jobType && validJobTypes.includes(oldData.jobType)) {
         settings.jobType = oldData.jobType;
       }
-    }
-
-    // 回退：迁移旧版独立存储的数据
-    const oldColor = localStorage.getItem("headerColor");
-    if (oldColor && validColors.includes(oldColor as ColorPalette)) {
-      settings.color = oldColor as ColorPalette;
-    }
-
-    const oldFont = localStorage.getItem("fontFamily");
-    if (oldFont && validFonts.includes(oldFont as FontFamilyType)) {
-      settings.fontFamily = oldFont as FontFamilyType;
     }
 
     const oldLang = localStorage.getItem("resume-language");
@@ -185,8 +154,6 @@ export function clearSettings(): void {
     return;
   }
   localStorage.removeItem(STORAGE_KEY);
-  localStorage.removeItem("headerColor");
-  localStorage.removeItem("fontFamily");
   localStorage.removeItem("resume-language");
 }
 
@@ -220,15 +187,9 @@ export function useAppSettings() {
     settings,
     isInitialized,
     updateSettings,
-    // 便捷访问
-    color: settings.color,
     language: settings.language,
-    fontFamily: settings.fontFamily,
     jobType: settings.jobType,
-    // 便捷更新
-    setColor: useCallback((color: ColorPalette) => updateSettings({ color }), [updateSettings]),
     setLanguage: useCallback((language: LanguageType) => updateSettings({ language }), [updateSettings]),
-    setFontFamily: useCallback((fontFamily: FontFamilyType) => updateSettings({ fontFamily }), [updateSettings]),
     setJobType: useCallback((jobType: AppSettings['jobType']) => updateSettings({ jobType }), [updateSettings]),
   };
 }

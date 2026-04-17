@@ -1,8 +1,7 @@
 "use client";
 
 import { useJobType } from "@/components/job/job-type-provider";
-import { jobOptions } from "@/lib/job-types";
-import { siteConfig } from "@/content/config";
+import { jobOptions, siteConfig } from "@/content/config";
 import { useEffect } from "react";
 
 export function DynamicTitle() {

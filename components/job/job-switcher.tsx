@@ -3,15 +3,17 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { useFontFamily } from "@/components/font/font-provider";
-import { cn } from "@/lib/utils";
-import { jobOptions, type JobType, type JobSwitcherProps } from "@/lib/job-types";
+import { cn } from "@/content/config";
+import { getFont } from "@/content/config";
+import { copy } from "@/content/copy";
+import { jobOptions, type JobType, type JobSwitcherProps, getJobTooltip } from "@/content/config";
 
 export { JobType, JobSwitcherProps };
 
 export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const { language } = useContext(LanguageContext);
-  const { fontFamily } = useFontFamily();
+  const uiCopy = copy[language];
+  const fontStack = getFont(jobType, language).fontStack.join(", ");
   const [barPosition, setBarPosition] = useState(0);
   const [barWidth, setBarWidth] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -29,15 +31,6 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
       setPreviousJobType(jobType);
     }
   }, [jobType, isNoneActive]);
-
-  // 获取对应语言的tooltip
-  const getTooltip = (option: typeof jobOptions[number]) => {
-    switch (language) {
-      case 'zh': return option.tooltipZh;
-      case 'zh-hk': return option.tooltipZhHk;
-      default: return option.tooltipEn;
-    }
-  };
 
   // 计算 bar 的位置和宽度
   useEffect(() => {
@@ -87,7 +80,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
       clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
     };
-  }, [jobType, fontFamily, isNoneActive]);
+  }, [jobType, fontStack, isNoneActive]);
 
   return (
     <div className="relative inline-block">
@@ -136,13 +129,13 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
 
         {/* 按钮 */}
         {jobOptions.map((option, index) => (
-          <ElegantTooltip key={option.value} content={getTooltip(option)} side="bottom">
+          <ElegantTooltip key={option.value} content={getJobTooltip(option, language)} side="bottom">
             <button
               ref={el => buttonRefs.current[index] = el}
               onClick={() => onJobTypeChange(option.value as JobType)}
               className="relative z-10 px-4 py-1 rounded-full transition-all duration-200 font-medium hover:text-[var(--color-text-primary)]"
               style={{
-                color: jobType === option.value ? 'var(--color-white)' : 'var(--color-text-primary)'
+                color: jobType === option.value ? 'var(--color-text-secondary)' : 'var(--color-text-primary)',
               }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -154,11 +147,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
 
         {/* X 按钮 - 最右侧 */}
         <ElegantTooltip
-          content={
-            language === 'zh' ? '显示全部经历' :
-            language === 'zh-hk' ? '顯示全部經歷' :
-            'Show all experiences'
-          }
+          content={uiCopy.switcher.jobType.showAllExperiences}
           side="bottom"
         >
           <button
@@ -174,7 +163,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
             }}
             className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-[var(--color-text-primary)]"
             style={{
-              color: isNoneActive ? 'var(--color-white)' : 'var(--color-text-primary)',
+              color: isNoneActive ? 'var(--color-text-primary)' : 'var(--color-text-primary)',
               minWidth: '24px',
               display: 'flex',
               alignItems: 'center',

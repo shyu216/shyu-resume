@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "@/lib/storage";
-
-export type LanguageType = "en" | "zh" | "zh-hk";
+import type { LanguageProviderProps, LanguageType } from "@/content/copy";
 
 export const LanguageContext = React.createContext<{
   language: LanguageType;
@@ -15,11 +14,7 @@ export const LanguageContext = React.createContext<{
   isInitialized: false,
 });
 
-export function LanguageProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguageState] = useState<LanguageType>(DEFAULT_SETTINGS.language);
   const [isInitialized, setIsInitialized] = useState(false);
 

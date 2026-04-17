@@ -2,31 +2,40 @@
 
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
+import { useBgStyle } from "@/app/bg-styles/bg-style-provider";
 
 type Props = {
   children: React.ReactNode;
   delay: number;
+  className?: string;
 };
 
-const fadeInUpwards = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: {
-    type: "spring",
-    damping: 25,
-    stiffness: 100,
-    duration: 0.3,
-  },
-};
+export default function Motion({ children, delay, className }: Props) {
+  const { motion: motionPreset } = useBgStyle();
 
-export default function Motion({ children, delay }: Props) {
+  const fadeInUpwards = React.useMemo(
+    () => ({
+      initial: { opacity: 0, y: motionPreset.yOffset },
+      animate: { opacity: 1, y: 0 },
+      transition: {
+        type: "spring" as const,
+        damping: motionPreset.damping,
+        stiffness: motionPreset.stiffness,
+        duration: motionPreset.duration,
+      },
+    }),
+    [motionPreset]
+  );
+
   return (
     <motion.div
+      className={className}
       variants={fadeInUpwards}
       initial="initial"
       animate="animate"
-      transition={{ ...fadeInUpwards.transition, delay }}
+      transition={{ ...fadeInUpwards.transition, delay: delay * motionPreset.delayMultiplier }}
     >
       {children}
     </motion.div>

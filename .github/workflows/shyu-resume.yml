@@ -67,8 +67,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Generate last update info
         run: node scripts/gen-last-update.js
-      - name: Generate keywords JSON
-        run: node scripts/gen-keywords.js
       - name: Generate build version
         run: |
           echo "{\"version\": \"${{ github.run_number }}\", \"commit\": \"${{ github.sha }}\", \"date\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > app/build-info.json

@@ -3,15 +3,17 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { useFontFamily } from "@/components/font/font-provider";
-import { cn } from "@/lib/utils";
-import { jobOptions, type JobType, type JobSwitcherProps } from "@/lib/job-types";
+import { cn } from "@/content/config";
+import { getFont } from "@/content/config";
+import { copy } from "@/content/copy";
+import { jobOptions, type JobType, type JobSwitcherProps, getJobTooltip } from "@/content/config";
 
 export { JobType, JobSwitcherProps };
 
 export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const { language } = useContext(LanguageContext);
-  const { fontFamily } = useFontFamily();
+  const uiCopy = copy[language];
+  const fontStack = getFont(jobType, language).fontStack.join(", ");
   const [barPosition, setBarPosition] = useState(0);
   const [barWidth, setBarWidth] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -57,14 +59,6 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
     }
   }, [jobType, isNoneActive, animatingJobType]);
 
-  const getTooltip = (option: typeof jobOptions[number]) => {
-    switch (language) {
-      case 'zh': return option.tooltipZh;
-      case 'zh-hk': return option.tooltipZhHk;
-      default: return option.tooltipEn;
-    }
-  };
-
   useEffect(() => {
     const updateBarPosition = () => {
       const containerRect = containerRef.current?.getBoundingClientRect();
@@ -105,7 +99,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
       clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
     };
-  }, [jobType, fontFamily, isNoneActive, activeIndex]);
+  }, [jobType, fontStack, isNoneActive, activeIndex]);
 
   const handlePrevious = () => {
     const currentIndex = jobOptions.findIndex(option => option.value === jobType);
@@ -166,7 +160,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
 
         {/* 左箭头按钮 */}
         <ElegantTooltip
-          content={getTooltip(jobOptions[prevIndex])}
+          content={getJobTooltip(jobOptions[prevIndex], language)}
           side="bottom"
         >
           <button
@@ -188,14 +182,14 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
           <div className="relative overflow-hidden" style={{ width: '96px' }}>
             {!isNoneActive && (
               <ElegantTooltip
-                content={getTooltip(jobOptions[activeIndex])}
+                content={getJobTooltip(jobOptions[activeIndex], language)}
                 side="bottom"
               >
                 <div
                   ref={el => { buttonRefs.current[activeIndex] = el as HTMLButtonElement | null; }}
                   className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap overflow-hidden"
                   style={{
-                    color: 'var(--color-white)'
+                    color: 'var(--color-text-primary)'
                   }}
                 >
                   <span
@@ -230,7 +224,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
               <button
                 className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap"
                 style={{
-                  color: 'var(--color-white)'
+                  color: 'var(--color-text-primary)'
                 }}
               >
                 {jobOptions.find(opt => opt.value === previousJobType)?.label}
@@ -241,7 +235,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
 
         {/* 右箭头按钮 */}
         <ElegantTooltip
-          content={getTooltip(jobOptions[nextIndex])}
+          content={getJobTooltip(jobOptions[nextIndex], language)}
           side="bottom"
         >
           <button
@@ -260,11 +254,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
 
         {/* X 按钮 */}
         <ElegantTooltip
-          content={
-            language === 'zh' ? '显示全部经历' :
-            language === 'zh-hk' ? '顯示全部經歷' :
-            'Show all experiences'
-          }
+          content={uiCopy.switcher.jobType.showAllExperiences}
           side="bottom"
         >
           <button
@@ -278,7 +268,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
             }}
             className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-[var(--color-text-primary)]"
             style={{
-              color: isNoneActive ? 'var(--color-white)' : 'var(--color-text-primary)',
+              color: isNoneActive ? 'var(--color-text-primary)' : 'var(--color-text-primary)',
               minWidth: '24px',
               display: 'flex',
               alignItems: 'center',

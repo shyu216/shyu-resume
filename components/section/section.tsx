@@ -1,7 +1,7 @@
 // Section Component - Server Component
 // Section wrapper with title and border
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/content/config";
 
 interface SectionProps {
   title: string;
@@ -10,20 +10,16 @@ interface SectionProps {
 }
 
 export default function Section({ title, children, usage }: SectionProps) {
-  const titleSize = usage === "live" ? "text-md" : "text-[14px]";
+  const titleSize = usage === "live" ? "text-md" : "text-[16px]";
 
   return (
-    <section className="mt-2">
+    <section className="resume-section mt-2">
       <h3
-        className={cn(titleSize, "font-bold")}
+        className={cn(titleSize, "resume-section-title mb-1 font-bold")}
         style={{ color: 'var(--header-color)' }}
       >
         {title}
       </h3>
-      <div
-        className="w-full border-t mb-1"
-        style={{ borderColor: 'var(--color-border-default)' }}
-      ></div>
       {children}
     </section>
   );

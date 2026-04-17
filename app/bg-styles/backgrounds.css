@@ -1,0 +1,159 @@
+:root {
+  --bg-grid-opacity: 0.5;
+  --bg-grid-step: 14.4px;
+  --bg-grid-tilt: 0deg;
+  --bg-grid-scale: 1;
+  --bg-grid-drift: 30s;
+  --bg-glow-size: 103.72% 46.58%;
+  --bg-glow-center-x: 50%;
+  --bg-glow-center-y: 0%;
+  --bg-glow-opacity: 1;
+  --bg-stripe-pattern:
+    repeating-linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-grid) 62%, transparent) 0 1px,
+      transparent 1px var(--bg-grid-step)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-grid) 56%, transparent) 0 1px,
+      transparent 1px var(--bg-grid-step)
+    );
+  --bg-shape-layer:
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--header-color) 32%, transparent) 0%,
+      color-mix(in srgb, var(--header-color) 18%, transparent) 42%,
+      transparent 74%
+    ),
+    radial-gradient(42% 30% at 88% 0%, color-mix(in srgb, #06b6d4 14%, transparent) 0%, transparent 100%);
+}
+
+:root[data-bg-style="triangle-prism"] {
+  --bg-grid-opacity: 0.58;
+  --bg-grid-step: 9px;
+  --bg-grid-tilt: 0.6deg;
+  --bg-grid-scale: 1.018;
+  --bg-grid-drift: 42s;
+  --bg-glow-size: 114% 56%;
+  --bg-glow-center-x: 48%;
+  --bg-glow-center-y: -4%;
+  --bg-glow-opacity: 0.9;
+  --bg-stripe-pattern:
+    repeating-linear-gradient(60deg, color-mix(in srgb, var(--color-grid) 62%, transparent) 0 1px, transparent 1px 17px),
+    repeating-linear-gradient(-60deg, color-mix(in srgb, var(--color-grid) 62%, transparent) 0 1px, transparent 1px 17px),
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-grid) 46%, transparent) 0 1px, transparent 1px 15px);
+  --bg-shape-layer:
+    conic-gradient(
+      from 12deg at 0% 0%,
+      color-mix(in srgb, #22d3ee 34%, transparent) 0deg,
+      color-mix(in srgb, #22d3ee 18%, transparent) 58deg,
+      transparent 59deg 360deg
+    ),
+    conic-gradient(
+      from 168deg at 100% 0%,
+      color-mix(in srgb, var(--header-color) 34%, transparent) 0deg,
+      color-mix(in srgb, var(--header-color) 18%, transparent) 58deg,
+      transparent 59deg 360deg
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, #a78bfa 16%, transparent) 0%,
+      transparent 38%
+    );
+}
+
+:root[data-bg-style="light-beams"] {
+  --bg-grid-opacity: 0.62;
+  --bg-grid-step: 10px;
+  --bg-grid-tilt: 1.2deg;
+  --bg-grid-scale: 1.02;
+  --bg-grid-drift: 34s;
+  --bg-glow-size: 128% 62%;
+  --bg-glow-center-x: 52%;
+  --bg-glow-center-y: -16%;
+  --bg-glow-opacity: 0.92;
+  --bg-stripe-pattern:
+    repeating-linear-gradient(
+      116deg,
+      color-mix(in srgb, var(--header-color) 24%, transparent) 0 6px,
+      transparent 6px 30px
+    ),
+    repeating-linear-gradient(
+      116deg,
+      color-mix(in srgb, #f59e0b 16%, transparent) 0 2px,
+      transparent 2px 46px
+    );
+  --bg-shape-layer:
+    linear-gradient(
+      116deg,
+      transparent 0 26%,
+      color-mix(in srgb, var(--header-color) 26%, transparent) 34%,
+      transparent 44%,
+      color-mix(in srgb, #f59e0b 22%, transparent) 56%,
+      transparent 66%,
+      color-mix(in srgb, #38bdf8 20%, transparent) 76%,
+      transparent 100%
+    ),
+    radial-gradient(52% 28% at 16% -2%, color-mix(in srgb, #f59e0b 26%, transparent) 0%, transparent 100%);
+}
+
+:root[data-bg-style="triangle-prism"] .bg-radial-glow,
+:root[data-bg-style="light-beams"] .bg-radial-glow {
+  height: 100vh;
+}
+
+.bg-grid-pattern {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  user-select: none;
+  opacity: var(--bg-grid-opacity);
+  background-image: var(--bg-stripe-pattern);
+  transform: perspective(1200px) scale(var(--bg-grid-scale)) rotateX(var(--bg-grid-tilt));
+  transform-origin: top center;
+  animation: bg-grid-drift var(--bg-grid-drift) linear infinite;
+}
+
+.bg-radial-glow {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 600px;
+  user-select: none;
+  opacity: var(--bg-glow-opacity);
+  background-image: var(--bg-shape-layer), radial-gradient(
+      var(--bg-glow-size) at var(--bg-glow-center-x) var(--bg-glow-center-y),
+      color-mix(in srgb, var(--header-color) 56%, transparent) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  animation: bg-glow-breathe 9s ease-in-out infinite;
+}
+
+@keyframes bg-grid-drift {
+  0% {
+    transform: perspective(1200px) scale(var(--bg-grid-scale)) rotateX(var(--bg-grid-tilt)) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: perspective(1200px) scale(var(--bg-grid-scale)) rotateX(var(--bg-grid-tilt)) translate3d(6px, 3px, 0);
+  }
+
+  100% {
+    transform: perspective(1200px) scale(var(--bg-grid-scale)) rotateX(var(--bg-grid-tilt)) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bg-glow-breathe {
+  0%,
+  100% {
+    filter: saturate(1) brightness(1);
+  }
+
+  50% {
+    filter: saturate(1.12) brightness(1.06);
+  }
+}

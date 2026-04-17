@@ -1,17 +1,19 @@
 import React from "react";
 import { FullResume } from "@/components/section/full-resume";
-import { PrintProvider } from "@/components/print-provider";
-import { PDFResumeContainer } from "@/components/pdf-resume-container";
+import { PDFResumeContainer } from "@/components/print-provider";
+import { PdfStyleThemeWrapper } from "@/components/pdf-style-theme-wrapper";
 
 export default function CVPage() {
   return (
-    <PrintProvider>
+    <>
       <div className="hidden">
         <PDFResumeContainer>
           <FullResume usage="pdf" />
         </PDFResumeContainer>
       </div>
-      <FullResume usage="live" />
-    </PrintProvider>
+      <PdfStyleThemeWrapper>
+        <FullResume usage="live" />
+      </PdfStyleThemeWrapper>
+    </>
   );
 }

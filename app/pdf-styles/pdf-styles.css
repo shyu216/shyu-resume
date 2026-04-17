@@ -1,0 +1,116 @@
+.pdf-resume-theme {
+  --pdf-font-scale: 1;
+  --pdf-section-gap: 0.5rem;
+  --pdf-divider-opacity: 0.2;
+  --pdf-divider-width: 1px;
+  --pdf-title-spacing: 0.01em;
+  --pdf-title-scale: 1;
+  --pdf-section-padding: 0;
+  --pdf-section-bg: transparent;
+}
+
+.pdf-resume-theme .pdf-resume-root {
+  font-size: calc(1rem * var(--pdf-font-scale));
+}
+
+.pdf-resume-theme .pdf-resume-root section {
+  margin-bottom: var(--pdf-section-gap);
+  padding: var(--pdf-section-padding);
+  background: var(--pdf-section-bg);
+}
+
+.pdf-resume-theme .pdf-resume-root section > h3 {
+  letter-spacing: var(--pdf-title-spacing);
+  font-size: calc(1rem * var(--pdf-title-scale));
+}
+
+.pdf-resume-theme .pdf-resume-root .resume-section-title {
+  border-bottom-width: var(--pdf-divider-width);
+  border-bottom-color: color-mix(in srgb, var(--color-border-default) calc(var(--pdf-divider-opacity) * 100%), transparent);
+}
+
+.pdf-resume-theme[data-pdf-style="fullstack"] {
+  --pdf-font-scale: 1.03;
+  --pdf-section-gap: 0.78rem;
+  --pdf-divider-opacity: 0.3;
+  --pdf-divider-width: 2px;
+  --pdf-title-spacing: 0.03em;
+  --pdf-title-scale: 1.08;
+  --pdf-section-padding: 0.05rem 0.12rem;
+  --pdf-section-bg: transparent;
+}
+
+.pdf-resume-theme[data-pdf-style="fullstack"] .pdf-resume-root section {
+  border-left: 3px solid color-mix(in srgb, var(--header-color) 36%, transparent);
+  border-radius: 0;
+}
+
+.pdf-resume-theme[data-pdf-style="fullstack"] .pdf-resume-root .resume-section-title {
+  border-bottom-color: color-mix(in srgb, var(--header-color) 44%, transparent);
+}
+
+.pdf-resume-theme[data-pdf-style="software"] {
+  --pdf-font-scale: 1;
+  --pdf-section-gap: 0.65rem;
+  --pdf-divider-opacity: 0.3;
+  --pdf-divider-width: 2px;
+  --pdf-title-spacing: 0.075em;
+  --pdf-title-scale: 1.03;
+  --pdf-section-padding: 0.2rem 0.3rem;
+  --pdf-section-bg: color-mix(in srgb, var(--color-card-default) 84%, transparent);
+}
+
+.pdf-resume-theme[data-pdf-style="software"] .pdf-resume-root section {
+  border-top: 1px solid color-mix(in srgb, var(--header-color) 20%, transparent);
+}
+
+.pdf-resume-theme[data-pdf-style="devops"] {
+  --pdf-font-scale: 0.96;
+  --pdf-section-gap: 0.38rem;
+  --pdf-divider-opacity: 0.16;
+  --pdf-divider-width: 1px;
+  --pdf-title-spacing: 0.015em;
+  --pdf-title-scale: 0.95;
+  --pdf-section-padding: 0;
+  --pdf-section-bg: transparent;
+}
+
+.pdf-resume-theme[data-pdf-style="devops"] .pdf-resume-root section {
+  border-left: none;
+}
+
+.pdf-resume-theme[data-pdf-style="ml-researcher"] {
+  --pdf-font-scale: 1.02;
+  --pdf-section-gap: 0.82rem;
+  --pdf-divider-opacity: 0.36;
+  --pdf-divider-width: 2px;
+  --pdf-title-spacing: 0.09em;
+  --pdf-title-scale: 1.04;
+  --pdf-section-padding: 0.24rem 0.32rem;
+  --pdf-section-bg: color-mix(in srgb, var(--color-card-default) 82%, transparent);
+}
+
+.pdf-resume-theme[data-pdf-style="ml-researcher"] .pdf-resume-root section > h3 {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.pdf-resume-theme[data-pdf-style="ml-researcher"] .pdf-resume-root section {
+  border-left: 2px solid color-mix(in srgb, var(--header-color) 45%, transparent);
+  border-radius: 0.28rem;
+}
+
+.pdf-resume-theme[data-pdf-style="neutral"] {
+  --pdf-font-scale: 0.98;
+  --pdf-section-gap: 0.42rem;
+  --pdf-divider-opacity: 0.1;
+  --pdf-divider-width: 1px;
+  --pdf-title-spacing: 0;
+  --pdf-title-scale: 0.96;
+  --pdf-section-padding: 0;
+  --pdf-section-bg: transparent;
+}
+
+.pdf-resume-theme[data-pdf-style="neutral"] .pdf-resume-root section {
+  border-left: none;
+}

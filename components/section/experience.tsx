@@ -1,8 +1,7 @@
 // Experience Component - Server Component
 // Displays work/project/education experience entries
 
-import { cn } from "@/lib/utils";
-import { KeywordHighlighter } from "@/components/job/keyword-highlighter";
+import { cn } from "@/content/config";
 
 interface ExperienceProps {
   head1: string | JSX.Element;
@@ -14,7 +13,6 @@ interface ExperienceProps {
   bulletPoints?: string[];
   bulletPointsShort?: string[];
   usage: "live" | "pdf";
-  keywords?: string[];
 }
 
 export default function Experience({
@@ -27,14 +25,23 @@ export default function Experience({
   bulletPoints,
   bulletPointsShort,
   usage,
-  keywords
 }: ExperienceProps) {
-  const textSize = usage === "live" ? "text-sm" : "text-[11px]";
-  const bodyLineHeight = usage === "live" ? "leading-normal" : "leading-[13px]";
+  const textSize = usage === "live" ? "text-sm" : "text-[12px]";
+  const bodyLineHeight = "leading-normal";
+
+  const renderBoldText = (text: string) => {
+    const segments = text.split(/(\*\*[^*]+\*\*)/g);
+    return segments.map((segment, index) => {
+      if (segment.startsWith("**") && segment.endsWith("**")) {
+        return <strong key={index}>{segment.slice(2, -2)}</strong>;
+      }
+      return <span key={index}>{segment}</span>;
+    });
+  };
 
   return (
     <section
-      className={cn(textSize, "break-inside-avoid page-break-inside-avoid break-before-auto")}
+      className={cn(textSize, "resume-entry")}
       style={{ color: 'var(--color-text-primary)' }}
     >
       <div>
@@ -55,7 +62,7 @@ export default function Experience({
       {bulletPointsShort && bulletPointsShort.length > 0 && (
         <ul className="flex gap-x-8 items-center flex-wrap ml-4 list-disc">
           {bulletPointsShort.map((point, index) => (
-            <li key={index}>{point}</li>
+            <li key={index}>{renderBoldText(point)}</li>
           ))}
         </ul>
       )}
@@ -63,9 +70,7 @@ export default function Experience({
       {bulletPoints && bulletPoints.length > 0 && (
         <ul className={cn("list-disc ml-4 mt-1", bodyLineHeight)}>
           {bulletPoints?.map((point, index) => (
-            <li key={index}>
-              <KeywordHighlighter text={point} keywords={keywords || []} />
-            </li>
+            <li key={index}>{renderBoldText(point)}</li>
           ))}
         </ul>
       )}

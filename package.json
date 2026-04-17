@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export:pdf": "node scripts/export-pdf.js"
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.0.7",
@@ -30,6 +31,7 @@
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
+    "playwright": "^1.54.2",
     "tailwindcss": "^3",
     "typescript": "^5"
   }

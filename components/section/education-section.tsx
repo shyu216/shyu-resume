@@ -7,11 +7,8 @@ import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import Experience from "@/components/section/experience";
 import LabelWithLink from "@/components/labels/label-with-link";
-import { education as educationEn } from "@/content/en/education";
-import { education as educationZh } from "@/content/zh/education";
-import { education as educationZhHk } from "@/content/zh-hk/education";
 import Label from "@/components/labels/label";
-import { useLanguageMap } from "@/lib/utils";
+import { getLocalizedSection } from "@/content/config";
 
 type Props = {
   usage: "live" | "pdf";
@@ -20,11 +17,7 @@ type Props = {
 export default function EducationSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
 
-  const { data: education, title } = useLanguageMap({
-    en: { data: educationEn, title: "EDUCATION" },
-    zh: { data: educationZh, title: "教育经历" },
-    "zh-hk": { data: educationZhHk, title: "教育經歷" },
-  }, language);
+  const { data: education, title } = getLocalizedSection(language, "education");
 
   return (
     <Section title={title} usage={usage}>

@@ -5,8 +5,8 @@ import React, { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { Icons } from "@/components/ui/icons";
 import { ElegantTooltip } from "@/components/ui/tooltip";
-import { useLanguageMap } from "@/lib/utils";
-import { cn } from "@/lib/utils";
+import { copy } from "@/content/copy";
+import { cn } from "@/content/config";
 
 const themes = [
   { value: "light", icon: Icons.Sun },
@@ -17,6 +17,7 @@ export function ThemeSwitcher() {
   const [mounted, setMounted] = React.useState(false);
   const { setTheme, resolvedTheme } = useTheme();
   const { language } = useContext(LanguageContext);
+  const uiCopy = copy[language];
 
   const ThemeIcon = React.useMemo(
     () => themes.find((t) => t.value === resolvedTheme)?.icon ?? Icons.Sun,
@@ -29,13 +30,7 @@ export function ThemeSwitcher() {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
   }
 
-  const tooltipMap = useLanguageMap({
-    en: { light: "Switch to Dark", dark: "Switch to Light" },
-    zh: { light: "切换至深色", dark: "切换至浅色" },
-    'zh-hk': { light: "切換至深色", dark: "切換至淺色" },
-  }, language);
-
-  const tooltipContent = resolvedTheme === "dark" ? tooltipMap.dark : tooltipMap.light;
+  const tooltipContent = resolvedTheme === "dark" ? uiCopy.themeSwitcher.tooltip.dark : uiCopy.themeSwitcher.tooltip.light;
 
   if (!mounted) {
     return null;
@@ -45,7 +40,7 @@ export function ThemeSwitcher() {
     <ElegantTooltip content={tooltipContent} side="bottom">
       <button
         type="button"
-        aria-label="Change theme"
+        aria-label={uiCopy.themeSwitcher.ariaLabel}
         className={cn(
           "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 backdrop-blur transition-all duration-200 hover:scale-105"
         )}

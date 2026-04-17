@@ -23,6 +23,8 @@ import {
   Building2,
   LayoutTemplate,
   Smartphone,
+  Check,
+  Globe2,
   // MessagesSquare
 } from "lucide-react";
 
@@ -56,5 +58,7 @@ export const Icons = {
   Building: Building2,
   LayoutTemplate: LayoutTemplate,
   SmartPhone: Smartphone,
+  Check: Check,
+  Globe: Globe2,
   Wechat: WechatIcon,
 } as const;

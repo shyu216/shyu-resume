@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { JobType } from "@/lib/job-types";
+import type { JobType } from "@/content/config";
 
 interface JobTypeContextType {
   jobType: JobType;

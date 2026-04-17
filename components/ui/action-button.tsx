@@ -4,10 +4,10 @@ import { Icons } from "@/components/ui/icons";
 import { usePrint } from "@/components/print-provider";
 import { useContext } from "react";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { ElegantTooltip } from "@/components/ui/tooltip";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { useUsageMap, useLanguageMap } from "@/lib/utils";
+import { ElegantTooltip, HoverLink } from "@/components/ui/tooltip";
+import { cn } from "@/content/config";
+import { useUsageMap } from "@/content/config";
+import { copy } from "@/content/copy";
 
 type Props = {
   className?: string;
@@ -17,6 +17,7 @@ type Props = {
 export default function ActionButton({ className, usage }: Props) {
   const { handlePrint } = usePrint();
   const { language } = useContext(LanguageContext);
+  const uiCopy = copy[language];
 
   const baseButtonClass = cn(
     "inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none",
@@ -24,49 +25,40 @@ export default function ActionButton({ className, usage }: Props) {
   );
 
   const text = useUsageMap({
-    live: useLanguageMap({
-      en: "Save PDF",
-      zh: "保存PDF",
-      "zh-hk": "儲存PDF",
-    }, language),
-    pdf: useLanguageMap({
-      en: "Open",
-      zh: "前往",
-      "zh-hk": "打開",
-    }, language),
+    live: uiCopy.actionButton.liveText,
+    pdf: uiCopy.actionButton.pdfText,
   }, usage);
 
-  const tooltip = useLanguageMap({
-    en: "Recommended to use Chrome to print PDF for best pagination and link support",
-    zh: "建议在 Chrome 浏览器打印，确保最佳排版和链接完整",
-    "zh-hk": "建議在 Chrome 瀏覽器列印，以確保最佳排版和連結完整",
-  }, language);
+  const tooltip = uiCopy.actionButton.tooltip;
 
   return usage === "live" ? (
     <ElegantTooltip content={tooltip} side="bottom">
       <button
         type="button"
+        aria-label={uiCopy.actionButton.ariaLabel}
         onClick={handlePrint}
         className={cn(baseButtonClass, "font-semibold")}
         style={{
-          backgroundColor: 'var(--header-color)',
-          color: 'var(--color-white)',
+          background: 'linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))',
+          color: 'var(--color-text-secondary)',
         }}
       >
         {text}
       </button>
     </ElegantTooltip>
   ) : (
-    <Link
+    <HoverLink
       className={cn(baseButtonClass, "font-semibold")}
       href="https://shyu216.github.io/shyu-resume/"
+      aria-label={uiCopy.actionButton.ariaLabel}
       style={{
-        backgroundColor: 'var(--header-color)',
-        color: 'var(--color-white)',
+        background: 'linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))',
+        color: 'var(--color-text-primary)',
       }}
+      tooltipContent={tooltip}
     >
       {text}
       <Icons.OpenLink className="h-4 w-4 stroke-stone-300 transition group-active:stroke-stone-700 dark:group-hover:stroke-stone-50 dark:group-active:stroke-stone-50" />
-    </Link>
+    </HoverLink>
   );
 }
