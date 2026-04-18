@@ -68,30 +68,73 @@ export interface JobSwitcherProps {
   onJobTypeChange: (jobType: JobType) => void;
 }
 
-export type FontFamilyType = "inter" | "jetbrains-mono" | "system-ui" | "monospace" | "serif";
+export type FontFamilyType = "monospace" | "songti";
 export type ColorPalette = "blue" | "red" | "purple" | "green" | "orange" | "pink" | "teal" | "indigo";
-export type PdfStyleId = "fullstack" | "software" | "devops" | "ml-researcher" | "neutral";
+export type PdfStyleId = "accent" | "cards" | "blueprint" | "editorial" | "ribbon";
+export type BgStyleId = "default-grid" | "triangle-prism" | "lumen-beams" | "orbit-mesh" | "dot-matrix";
+export type VisualBindingMode = "asconfig" | "aslist" | "random" | "consistent";
+
+const profileOrder: readonly ResumeJobType[] = ["FULLSTACK", "SOFTWARE", "DEVOPS", "ML_RESEARCHER", "NONE"];
+const colorList: readonly ColorPalette[] = ["red", "indigo", "green", "purple", "teal", "blue", "orange", "pink"];
+const bgStyleList: readonly BgStyleId[] = ["default-grid", "triangle-prism", "lumen-beams", "orbit-mesh", "dot-matrix"];
+const pdfStyleList: readonly PdfStyleId[] = ["accent", "cards", "blueprint", "editorial", "ribbon"];
+
+const visualConsistentCache = {
+  color: new Map<ResumeJobType, ColorPalette>(),
+  bgStyle: new Map<ResumeJobType, BgStyleId>(),
+  pdfStyle: new Map<ResumeJobType, PdfStyleId>(),
+};
+
+export const visualBinding = {
+  colorMode: "asconfig" as VisualBindingMode,
+  bgStyleMode: "asconfig" as VisualBindingMode,
+  pdfStyleMode: "asconfig" as VisualBindingMode,
+} as const;
+
+export const visualPresetDefaults = {
+  color: "red" as ColorPalette,
+  bgStyle: "default-grid" as BgStyleId,
+  pdfStyle: "ribbon" as PdfStyleId,
+};
+
+export const visualPresetByJob: Record<ResumeJobType, {
+  color: ColorPalette;
+  bgStyle: BgStyleId;
+  pdfStyle: PdfStyleId;
+}> = {
+  FULLSTACK: { color: "red", bgStyle: "default-grid", pdfStyle: "accent" },
+  SOFTWARE: { color: "indigo", bgStyle: "triangle-prism", pdfStyle: "cards" },
+  DEVOPS: { color: "green", bgStyle: "lumen-beams", pdfStyle: "blueprint" },
+  ML_RESEARCHER: { color: "purple", bgStyle: "orbit-mesh", pdfStyle: "editorial" },
+  NONE: { color: "teal", bgStyle: "dot-matrix", pdfStyle: "ribbon" },
+};
 
 export const fontFamilies: Record<FontFamilyType, { name: string; fontStack: string[] }> = {
-  inter: {
-    name: "Inter",
-    fontStack: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-  },
-  "jetbrains-mono": {
-    name: "JetBrains Mono",
-    fontStack: ["JetBrains Mono", "Fira Code", "SF Mono", "Monaco", "Menlo", "Consolas", "Liberation Mono", "Courier New", "monospace"],
-  },
-  "system-ui": {
-    name: "System UI",
-    fontStack: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-  },
   monospace: {
     name: "Monospace",
-    fontStack: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+    fontStack: [
+      "JetBrains Mono",
+      "Fira Code",
+      "ui-monospace",
+      "SFMono-Regular",
+      "Menlo",
+      "Monaco",
+      "Consolas",
+      "Liberation Mono",
+      "Courier New",
+      "monospace",
+    ],
   },
-  serif: {
-    name: "Serif",
-    fontStack: ["Charter", "Bitstream Charter", "Sitka Text", "Cambria", "serif"],
+  songti: {
+    name: "Songti",
+    fontStack: [
+      "Songti SC",
+      "SimSun",
+      "NSimSun",
+      "STSong",
+      "PMingLiU",
+      "serif",
+    ],
   },
 };
 
@@ -145,17 +188,17 @@ type ThemeOverride = {
 };
 
 const resumeTheme = {
-  default: { color: "red", font: "inter" } as Required<ThemeOverride>,
+  default: { color: "red", font: "monospace" } as Required<ThemeOverride>,
   byJob: {
-    FULLSTACK: { color: "red", font: "inter" },
-    SOFTWARE: { color: "indigo", font: "inter" },
-    DEVOPS: { color: "green", font: "jetbrains-mono" },
-    ML_RESEARCHER: { color: "purple", font: "inter" },
-    NONE: { color: "teal", font: "inter" },
+    FULLSTACK: { color: "red", font: "monospace" },
+    SOFTWARE: { color: "indigo", font: "monospace" },
+    DEVOPS: { color: "green", font: "monospace" },
+    ML_RESEARCHER: { color: "purple", font: "monospace" },
+    NONE: { color: "teal", font: "monospace" },
   } as Partial<Record<ResumeJobType, ThemeOverride>>,
   byLanguage: {
-    zh: { font: "system-ui" },
-    "zh-hk": { font: "system-ui" },
+    zh: { font: "songti" },
+    "zh-hk": { font: "songti" },
   } as Partial<Record<ResumeLanguage, ThemeOverride>>,
   byJobLanguage: {
     // 预留：按岗位+语言做精细化覆盖
@@ -163,39 +206,159 @@ const resumeTheme = {
 };
 
 const pdfStyleTheme = {
-  default: "neutral" as PdfStyleId,
+  default: "ribbon" as PdfStyleId,
   byJob: {
-    FULLSTACK: "fullstack",
-    SOFTWARE: "software",
-    DEVOPS: "devops",
-    ML_RESEARCHER: "ml-researcher",
-    NONE: "neutral",
+    FULLSTACK: "accent",
+    SOFTWARE: "cards",
+    DEVOPS: "blueprint",
+    ML_RESEARCHER: "editorial",
+    NONE: "ribbon",
   } as Record<ResumeJobType, PdfStyleId>,
 };
 
-function resolveTheme(jobType: ResumeJobType, language: ResumeLanguage): Required<ThemeOverride> {
-  const byJob = resumeTheme.byJob[jobType] ?? {};
+function resolveTheme(profile: ResumeJobType, language: ResumeLanguage): Required<ThemeOverride> {
+  const byJob = resumeTheme.byJob[profile] ?? {};
   const byLanguage = resumeTheme.byLanguage[language] ?? {};
-  const byJobLanguage = resumeTheme.byJobLanguage[jobType]?.[language] ?? {};
+  const byJobLanguage = resumeTheme.byJobLanguage[profile]?.[language] ?? {};
 
   return {
-    color: byJobLanguage.color ?? byLanguage.color ?? byJob.color ?? resumeTheme.default.color,
+    color: resolveVisualValue("color", visualBinding.colorMode, profile),
     font: byJobLanguage.font ?? byLanguage.font ?? byJob.font ?? resumeTheme.default.font,
   };
 }
 
-export function getColor(jobType: ResumeJobType, language: ResumeLanguage) {
-  const { color } = resolveTheme(jobType, language);
+export function getColor(profile: ResumeJobType, language: ResumeLanguage) {
+  const { color } = resolveTheme(profile, language);
   return colorPalettes[color];
 }
 
-export function getFont(jobType: ResumeJobType, language: ResumeLanguage) {
-  const { font } = resolveTheme(jobType, language);
+export function getFont(profile: ResumeJobType, language: ResumeLanguage) {
+  const { font } = resolveTheme(profile, language);
   return fontFamilies[font];
 }
 
-export function getPdfStyle(jobType: ResumeJobType): PdfStyleId {
-  return pdfStyleTheme.byJob[jobType] ?? pdfStyleTheme.default;
+export function getPdfStyle(profile: ResumeJobType): PdfStyleId {
+  return resolveVisualValue("pdfStyle", visualBinding.pdfStyleMode, profile);
+}
+
+export function isColorModeDynamic() {
+  return visualBinding.colorMode !== "asconfig";
+}
+
+export function isBgStyleModeDynamic() {
+  return visualBinding.bgStyleMode !== "asconfig";
+}
+
+export function isPdfStyleModeDynamic() {
+  return visualBinding.pdfStyleMode !== "asconfig";
+}
+
+export function getColorBindingMode(): VisualBindingMode {
+  return visualBinding.colorMode;
+}
+
+export function getBgStyleBindingMode(): VisualBindingMode {
+  return visualBinding.bgStyleMode;
+}
+
+export function getPdfStyleBindingMode(): VisualBindingMode {
+  return visualBinding.pdfStyleMode;
+}
+
+export function getBgStyle(profile: ResumeJobType): BgStyleId {
+  return resolveVisualValue("bgStyle", visualBinding.bgStyleMode, profile);
+}
+
+function getProfileIndex(profile: ResumeJobType): number {
+  const index = profileOrder.indexOf(profile);
+  return index === -1 ? 0 : index;
+}
+
+function getRandomItem<T>(list: readonly T[], fallback: T): T {
+  if (list.length === 0) {
+    return fallback;
+  }
+
+  return list[Math.floor(Math.random() * list.length)] ?? fallback;
+}
+
+function getConsistentItem<T>(
+  cache: Map<ResumeJobType, T>,
+  profile: ResumeJobType,
+  list: readonly T[],
+  fallback: T
+): T {
+  const cached = cache.get(profile);
+  if (cached) {
+    return cached;
+  }
+
+  const next = getRandomItem(list, fallback);
+  cache.set(profile, next);
+  return next;
+}
+
+function resolveVisualValue(
+  kind: "color",
+  mode: VisualBindingMode,
+  profile: ResumeJobType
+): ColorPalette;
+function resolveVisualValue(
+  kind: "bgStyle",
+  mode: VisualBindingMode,
+  profile: ResumeJobType
+): BgStyleId;
+function resolveVisualValue(
+  kind: "pdfStyle",
+  mode: VisualBindingMode,
+  profile: ResumeJobType
+): PdfStyleId;
+function resolveVisualValue(
+  kind: "color" | "bgStyle" | "pdfStyle",
+  mode: VisualBindingMode,
+  profile: ResumeJobType
+) {
+  const fallbackByKind = {
+    color: visualPresetDefaults.color,
+    bgStyle: visualPresetDefaults.bgStyle,
+    pdfStyle: visualPresetDefaults.pdfStyle,
+  } as const;
+
+  const listByKind = {
+    color: colorList,
+    bgStyle: bgStyleList,
+    pdfStyle: pdfStyleList,
+  } as const;
+
+  const configValueByKind = {
+    color:
+      visualPresetByJob[profile]?.color
+      ?? resumeTheme.byJob[profile]?.color
+      ?? resumeTheme.default.color,
+    bgStyle: visualPresetByJob[profile]?.bgStyle,
+    pdfStyle:
+      visualPresetByJob[profile]?.pdfStyle
+      ?? pdfStyleTheme.byJob[profile]
+      ?? pdfStyleTheme.default,
+  } as const;
+
+  const fallback = fallbackByKind[kind];
+  const list = listByKind[kind];
+
+  if (mode === "asconfig") {
+    return configValueByKind[kind] ?? fallback;
+  }
+
+  if (mode === "aslist") {
+    const index = getProfileIndex(profile) % list.length;
+    return list[index] ?? fallback;
+  }
+
+  if (mode === "random") {
+    return getRandomItem(list, fallback);
+  }
+
+  return getConsistentItem(visualConsistentCache[kind], profile, list, fallback);
 }
 
 export function cn(...classNames: ClassValue[]): string {
@@ -350,12 +513,12 @@ export function getLocalizedSection<T extends keyof typeof localizedSectionData>
 
 export function filterExperience<T extends { jobTypes: ExperienceJobType[] }>(
   items: T[],
-  jobType: ResumeJobType
+  profile: ResumeJobType
 ): T[] {
-  if (jobType === "NONE") {
+  if (profile === "NONE") {
     return items;
   }
-  return items.filter((item) => item.jobTypes.includes(jobType));
+  return items.filter((item) => item.jobTypes.includes(profile));
 }
 
 export const siteConfig: SiteConfig = {

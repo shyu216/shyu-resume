@@ -21,7 +21,7 @@ export default function EducationSection({ usage }: Props) {
 
   return (
     <Section title={title} usage={usage}>
-      <div className="flex flex-col gap-y-1">
+      <div className="flex flex-col gap-y-0">
         {education.map((e, index) => (
           <Experience
             key={index}

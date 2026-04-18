@@ -1,0 +1,43 @@
+.pdf-resume-theme[data-pdf-style="cards"] {
+  --pdf-font-scale: 1;
+  --pdf-section-gap: 0rem;
+  --pdf-divider-opacity: 0.3;
+  --pdf-divider-width: 1px;
+  --pdf-title-spacing: 0.075em;
+  --pdf-title-scale: 1.03;
+  --pdf-section-padding: 0.2rem 0.3rem;
+}
+
+.pdf-resume-theme[data-pdf-style="cards"] .pdf-resume-root .resume-entry:not(:last-child) {
+  border-bottom: 2px solid color-mix(in srgb, var(--header-color) 20%, transparent);
+}
+
+.pdf-resume-theme[data-pdf-style="cards"] .pdf-resume-root .resume-section-title {
+  border-bottom-width: 2px;
+  border-bottom-color: color-mix(in srgb, var(--header-color) 20%, transparent);
+}
+
+.pdf-resume-theme[data-pdf-style="cards"] .pdf-resume-root .resume-section-title-text {
+  position: relative;
+  display: inline-block;
+}
+
+.pdf-resume-theme[data-pdf-style="cards"] .pdf-resume-root .resume-section-title-text::before,
+.pdf-resume-theme[data-pdf-style="cards"] .pdf-resume-root .resume-section-title-text::after {
+  content: "";
+  position: absolute;
+  top: 75%;
+  width: 1em;
+  height: 2px;
+  background: color-mix(in srgb, var(--header-color) 34%, transparent);
+  transform-origin: right center;
+  transform: rotate(60deg);
+}
+
+.pdf-resume-theme[data-pdf-style="cards"] .pdf-resume-root .resume-section-title-text::before {
+  right: -0.8rem;
+}
+
+.pdf-resume-theme[data-pdf-style="cards"] .pdf-resume-root .resume-section-title-text::after {
+  right: -1.1rem;
+}

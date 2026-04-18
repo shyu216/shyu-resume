@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export:pdf": "node scripts/export-pdf.js"
+    ,"test:pagination": "node scripts/run-pagination.js"
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.0.7",

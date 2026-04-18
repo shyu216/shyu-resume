@@ -1,0 +1,34 @@
+:root[data-bg-style="triangle-prism"] {
+  --bg-grid-opacity: 0.58;
+  --bg-grid-step: 9px;
+  --bg-grid-tilt: 0.6deg;
+  --bg-grid-scale: 1.018;
+  --bg-grid-drift: 42s;
+  --bg-glow-size: 114% 56%;
+  --bg-glow-center-x: 48%;
+  --bg-glow-center-y: -4%;
+  --bg-glow-opacity: 0.9;
+  --bg-glow-height: 100vh;
+  --bg-stripe-pattern:
+    repeating-linear-gradient(60deg, color-mix(in srgb, var(--color-grid) 62%, transparent) 0 1px, transparent 1px 17px),
+    repeating-linear-gradient(-60deg, color-mix(in srgb, var(--color-grid) 62%, transparent) 0 1px, transparent 1px 17px),
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-grid) 46%, transparent) 0 1px, transparent 1px 15px);
+  --bg-shape-layer:
+    conic-gradient(
+      from 12deg at 0% 0%,
+      color-mix(in srgb, #22d3ee 34%, transparent) 0deg,
+      color-mix(in srgb, #22d3ee 18%, transparent) 58deg,
+      transparent 59deg 360deg
+    ),
+    conic-gradient(
+      from 168deg at 100% 0%,
+      color-mix(in srgb, var(--header-color) 34%, transparent) 0deg,
+      color-mix(in srgb, var(--header-color) 18%, transparent) 58deg,
+      transparent 59deg 360deg
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, #a78bfa 16%, transparent) 0%,
+      transparent 38%
+    );
+}

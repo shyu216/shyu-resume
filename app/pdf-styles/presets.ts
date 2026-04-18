@@ -8,29 +8,29 @@ export type PdfStylePreset = {
 
 export const PDF_STYLE_PRESETS: readonly PdfStylePreset[] = [
   {
-    id: "fullstack",
+    id: "accent",
     fontScale: 1.02,
     sectionGap: "0.72rem",
   },
   {
-    id: "software",
+    id: "cards",
     fontScale: 1,
     sectionGap: "0.62rem",
   },
   {
-    id: "devops",
-    fontScale: 0.96,
-    sectionGap: "0.35rem",
+    id: "blueprint",
+    fontScale: 0.97,
+    sectionGap: "0.52rem",
   },
   {
-    id: "ml-researcher",
+    id: "editorial",
     fontScale: 1.02,
     sectionGap: "0.78rem",
   },
   {
-    id: "neutral",
-    fontScale: 0.98,
-    sectionGap: "0.45rem",
+    id: "ribbon",
+    fontScale: 1,
+    sectionGap: "0.48rem",
   },
 ] as const;
 

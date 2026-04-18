@@ -26,7 +26,7 @@ export default function Experience({
   bulletPointsShort,
   usage,
 }: ExperienceProps) {
-  const textSize = usage === "live" ? "text-sm" : "text-[12px]";
+  const textSize = usage === "live" ? "text-sm" : "text-[11px]";
   const bodyLineHeight = "leading-normal";
 
   const renderBoldText = (text: string) => {
@@ -60,7 +60,7 @@ export default function Experience({
       </div>
 
       {bulletPointsShort && bulletPointsShort.length > 0 && (
-        <ul className="flex gap-x-8 items-center flex-wrap ml-4 list-disc">
+        <ul className="flex gap-x-8 gap-y-0 items-center flex-wrap ml-4 mt-0 list-disc">
           {bulletPointsShort.map((point, index) => (
             <li key={index}>{renderBoldText(point)}</li>
           ))}
@@ -68,7 +68,7 @@ export default function Experience({
       )}
 
       {bulletPoints && bulletPoints.length > 0 && (
-        <ul className={cn("list-disc ml-4 mt-1", bodyLineHeight)}>
+        <ul className={cn("list-disc ml-4 mt-0 space-y-0", bodyLineHeight)}>
           {bulletPoints?.map((point, index) => (
             <li key={index}>{renderBoldText(point)}</li>
           ))}

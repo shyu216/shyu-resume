@@ -15,8 +15,8 @@ export default function SkillSection({ usage }: Props) {
 
   const { data: skills, title } = getLocalizedSection(language, "skills");
 
-  const style = usage === "live" ? "font-bold whitespace-nowrap text-sm" : "font-bold whitespace-nowrap text-[12px]";
-  const descStyle = usage === "live" ? "text-sm" : "text-[12px]";
+  const style = usage === "live" ? "font-bold whitespace-nowrap text-sm" : "font-bold whitespace-nowrap text-[11px]";
+  const descStyle = usage === "live" ? "text-sm" : "text-[11px]";
 
   return (
     <Section title={title} usage={usage}>

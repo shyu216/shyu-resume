@@ -1,0 +1,23 @@
+.pdf-resume-theme[data-pdf-style="editorial"] {
+  --pdf-font-scale: 1.02;
+  --pdf-section-gap: 0.82rem;
+  --pdf-divider-opacity: 0.36;
+  --pdf-divider-width: 2px;
+  --pdf-title-spacing: 0.09em;
+  --pdf-title-scale: 1.04;
+  --pdf-section-padding: 0.24rem 0.32rem;
+}
+
+.pdf-resume-theme[data-pdf-style="editorial"] .pdf-resume-root section > h3 {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.pdf-resume-theme[data-pdf-style="editorial"] .pdf-resume-root section {
+  border-left: 3px solid color-mix(in srgb, var(--header-color) 45%, transparent);
+  border-radius: 0.28rem;
+}
+
+.pdf-resume-theme[data-pdf-style="editorial"] .pdf-resume-root .resume-entry {
+  border-left: 2px solid color-mix(in srgb, var(--header-color) 45%, transparent);
+}

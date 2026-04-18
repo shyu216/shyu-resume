@@ -1,0 +1,32 @@
+:root,
+:root[data-bg-style="default-grid"] {
+  --bg-grid-opacity: 0.5;
+  --bg-grid-step: 14.4px;
+  --bg-grid-tilt: 0deg;
+  --bg-grid-scale: 1;
+  --bg-grid-drift: 30s;
+  --bg-glow-size: 103.72% 46.58%;
+  --bg-glow-center-x: 50%;
+  --bg-glow-center-y: 0%;
+  --bg-glow-opacity: 1;
+  --bg-glow-height: 600px;
+  --bg-stripe-pattern:
+    repeating-linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-grid) 62%, transparent) 0 1px,
+      transparent 1px var(--bg-grid-step)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-grid) 56%, transparent) 0 1px,
+      transparent 1px var(--bg-grid-step)
+    );
+  --bg-shape-layer:
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--header-color) 32%, transparent) 0%,
+      color-mix(in srgb, var(--header-color) 18%, transparent) 42%,
+      transparent 74%
+    ),
+    radial-gradient(42% 30% at 88% 0%, color-mix(in srgb, #06b6d4 14%, transparent) 0%, transparent 100%);
+}

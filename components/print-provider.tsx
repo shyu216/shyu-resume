@@ -8,6 +8,7 @@ import { useJobType } from "@/components/job/job-type-provider";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { getColor, getFont } from "@/content/config";
 import { usePdfStyle } from "@/app/pdf-styles/pdf-style-provider";
+import '@/lib/pagination';
 
 type PrintContext = {
   componentRef: React.RefObject<HTMLDivElement> | null;
@@ -18,11 +19,6 @@ const PrintContext = createContext<PrintContext>({
   componentRef: null,
   handlePrint: () => {},
 });
-
-const FIRST_PAGE_MARGIN_TOP_CM = 1.5;
-const OTHER_PAGES_MARGIN_TOP_CM = 0.75;
-const PAGE_MARGIN_LEFT_RIGHT_CM = 1;
-const PAGE_MARGIN_BOTTOM_CM = 0.5;
 
 export function PrintProvider({
   children,
@@ -60,6 +56,19 @@ export function PrintProvider({
         targetDoc.documentElement.setAttribute("data-pdf-style", styleId);
         targetDoc.documentElement.style.setProperty("--pdf-font-scale", `${style.fontScale}`);
         targetDoc.documentElement.style.setProperty("--pdf-section-gap", style.sectionGap);
+
+        // Call shared pagination implementation from lib
+        try {
+          if ((window as any).__runPagination && typeof (window as any).__runPagination === 'function') {
+            // pass the iframe document into the shared runner
+            console.log("Running pagination ...");
+            (window as any).__runPagination(targetDoc, '.pdf-resume-root');
+          } else {
+            console.warn('Shared pagination runner not available on window');
+          }
+        } catch (e) {
+          console.warn('Pagination runner failed', e);
+        }
       }
     },
     onPrintError: (error) => console.log(error),
@@ -70,10 +79,6 @@ export function PrintProvider({
     pageStyle: `
       @page {
         size: 210mm 297mm;
-        margin: ${OTHER_PAGES_MARGIN_TOP_CM}cm ${PAGE_MARGIN_LEFT_RIGHT_CM}cm ${PAGE_MARGIN_BOTTOM_CM}cm ${PAGE_MARGIN_LEFT_RIGHT_CM}cm !important;
-      }
-      @page:first {
-        margin: ${FIRST_PAGE_MARGIN_TOP_CM}cm ${PAGE_MARGIN_LEFT_RIGHT_CM}cm ${PAGE_MARGIN_BOTTOM_CM}cm ${PAGE_MARGIN_LEFT_RIGHT_CM}cm !important;
       }
       :root { 
         --font-family: ${fontStack}; 

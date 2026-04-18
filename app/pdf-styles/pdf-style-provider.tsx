@@ -22,8 +22,8 @@ const PdfStyleContext = React.createContext<PdfStyleContextValue>({
 });
 
 export function PdfStyleProvider({ children }: { children: React.ReactNode }) {
-  const { jobType } = useJobType();
-  const styleId = getPdfStyle(jobType);
+  const { jobType: profile } = useJobType();
+  const styleId = getPdfStyle(profile);
 
   const activeStyle = React.useMemo<PdfStylePreset>(
     () => getPdfStylePreset(styleId),

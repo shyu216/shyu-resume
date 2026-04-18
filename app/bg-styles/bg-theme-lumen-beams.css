@@ -1,0 +1,36 @@
+:root[data-bg-style="lumen-beams"] {
+  --bg-grid-opacity: 0.58;
+  --bg-grid-step: 11px;
+  --bg-grid-tilt: 0.8deg;
+  --bg-grid-scale: 1.018;
+  --bg-grid-drift: 38s;
+  --bg-glow-size: 136% 66%;
+  --bg-glow-center-x: 50%;
+  --bg-glow-center-y: -14%;
+  --bg-glow-opacity: 0.9;
+  --bg-glow-height: 100vh;
+  --bg-stripe-pattern:
+    repeating-linear-gradient(
+      118deg,
+      color-mix(in srgb, var(--header-color) 22%, transparent) 0 6px,
+      transparent 6px 28px
+    ),
+    repeating-linear-gradient(
+      118deg,
+      color-mix(in srgb, #22d3ee 14%, transparent) 0 2px,
+      transparent 2px 42px
+    );
+  --bg-shape-layer:
+    radial-gradient(58% 34% at 10% 0%, color-mix(in srgb, #34d399 26%, transparent) 0%, transparent 78%),
+    radial-gradient(50% 28% at 86% 8%, color-mix(in srgb, #60a5fa 24%, transparent) 0%, transparent 82%),
+    linear-gradient(
+      116deg,
+      transparent 0 24%,
+      color-mix(in srgb, var(--header-color) 24%, transparent) 34%,
+      transparent 45%,
+      color-mix(in srgb, #f59e0b 18%, transparent) 56%,
+      transparent 67%,
+      color-mix(in srgb, #38bdf8 18%, transparent) 78%,
+      transparent 100%
+    );
+}

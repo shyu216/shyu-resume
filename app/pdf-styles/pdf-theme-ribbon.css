@@ -1,0 +1,112 @@
+.pdf-resume-theme[data-pdf-style="ribbon"] {
+  --pdf-font-scale: 1;
+  --pdf-section-gap: 0.48rem;
+  --pdf-divider-opacity: 0.16;
+  --pdf-divider-width: 1px;
+  --pdf-title-spacing: 0.02em;
+  --pdf-title-scale: 1;
+  --pdf-section-padding: 0;
+
+  /* new slanted ribbon variables */
+  --pdf-ribbon-width: 0.7rem;
+  /* move ribbon slightly right so it sits closer to content edge */
+  --pdf-ribbon-offset-left: 0.06rem;
+  --pdf-ribbon-skew: -12deg;
+  --pdf-ribbon-radius: 0.18rem;
+  --pdf-ribbon-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  /* unified start and max height for ribbons */
+  --pdf-ribbon-top: 0.10rem;
+  --pdf-ribbon-max-height: 9rem;
+  /* shift header text (negative = move left). ~-5px is a good default */
+  --pdf-ribbon-link-shift-x: -5px;
+  --pdf-ribbon-link-shift-y: 0px;
+}
+
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root {
+  position: relative;
+}
+
+/* make section content leave space for the slanted ribbon */
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root section {
+  position: relative;
+  /* do not add global left padding; we only shift titles or hero content */
+  padding-left: 0;
+}
+
+/* ensure hero section uses a slightly smaller inset to avoid perceived widening */
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root .resume-section--hero .resume-hero-content {
+  padding-left: calc(var(--pdf-ribbon-width) + 0.12rem);
+  transform: translateX(var(--pdf-ribbon-link-shift-x)) translateY(var(--pdf-ribbon-link-shift-y));
+  will-change: transform;
+}
+
+/* non-hero sections: shift only the title, not the whole section */
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root .resume-section:not(.resume-section--hero) .resume-section-title {
+  padding-left: calc(var(--pdf-ribbon-width) + 0.22rem);
+}
+
+/* slanted ribbon at section left */
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root section.resume-section--hero::before {
+  content: "";
+  position: absolute;
+  left: var(--pdf-ribbon-offset-left);
+  top: var(--pdf-ribbon-top);
+  /* limit height so ribbons are visually consistent across sections */
+  height: min(100%, var(--pdf-ribbon-max-height));
+  bottom: auto;
+  width: var(--pdf-ribbon-width);
+  border-radius: var(--pdf-ribbon-radius);
+  transform: skewX(var(--pdf-ribbon-skew));
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--header-color) 60%, transparent) 0%,
+    color-mix(in srgb, var(--header-color) 34%, transparent) 100%);
+  box-shadow: var(--pdf-ribbon-shadow);
+}
+
+/* small slanted ribbon for section titles (non-hero sections) */
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root .resume-section:not(.resume-section--hero) .resume-section-title {
+  position: relative;
+  overflow: visible;
+}
+
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root .resume-section:not(.resume-section--hero) .resume-section-title::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--pdf-ribbon-offset-left) + 0.02rem);
+  top: 0;
+  bottom: 0;
+  width: var(--pdf-ribbon-width);
+  border-radius: calc(var(--pdf-ribbon-radius) / 2);
+  transform: skewX(var(--pdf-ribbon-skew));
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--header-color) 50%, transparent) 0%,
+    color-mix(in srgb, var(--header-color) 30%, transparent) 100%);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+/* hide small title ribbon inside hero sections to avoid doubling */
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root .resume-section.resume-section--hero > .resume-section-title::before {
+  display: none;
+}
+
+/* subtle highlight stripe to give depth */
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root section::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--pdf-ribbon-offset-left) + 0.08rem);
+  top: 0.18rem;
+  bottom: 0.18rem;
+  width: 0.12rem;
+  transform: skewX(var(--pdf-ribbon-skew));
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
+  border-radius: 0.12rem;
+  opacity: 0.9;
+}
+
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root .resume-entry {
+  position: relative;
+}
+
+.pdf-resume-theme[data-pdf-style="ribbon"] .pdf-resume-root .resume-section-title {
+  border-bottom-color: color-mix(in srgb, var(--header-color) 20%, transparent);
+}

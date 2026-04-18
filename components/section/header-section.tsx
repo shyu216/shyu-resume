@@ -32,7 +32,7 @@ export default function HeaderSection({ usage, children }: Props) {
   const hasChild = Boolean(children);
 
   const headerMain = (
-    <div className="m-0 flex max-w-full flex-col items-start p-0">
+    <div className="resume-hero-content m-0 flex max-w-full flex-col items-start p-0">
       <h2 className="max-w-full mb-1 text-2xl font-bold">
         <span>
           {nameRender.segments.map((segment, index) => (
@@ -119,10 +119,10 @@ export default function HeaderSection({ usage, children }: Props) {
   );
 
   return (
-    <section className="resume-section m-0 mt-2 max-w-full p-0">
+    <section className="resume-section m-0 mt-2 max-w-full p-0 resume-section--hero"> 
       {hasChild ? (
         <div className="m-0 flex items-center gap-x-8 p-0">
-          <div className={cn("m-0 p-0 shrink-0 max-w-full", usage === "pdf" ? "w-fit" : "w-full md:w-fit")}>
+          <div className={cn("resume-hero-content m-0 p-0 shrink-0 max-w-full", usage === "pdf" ? "w-fit" : "w-full md:w-fit")}>
             {headerMain}
           </div>
           <div className="m-0 min-w-0 flex-1 self-center p-0">{children}</div>

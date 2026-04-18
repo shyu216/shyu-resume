@@ -46,16 +46,8 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
     { component: SkillSection, props: { usage }, delay: 0.9 },
   ];
 
-  const ResumeContent = () => (
-    <Container
-      className={`${usage === "pdf" ? "mt-0 pt-0" : "mt-9"} max-w-6xl mx-auto pdf-resume-root`}
-      ref={ref as React.RefObject<HTMLDivElement>}
-      style={{
-        fontFamily: fontStack,
-        "--font-family": fontStack,
-        "--header-color": headerColor,
-      } as React.CSSProperties}
-    >
+  const resumeSections = (
+    <>
       {usage === "pdf" ? (
         <HeaderSection usage={usage}>
           <SummarySection usage={usage} />
@@ -92,6 +84,21 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
             <Component key={index} {...props} />
           )
       )}
+    </>
+  );
+
+  const ResumeContent = () => (
+    <Container
+      className={`${usage === "pdf" ? "" : "mt-9 max-w-6xl mx-auto"} pdf-resume-root`}
+      disableGutter={usage === "pdf"}
+      ref={ref as React.RefObject<HTMLDivElement>}
+      style={{
+        fontFamily: fontStack,
+        "--font-family": fontStack,
+        "--header-color": headerColor,
+      } as React.CSSProperties}
+    >
+      {resumeSections}
     </Container>
   );
 

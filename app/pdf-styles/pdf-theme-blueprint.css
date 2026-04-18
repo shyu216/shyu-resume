@@ -1,0 +1,71 @@
+.pdf-resume-theme[data-pdf-style="blueprint"] {
+  --pdf-font-scale: 0.99;
+  --pdf-section-gap: 0.62rem;
+  --pdf-divider-opacity: 0.28;
+  --pdf-divider-width: 1px;
+  --pdf-title-spacing: 0.11em;
+  --pdf-title-scale: 0.99;
+  --pdf-section-padding: 0.2rem 0.3rem;
+}
+
+.pdf-resume-theme[data-pdf-style="blueprint"] .pdf-resume-root section {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--header-color) 30%, transparent);
+  border-left-width: 3px;
+  border-radius: 0.24rem;
+}
+
+.pdf-resume-theme[data-pdf-style="blueprint"] .pdf-resume-root section::after {
+  content: "";
+  position: absolute;
+  inset: 0.18rem;
+  border: 1px dashed color-mix(in srgb, var(--header-color) 24%, transparent);
+  border-radius: 0.14rem;
+  pointer-events: none;
+}
+
+.pdf-resume-theme[data-pdf-style="blueprint"] .pdf-resume-root .resume-section-title {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: color-mix(in srgb, var(--header-color) 36%, transparent);
+  padding-bottom: 0.08rem;
+  margin-bottom: 0.22rem;
+}
+
+.pdf-resume-theme[data-pdf-style="blueprint"] .pdf-resume-root section > h3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--header-color);
+}
+
+.pdf-resume-theme[data-pdf-style="blueprint"] .pdf-resume-root .resume-section-title-text {
+  position: relative;
+  display: inline-block;
+  padding-right: 1.1rem;
+}
+
+.pdf-resume-theme[data-pdf-style="blueprint"] .pdf-resume-root .resume-section-title-text::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 0.18rem);
+  top: 50%;
+  width: 0.82rem;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--header-color) 55%, transparent) 0 3px,
+    transparent 3px 6px
+  );
+  transform: translateY(-50%);
+}
+
+.pdf-resume-theme[data-pdf-style="blueprint"] .pdf-resume-root .resume-entry {
+  border-left: 1px solid color-mix(in srgb, var(--header-color) 28%, transparent);
+  padding-left: 0.22rem;
+}
+
+.pdf-resume-theme[data-pdf-style="blueprint"] .pdf-resume-root .resume-entry:not(:last-child) {
+  margin-bottom: 0.16rem;
+  padding-bottom: 0.16rem;
+  border-bottom: 1px dashed color-mix(in srgb, var(--header-color) 24%, transparent);
+}

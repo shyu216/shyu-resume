@@ -25,6 +25,17 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     setIsInitialized(true);
   }, []);
 
+  // 将当前语言写入 document.lang，以便 CSS :lang() 选择器生效
+  useEffect(() => {
+    try {
+      // 规范化 zh-hk -> zh-HK 以匹配 HTML lang 的常用大小写
+      const normalized = language === "zh-hk" ? "zh-HK" : language;
+      document.documentElement.lang = normalized;
+    } catch {
+      // ignore (SSR safe)
+    }
+  }, [language]);
+
   // 保存到统一存储
   const setLanguage = (lang: LanguageType) => {
     setLanguageState(lang);

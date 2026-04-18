@@ -1,0 +1,31 @@
+:root[data-bg-style="dot-matrix"] {
+  --bg-grid-opacity: 0.56;
+  --bg-grid-step: 18px;
+  --bg-grid-tilt: 0deg;
+  --bg-grid-scale: 1;
+  --bg-grid-drift: 38s;
+  --bg-glow-size: 126% 58%;
+  --bg-glow-center-x: 50%;
+  --bg-glow-center-y: -8%;
+  --bg-glow-opacity: 0.84;
+  --bg-glow-height: 86vh;
+  --bg-stripe-pattern:
+    repeating-radial-gradient(
+      circle at 1px 1px,
+      color-mix(in srgb, var(--color-grid) 66%, transparent) 0 1px,
+      transparent 1px 18px
+    ),
+    repeating-radial-gradient(
+      circle at 10px 10px,
+      color-mix(in srgb, var(--header-color) 24%, transparent) 0 1px,
+      transparent 1px 28px
+    );
+  --bg-shape-layer:
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--header-color) 20%, transparent) 0%,
+      color-mix(in srgb, var(--header-color) 10%, transparent) 26%,
+      transparent 62%
+    ),
+    radial-gradient(44% 28% at 50% 0%, color-mix(in srgb, #38bdf8 20%, transparent) 0%, transparent 100%);
+}

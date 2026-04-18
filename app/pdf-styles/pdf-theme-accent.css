@@ -1,0 +1,25 @@
+.pdf-resume-theme[data-pdf-style="accent"] {
+  --pdf-font-scale: 1.03;
+  --pdf-section-gap: 0.78rem;
+  --pdf-divider-opacity: 0.3;
+  --pdf-divider-width: 2px;
+  --pdf-title-spacing: 0.03em;
+  --pdf-title-scale: 1.08;
+  --pdf-section-padding: 0.05rem 0.12rem;
+}
+
+.pdf-resume-theme[data-pdf-style="accent"] .pdf-resume-root section {
+  border-left: 3px solid color-mix(in srgb, var(--header-color) 36%, transparent);
+  border-radius: 0;
+}
+
+.pdf-resume-theme[data-pdf-style="accent"] .pdf-resume-root .resume-section-title {
+  border-bottom-width: var(--pdf-divider-width);
+  border-bottom-color: color-mix(in srgb, var(--header-color) 44%, transparent);
+  padding-bottom: 0rem;
+  margin-bottom: 0.2rem;
+}
+
+.pdf-resume-theme[data-pdf-style="accent"] .pdf-resume-root .resume-entry {
+  border-left: 2px solid color-mix(in srgb, var(--header-color) 36%, transparent);
+}

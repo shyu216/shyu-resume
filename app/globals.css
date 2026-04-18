@@ -21,13 +21,16 @@
   /* Theme accents */
   --header-color: #dc2626;
   --font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Font stacks used by the app */
+  --font-monospace-stack: "JetBrains Mono", "Fira Code", ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-songti-stack: "Songti SC", SimSun, NSimSun, STSong, "PMingLiU", serif;
 
   /* Common UI colors - Light mode */
   --color-overlay: rgba(30, 41, 59, 0.5);
 
   /* Shadows */
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-accent: 0 4px 12px rgba(30, 64, 175, 0.15);
+  --shadow-accent: 0 4px 11px rgba(30, 64, 175, 0.15);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
@@ -43,9 +46,12 @@
   --color-border-default: #334155;
   --color-card-default: #1e293b;
 
+  /* Common UI colors - Light mode */
+  --color-overlay: rgba(203, 203, 203, 0.82);
+
   /* Shadows - Dark mode */
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-accent: 0 4px 12px rgba(59, 130, 246, 0.2);
+  --shadow-accent: 0 4px 11px rgba(59, 130, 246, 0.2);
 }
 
 @layer components {
@@ -80,6 +86,22 @@
   }
 }
 
+/* Language-aware defaults: when document lang is set, prefer monospace for English and Songti for Chinese.
+   Browser will fallback per-glyph when glyphs are missing, so CJK glyphs will render in Songti when monospace lacks them. */
+:lang(en) {
+  font-family: var(--font-monospace-stack);
+}
+
+:lang(zh), :lang(zh-HK), :lang(zh-hk) {
+  font-family: var(--font-songti-stack);
+}
+
+/* Ensure header/footer and their children use system default regardless of inline styles */
+header, header * , footer, footer * {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* will be used by browser's print engine, i.e, none mode will be ignored */
 @media print {
   .pdf-resume-theme .resume-entry {
     break-inside: avoid-page;
@@ -97,3 +119,4 @@
     widows: 2;
   }
 }
+

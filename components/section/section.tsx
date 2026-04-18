@@ -13,12 +13,12 @@ export default function Section({ title, children, usage }: SectionProps) {
   const titleSize = usage === "live" ? "text-md" : "text-[16px]";
 
   return (
-    <section className="resume-section mt-2">
+    <section className="resume-section">
       <h3
-        className={cn(titleSize, "resume-section-title mb-1 font-bold")}
+        className={cn(titleSize, "resume-section-title font-bold")}
         style={{ color: 'var(--header-color)' }}
       >
-        {title}
+        <span className="resume-section-title-text">{title}</span>
       </h3>
       {children}
     </section>

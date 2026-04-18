@@ -14,7 +14,7 @@ export default function SummarySection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
   const { jobType } = useJobType();
 
-  const fontSize = usage === "live" ? "text-sm" : "text-[12px]";
+  const fontSize = usage === "live" ? "text-sm" : "text-[11px]";
   const bodyLineHeight = "leading-normal";
 
   const { data: summary, title } = getLocalizedSection(language, "summary");

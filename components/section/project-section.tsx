@@ -27,7 +27,7 @@ export default function ProjectSection({ usage }: Props) {
 
   return (
     <Section title={title} usage={usage}>
-      <div className="flex flex-col gap-y-1">
+      <div className="flex flex-col gap-y-0">
         {filteredProjects.map((project) => (
           <Experience
             key={project.id}

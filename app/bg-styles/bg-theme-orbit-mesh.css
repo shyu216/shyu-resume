@@ -1,0 +1,32 @@
+:root[data-bg-style="orbit-mesh"] {
+  --bg-grid-opacity: 0.54;
+  --bg-grid-step: 16px;
+  --bg-grid-tilt: 0.2deg;
+  --bg-grid-scale: 1.01;
+  --bg-grid-drift: 44s;
+  --bg-glow-size: 132% 62%;
+  --bg-glow-center-x: 48%;
+  --bg-glow-center-y: -10%;
+  --bg-glow-opacity: 0.86;
+  --bg-glow-height: 92vh;
+  --bg-stripe-pattern:
+    repeating-conic-gradient(
+      from 8deg at 50% -20%,
+      color-mix(in srgb, var(--color-grid) 30%, transparent) 0deg 8deg,
+      transparent 8deg 20deg
+    ),
+    repeating-radial-gradient(
+      circle at 50% -10%,
+      color-mix(in srgb, #a78bfa 18%, transparent) 0 2px,
+      transparent 2px 18px
+    );
+  --bg-shape-layer:
+    conic-gradient(
+      from 24deg at 50% -10%,
+      color-mix(in srgb, #a78bfa 24%, transparent) 0deg,
+      color-mix(in srgb, #22d3ee 18%, transparent) 70deg,
+      transparent 71deg 360deg
+    ),
+    radial-gradient(40% 26% at 22% 4%, color-mix(in srgb, #f472b6 14%, transparent) 0%, transparent 100%),
+    radial-gradient(44% 28% at 80% 0%, color-mix(in srgb, #22d3ee 18%, transparent) 0%, transparent 100%);
+}

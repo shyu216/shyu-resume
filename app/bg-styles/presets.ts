@@ -33,13 +33,33 @@ export const BG_STYLE_PRESETS: readonly BgStylePreset[] = [
     },
   },
   {
-    id: "light-beams",
+    id: "lumen-beams",
     motion: {
       yOffset: 30,
       damping: 24,
       stiffness: 94,
       duration: 0.38,
       delayMultiplier: 1.04,
+    },
+  },
+  {
+    id: "orbit-mesh",
+    motion: {
+      yOffset: 32,
+      damping: 22,
+      stiffness: 92,
+      duration: 0.42,
+      delayMultiplier: 1.1,
+    },
+  },
+  {
+    id: "dot-matrix",
+    motion: {
+      yOffset: 20,
+      damping: 28,
+      stiffness: 112,
+      duration: 0.3,
+      delayMultiplier: 0.96,
     },
   },
 ] as const;
