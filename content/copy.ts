@@ -1,6 +1,34 @@
 import type { ReactNode } from "react";
 
-export type LanguageType = "en" | "zh" | "zh-hk";
+export type LanguageType = "en" | "zh" | "zhhk";
+export type JobType =
+  | "SWE"
+  | "SRE"
+  | "AIMR"
+  | "NONE";
+export const jobOptions = [
+  {
+    value: "SWE",
+    label: "SWE",
+    tooltipEn: "Software Engineer — Cross-platform Software Development",
+    tooltipZh: "软件工程师 — 多平台软件开发",
+    tooltipZhHk: "軟件工程師 — 多平臺軟件開發",
+  },
+  {
+    value: "SRE",
+    label: "SRE",
+    tooltipEn: "Site Reliability Engineer — Cloud, DevOps and Big Data",
+    tooltipZh: "站点可靠性工程师 — 云计算、DevOps与大数据",
+    tooltipZhHk: "站点可靠性工程師 — 雲計算、DevOps與大數據",
+  },
+  {
+    value: "AIMR",
+    label: "AI/MR",
+    tooltipEn: "AI/MR Engineer — Artificial Intelligence & Mixed Reality",
+    tooltipZh: "AI/MR 工程师 — 人工智能与混合现实",
+    tooltipZhHk: "AI/MR 工程師 — 人工智能與混合現實",
+  },
+] as const;
 
 export interface LanguageProviderProps {
   children: ReactNode;
@@ -10,8 +38,6 @@ type JobOptionCopy = {
   label: string;
   tooltip: string;
 };
-
-type JobTypeValue = "FULLSTACK" | "SOFTWARE" | "DEVOPS" | "ML_RESEARCHER";
 
 type LanguageCopy = {
   app: {
@@ -49,12 +75,12 @@ type LanguageCopy = {
     skills: string;
     education: string;
   };
-  switcher: {
+    switcher: {
     languageButtons: Record<LanguageType, string>;
     language: Record<LanguageType, string>;
     jobType: {
       showAllExperiences: string;
-        options: Record<JobTypeValue, JobOptionCopy>;
+        options: Record<JobType, JobOptionCopy>;
     };
   };
   actionButton: {
@@ -76,6 +102,26 @@ type LanguageCopy = {
     copiedPrefix: string;
   };
 };
+
+function buildJobOptionsMap(lang: LanguageType) {
+  const map = {} as Record<JobType, JobOptionCopy>;
+  jobOptions.forEach((o) => {
+    const tooltip =
+      lang === "en" ? o.tooltipEn : lang === "zh" ? o.tooltipZh : o.tooltipZhHk;
+    map[o.value as JobType] = { label: o.label, tooltip };
+  });
+  // add NONE default
+  map["NONE"] = {
+    label: lang === "en" ? "NONE" : lang === "zh" ? "默认" : "默認",
+    tooltip:
+      lang === "en"
+        ? "Default — Show all experiences"
+        : lang === "zh"
+        ? "默认 — 显示所有经历"
+        : "默認 — 顯示全部經歷",
+  };
+  return map as Record<JobType, JobOptionCopy>;
+}
 
 export const copy = {
   en: {
@@ -136,21 +182,16 @@ export const copy = {
       languageButtons: {
         en: "ENG",
         zh: "简",
-        "zh-hk": "繁",
+        zhhk: "繁",
       },
       language: {
         en: "English",
         zh: "简体中文",
-        "zh-hk": "繁體中文",
+        zhhk: "繁體中文",
       },
       jobType: {
         showAllExperiences: "Show all experiences",
-        options: {
-          FULLSTACK: { label: "Full Stack", tooltip: "Full Stack Engineer — End-to-end development" },
-          SOFTWARE: { label: "SWE", tooltip: "Software Engineer — System & architecture" },
-          DEVOPS: { label: "DevOps", tooltip: "Cloud/DevOps/SRE — Infrastructure & CI/CD" },
-          ML_RESEARCHER: { label: "ML", tooltip: "ML Researcher — AI & algorithms" },
-        },
+        options: buildJobOptionsMap("en"),
       },
     },
   },
@@ -212,25 +253,20 @@ export const copy = {
       languageButtons: {
         en: "ENG",
         zh: "简",
-        "zh-hk": "繁",
+        zhhk: "繁",
       },
       language: {
         en: "English",
         zh: "简体中文",
-        "zh-hk": "繁體中文",
+        zhhk: "繁體中文",
       },
       jobType: {
         showAllExperiences: "显示全部经历",
-        options: {
-          FULLSTACK: { label: "全栈", tooltip: "全栈工程师 — 端到端开发" },
-          SOFTWARE: { label: "SWE", tooltip: "软件工程师 — 系统与架构" },
-          DEVOPS: { label: "DevOps", tooltip: "云/DevOps 工程师 — 基础设施与 CI/CD" },
-          ML_RESEARCHER: { label: "ML", tooltip: "机器学习研究员 — AI 与算法" },
-        },
+        options: buildJobOptionsMap("zh"),
       },
     },
   },
-  "zh-hk": {
+  zhhk: {
     app: {
       title: "ShYu 履歷",
       description: "支援雙語與職位定製的履歷。",
@@ -288,21 +324,16 @@ export const copy = {
       languageButtons: {
         en: "ENG",
         zh: "簡",
-        "zh-hk": "繁",
+        zhhk: "繁",
       },
       language: {
         en: "English",
         zh: "簡體中文",
-        "zh-hk": "繁體中文",
+        zhhk: "繁體中文",
       },
       jobType: {
         showAllExperiences: "顯示全部經歷",
-        options: {
-          FULLSTACK: { label: "全棧", tooltip: "全棧工程師 — 端到端開發" },
-          SOFTWARE: { label: "SWE", tooltip: "軟件工程師 — 系統與架構" },
-          DEVOPS: { label: "DevOps", tooltip: "雲/DevOps 工程師 — 基礎設施與 CI/CD" },
-          ML_RESEARCHER: { label: "ML", tooltip: "機器學習研究員 — AI 與算法" },
-        },
+        options: buildJobOptionsMap("zhhk"),
       },
     },
   },

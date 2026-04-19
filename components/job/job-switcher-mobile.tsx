@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useContext, useRef, useEffect, useState } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { cn } from "@/content/config";
 import { getFont } from "@/content/config";
 import { copy } from "@/content/copy";
-import { jobOptions, type JobType, type JobSwitcherProps, getJobTooltip } from "@/content/config";
+import { jobOptions, type JobType } from "@/content/copy";
+import { type JobSwitcherProps, getJobTooltip } from "@/content/config";
 
 export { JobType, JobSwitcherProps };
 
@@ -17,8 +18,8 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
   const [barPosition, setBarPosition] = useState(0);
   const [barWidth, setBarWidth] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [previousJobType, setPreviousJobType] = useState<JobType>('FULLSTACK');
+  const [hoveredIndex] = useState<number | null>(null);
+  const [previousJobType, setPreviousJobType] = useState<JobType>(jobType);
   const [animatingJobType, setAnimatingJobType] = useState<JobType>(jobType);
   const [animationDirection, setAnimationDirection] = useState<'left' | 'right'>('right');
   const [isAnimating, setIsAnimating] = useState(false);

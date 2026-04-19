@@ -2,8 +2,9 @@
 
 import { useJobType } from "@/components/job/job-type-provider";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { jobOptions, siteConfig } from "@/content/config";
-import React, { useEffect, useContext } from "react";
+import { jobOptions } from "@/content/copy";
+import { siteConfig } from "@/content/config";
+import { useEffect, useContext } from "react";
 
 export function DynamicTitle() {
   const { jobType } = useJobType();

@@ -10,6 +10,7 @@ import { LanguageContext } from "@/components/lang/language-provider";
 import Label from "@/components/labels/label";
 import { useJobType } from "@/components/job/job-type-provider";
 import { filterExperience, getLocalizedSection } from "@/content/config";
+import type { WorkExperience } from "@/types/work-experience";
 
 type Props = {
   usage: "live" | "pdf";
@@ -19,14 +20,14 @@ export default function WorkSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
   const { jobType } = useJobType();
 
-  const { data: workExperience, title } = getLocalizedSection(language, "workExperience");
+  const { data: workExperience, title } = getLocalizedSection(language, "workExperience") as { data: WorkExperience[]; title: string };
 
-  const filteredWorkExperience = filterExperience(workExperience, jobType);
+  const filteredWorkExperience = filterExperience(workExperience, jobType) as WorkExperience[];
 
   return (
     <Section title={title} usage={usage}>
       <div className="flex flex-col gap-y-0">
-        {filteredWorkExperience.map((e, index) => (
+        {filteredWorkExperience.map((e: WorkExperience, index: number) => (
           <Experience
             key={index}
             head1={<Label content={e.position} usage={usage} />}

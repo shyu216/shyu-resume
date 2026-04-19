@@ -10,7 +10,7 @@ export const projects: Project[] = [
     link: "https://youtu.be/p7o28IXwsrs",
     dateRange: "Feb 2025 - Nov 2025",
     techStack: "Python, Flask, YOLO, OpenCV",
-    jobTypes: ["ML_RESEARCHER", "SOFTWARE"],
+    jobTypes: ["AIMR", "SRE"],
     bullets: [
       "Collaborated with 4DMedical stakeholders in biweekly meetings to deliver real-time breath tracking system for XV Scanner workflow automation",
       "Trained **YOLOv11n** for depth map human detection, enhanced breath pattern signal quality (correlation ↑0.5, MSE ↓59.1%)",
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     link: "https://youtu.be/zOPQXXpSRbg",
     dateRange: "May 2025 – Nov 2025",
     techStack: "Unity, Meta Quest 3, C#",
-    jobTypes: ["ML_RESEARCHER", "SOFTWARE"],
+    jobTypes: ["AIMR", "SWE"],
     bullets: [
       "Co-authored (2nd) **SIGGRAPH Asia XR** submission; implemented codebase and contributed to paper writing",
       "Led end-to-end delivery of MR biosensing prototype from supervisor concept to functional demo; solo-built **Unity** project (6 scenes, 40+ scripts) with 3D/UI integration",
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     link: "https://github.com/shyu216/shyu-resume",
     dateRange: "Aug 2024 – Present",
     techStack: "Next.js, Tailwind",
-    jobTypes: ["FULLSTACK", "SOFTWARE", "DEVOPS"],
+    jobTypes: ["SRE"],
     bullets: [
       "Built a **Next.js** i18n resume generator with tri-language (ZH/EN/HK) switching and **A4 PDF export** (hyperlinks included)",
       "Deployed to **GitHub Pages** with one-click save/print; wrote comprehensive README for developer onboarding",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     link: "https://github.com/CRUVOD/CarbonTracker",
     dateRange: "Sep 2024 – Nov 2024",
     techStack: "React Native, Google Maps API",
-    jobTypes: ["FULLSTACK", "SOFTWARE"],
+    jobTypes: ["SWE"],
     bullets: [
       "Built a **React Native** eco-habit app with tasks, leaderboards, and activity reminders",
       "Implemented sensor fusion integrating gyroscope and GPS data with **Google Maps API** to ship a \"sedentary alert + park recommendation\" challenge prototype",
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     link: "https://github.com/shyu216/DPC",
     dateRange: "Sep 2022 – May 2023",
     techStack: "PyTorch, Open3D, OpenPCDet, SLURM",
-    jobTypes: ["ML_RESEARCHER", "SOFTWARE"],
+    jobTypes: ["AIMR"],
     bullets: [
       "Reproduced 3D object detection on **OpenPCDet**, generating vehicle/pedestrian/cyclist boxes on **KITTI**; improved pedestrian AP by 13.4% and car AP by 5.7% over baseline",
       "Conducted comprehensive literature review and comparative analysis of state-of-the-art methods",
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     link: "https://github.com/shyu216/go-raft",
     dateRange: "Jan 2022 – May 2022",
     techStack: "Go, Raft",
-    jobTypes: ["SOFTWARE", "DEVOPS"],
+    jobTypes: ["SRE"],
     bullets: [
       "Implemented **Raft** consensus algorithm from the original paper; coded leader election and log replication logic in **Go**",
       "Delivered a stable distributed KV store with automatic leader election and data consistency guarantees; passed all tests",
@@ -128,7 +128,7 @@ export const projects: Project[] = [
     link: "https://shyu216.github.io/knownoevil/study/",
     dateRange: "Sep 2021 – May 2024",
     techStack: "SQL, Hadoop, Python",
-    jobTypes: ["SOFTWARE", "DEVOPS", "ML_RESEARCHER"],
+    jobTypes: ["SWE"],
     bullets: [
       "Designed **Hadoop/MapReduce** pipelines for parallel **Dijkstra**, **PageRank**, **K-Means**; optimized big-data processing flow",
       "Designed a 5-table PK/FK schema and 8 complex **SQL** queries for league/team/sponsor analytics",

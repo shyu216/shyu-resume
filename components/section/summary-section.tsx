@@ -17,17 +17,11 @@ export default function SummarySection({ usage }: Props) {
   const fontSize = usage === "live" ? "text-sm" : "text-[11px]";
   const bodyLineHeight = "leading-normal";
 
-  const { data: summary, title } = getLocalizedSection(language, "summary");
-  const displayContent =
-    jobType === "FULLSTACK"
-      ? summary.fullstack
-      : jobType === "SOFTWARE"
-        ? summary.software
-        : jobType === "DEVOPS"
-          ? summary.devops
-          : jobType === "ML_RESEARCHER"
-            ? summary.ml
-            : summary.default;
+  const { data: displayContent, title } = getLocalizedSection(
+    language,
+    "summary",
+    jobType,
+  );
 
   const renderBoldText = (text: string) => {
     const segments = text.split(/(\*\*[^*]+\*\*)/g);
@@ -45,7 +39,7 @@ export default function SummarySection({ usage }: Props) {
         className={`${fontSize} ${bodyLineHeight}`}
         style={{ color: 'var(--color-text-primary)' }}
       >
-        {renderBoldText(displayContent)}
+        {renderBoldText(typeof displayContent === "string" ? displayContent : "")}
       </div>
     </Section>
   );

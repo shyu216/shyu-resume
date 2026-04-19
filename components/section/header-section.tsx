@@ -8,11 +8,11 @@ import { LanguageContext } from "@/components/lang/language-provider";
 import {
   siteConfig,
   pickLanguage,
-  copy,
   getNameRenderConfig,
   getHeaderContactInfo,
   getUrlDisplayText,
 } from "@/content/config";
+import { copy } from "@/content/copy";
 
 type Props = {
   usage: "live" | "pdf";

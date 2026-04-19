@@ -59,15 +59,15 @@ export function PrintProvider({
 
         // Call shared pagination implementation from lib
         try {
-          if ((window as any).__runPagination && typeof (window as any).__runPagination === 'function') {
+          if (typeof window.__runPagination === "function") {
             // pass the iframe document into the shared runner
             console.log("Running pagination ...");
-            (window as any).__runPagination(targetDoc, '.pdf-resume-root');
+            window.__runPagination(targetDoc, ".pdf-resume-root");
           } else {
-            console.warn('Shared pagination runner not available on window');
+            console.warn("Shared pagination runner not available on window");
           }
         } catch (e) {
-          console.warn('Pagination runner failed', e);
+          console.warn("Pagination runner failed", e);
         }
       }
     },

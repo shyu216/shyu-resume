@@ -29,7 +29,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   useEffect(() => {
     try {
       // 规范化 zh-hk -> zh-HK 以匹配 HTML lang 的常用大小写
-      const normalized = language === "zh-hk" ? "zh-HK" : language;
+      const normalized = language === "zhhk" ? "zh-HK" : language;
       document.documentElement.lang = normalized;
     } catch {
       // ignore (SSR safe)

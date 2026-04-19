@@ -9,6 +9,7 @@ import Experience from "@/components/section/experience";
 import LabelWithLink from "@/components/labels/label-with-link";
 import Label from "@/components/labels/label";
 import { getLocalizedSection } from "@/content/config";
+import type { Education } from "@/types/education";
 
 type Props = {
   usage: "live" | "pdf";
@@ -17,12 +18,12 @@ type Props = {
 export default function EducationSection({ usage }: Props) {
   const { language } = useContext(LanguageContext);
 
-  const { data: education, title } = getLocalizedSection(language, "education");
+  const { data: education, title } = getLocalizedSection(language, "education") as { data: Education[]; title: string };
 
   return (
     <Section title={title} usage={usage}>
       <div className="flex flex-col gap-y-0">
-        {education.map((e, index) => (
+        {education.map((e: Education, index: number) => (
           <Experience
             key={index}
             head1={<Label content={e.degree} usage={usage} />}

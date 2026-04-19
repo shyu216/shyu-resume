@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export:pdf": "node scripts/export-pdf.js"
-    ,"test:pagination": "node scripts/run-pagination.js"
+    "test:pagination": "node scripts/run-pagination.js",
+    "test:unused-exports": "npx ts-unused-exports tsconfig.json --findCompletelyUnusedFiles"
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.0.7",
@@ -31,9 +31,10 @@
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
-    "postcss": "^8",
     "playwright": "^1.54.2",
+    "postcss": "^8",
     "tailwindcss": "^3",
+    "ts-unused-exports": "^11.0.1",
     "typescript": "^5"
   }
 }

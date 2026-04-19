@@ -1,3 +1,5 @@
+import { JobType } from "@/content/copy";
+
 export interface Summary {
-  [key: string]: string;
+  [key: JobType]: string;
 }

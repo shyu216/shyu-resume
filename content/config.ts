@@ -1,8 +1,5 @@
-// Central configuration for customizable content
-
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { copy } from "@/content/copy";
 import { summary as summaryEn } from "@/content/en/summary";
 import { summary as summaryZh } from "@/content/zh/summary";
 import { summary as summaryZhHk } from "@/content/zh-hk/summary";
@@ -18,10 +15,41 @@ import { skills as skillsZhHk } from "@/content/zh-hk/skills";
 import { education as educationEn } from "@/content/en/education";
 import { education as educationZh } from "@/content/zh/education";
 import { education as educationZhHk } from "@/content/zh-hk/education";
+import { copy, JobType, LanguageType } from "@/content/copy";
 
-export { copy };
 
-export interface ContactInfo {
+export type ExperienceJobType = Exclude<JobType, "NONE">;
+type FontFamilyType = "monospace" | "songti";
+type ColorPalette =
+  | "blue"
+  | "red"
+  | "purple"
+  | "green"
+  | "orange"
+  | "pink"
+  | "teal"
+  | "indigo";
+export type PdfStyleId =
+  | "accent"
+  | "cards"
+  | "blueprint"
+  | "editorial"
+  | "ribbon";
+type BgStyleId =
+  | "default-grid"
+  | "triangle-prism"
+  | "lumen-beams"
+  | "orbit-mesh"
+  | "dot-matrix";
+type VisualBindingMode = "asconfig" | "aslist" | "random" | "consistent";
+type VisualPreset = {
+  color: ColorPalette;
+  bgStyle: BgStyleId;
+  pdfStyle: PdfStyleId;
+  font?: FontFamilyType;
+};
+
+interface ContactInfo {
   linkedin: string;
   github: string;
   website: string;
@@ -31,126 +59,117 @@ export interface ContactInfo {
   cnEmail?: string;
   cnPhone?: string;
 }
-
-export interface Name {
+interface Name {
   first: string;
   last: string;
 }
-
-export interface PersonalInfo {
-  name: {
-    en: Name;
-    zh: Name;
-    'zh-hk': Name;
-  };
-  shortName: {
-    en: string;
-    zh: string;
-    'zh-hk': string;
-  };
-  contact: ContactInfo;
-}
-
-export interface SiteConfig {
-  title: string;
-  description: string;
-  keywords: string[];
-  personal: PersonalInfo;
-}
-
-export type ResumeLanguage = "en" | "zh" | "zh-hk";
-export type ResumeJobType = "FULLSTACK" | "SOFTWARE" | "DEVOPS" | "ML_RESEARCHER" | "NONE";
-export type ExperienceJobType = Exclude<ResumeJobType, "NONE">;
-export type JobType = ResumeJobType;
-
 export interface JobSwitcherProps {
   jobType: JobType;
   onJobTypeChange: (jobType: JobType) => void;
 }
+type NamePart = keyof Name;
+type NameRenderSegment = { text: string; highlighted: boolean };
+type ThemeOverride = { color?: ColorPalette; font?: FontFamilyType };
 
-export type FontFamilyType = "monospace" | "songti";
-export type ColorPalette = "blue" | "red" | "purple" | "green" | "orange" | "pink" | "teal" | "indigo";
-export type PdfStyleId = "accent" | "cards" | "blueprint" | "editorial" | "ribbon";
-export type BgStyleId = "default-grid" | "triangle-prism" | "lumen-beams" | "orbit-mesh" | "dot-matrix";
-export type VisualBindingMode = "asconfig" | "aslist" | "random" | "consistent";
+const profileOrder: readonly JobType[] = [
+  "SWE",
+  "SRE",
+  "AIMR",
+  "NONE",
+];
+const colorList: readonly ColorPalette[] = [
+  "red",
+  "indigo",
+  "green",
+  "purple",
+  "teal",
+  "blue",
+  "orange",
+  "pink",
+];
+const bgStyleList: readonly BgStyleId[] = [
+  "default-grid",
+  "triangle-prism",
+  "lumen-beams",
+  "orbit-mesh",
+  "dot-matrix",
+];
+const pdfStyleList: readonly PdfStyleId[] = [
+  "accent",
+  "cards",
+  "blueprint",
+  "editorial",
+  "ribbon",
+];
 
-const profileOrder: readonly ResumeJobType[] = ["FULLSTACK", "SOFTWARE", "DEVOPS", "ML_RESEARCHER", "NONE"];
-const colorList: readonly ColorPalette[] = ["red", "indigo", "green", "purple", "teal", "blue", "orange", "pink"];
-const bgStyleList: readonly BgStyleId[] = ["default-grid", "triangle-prism", "lumen-beams", "orbit-mesh", "dot-matrix"];
-const pdfStyleList: readonly PdfStyleId[] = ["accent", "cards", "blueprint", "editorial", "ribbon"];
-
-const visualConsistentCache = {
-  color: new Map<ResumeJobType, ColorPalette>(),
-  bgStyle: new Map<ResumeJobType, BgStyleId>(),
-  pdfStyle: new Map<ResumeJobType, PdfStyleId>(),
-};
-
-export const visualBinding = {
+const visualConsistentCache: {
+  color: Map<JobType, ColorPalette>;
+  bgStyle: Map<JobType, BgStyleId>;
+  pdfStyle: Map<JobType, PdfStyleId>;
+} = { color: new Map(), bgStyle: new Map(), pdfStyle: new Map() };
+const visualBinding = {
   colorMode: "asconfig" as VisualBindingMode,
   bgStyleMode: "asconfig" as VisualBindingMode,
   pdfStyleMode: "asconfig" as VisualBindingMode,
 } as const;
-
-export const visualPresetDefaults = {
+const visualPresetDefaults = {
   color: "red" as ColorPalette,
   bgStyle: "default-grid" as BgStyleId,
   pdfStyle: "ribbon" as PdfStyleId,
 };
-export type VisualPreset = {
-  color: ColorPalette;
-  bgStyle: BgStyleId;
-  pdfStyle: PdfStyleId;
-  font?: FontFamilyType;
-};
-
-export const visualThemeDefaults: Required<VisualPreset> = {
-  color: visualPresetDefaults.color,
-  bgStyle: visualPresetDefaults.bgStyle,
-  pdfStyle: visualPresetDefaults.pdfStyle,
+const visualThemeDefaults: Required<VisualPreset> = {
+  ...visualPresetDefaults,
   font: "monospace",
 };
 
-export const visualThemeByJob: Record<ResumeJobType, VisualPreset> = {
-  FULLSTACK: { color: "red", bgStyle: "default-grid", pdfStyle: "accent", font: "monospace" },
-  SOFTWARE: { color: "indigo", bgStyle: "triangle-prism", pdfStyle: "cards", font: "monospace" },
-  DEVOPS: { color: "green", bgStyle: "lumen-beams", pdfStyle: "blueprint", font: "monospace" },
-  ML_RESEARCHER: { color: "purple", bgStyle: "orbit-mesh", pdfStyle: "editorial", font: "monospace" },
-  NONE: { color: "teal", bgStyle: "dot-matrix", pdfStyle: "ribbon", font: "monospace" },
+const visualThemeByJob: Record<JobType, VisualPreset> = {
+  SWE: {
+    color: "red",
+    bgStyle: "orbit-mesh",
+    pdfStyle: "editorial",
+    font: "monospace",
+  },
+  SRE: {
+    color: "purple",
+    bgStyle: "triangle-prism",
+    pdfStyle: "cards",
+    font: "monospace",
+  },
+  AIMR: {
+    color: "indigo",
+    bgStyle: "lumen-beams",
+    pdfStyle: "blueprint",
+    font: "monospace",
+  },
+  NONE: {
+    color: "teal",
+    bgStyle: "dot-matrix",
+    pdfStyle: "ribbon",
+    font: "monospace",
+  },
 };
 
-// Optional per-language overrides for specific job presets (only fill needed fields)
-export const visualThemeLanguageOverrides: Partial<Record<ResumeLanguage, Partial<Record<ResumeJobType, Partial<VisualPreset>>>>> = {
+const visualThemeLanguageOverrides: Partial<
+  Record<LanguageType, Partial<Record<JobType, Partial<VisualPreset>>>>
+> = {
   zh: {
-    FULLSTACK: { font: "songti" },
-    SOFTWARE: { font: "songti" },
-    DEVOPS: { font: "songti" },
-    ML_RESEARCHER: { font: "songti" },
+    SWE: { font: "songti" },
+    SRE: { font: "songti" },
+    AIMR: { font: "songti" },
+    NONE: { font: "songti" },
+  },
+  zhhk: {
+    SWE: { font: "songti" },
+    SRE: { font: "songti" },
+    AIMR: { font: "songti" },
     NONE: { font: "songti" },
   },
 };
 
-// Resolve the effective VisualPreset for a given job + optional language
-export function getVisualPreset(profile: ResumeJobType, language?: ResumeLanguage): Required<VisualPreset> {
-  const base = visualThemeByJob[profile] ?? visualThemeDefaults;
-  if (language && visualThemeLanguageOverrides[language]?.[profile]) {
-    const o = visualThemeLanguageOverrides[language]![profile]!;
-    return {
-      color: o.color ?? base.color,
-      bgStyle: o.bgStyle ?? base.bgStyle,
-      pdfStyle: o.pdfStyle ?? base.pdfStyle,
-      font: (o.font ?? base.font) as FontFamilyType,
-    };
-  }
-
-  return {
-    color: base.color,
-    bgStyle: base.bgStyle,
-    pdfStyle: base.pdfStyle,
-    font: base.font as FontFamilyType,
-  };
-}
-
-export const fontFamilies: Record<FontFamilyType, { name: string; fontStack: string[] }> = {
+const fontFamilies: Record<
+  FontFamilyType,
+  { name: string; fontStack: string[] }
+> = {
   monospace: {
     name: "Monospace",
     fontStack: [
@@ -179,7 +198,7 @@ export const fontFamilies: Record<FontFamilyType, { name: string; fontStack: str
   },
 };
 
-export const colorPalettes: Record<ColorPalette, { light: string; dark: string }> = {
+const colorPalettes: Record<ColorPalette, { light: string; dark: string }> = {
   blue: { light: "#1e40af", dark: "#60a5fa" },
   red: { light: "#dc2626", dark: "#fca5a5" },
   purple: { light: "#7e22ce", dark: "#d8b4fe" },
@@ -190,168 +209,67 @@ export const colorPalettes: Record<ColorPalette, { light: string; dark: string }
   indigo: { light: "#4338ca", dark: "#a5b4fc" },
 };
 
-export const jobOptions = [
-  {
-    value: "FULLSTACK",
-    label: "Full Stack",
-    tooltipEn: "Full Stack Engineer — End-to-end development",
-    tooltipZh: "全栈工程师 — 端到端开发",
-    tooltipZhHk: "全棧工程師 — 端到端開發",
+const localizedSectionData = {
+  summary: { en: summaryEn, zh: summaryZh, zhhk: summaryZhHk },
+  workExperience: {
+    en: workExperienceEn,
+    zh: workExperienceZh,
+    zhhk: workExperienceZhHk,
   },
-  {
-    value: "SOFTWARE",
-    label: "SWE",
-    tooltipEn: "Software Engineer — System & architecture",
-    tooltipZh: "软件工程师 — 系统与架构",
-    tooltipZhHk: "軟件工程師 — 系統與架構",
-  },
-  {
-    value: "DEVOPS",
-    label: "DevOps",
-    tooltipEn: "Cloud/DevOps/SRE — Infrastructure & CI/CD",
-    tooltipZh: "云/DevOps 工程师 — 基础设施与 CI/CD",
-    tooltipZhHk: "雲/DevOps 工程師 — 基礎設施與 CI/CD",
-  },
-  {
-    value: "ML_RESEARCHER",
-    label: "ML",
-    tooltipEn: "ML Researcher — AI & algorithms",
-    tooltipZh: "机器学习研究员 — AI 与算法",
-    tooltipZhHk: "機器學習研究員 — AI 與算法",
-  },
-] as const;
+  project: { en: projectsEn, zh: projectsZh, zhhk: projectsZhHk },
+  skills: { en: skillsEn, zh: skillsZh, zhhk: skillsZhHk },
+  education: { en: educationEn, zh: educationZh, zhhk: educationZhHk },
+} as const;
 
-export type JobOption = (typeof jobOptions)[number];
-
-type ThemeOverride = {
-  color?: ColorPalette;
-  font?: FontFamilyType;
-};
-
-// resumeTheme merged into visualThemeByJob + visualThemeLanguageOverrides
-
-const pdfStyleTheme = {
-  default: "ribbon" as PdfStyleId,
-  byJob: {
-    FULLSTACK: "accent",
-    SOFTWARE: "cards",
-    DEVOPS: "blueprint",
-    ML_RESEARCHER: "editorial",
-    NONE: "ribbon",
-  } as Record<ResumeJobType, PdfStyleId>,
-};
-
-function resolveTheme(profile: ResumeJobType, language: ResumeLanguage): Required<ThemeOverride> {
-  // Resolve font via unified visualTheme structures; color/pdf/bg use resolveVisualValue
-  const preset = getVisualPreset(profile, language);
-
+function getVisualPreset(
+  profile: JobType,
+  language?: LanguageType,
+): Required<VisualPreset> {
+  const base = visualThemeByJob[profile] ?? visualThemeDefaults;
+  const o = language
+    ? visualThemeLanguageOverrides[language]?.[profile]
+    : undefined;
   return {
-    color: resolveVisualValue("color", visualBinding.colorMode, profile, language),
-    font: preset.font,
+    color: o?.color ?? base.color,
+    bgStyle: o?.bgStyle ?? base.bgStyle,
+    pdfStyle: o?.pdfStyle ?? base.pdfStyle,
+    font: (o?.font ?? base.font) as FontFamilyType,
   };
 }
 
-export function getColor(profile: ResumeJobType, language: ResumeLanguage) {
-  const { color } = resolveTheme(profile, language);
-  return colorPalettes[color];
-}
-
-export function getFont(profile: ResumeJobType, language: ResumeLanguage) {
-  const { font } = resolveTheme(profile, language);
-  return fontFamilies[font];
-}
-
-export function getPdfStyle(profile: ResumeJobType): PdfStyleId {
-  return resolveVisualValue("pdfStyle", visualBinding.pdfStyleMode, profile);
-}
-
-export function isColorModeDynamic() {
-  return visualBinding.colorMode !== "asconfig";
-}
-
-export function isBgStyleModeDynamic() {
-  return visualBinding.bgStyleMode !== "asconfig";
-}
-
-export function isPdfStyleModeDynamic() {
-  return visualBinding.pdfStyleMode !== "asconfig";
-}
-
-export function getColorBindingMode(): VisualBindingMode {
-  return visualBinding.colorMode;
-}
-
-export function getBgStyleBindingMode(): VisualBindingMode {
-  return visualBinding.bgStyleMode;
-}
-
-export function getPdfStyleBindingMode(): VisualBindingMode {
-  return visualBinding.pdfStyleMode;
-}
-
-export function getBgStyle(profile: ResumeJobType): BgStyleId {
-  return resolveVisualValue("bgStyle", visualBinding.bgStyleMode, profile);
-}
-
-export function resetVisualCache() {
-  visualConsistentCache.color.clear();
-  visualConsistentCache.bgStyle.clear();
-  visualConsistentCache.pdfStyle.clear();
-}
-
-function getProfileIndex(profile: ResumeJobType): number {
+function getProfileIndex(profile: JobType): number {
   const index = profileOrder.indexOf(profile);
   return index === -1 ? 0 : index;
 }
-
 function getRandomItem<T>(list: readonly T[], fallback: T): T {
-  if (list.length === 0) {
-    return fallback;
-  }
-
-  return list[Math.floor(Math.random() * list.length)] ?? fallback;
+  return list.length === 0
+    ? fallback
+    : (list[Math.floor(Math.random() * list.length)] ?? fallback);
 }
-
 function getConsistentItem<T>(
-  cache: Map<ResumeJobType, T>,
-  profile: ResumeJobType,
+  cache: Map<JobType, T>,
+  profile: JobType,
   list: readonly T[],
-  fallback: T
+  fallback: T,
 ): T {
   const cached = cache.get(profile);
-  if (cached) {
-    return cached;
-  }
-
+  if (cached) return cached;
   const next = getRandomItem(list, fallback);
   cache.set(profile, next);
   return next;
 }
 
-function resolveVisualValue(
-  kind: "color",
-  mode: VisualBindingMode,
-  profile: ResumeJobType,
-  language?: ResumeLanguage
-): ColorPalette;
-function resolveVisualValue(
-  kind: "bgStyle",
-  mode: VisualBindingMode,
-  profile: ResumeJobType,
-  language?: ResumeLanguage
-): BgStyleId;
-function resolveVisualValue(
-  kind: "pdfStyle",
-  mode: VisualBindingMode,
-  profile: ResumeJobType,
-  language?: ResumeLanguage
-): PdfStyleId;
-function resolveVisualValue(
+export function resolveVisualValue(kind: "color", mode: VisualBindingMode, profile: JobType, language?: LanguageType): ColorPalette;
+export function resolveVisualValue(kind: "bgStyle", mode: VisualBindingMode, profile: JobType, language?: LanguageType): BgStyleId;
+export function resolveVisualValue(kind: "pdfStyle", mode: VisualBindingMode, profile: JobType, language?: LanguageType): PdfStyleId;
+export function resolveVisualValue(
   kind: "color" | "bgStyle" | "pdfStyle",
   mode: VisualBindingMode,
-  profile: ResumeJobType,
-  language?: ResumeLanguage
-) {
+  profile: JobType,
+  language?: LanguageType,
+): ColorPalette | BgStyleId | PdfStyleId {
+  const preset = getVisualPreset(profile, language);
+
   const fallbackByKind = {
     color: visualPresetDefaults.color,
     bgStyle: visualPresetDefaults.bgStyle,
@@ -364,74 +282,100 @@ function resolveVisualValue(
     pdfStyle: pdfStyleList,
   } as const;
 
-  // Use getVisualPreset to respect language overrides when language provided
-  const preset = getVisualPreset(profile, language);
-
   const configValueByKind = {
-    color: preset.color ?? visualThemeDefaults.color,
-    bgStyle: preset.bgStyle ?? visualThemeDefaults.bgStyle,
-    pdfStyle: preset.pdfStyle ?? pdfStyleTheme.byJob[profile] ?? pdfStyleTheme.default,
+    color: (preset.color ?? visualThemeDefaults.color) as ColorPalette,
+    bgStyle: (preset.bgStyle ?? visualThemeDefaults.bgStyle) as BgStyleId,
+    pdfStyle: (preset.pdfStyle ?? visualThemeDefaults.pdfStyle) as PdfStyleId,
   } as const;
 
   const fallback = fallbackByKind[kind];
   const list = listByKind[kind];
 
   if (mode === "asconfig") {
-    return configValueByKind[kind] ?? fallback;
+    if (kind === "color") return (configValueByKind.color ?? fallback) as ColorPalette;
+    if (kind === "bgStyle") return (configValueByKind.bgStyle ?? fallback) as BgStyleId;
+    return (configValueByKind.pdfStyle ?? fallback) as PdfStyleId;
   }
 
   if (mode === "aslist") {
     const index = getProfileIndex(profile) % list.length;
-    return list[index] ?? fallback;
+    if (kind === "color") return (list[index] ?? fallback) as ColorPalette;
+    if (kind === "bgStyle") return (list[index] ?? fallback) as BgStyleId;
+    return (list[index] ?? fallback) as PdfStyleId;
   }
 
   if (mode === "random") {
-    return getRandomItem(list, fallback);
+    const val = getRandomItem(list, fallback);
+    if (kind === "color") return val as ColorPalette;
+    if (kind === "bgStyle") return val as BgStyleId;
+    return val as PdfStyleId;
   }
 
-  return getConsistentItem(visualConsistentCache[kind], profile, list, fallback);
+  const cache = visualConsistentCache[kind as keyof typeof visualConsistentCache] as Map<JobType, unknown>;
+  const result = getConsistentItem(cache as Map<JobType, any>, profile, list, fallback);
+  if (kind === "color") return result as ColorPalette;
+  if (kind === "bgStyle") return result as BgStyleId;
+  return result as PdfStyleId;
 }
 
+function resolveTheme(
+  profile: JobType,
+  language: LanguageType,
+): Required<ThemeOverride> {
+  const preset = getVisualPreset(profile, language);
+  return {
+    color: resolveVisualValue(
+      "color",
+      visualBinding.colorMode,
+      profile,
+      language,
+    ),
+    font: preset.font,
+  };
+}
+
+export function getColor(profile: JobType, language: LanguageType) {
+  const { color } = resolveTheme(profile, language);
+  return colorPalettes[color];
+}
+export function getFont(profile: JobType, language: LanguageType) {
+  const { font } = resolveTheme(profile, language);
+  return fontFamilies[font];
+}
+export function getPdfStyle(profile: JobType): PdfStyleId {
+  return resolveVisualValue("pdfStyle", visualBinding.pdfStyleMode, profile);
+}
+export function getBgStyleBindingMode(): VisualBindingMode {
+  return visualBinding.bgStyleMode;
+}
+export function getBgStyle(profile: JobType): BgStyleId {
+  return resolveVisualValue("bgStyle", visualBinding.bgStyleMode, profile);
+}
 export function cn(...classNames: ClassValue[]): string {
   return twMerge(clsx(classNames));
 }
-
 export function useUsageMap<T>(
   map: Record<"live" | "pdf", T>,
-  usage: "live" | "pdf"
+  usage: "live" | "pdf",
 ): T {
   return map[usage];
 }
-
-export function useLanguageMap<T>(
-  map: Record<ResumeLanguage, T>,
-  language: ResumeLanguage
-): T {
-  return map[language];
-}
-
 export function pickLanguage<T>(
-  language: ResumeLanguage,
-  map: Record<ResumeLanguage, T>
+  language: LanguageType,
+  map: Record<LanguageType, T>,
 ): T {
   return map[language];
 }
 
-type NamePart = keyof Name;
-
-type NameRenderSegment = {
-  text: string;
-  highlighted: boolean;
-};
-
-export function getNameRenderConfig(language: ResumeLanguage, name: Name): {
-  separator: string;
-  segments: NameRenderSegment[];
-} {
+export function getNameRenderConfig(
+  language: LanguageType,
+  name: Name,
+): { separator: string; segments: NameRenderSegment[] } {
   const languageCopy = copy[language];
-  const order: NamePart[] = languageCopy.nameLayout.firstNameFirst ? ["first", "last"] : ["last", "first"];
+  const order: NamePart[] = languageCopy.nameLayout.firstNameFirst
+    ? ["first", "last"]
+    : ["last", "first"];
   const separator = languageCopy.nameLayout.hasSpace ? " " : "";
-
   return {
     separator,
     segments: order.map((part) => ({
@@ -441,42 +385,43 @@ export function getNameRenderConfig(language: ResumeLanguage, name: Name): {
   };
 }
 
-export function getJobTooltip(option: JobOption, language: ResumeLanguage): string {
-  const tooltipByLanguage: Record<ResumeLanguage, string> = {
+export function getJobTooltip(
+  option: { tooltipEn: string; tooltipZh: string; tooltipZhHk: string },
+  language: LanguageType,
+): string {
+  const tooltipByLanguage: Record<LanguageType, string> = {
     en: option.tooltipEn,
     zh: option.tooltipZh,
-    "zh-hk": option.tooltipZhHk,
+    zhhk: option.tooltipZhHk,
   };
-
   return tooltipByLanguage[language];
 }
 
-export function formatFooterLastUpdated(language: ResumeLanguage, lastUpdate: string): string {
+export function formatFooterLastUpdated(
+  language: LanguageType,
+  lastUpdate: string,
+): string {
   const date = new Date(lastUpdate);
-
-  if (isNaN(date.getTime())) {
-    return lastUpdate;
-  }
-
+  if (isNaN(date.getTime())) return lastUpdate;
   if (language === "en") {
     const monthNames = copy.en.footer.monthNames;
     return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   }
-
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 }
 
-export function getHeaderContactInfo(language: ResumeLanguage, contact: ContactInfo): {
-  email: string;
-  phone: string;
-  phoneHref: string;
-  wechat?: string;
-} {
+export function getHeaderContactInfo(
+  language: LanguageType,
+  contact: ContactInfo,
+): { email: string; phone: string; phoneHref: string; wechat?: string } {
   const { contactLayout } = copy[language];
   const useCnContact = contactLayout.useCnContact;
-  const phone = useCnContact ? contact.cnPhone ?? contact.phone : contact.phone;
-  const email = useCnContact ? contact.cnEmail ?? contact.email : contact.email;
-
+  const phone = useCnContact
+    ? (contact.cnPhone ?? contact.phone)
+    : contact.phone;
+  const email = useCnContact
+    ? (contact.cnEmail ?? contact.email)
+    : contact.email;
   return {
     email,
     phone,
@@ -487,95 +432,57 @@ export function getHeaderContactInfo(language: ResumeLanguage, contact: ContactI
 
 export function getUrlDisplayText(
   url: string,
-  mode: "path" | "host-path" = "path"
+  mode: "path" | "host-path" = "path",
 ): string {
   try {
     const parsed = new URL(url);
     const normalizedPath = parsed.pathname.replace(/^\/+|\/+$/g, "");
-    if (mode === "host-path") {
+    if (mode === "host-path")
       return normalizedPath ? `${parsed.host}/${normalizedPath}` : parsed.host;
-    }
     return normalizedPath || parsed.host;
   } catch {
     return url;
   }
 }
 
-const localizedSectionData = {
-  summary: {
-    en: summaryEn,
-    zh: summaryZh,
-    "zh-hk": summaryZhHk,
-  },
-  workExperience: {
-    en: workExperienceEn,
-    zh: workExperienceZh,
-    "zh-hk": workExperienceZhHk,
-  },
-  project: {
-    en: projectsEn,
-    zh: projectsZh,
-    "zh-hk": projectsZhHk,
-  },
-  skills: {
-    en: skillsEn,
-    zh: skillsZh,
-    "zh-hk": skillsZhHk,
-  },
-  education: {
-    en: educationEn,
-    zh: educationZh,
-    "zh-hk": educationZhHk,
-  },
-} as const;
+export function getLocalizedSection(
+  language: LanguageType,
+  sectionKey: keyof typeof localizedSectionData,
+  jobType?: JobType,
+) {
+  const title = copy[language].sections[sectionKey];
+  const data = localizedSectionData[sectionKey][language];
 
-export function getLocalizedSection<T extends keyof typeof localizedSectionData>(
-  language: ResumeLanguage,
-  sectionKey: T
-): {
-  data: (typeof localizedSectionData)[T][ResumeLanguage];
-  title: string;
-} {
-  return {
-    data: localizedSectionData[sectionKey][language],
-    title: copy[language].sections[sectionKey],
-  };
+  if (sectionKey === "summary") {
+    if (jobType && typeof data === "object") {
+      return { data: (data as Record<JobType, unknown>)[jobType], title };
+    }
+    // fallback: return the full summary object when no jobType provided
+    return { data, title };
+  }
+
+  return { data, title };
 }
 
 export function filterExperience<T extends { jobTypes: ExperienceJobType[] }>(
   items: T[],
-  profile: ResumeJobType
+  profile: JobType,
 ): T[] {
-  if (profile === "NONE") {
-    return items;
-  }
+  if (profile === "NONE") return items;
   return items.filter((item) => item.jobTypes.includes(profile));
 }
 
-export const siteConfig: SiteConfig = {
+export const siteConfig = {
   title: "ShYu Resume",
   description: "A Resume",
   keywords: ["YUSIHONG", "SIHONG", "Resume", "CV", "Portfolio", "余思宏"],
   personal: {
     name: {
-      en: {
-        first: "Sihong",
-        last: "Yu"
-      },
-      zh: {
-        first: "思宏",
-        last: "余"
-      },
-      'zh-hk': {
-        first: "思宏",
-        last: "余"
-      }
+      en: { first: "Sihong", last: "Yu" },
+      zh: { first: "思宏", last: "余" },
+      zhhk: { first: "思宏", last: "余" },
     },
-    shortName: {
-      en: "Dale",
-      zh: "余",
-      'zh-hk': "余"
-    },
+    shortName: { en: "Dale", zh: "余", zhhk: "余" },
     contact: {
       linkedin: "https://www.linkedin.com/in/sihong-yu/",
       github: "https://github.com/shyu216",
@@ -584,7 +491,7 @@ export const siteConfig: SiteConfig = {
       phone: "0431083127",
       wechat: "seinbaulio",
       cnEmail: "shyu0@qq.com",
-      cnPhone: "13697555391"
-    }
+      cnPhone: "13697555391",
+    },
   },
 };

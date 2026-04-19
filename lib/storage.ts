@@ -3,7 +3,7 @@
 // 支持版本控制、数据迁移、类型安全
 // ==========================================
 
-import { jobOptions, type JobType } from "@/content/config";
+import { jobOptions, type JobType } from "@/content/copy";
 import { copy } from "@/content/copy";
 import type { LanguageType } from "@/content/copy";
 import buildInfo from "@/app/build-info.json";
@@ -112,7 +112,7 @@ export function saveSettings(settings: Partial<AppSettings>): void {
  * 迁移旧版独立存储的数据
  * 从旧格式或独立 key 迁移，保留用户设置
  */
-function migrateFromOldStorage(oldData?: any): AppSettings {
+function migrateFromOldStorage(oldData?: unknown): AppSettings {
   const settings: AppSettings = { ...DEFAULT_SETTINGS };
 
   if (typeof window === 'undefined') {
@@ -120,13 +120,14 @@ function migrateFromOldStorage(oldData?: any): AppSettings {
   }
 
   try {
-    // 如果有旧数据，优先使用旧数据中的有效值
-    if (oldData) {
-      if (oldData.language && validLanguages.includes(oldData.language)) {
-        settings.language = oldData.language;
+    // 如果有旧数据，优先使用旧数据中的有效值（安全类型检查）
+    if (oldData && typeof oldData === "object" && oldData !== null) {
+      const od = oldData as Record<string, unknown>;
+      if (typeof od.language === "string" && validLanguages.includes(od.language as LanguageType)) {
+        settings.language = od.language as LanguageType;
       }
-      if (oldData.jobType && validJobTypes.includes(oldData.jobType)) {
-        settings.jobType = oldData.jobType;
+      if (typeof od.jobType === "string" && validJobTypes.includes(od.jobType as JobType)) {
+        settings.jobType = od.jobType as JobType;
       }
     }
 

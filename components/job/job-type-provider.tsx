@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import type { JobType } from "@/content/config";
+import { jobOptions, type JobType } from "@/content/copy";
 
 interface JobTypeContextType {
   jobType: JobType;
@@ -23,7 +23,7 @@ interface JobTypeProviderProps {
 }
 
 export function JobTypeProvider({ children }: JobTypeProviderProps) {
-  const [jobType, setJobType] = useState<JobType>('FULLSTACK');
+  const [jobType, setJobType] = useState<JobType>(jobOptions[0].value);
 
   return (
     <JobTypeContext.Provider value={{ jobType, setJobType }}>

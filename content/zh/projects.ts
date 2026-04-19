@@ -10,7 +10,7 @@ export const projects: Project[] = [
     link: "https://youtu.be/p7o28IXwsrs",
     dateRange: "2025年2月 - 2025年11月",
     techStack: "Python, Flask, YOLO, OpenCV",
-    jobTypes: ["ML_RESEARCHER", "SOFTWARE"],
+    jobTypes: ["AIMR", "SRE"],
     bullets: [
       "与4DMedical利益相关者定期双周会议协作，为XV Scanner工作流自动化交付实时呼吸追踪系统",
       "训练**YOLOv11n**进行深度图人体检测，优化呼吸模式信号质量（相关性↑0.5，MSE↓59.1%）",
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     link: "https://youtu.be/zOPQXXpSRbg",
     dateRange: "2025年5月 - 2025年11月",
     techStack: "Unity, Meta Quest 3, C#",
-    jobTypes: ["ML_RESEARCHER", "SOFTWARE"],
+    jobTypes: ["AIMR", "SWE"],
     bullets: [
       "合著（第二作者）**SIGGRAPH Asia XR**论文投稿；负责代码实现并参与论文撰写",
       "主导MR生物传感原型从导师概念到功能演示的端到端交付；独立构建**Unity**项目（6个场景，40+脚本），完成3D与UI集成",
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     link: "https://github.com/shyu216/shyu-resume",
     dateRange: "2024年8月 - 进行中",
     techStack: "Next.js, Tailwind",
-    jobTypes: ["FULLSTACK", "SOFTWARE", "DEVOPS"],
+    jobTypes: ["SRE"],
     bullets: [
       "构建基于**Next.js**的i18n简历生成器，支持中/英/港三语切换及**A4 PDF导出**（含超链接）",
       "部署至**GitHub Pages**，提供一键保存/打印功能；撰写完整README文档便于开发者上手",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     link: "https://github.com/CRUVOD/CarbonTracker",
     dateRange: "2024年9月 - 2024年11月",
     techStack: "React Native, Google Maps API",
-    jobTypes: ["FULLSTACK", "SOFTWARE"],
+    jobTypes: ["SWE"],
     bullets: [
       "构建**React Native**环保习惯应用，包含任务系统、排行榜和活动提醒功能",
       "实现传感器融合，集成陀螺仪和GPS数据与**Google Maps API**，交付\"久坐提醒+公园推荐\"挑战原型",
@@ -85,9 +85,9 @@ export const projects: Project[] = [
     link: "https://github.com/shyu216/DPC",
     dateRange: "2022年9月 - 2023年5月",
     techStack: "PyTorch, Open3D, OpenPCDet, SLURM",
-    jobTypes: ["ML_RESEARCHER", "SOFTWARE"],
+    jobTypes: ["AIMR"],
     bullets: [
-      "基于**OpenPCDet**复现3D目标检测，在**KITTI**数据集上生成车辆/行人/自行车检测框；行人AP提升13.4%，车辆AP提升5.7%（超越基线）",
+      "基于**OpenPCDet**复现3D目标检测，在**KITTI**数据集上生成车辆/行人/自行车检测框；提升行人检测AP精度13.4%",
       "开展全面的文献综述和对比分析，研究最先进方法",
       "在**SLURM**集群上训练模型；使用**Open3D**进行点云可视化和实验分析",
       "独立完成本科毕业论文，系统整合研究方法和实验结果",
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     link: "https://github.com/shyu216/go-raft",
     dateRange: "2022年1月 - 2022年5月",
     techStack: "Go, Raft",
-    jobTypes: ["SOFTWARE", "DEVOPS"],
+    jobTypes: ["SRE"],
     bullets: [
       "研读并实现**Raft**共识算法原始论文；用**Go**编写领导者选举和日志复制逻辑",
       "交付稳定的分布式KV存储，支持自动领导者选举和数据一致性保证；通过所有测试用例",
@@ -128,7 +128,7 @@ export const projects: Project[] = [
     link: "https://shyu216.github.io/knownoevil/study/",
     dateRange: "2021年9月 - 2024年5月",
     techStack: "SQL, Hadoop, Python",
-    jobTypes: ["SOFTWARE", "DEVOPS", "ML_RESEARCHER"],
+    jobTypes: ["SWE"],
     bullets: [
       "设计**Hadoop/MapReduce**流水线并行实现**Dijkstra**、**PageRank**、**K-Means**；优化大数据处理流程",
       "设计5表主键/外键架构和8个复杂**SQL**查询，用于联赛/球队/赞助商分析",

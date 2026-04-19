@@ -6,7 +6,8 @@ import { LanguageContext } from "@/components/lang/language-provider";
 import { cn } from "@/content/config";
 import { getFont } from "@/content/config";
 import { copy } from "@/content/copy";
-import { jobOptions, type JobType, type JobSwitcherProps, getJobTooltip } from "@/content/config";
+import { jobOptions, type JobType } from "@/content/copy";
+import { type JobSwitcherProps, getJobTooltip } from "@/content/config";
 
 export { JobType, JobSwitcherProps };
 
@@ -18,7 +19,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const [barWidth, setBarWidth] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [previousJobType, setPreviousJobType] = useState<JobType>('FULLSTACK');
+  const [previousJobType, setPreviousJobType] = useState<JobType>(jobType);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const xButtonRef = useRef<HTMLButtonElement | null>(null);
 
