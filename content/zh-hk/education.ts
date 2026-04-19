@@ -21,8 +21,8 @@ import { type Education } from "@/types/education";
 		gpa: "MGPA：3.364/4.0",
 		honors: [
 			"入學獎學金",
-			"院長名單 2022-23",
-			"ELITE 精英班",
+			"院長名單2022-23",
+			"ELITE精英班",
 		],
 	},
 ];

@@ -96,18 +96,59 @@ export const visualPresetDefaults = {
   bgStyle: "default-grid" as BgStyleId,
   pdfStyle: "ribbon" as PdfStyleId,
 };
-
-export const visualPresetByJob: Record<ResumeJobType, {
+export type VisualPreset = {
   color: ColorPalette;
   bgStyle: BgStyleId;
   pdfStyle: PdfStyleId;
-}> = {
-  FULLSTACK: { color: "red", bgStyle: "default-grid", pdfStyle: "accent" },
-  SOFTWARE: { color: "indigo", bgStyle: "triangle-prism", pdfStyle: "cards" },
-  DEVOPS: { color: "green", bgStyle: "lumen-beams", pdfStyle: "blueprint" },
-  ML_RESEARCHER: { color: "purple", bgStyle: "orbit-mesh", pdfStyle: "editorial" },
-  NONE: { color: "teal", bgStyle: "dot-matrix", pdfStyle: "ribbon" },
+  font?: FontFamilyType;
 };
+
+export const visualThemeDefaults: Required<VisualPreset> = {
+  color: visualPresetDefaults.color,
+  bgStyle: visualPresetDefaults.bgStyle,
+  pdfStyle: visualPresetDefaults.pdfStyle,
+  font: "monospace",
+};
+
+export const visualThemeByJob: Record<ResumeJobType, VisualPreset> = {
+  FULLSTACK: { color: "red", bgStyle: "default-grid", pdfStyle: "accent", font: "monospace" },
+  SOFTWARE: { color: "indigo", bgStyle: "triangle-prism", pdfStyle: "cards", font: "monospace" },
+  DEVOPS: { color: "green", bgStyle: "lumen-beams", pdfStyle: "blueprint", font: "monospace" },
+  ML_RESEARCHER: { color: "purple", bgStyle: "orbit-mesh", pdfStyle: "editorial", font: "monospace" },
+  NONE: { color: "teal", bgStyle: "dot-matrix", pdfStyle: "ribbon", font: "monospace" },
+};
+
+// Optional per-language overrides for specific job presets (only fill needed fields)
+export const visualThemeLanguageOverrides: Partial<Record<ResumeLanguage, Partial<Record<ResumeJobType, Partial<VisualPreset>>>>> = {
+  zh: {
+    FULLSTACK: { font: "songti" },
+    SOFTWARE: { font: "songti" },
+    DEVOPS: { font: "songti" },
+    ML_RESEARCHER: { font: "songti" },
+    NONE: { font: "songti" },
+  },
+};
+
+// Resolve the effective VisualPreset for a given job + optional language
+export function getVisualPreset(profile: ResumeJobType, language?: ResumeLanguage): Required<VisualPreset> {
+  const base = visualThemeByJob[profile] ?? visualThemeDefaults;
+  if (language && visualThemeLanguageOverrides[language]?.[profile]) {
+    const o = visualThemeLanguageOverrides[language]![profile]!;
+    return {
+      color: o.color ?? base.color,
+      bgStyle: o.bgStyle ?? base.bgStyle,
+      pdfStyle: o.pdfStyle ?? base.pdfStyle,
+      font: (o.font ?? base.font) as FontFamilyType,
+    };
+  }
+
+  return {
+    color: base.color,
+    bgStyle: base.bgStyle,
+    pdfStyle: base.pdfStyle,
+    font: base.font as FontFamilyType,
+  };
+}
 
 export const fontFamilies: Record<FontFamilyType, { name: string; fontStack: string[] }> = {
   monospace: {
@@ -187,23 +228,7 @@ type ThemeOverride = {
   font?: FontFamilyType;
 };
 
-const resumeTheme = {
-  default: { color: "red", font: "monospace" } as Required<ThemeOverride>,
-  byJob: {
-    FULLSTACK: { color: "red", font: "monospace" },
-    SOFTWARE: { color: "indigo", font: "monospace" },
-    DEVOPS: { color: "green", font: "monospace" },
-    ML_RESEARCHER: { color: "purple", font: "monospace" },
-    NONE: { color: "teal", font: "monospace" },
-  } as Partial<Record<ResumeJobType, ThemeOverride>>,
-  byLanguage: {
-    zh: { font: "songti" },
-    "zh-hk": { font: "songti" },
-  } as Partial<Record<ResumeLanguage, ThemeOverride>>,
-  byJobLanguage: {
-    // 预留：按岗位+语言做精细化覆盖
-  } as Partial<Record<ResumeJobType, Partial<Record<ResumeLanguage, ThemeOverride>>>>,
-};
+// resumeTheme merged into visualThemeByJob + visualThemeLanguageOverrides
 
 const pdfStyleTheme = {
   default: "ribbon" as PdfStyleId,
@@ -217,13 +242,12 @@ const pdfStyleTheme = {
 };
 
 function resolveTheme(profile: ResumeJobType, language: ResumeLanguage): Required<ThemeOverride> {
-  const byJob = resumeTheme.byJob[profile] ?? {};
-  const byLanguage = resumeTheme.byLanguage[language] ?? {};
-  const byJobLanguage = resumeTheme.byJobLanguage[profile]?.[language] ?? {};
+  // Resolve font via unified visualTheme structures; color/pdf/bg use resolveVisualValue
+  const preset = getVisualPreset(profile, language);
 
   return {
-    color: resolveVisualValue("color", visualBinding.colorMode, profile),
-    font: byJobLanguage.font ?? byLanguage.font ?? byJob.font ?? resumeTheme.default.font,
+    color: resolveVisualValue("color", visualBinding.colorMode, profile, language),
+    font: preset.font,
   };
 }
 
@@ -269,6 +293,12 @@ export function getBgStyle(profile: ResumeJobType): BgStyleId {
   return resolveVisualValue("bgStyle", visualBinding.bgStyleMode, profile);
 }
 
+export function resetVisualCache() {
+  visualConsistentCache.color.clear();
+  visualConsistentCache.bgStyle.clear();
+  visualConsistentCache.pdfStyle.clear();
+}
+
 function getProfileIndex(profile: ResumeJobType): number {
   const index = profileOrder.indexOf(profile);
   return index === -1 ? 0 : index;
@@ -301,22 +331,26 @@ function getConsistentItem<T>(
 function resolveVisualValue(
   kind: "color",
   mode: VisualBindingMode,
-  profile: ResumeJobType
+  profile: ResumeJobType,
+  language?: ResumeLanguage
 ): ColorPalette;
 function resolveVisualValue(
   kind: "bgStyle",
   mode: VisualBindingMode,
-  profile: ResumeJobType
+  profile: ResumeJobType,
+  language?: ResumeLanguage
 ): BgStyleId;
 function resolveVisualValue(
   kind: "pdfStyle",
   mode: VisualBindingMode,
-  profile: ResumeJobType
+  profile: ResumeJobType,
+  language?: ResumeLanguage
 ): PdfStyleId;
 function resolveVisualValue(
   kind: "color" | "bgStyle" | "pdfStyle",
   mode: VisualBindingMode,
-  profile: ResumeJobType
+  profile: ResumeJobType,
+  language?: ResumeLanguage
 ) {
   const fallbackByKind = {
     color: visualPresetDefaults.color,
@@ -330,16 +364,13 @@ function resolveVisualValue(
     pdfStyle: pdfStyleList,
   } as const;
 
+  // Use getVisualPreset to respect language overrides when language provided
+  const preset = getVisualPreset(profile, language);
+
   const configValueByKind = {
-    color:
-      visualPresetByJob[profile]?.color
-      ?? resumeTheme.byJob[profile]?.color
-      ?? resumeTheme.default.color,
-    bgStyle: visualPresetByJob[profile]?.bgStyle,
-    pdfStyle:
-      visualPresetByJob[profile]?.pdfStyle
-      ?? pdfStyleTheme.byJob[profile]
-      ?? pdfStyleTheme.default,
+    color: preset.color ?? visualThemeDefaults.color,
+    bgStyle: preset.bgStyle ?? visualThemeDefaults.bgStyle,
+    pdfStyle: preset.pdfStyle ?? pdfStyleTheme.byJob[profile] ?? pdfStyleTheme.default,
   } as const;
 
   const fallback = fallbackByKind[kind];

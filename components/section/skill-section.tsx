@@ -27,7 +27,7 @@ export default function SkillSection({ usage }: Props) {
               <Label content={skill.name} usage={usage} />
             </div>
             <div className={`min-w-0 ${descStyle}`} style={{ color: 'var(--color-text-primary)' }}>
-              <p>{skill.skills.join(" · ")}</p>
+              <p>{skill.skills.join("·")}</p>
             </div>
           </div>
         ))}

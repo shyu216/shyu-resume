@@ -77,6 +77,17 @@ export function BgStyleProvider({ children }: { children: React.ReactNode }) {
     [activeStyle]
   );
 
+  React.useEffect(() => {
+    try {
+      // 在运行时打印当前背景样式和 motion 以便在控制台验证是否生效
+      // 使用 info 级别便于查看，同时不会影响生产环境严重性
+      // eslint-disable-next-line no-console
+      console.info("BgStyle active:", activeStyle.id, activeStyle.motion);
+    } catch (e) {
+      // ignore
+    }
+  }, [activeStyle]);
+
   return <BgStyleContext.Provider value={value}>{children}</BgStyleContext.Provider>;
 }
 

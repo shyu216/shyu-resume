@@ -19,6 +19,6 @@ export const education: Education[] = [
     institutionImage: "./images/cuhk.png",
     dateRange: "2019年9月 - 2023年7月",
     gpa: "MGPA: 3.364/4.0",
-    honors: ["入学奖学金", "院长名单 2022-23", "ELITE 精英班"],
+    honors: ["入学奖学金", "院长名单2022-23", "ELITE精英班"],
   },
 ];
