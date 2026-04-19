@@ -27,87 +27,69 @@
 - **双语切换** ✌️ —— 轻松在中文（简体和繁体）与英文之间切换
 - **PDF 排版** 📄 —— 完美的 A4 格式，智能分页，再也不怕页面错乱啦！
 - **手机友好** 📱 —— 在电脑和手机上都很美腻
-- **主题定制** 🎨 —— 红色主题，还可随意调整，完全契合你的风格
-- **内容管理超easy** 📝 —— 所有文字都整整齐齐放在 `content` 文件夹里，编辑 so easy！
-- **JD 微调** 🤖 —— 根据JD微调你的 Summary，让你的简历被"看见"
+- **主题定制** 🎨 —— 8 种配色方案、5 种背景样式、5 种 PDF 样式、2 种字体家族，完全契合你的风格
+- **内容管理超 easy** 📝 —— 所有文字都整整齐齐放在 `content` 文件夹里，编辑 so easy！
+- **JD 微调** 🤖 —— 根据职位描述微调你的个人简介，让你的简历被"看见"
 - **项目过滤** 🎯 —— 动态展示最匹配的职位项目
 - **一键导出 PDF** 🖨️ —— 点点手指，美美的 PDF 立刻有！
+- **深色模式** 🌙 —— 支持浅色/深色主题切换，护眼又舒适
+- **职位档案切换** 💼 —— 秒切软件工程师、运维工程师、AI/MR 工程师档案，内容自动适配
 
 ## 🚀 让我们开始吧
 
 准备好打造你梦想中的简历了吗？走起！🌟
 
-
-### 准备工作
+### 环境要求
 
 - Node.js 18+
 - npm 或 yarn
 
-### 安装
+### 安装步骤
 
-1. 安装依赖
+1. 安装所有依赖
    ```bash
    npm install
-   # 或
-   yarn install
    ```
 2. 启动开发服务器
    ```bash
    npm run dev
-   # 或
-   yarn dev
    ```
-3. 在浏览器打开 [http://localhost:3000](http://localhost:3000) —— 哇！🎊
+3. 在浏览器打开 [http://localhost:3000](http://localhost:3000) —— 搞定！🎊
 
-### 🎨 定制化模块
+## 🎨 定制化指南
 
-好玩的来啦——让简历变成"你的"！我们把它整理成了可爱的小模块：
+所有简历内容和视觉设置都存放在 `content` 文件夹及相关样式目录中：
 
-#### 1️⃣ 内容编辑
+| 文件/文件夹 | 内容说明 |
+|-------------|----------|
+| `content/config.ts` | 个人信息、职位档案、视觉主题绑定及可定制化配置 |
+| `content/copy.ts` | 所有 UI 文本、标签和本地化字符串 |
+| `content/en/` | 英文简历内容（个人简介、工作经历、项目经历、技能树、教育经历） |
+| `content/zh/` | 简体中文简历内容 |
+| `content/zh-hk/` | 繁体中文简历内容 |
+| `app/globals.css` | 全局样式和 CSS 变量 |
+| `app/bg-styles/` | 网页背景样式预设（5 种：default-grid、triangle-prism、lumen-beams、orbit-mesh、dot-matrix） |
+| `app/pdf-styles/` | 简历 PDF 样式预设（5 种：accent、cards、blueprint、editorial、ribbon） |
 
-所有的简历内容都乘乘地待在 `content` 文件夹里，按语言分类：
+### 🎯 视觉主题配置
 
-| 文件夹 | 里面有什么 |
-|--------|-----------|
-| `content/config.ts` | 你的个人信息、联系方式、网站设置 |
-| `content/en/` | 英文版 |
-| `content/zh/` | 简体中文版 |
-| `content/zh-hk/` | 繁体中文版 |
+在 `content/config.ts` 中，你可以自定义：
 
-直接跳进这些 TypeScript 文件，施展你的魔法——呃，我是说更新你的信息！✨
+- **配色方案**（8 种）：`blue`（蓝）、`red`（红）、`purple`（紫）、`green`（绿）、`orange`（橙）、`pink`（粉）、`teal`（青）、`indigo`（靛）
+- **背景样式**（5 种）：`default-grid`（默认网格）、`triangle-prism`（三角棱镜）、`lumen-beams`（光束）、`orbit-mesh`（轨道网格）、`dot-matrix`（点阵）
+- **PDF 样式**（5 种）：`accent`（强调）、`cards`（卡片）、`blueprint`（蓝图）、`editorial`（编辑）、`ribbon`（丝带）
+- **字体家族**（2 种）：`monospace`（等宽字体：JetBrains Mono、Fira Code）、`songti`（宋体：中文衬线）
 
-#### 2️⃣ 主题定制
+每个职位档案（软件工程师、运维工程师、AI/MR 工程师、默认）都可以拥有独立的视觉预设组合！
 
-想换颜色和字体？现在通过这个配置文件进行静态设置：
+### 📝 内容结构
 
-| 文件 | 做什么的 |
-|------|---------|
-| `content/config.ts` | 统一管理主题、字体、颜色与工具函数（含 `getColor` / `getFont`） |
-
-#### 3️⃣ 职位相关超能力
-
-这是最酷的部分！🎯
-
-- **职位类型切换**：用界面上的切换器选择你想投递的职位
-- **项目过滤**：动态展示与所选职位最相关的项目
-
-##### 添加自定义职位类型
-
-想加新的职位类型？很简单：
-
-1. 在 `components/job/job-switcher.tsx` 编辑职位类型
-2. 在 `content/*/work-experience.ts` 与 `content/*/projects.ts` 中用 `jobTypes` 标注条目归属
-
-## 🤝 一起来玩！
-
-欢迎加入！如果有好点子或者发现 bug：
-
-1. Fork 这个仓库
-2. 创建新分支 (`git checkout -b feature/your-feature`)
-3. 搞点大动作（改改改）
-4. 提交你的更改 (`git commit -m 'Add your feature'`)
-5. 推送到分支 (`git push origin feature/your-feature`)
-6. 打开 Pull Request —— 你也是贡献者啦！🎉
+每个语言文件夹包含：
+- `summary.ts` – 针对不同职位类型的个人简介
+- `work-experience.ts` – 带职位类型过滤的工作经历
+- `projects.ts` – 带相关性评分的项目作品集
+- `skills.ts` – 按领域分类的技能树
+- `education.ts` – 教育背景
 
 ## 📚 技术栈
 
@@ -124,10 +106,3 @@
 ## 🌟 表示支持
 
 如果觉得这个项目超棒或者很喜欢，请在 GitHub 上给它一个 ⭐️！我们会开心一整天！☀️
-
----
-
-用 ❤️ 打造 by ShYu
-
----
-

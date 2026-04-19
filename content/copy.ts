@@ -24,9 +24,9 @@ export const jobOptions = [
   {
     value: "AIMR",
     label: "AI/MR",
-    tooltipEn: "AI/MR Engineer — Artificial Intelligence & Mixed Reality",
-    tooltipZh: "AI/MR 工程师 — 人工智能与混合现实",
-    tooltipZhHk: "AI/MR 工程師 — 人工智能與混合現實",
+    tooltipEn: "AI/MR Engineer — Computer Vision & Mixed Reality",
+    tooltipZh: "AI/MR 工程师 — 计算机视觉与混合现实",
+    tooltipZhHk: "AI/MR 工程師 — 計算機視覺與混合現實",
   },
 ] as const;
 

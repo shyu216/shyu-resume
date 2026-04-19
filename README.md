@@ -6,7 +6,7 @@
 
 ![Banner](public/images/banner.png)
 
-Hey there! 👋 Welcome to **ShYu Resume** – a modern, bilingual resume builder crafted with Next.js and React! 
+Hey there! 👋 Welcome to **ShYu Resume** – a modern, bilingual resume builder crafted with Next.js and React!
 
 This little gem is here to help you create stunning resumes that not only look amazing on the web but also export beautifully to PDF. It's a fancy fork of [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume), supercharged with extra goodies to make your resume pop and shine in front of HR and ATS systems!
 
@@ -27,11 +27,13 @@ No worries, it's super easy! Just follow these steps:
 - **Bilingual Vibes** ✌️ – Switch between Chinese (Simplified & Traditional) and English effortlessly
 - **PDF-Ready Layout** 📄 – Perfect A4 formatting with smart pagination – no more broken pages!
 - **Mobile-Friendly** 📱 – Looks fabulous on both desktop and mobile devices
-- **Theme Customization** 🎨 – Red theme with tons of customizable options to match your style
+- **Theme Customization** 🎨 – 8 color palettes, 5 background styles, 5 PDF styles, and 2 font families to match your style
 - **Easy Content Management** 📝 – All your text lives in the organized `content` folder – just edit and go!
 - **JD-Tailored** 🤖 – Tailor your Summary based on the job description so your resume gets noticed
 - **Project Filter** 🎯 – Dynamically shows only the most relevant projects for each job type
 - **One-Click PDF Export** 🖨️ – Generate beautifully formatted PDFs with a single click
+- **Dark Mode Support** 🌙 – Comfortable viewing experience in both light and dark themes
+- **Job Profile Switching** 💼 – Instantly switch between SWE, SRE, AI/MR profiles with tailored content
 
 ## 🚀 Let's Get You Started
 
@@ -47,66 +49,47 @@ Ready to craft your dream resume? Let's go! 🌟
 1. Install all the dependencies
    ```bash
    npm install
-   # or
-   yarn install
    ```
 2. Fire up the development server
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 3. Open [http://localhost:3000](http://localhost:3000) in your browser – ta-da! 🎊
 
-### 🎨 Customization Modules
+## 🎨 Customization Guide
 
-Here's the fun part – making this resume *yours*! We've organized everything into cute little modules:
+All your resume content and visual settings live in the `content` folder and related style directories:
 
-#### 1️⃣ Content Editing
+| File/Folder | What's Inside |
+|-------------|---------------|
+| `content/config.ts` | Personal info, job profiles, visual theme bindings, and customizable configurations |
+| `content/copy.ts` | All UI text, labels, and localization strings |
+| `content/en/` | English resume content (summary, work experience, projects, skills, education) |
+| `content/zh/` | Simplified Chinese resume content |
+| `content/zh-hk/` | Traditional Chinese resume content |
+| `app/globals.css` | Global styles and CSS variables |
+| `app/bg-styles/` | Webpage background style presets (5 styles: default-grid, triangle-prism, lumen-beams, orbit-mesh, dot-matrix) |
+| `app/pdf-styles/` | Resume PDF style presets (5 styles: accent, cards, blueprint, editorial, ribbon) |
 
-All your resume content lives happily in the `content` folder, organized by language:
+### 🎯 Visual Theme Configuration
 
-| Folder | What's Inside |
-|--------|---------------|
-| `content/config.ts` | Your personal info, contact details, website settings |
-| `content/en/` | English version |
-| `content/zh/` | Simplified Chinese version |
-| `content/zh-hk/` | Traditional Chinese version |
+In `content/config.ts`, you can customize:
 
-Just hop into these TypeScript files and sprinkle your magic – I mean, update your info! ✨
+- **Color Palettes** (8 options): `blue`, `red`, `purple`, `green`, `orange`, `pink`, `teal`, `indigo`
+- **Background Styles** (5 options): `default-grid`, `triangle-prism`, `lumen-beams`, `orbit-mesh`, `dot-matrix`
+- **PDF Styles** (5 options): `accent`, `cards`, `blueprint`, `editorial`, `ribbon`
+- **Font Families** (2 options): `monospace` (JetBrains Mono, Fira Code), `songti` (Chinese serif)
 
-#### 2️⃣ Theme Customization
+Each job profile (SWE, SRE, AIMR, NONE) can have its own visual preset combination!
 
-Want to change the colors and fonts? Configure them statically via this file:
+### 📝 Content Structure
 
-| File | What It Does |
-|------|--------------|
-| `content/config.ts` | Centralized theme, font, color, and utility helpers (including `getColor` / `getFont`) |
-
-#### 3️⃣ Job-Based Superpowers
-
-This is the really cool part! 🎯
-
-- **Job Type Switcher**: Use the job switcher in the interface to select the type of job you're after
-- **Project Filter**: Dynamically shows only the projects that are most relevant to the selected job type
-
-##### Adding Your Own Job Types
-
-Want to add more job types? Here's how:
-
-1. Edit job types in `components/job/job-switcher.tsx`
-2. Tag entries with `jobTypes` in `content/*/work-experience.ts` and `content/*/projects.ts`
-
-## 🤝 Join the Fun!
-
-We'd love to have you! If you've got ideas for improvements or found any bugs:
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature`)
-3. Make your amazing changes
-4. Commit your changes (`git commit -m 'Add your feature'`)
-5. Push to the branch (`git push origin feature/your-feature`)
-6. Open a Pull Request – you're a contributor now! 🎉
+Each language folder contains:
+- `summary.ts` – Personal summary tailored for different job types
+- `work-experience.ts` – Work history with job-type filtering
+- `projects.ts` – Project portfolio with relevance scoring
+- `skills.ts` – Skills categorized by domain
+- `education.ts` – Educational background
 
 ## 📚 The Tech Stuff
 
@@ -123,10 +106,3 @@ This project is open source under the [MIT License](LICENSE). Feel free to use i
 ## 🌟 Show Some Love
 
 If you find this project helpful or just think it's neat, please give it a ⭐️ on GitHub! It makes our day! ☀️
-
----
-
-Made with ❤️ by ShYu
-
----
-

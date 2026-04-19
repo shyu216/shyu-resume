@@ -4,7 +4,7 @@
   <a href="README.md">English</a> | <a href="README.zh.md">简体中文</a> | <a href="README.zh-hk.md">繁體中文</a>
 </div>
 
-!\[Banner]\(public/images/banner.png null)
+![Banner](public/images/banner.png)
 
 嘿呀！👋 歡迎來到 **ShYu 履歷** —— 一個超現代化的雙語履歷構建器，用 Next.js 和 React 精心打造！
 
@@ -27,86 +27,69 @@
 - **雙語切換** ✌️ —— 輕鬆在中文（簡體和繁體）與英文之間切換
 - **PDF 排版** 📄 —— 完美的 A4 格式，智慧分頁，再也不怕頁面錯亂啦！
 - **手機友好** 📱 —— 在電腦和手機上都很美膩
-- **主題定製** 🎨 —— 紅色主題，還可隨意調整，完全契合你的風格
-- **內容管理超easy** 📝 —— 所有文字都整整齊齊放在 `content` 資料夾裡，編輯 so easy！
-- **JD 微調** 🤖 —— 根據JD微調你的 Summary，讓你的履歷被「看見」
+- **主題定製** 🎨 —— 8 種配色方案、5 種背景樣式、5 種 PDF 樣式、2 種字體家族，完全契合你的風格
+- **內容管理超 easy** 📝 —— 所有文字都整整齊齊放在 `content` 資料夾裡，編輯 so easy！
+- **JD 微調** 🤖 —— 根據職位描述微調你的個人簡介，讓你的履歷被「看見」
 - **專案過濾** 🎯 —— 動態展示最匹配的職位專案
 - **一鍵導出 PDF** 🖨️ —— 點點手指，美美的 PDF 立刻有！
+- **深色模式** 🌙 —— 支援淺色/深色主題切換，護眼又舒適
+- **職位檔案切換** 💼 —— 秒切軟體工程師、維運工程師、AI/MR 工程師檔案，內容自動適配
 
 ## 🚀 讓我們開始吧
 
 準備好打造你夢想中的履歷了嗎？走起！🌟
 
-### 準備工作
+### 環境要求
 
 - Node.js 18+
 - npm 或 yarn
 
-### 安裝
+### 安裝步驟
 
-1. 安裝依賴
+1. 安裝所有依賴
    ```bash
    npm install
-   # 或
-   yarn install
    ```
 2. 啟動開發伺服器
    ```bash
    npm run dev
-   # 或
-   yarn dev
    ```
-3. 在瀏覽器打開 <http://localhost:3000> —— 哇！🎊
+3. 在瀏覽器開啟 [http://localhost:3000](http://localhost:3000) —— 搞定！🎊
 
-### 🎨 定製化模組
+## 🎨 定製化指南
 
-好玩的就來啦——讓履歷變成「你的」！我們把它整理成了可愛的小模組：
+所有履歷內容和視覺設定都存放在 `content` 資料夾及相關樣式目錄中：
 
-#### 1️⃣ 內容編輯
+| 檔案/資料夾 | 內容說明 |
+|-------------|----------|
+| `content/config.ts` | 個人資訊、職位檔案、視覺主題繫結及可定製化配置 |
+| `content/copy.ts` | 所有 UI 文字、標籤和本地化字串 |
+| `content/en/` | 英文履歷內容（個人簡介、工作經歷、專案經歷、技能樹、教育經歷） |
+| `content/zh/` | 簡體中文履歷內容 |
+| `content/zh-hk/` | 繁體中文履歷內容 |
+| `app/globals.css` | 全域樣式和 CSS 變數 |
+| `app/bg-styles/` | 網頁背景樣式預設（5 種：default-grid、triangle-prism、lumen-beams、orbit-mesh、dot-matrix） |
+| `app/pdf-styles/` | 履歷 PDF 樣式預設（5 種：accent、cards、blueprint、editorial、ribbon） |
 
-所有的履歷內容都乖乖地待在 `content` 資料夾裡，按語言分類：
+### 🎯 視覺主題配置
 
-| 資料夾                 | 裡面有什麼            |
-| ------------------- | ---------------- |
-| `content/config.ts` | 你的個人資訊、聯絡方式、網站設定 |
-| `content/en/`       | 英文版              |
-| `content/zh/`       | 簡體中文版            |
-| `content/zh-hk/`    | 繁體中文版            |
+在 `content/config.ts` 中，你可以自定義：
 
-直接跳進這些 TypeScript 檔案，施展你的魔法——呃，我是說更新你的資訊！✨
+- **配色方案**（8 種）：`blue`（藍）、`red`（紅）、`purple`（紫）、`green`（綠）、`orange`（橙）、`pink`（粉）、`teal`（青）、`indigo`（靛）
+- **背景樣式**（5 種）：`default-grid`（預設網格）、`triangle-prism`（三角稜鏡）、`lumen-beams`（光束）、`orbit-mesh`（軌道網格）、`dot-matrix`（點陣）
+- **PDF 樣式**（5 種）：`accent`（強調）、`cards`（卡片）、`blueprint`（藍圖）、`editorial`（編輯）、`ribbon`（絲帶）
+- **字體家族**（2 種）：`monospace`（等寬字體：JetBrains Mono、Fira Code）、`songti`（宋體：中文襯線）
 
-#### 2️⃣ 主題定製
+每個職位檔案（軟體工程師、維運工程師、AI/MR 工程師、預設）都可以擁有獨立的視覺預設組合！
 
-想換顏色和字體？現在透過這個配置檔案做靜態設定：
+### 📝 內容結構
 
-| 檔案                                    | 做什麼的                     |
-| ------------------------------------- | ------------------------ |
-| `content/config.ts`                   | 統一管理主題、字體、顏色與工具函式（含 `getColor` / `getFont`） |
-
-#### 3️⃣ 職位相關超能力
-
-這是最酷的部分！🎯
-
-- **職位類型切換**：用介面上的切換器選擇你想投遞的職位
-- **專案過濾**：動態展示與所選職位最相關的專案
-
-##### 新增自定義職位類型
-
-想加新的職位類型？很簡單：
-
-1. 在 `components/job/job-switcher.tsx` 編輯職位類型
-2. 在 `content/*/work-experience.ts` 與 `content/*/projects.ts` 以 `jobTypes` 標註條目歸屬
-
-## 🤝 一起來玩！
-
-歡迎加入！如果有好點子或者發現 bug：
-
-1. Fork 這個倉庫
-2. 建立新分支 (`git checkout -b feature/your-feature`)
-3. 搞點大動作（改改改）
-4. 提交你的更改 (`git commit -m 'Add your feature'`)
-5. 推送到分支 (`git push origin feature/your-feature`)
-6. 打開 Pull Request —— 你也是貢獻者啦！🎉
+每個語言資料夾包含：
+- `summary.ts` – 針對不同職位型別的個人簡介
+- `work-experience.ts` – 帶職位型別過濾的工作經歷
+- `projects.ts` – 帶相關性評分的專案作品集
+- `skills.ts` – 按領域分類的技能樹
+- `education.ts` – 教育背景
 
 ## 📚 技術棧
 
@@ -123,10 +106,3 @@
 ## 🌟 表示支持
 
 如果覺得這個專案超棒或者很喜歡，請在 GitHub 上給它一個 ⭐️！我們會開心一整天！☀️
-
-***
-
-用 ❤️ 打造 by ShYu
-
-***
-

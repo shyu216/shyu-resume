@@ -137,7 +137,7 @@ const visualThemeByJob: Record<JobType, VisualPreset> = {
   },
   AIMR: {
     color: "indigo",
-    bgStyle: "lumen-beams",
+    bgStyle: "default-grid",
     pdfStyle: "blueprint",
     font: "monospace",
   },
