@@ -87,22 +87,37 @@ header, header * , footer, footer * {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
-/* will be used by browser's print engine, i.e, none mode will be ignored */
 @media print {
+
+  /* 项目块不要被拆 */
   .pdf-resume-theme .resume-entry {
-    break-inside: avoid-page;
+    break-inside: avoid-page !important;
     page-break-inside: avoid;
   }
 
+  /* li 不拆 */
   .pdf-resume-theme .resume-entry li {
-    break-inside: avoid-page;
+    break-inside: avoid-page  !important;
     page-break-inside: avoid;
   }
 
+  /* 避免孤行 */
   .pdf-resume-theme p,
   .pdf-resume-theme li {
     orphans: 2;
     widows: 2;
   }
-}
 
+  /* 标题后不要立刻分页 */
+  .pdf-resume-theme .resume-section-title {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  /* 第一个 entry 不允许与标题分离 */
+  .pdf-resume-theme .resume-section .resume-entry:first-of-type {
+    break-before: avoid-page;
+    page-break-before: avoid;
+  }
+
+}

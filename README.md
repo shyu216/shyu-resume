@@ -1,7 +1,7 @@
 # ShYu Resume
 
 <div align="right">
-  <a href="README.md">English</a> | <a href="README.zh.md">简体中文</a> | <a href="README.zh-hk.md">繁體中文</a>
+  <a href="README.md">English</a> | <a href="README.zh.md">简体中文</a>
 </div>
 
 ![Banner](public/images/banner.png)
@@ -24,7 +24,7 @@ No worries, it's super easy! Just follow these steps:
 
 ## ✨ What's Cool About This
 
-- **Bilingual Vibes** ✌️ – Switch between Chinese (Simplified & Traditional) and English effortlessly
+- **Bilingual Vibes** ✌️ – Switch between Chinese and English effortlessly
 - **PDF-Ready Layout** 📄 – Perfect A4 formatting with smart pagination – no more broken pages!
 - **Mobile-Friendly** 📱 – Looks fabulous on both desktop and mobile devices
 - **Theme Customization** 🎨 – 8 color palettes, 5 background styles, 5 PDF styles, and 2 font families to match your style
@@ -66,7 +66,6 @@ All your resume content and visual settings live in the `content` folder and rel
 | `content/copy.ts` | All UI text, labels, and localization strings |
 | `content/en/` | English resume content (summary, work experience, projects, skills, education) |
 | `content/zh/` | Simplified Chinese resume content |
-| `content/zh-hk/` | Traditional Chinese resume content |
 | `app/globals.css` | Global styles and CSS variables |
 | `app/bg-styles/` | Webpage background style presets (5 styles: default-grid, triangle-prism, lumen-beams, orbit-mesh, dot-matrix) |
 | `app/pdf-styles/` | Resume PDF style presets (5 styles: accent, cards, blueprint, editorial, ribbon) |

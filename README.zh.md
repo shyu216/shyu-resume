@@ -1,7 +1,7 @@
 # ShYu 简历
 
 <div align="right">
-  <a href="README.md">English</a> | <a href="README.zh.md">简体中文</a> | <a href="README.zh-hk.md">繁體中文</a>
+  <a href="README.md">English</a> | <a href="README.zh.md">简体中文</a>
 </div>
 
 ![Banner](public/images/banner.png)
@@ -24,7 +24,7 @@
 
 ## ✨ 好玩的功能
 
-- **双语切换** ✌️ —— 轻松在中文（简体和繁体）与英文之间切换
+- **双语切换** ✌️ —— 轻松在中文与英文之间切换
 - **PDF 排版** 📄 —— 完美的 A4 格式，智能分页，再也不怕页面错乱啦！
 - **手机友好** 📱 —— 在电脑和手机上都很美腻
 - **主题定制** 🎨 —— 8 种配色方案、5 种背景样式、5 种 PDF 样式、2 种字体家族，完全契合你的风格
@@ -54,22 +54,21 @@
    ```bash
    npm run dev
    ```
-3. 在浏览器打开 [http://localhost:3000](http://localhost:3000) —— 搞定！🎊
+3. 在浏览器打开 <http://localhost:3000> —— 搞定！🎊
 
 ## 🎨 定制化指南
 
 所有简历内容和视觉设置都存放在 `content` 文件夹及相关样式目录中：
 
-| 文件/文件夹 | 内容说明 |
-|-------------|----------|
-| `content/config.ts` | 个人信息、职位档案、视觉主题绑定及可定制化配置 |
-| `content/copy.ts` | 所有 UI 文本、标签和本地化字符串 |
-| `content/en/` | 英文简历内容（个人简介、工作经历、项目经历、技能树、教育经历） |
-| `content/zh/` | 简体中文简历内容 |
-| `content/zh-hk/` | 繁体中文简历内容 |
-| `app/globals.css` | 全局样式和 CSS 变量 |
-| `app/bg-styles/` | 网页背景样式预设（5 种：default-grid、triangle-prism、lumen-beams、orbit-mesh、dot-matrix） |
-| `app/pdf-styles/` | 简历 PDF 样式预设（5 种：accent、cards、blueprint、editorial、ribbon） |
+| 文件/文件夹              | 内容说明                                                                        |
+| ------------------- | --------------------------------------------------------------------------- |
+| `content/config.ts` | 个人信息、职位档案、视觉主题绑定及可定制化配置                                                     |
+| `content/copy.ts`   | 所有 UI 文本、标签和本地化字符串                                                          |
+| `content/en/`       | 英文简历内容（个人简介、工作经历、项目经历、技能树、教育经历）                                             |
+| `content/zh/`       | 简体中文简历内容                                                                    |
+| `app/globals.css`   | 全局样式和 CSS 变量                                                                |
+| `app/bg-styles/`    | 网页背景样式预设（5 种：default-grid、triangle-prism、lumen-beams、orbit-mesh、dot-matrix） |
+| `app/pdf-styles/`   | 简历 PDF 样式预设（5 种：accent、cards、blueprint、editorial、ribbon）                    |
 
 ### 🎯 视觉主题配置
 
@@ -85,6 +84,7 @@
 ### 📝 内容结构
 
 每个语言文件夹包含：
+
 - `summary.ts` – 针对不同职位类型的个人简介
 - `work-experience.ts` – 带职位类型过滤的工作经历
 - `projects.ts` – 带相关性评分的项目作品集

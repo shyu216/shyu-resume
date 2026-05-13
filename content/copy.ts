@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type LanguageType = "en" | "zh" | "zhhk";
+export type LanguageType = "en" | "zh";
 export type JobType =
   | "SWE"
   | "SRE"
@@ -12,21 +12,18 @@ export const jobOptions = [
     label: "SWE",
     tooltipEn: "Software Engineer — Cross-platform Software Development",
     tooltipZh: "软件工程师 — 多平台软件开发",
-    tooltipZhHk: "軟件工程師 — 多平臺軟件開發",
   },
   {
     value: "SRE",
     label: "SRE",
     tooltipEn: "Site Reliability Engineer — Cloud, DevOps and Big Data",
     tooltipZh: "站点可靠性工程师 — 云计算、DevOps与大数据",
-    tooltipZhHk: "站点可靠性工程師 — 雲計算、DevOps與大數據",
   },
   {
     value: "AIMR",
     label: "AI/MR",
     tooltipEn: "AI/MR Engineer — Computer Vision & Mixed Reality",
     tooltipZh: "AI/MR 工程师 — 计算机视觉与混合现实",
-    tooltipZhHk: "AI/MR 工程師 — 計算機視覺與混合現實",
   },
 ] as const;
 
@@ -106,19 +103,13 @@ type LanguageCopy = {
 function buildJobOptionsMap(lang: LanguageType) {
   const map = {} as Record<JobType, JobOptionCopy>;
   jobOptions.forEach((o) => {
-    const tooltip =
-      lang === "en" ? o.tooltipEn : lang === "zh" ? o.tooltipZh : o.tooltipZhHk;
+    const tooltip = lang === "en" ? o.tooltipEn : o.tooltipZh;
     map[o.value as JobType] = { label: o.label, tooltip };
   });
   // add NONE default
   map["NONE"] = {
-    label: lang === "en" ? "NONE" : lang === "zh" ? "默认" : "默認",
-    tooltip:
-      lang === "en"
-        ? "Default — Show all experiences"
-        : lang === "zh"
-        ? "默认 — 显示所有经历"
-        : "默認 — 顯示全部經歷",
+    label: lang === "en" ? "NONE" : "默认",
+    tooltip: lang === "en" ? "Default — Show all experiences" : "默认 — 显示所有经历",
   };
   return map as Record<JobType, JobOptionCopy>;
 }
@@ -182,12 +173,10 @@ export const copy = {
       languageButtons: {
         en: "ENG",
         zh: "简",
-        zhhk: "繁",
       },
       language: {
         en: "English",
         zh: "简体中文",
-        zhhk: "繁體中文",
       },
       jobType: {
         showAllExperiences: "Show all experiences",
@@ -253,87 +242,14 @@ export const copy = {
       languageButtons: {
         en: "ENG",
         zh: "简",
-        zhhk: "繁",
       },
       language: {
         en: "English",
         zh: "简体中文",
-        zhhk: "繁體中文",
       },
       jobType: {
         showAllExperiences: "显示全部经历",
         options: buildJobOptionsMap("zh"),
-      },
-    },
-  },
-  zhhk: {
-    app: {
-      title: "ShYu 履歷",
-      description: "支援雙語與職位定製的履歷。",
-    },
-    nameLayout: {
-      hasSpace: false,
-      firstNameFirst: false,
-    },
-    contactLayout: {
-      useCnContact: true,
-      showWechat: true,
-    },
-    header: {
-      linkedin: "領英",
-      github: "GitHub",
-      wechat: "微信",
-      website: "线上简历",
-    },
-    footer: {
-      lastUpdatedLabel: "最後更新：",
-      monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-    },
-    actionButton: {
-      liveText: "儲存PDF",
-      pdfText: "打開",
-      tooltip: "建議在 Chrome 瀏覽器列印，以確保最佳排版和連結完整",
-      ariaLabel: "列印履歷",
-    },
-    themeSwitcher: {
-      ariaLabel: "切換主題",
-      tooltip: {
-        light: "切換至深色",
-        dark: "切換至淺色",
-      },
-    },
-    labelWithLink: {
-      openPrefix: "點擊查看：",
-      copyPrefix: "點擊複製：",
-      copiedPrefix: "已複製：",
-    },
-    nav: {
-      language: "語言",
-      jobType: "職位類型",
-      print: "列印",
-      exportPdf: "導出 PDF",
-    },
-    sections: {
-      summary: "個人簡介",
-      workExperience: "工作經歷",
-      project: "項目經歷",
-      skills: "技能樹",
-      education: "教育經歷",
-    },
-    switcher: {
-      languageButtons: {
-        en: "ENG",
-        zh: "簡",
-        zhhk: "繁",
-      },
-      language: {
-        en: "English",
-        zh: "簡體中文",
-        zhhk: "繁體中文",
-      },
-      jobType: {
-        showAllExperiences: "顯示全部經歷",
-        options: buildJobOptionsMap("zhhk"),
       },
     },
   },

@@ -8,7 +8,7 @@ import React from "react";
 import Image from "next/image";
 import { Container } from "./ui/container";
 import { HoverLink } from "./ui/tooltip";
-import { LanguageSwitcher } from "./lang/language-switcher";
+import { BilangSwitch } from "./lang/bilang-switch";
 import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
 import { LanguageContext } from "./lang/language-provider";
 import { useJobType } from "./job/job-type-provider";
@@ -83,7 +83,7 @@ export function Header() {
             <div className="flex flex-col items-center gap-3">
               <div className="hidden lg:flex items-center gap-3">
                 <JobSwitcherWrapper />
-                <LanguageSwitcher />
+                <BilangSwitch />
                 <ThemeSwitcher />
                 <ActionButton usage="live" />
               </div>
@@ -93,7 +93,7 @@ export function Header() {
                   <JobSwitcherWrapper />
                 </div>
                 <div className="flex items-center justify-center gap-2 w-full">
-                  <LanguageSwitcher />
+                  <BilangSwitch />
                   <ThemeSwitcher />
                 </div>
                 <div className="flex items-center justify-center w-full">

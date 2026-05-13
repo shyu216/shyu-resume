@@ -2,19 +2,14 @@ import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { summary as summaryEn } from "@/content/en/summary";
 import { summary as summaryZh } from "@/content/zh/summary";
-import { summary as summaryZhHk } from "@/content/zh-hk/summary";
 import { workExperience as workExperienceEn } from "@/content/en/work-experience";
 import { workExperience as workExperienceZh } from "@/content/zh/work-experience";
-import { workExperience as workExperienceZhHk } from "@/content/zh-hk/work-experience";
 import { projects as projectsEn } from "@/content/en/projects";
 import { projects as projectsZh } from "@/content/zh/projects";
-import { projects as projectsZhHk } from "@/content/zh-hk/projects";
 import { skills as skillsEn } from "@/content/en/skills";
 import { skills as skillsZh } from "@/content/zh/skills";
-import { skills as skillsZhHk } from "@/content/zh-hk/skills";
 import { education as educationEn } from "@/content/en/education";
 import { education as educationZh } from "@/content/zh/education";
-import { education as educationZhHk } from "@/content/zh-hk/education";
 import { copy, JobType, LanguageType } from "@/content/copy";
 
 
@@ -158,12 +153,6 @@ const visualThemeLanguageOverrides: Partial<
     AIMR: { font: "songti" },
     NONE: { font: "songti" },
   },
-  zhhk: {
-    SWE: { font: "songti" },
-    SRE: { font: "songti" },
-    AIMR: { font: "songti" },
-    NONE: { font: "songti" },
-  },
 };
 
 const fontFamilies: Record<
@@ -210,15 +199,14 @@ const colorPalettes: Record<ColorPalette, { light: string; dark: string }> = {
 };
 
 const localizedSectionData = {
-  summary: { en: summaryEn, zh: summaryZh, zhhk: summaryZhHk },
+  summary: { en: summaryEn, zh: summaryZh },
   workExperience: {
     en: workExperienceEn,
     zh: workExperienceZh,
-    zhhk: workExperienceZhHk,
   },
-  project: { en: projectsEn, zh: projectsZh, zhhk: projectsZhHk },
-  skills: { en: skillsEn, zh: skillsZh, zhhk: skillsZhHk },
-  education: { en: educationEn, zh: educationZh, zhhk: educationZhHk },
+  project: { en: projectsEn, zh: projectsZh },
+  skills: { en: skillsEn, zh: skillsZh },
+  education: { en: educationEn, zh: educationZh },
 } as const;
 
 function getVisualPreset(
@@ -386,13 +374,12 @@ export function getNameRenderConfig(
 }
 
 export function getJobTooltip(
-  option: { tooltipEn: string; tooltipZh: string; tooltipZhHk: string },
+  option: { tooltipEn: string; tooltipZh: string },
   language: LanguageType,
 ): string {
   const tooltipByLanguage: Record<LanguageType, string> = {
     en: option.tooltipEn,
     zh: option.tooltipZh,
-    zhhk: option.tooltipZhHk,
   };
   return tooltipByLanguage[language];
 }
@@ -480,9 +467,8 @@ export const siteConfig = {
     name: {
       en: { first: "Sihong", last: "Yu" },
       zh: { first: "思宏", last: "余" },
-      zhhk: { first: "思宏", last: "余" },
     },
-    shortName: { en: "Dale", zh: "余", zhhk: "余" },
+    shortName: { en: "Dale", zh: "余" },
     contact: {
       linkedin: "https://www.linkedin.com/in/sihong-yu/",
       github: "https://github.com/shyu216",

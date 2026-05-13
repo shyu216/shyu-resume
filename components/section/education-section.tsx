@@ -26,8 +26,8 @@ export default function EducationSection({ usage }: Props) {
         {education.map((e: Education, index: number) => (
           <Experience
             key={index}
-            head1={<Label content={e.degree} usage={usage} />}
-            head4={
+            head5={<Label content={e.degree} usage={usage} />}
+            head1={
               e.institutionLink ? (
                 <LabelWithLink
                   content={<LabelWithGraphic image={e.institutionImage} content={e.institution} />}
@@ -38,8 +38,8 @@ export default function EducationSection({ usage }: Props) {
                 <LabelWithGraphic image={e.institutionImage} content={e.institution} />
               )
             }
-            head5={e.gpa ? <LabelWithGraphic icon={Icons.GraduationCap} content={e.gpa} /> : undefined}
-            head6={e.dateRange}
+            head6={e.gpa ? <LabelWithGraphic icon={Icons.GraduationCap} content={e.gpa} /> : <></>}
+            head4={e.dateRange}
             bulletPointsShort={e.honors}
             usage={usage}
           />

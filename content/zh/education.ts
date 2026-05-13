@@ -8,7 +8,6 @@ export const education: Education[] = [
     institutionLink: "https://www.unimelb.edu.au",
     institutionImage: "./images/unimelb.png",
     dateRange: "2024年2月 - 2025年12月",
-    gpa: "WAM: 81.938/100",
     honors: [],
   },
   {
@@ -18,7 +17,6 @@ export const education: Education[] = [
     institutionLink: "https://www.cuhk.edu.hk",
     institutionImage: "./images/cuhk.png",
     dateRange: "2019年9月 - 2023年7月",
-    gpa: "MGPA: 3.364/4.0",
     honors: ["入学奖学金", "院长名单2022-23", "ELITE精英班"],
   },
 ];

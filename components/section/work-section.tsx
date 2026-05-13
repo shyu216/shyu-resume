@@ -30,8 +30,8 @@ export default function WorkSection({ usage }: Props) {
         {filteredWorkExperience.map((e: WorkExperience, index: number) => (
           <Experience
             key={index}
-            head1={<Label content={e.position} usage={usage} />}
-            head2={
+            head5={<Label content={e.position} usage={usage} />}
+            head1={
               e.companyLink ? (
                 <LabelWithLink
                   content={<LabelWithGraphic image={e.companyImage} content={e.company} />}
@@ -42,7 +42,7 @@ export default function WorkSection({ usage }: Props) {
                 <LabelWithGraphic image={e.companyImage} content={e.company} />
               )
             }
-            head3={<LabelWithGraphic icon={Icons.Stack} content={e.techStack} />}
+            // head3={<LabelWithGraphic icon={Icons.Stack} content={e.techStack} />}
             head4={e.dateRange}
             bulletPoints={e.bullets}
             usage={usage}

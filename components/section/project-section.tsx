@@ -32,13 +32,13 @@ export default function ProjectSection({ usage }: Props) {
         {filteredProjects.map((project: Project) => (
           <Experience
             key={project.id}
-            head1={<LabelWithLink content={<Label content={project.name} usage={usage} />} link={project.link} usage={usage} />}
+            head1={<LabelWithLink content={<LabelWithGraphic icon={project.subtitleIcon ?? Icons.FileBadge} content={project.name} />} link={project.link} usage={usage} />}
             head2={
               project.subtitle
-                ? <LabelWithGraphic icon={project.subtitleIcon ?? Icons.FileBadge} content={project.subtitle} />
-                : undefined
+                ? <Label content={project.subtitle} usage={usage} />
+                : <></>
             }
-            head3={<LabelWithGraphic icon={Icons.Stack} content={project.techStack} />}
+            // head3={<LabelWithGraphic icon={Icons.Stack} content={project.techStack} />}
             head4={project.dateRange}
             bulletPoints={project.bullets}
             usage={usage}
