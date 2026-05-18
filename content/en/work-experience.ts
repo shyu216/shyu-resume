@@ -2,6 +2,19 @@ import { type WorkExperience } from "@/types/work-experience";
 
 export const workExperience: WorkExperience[] = [
   {
+    id: "unimelbra",
+    position: "Research Assistant",
+    company: "University of Melbourne, Australia",
+    companyLink: "https://www.unimelb.edu.au",
+    companyImage: "./images/unimelb.png",
+    dateRange: "Apr 2026 - Jul 2026 (Planned)",
+    techStack: "OpenGL",
+    jobTypes: ["AIMR"],
+    bullets: [
+      "Assisted in designing the next generation of 3D glassless display systems, aiming to pass the Turing test for human eye perception of 3D content",
+    ],
+  },
+  {
     id: "recube",
     position: "Full Stack Developer (Tech Lead)",
     company: "ReCube, Hong Kong",
