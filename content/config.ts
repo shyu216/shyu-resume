@@ -472,7 +472,7 @@ export const siteConfig = {
     contact: {
       linkedin: "https://www.linkedin.com/in/sihong-yu/",
       github: "https://github.com/shyu216",
-      website: "https://shyu216.dpdns.org/shyu-resume/",
+      website: "https://shyu216.dpdns.org",
       email: "yusihong073@gmail.com",
       phone: "0431083127",
       wechat: "seinbaulio",
