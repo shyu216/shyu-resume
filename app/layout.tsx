@@ -10,6 +10,7 @@ import "@/styles/print.css";
 import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { FloatingActionButton } from "@/components/floating-action-button";
 import { LanguageProvider } from "@/components/lang/language-provider";
 import { JobTypeProvider } from "@/components/job/job-type-provider";
 import { DynamicTitle } from "@/components/dynamic-title";
@@ -64,6 +65,7 @@ export default function RootLayout({
                 <div className="relative text-stone-700 dark:text-stone-300">
                   <Header />
                   <main>{children}</main>
+                  <FloatingActionButton />
                   <Footer />
                 </div>
               </PrintProvider>

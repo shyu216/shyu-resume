@@ -7,6 +7,10 @@
   color: var(--color-text-primary);
 }
 
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
 .text-accent {
   color: var(--header-color);
 }
@@ -21,15 +25,6 @@
 
 .stroke-text {
   stroke: var(--color-text-primary);
-}
-
-/* Gradient button */
-.btn-gradient {
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--header-color) 90%, transparent),
-    color-mix(in srgb, var(--header-color) 70%, transparent)
-  );
 }
 
 /* Hover utilities */
@@ -48,6 +43,11 @@
 /* Border default */
 .border-default {
   border-color: var(--color-border-default);
+}
+
+/* Ring default - matches border color */
+.ring-default {
+  --tw-ring-color: var(--color-border-default);
 }
 
 /* Card mix background */

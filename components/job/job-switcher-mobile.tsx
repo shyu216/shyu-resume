@@ -178,7 +178,8 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
               >
                 <div
                   ref={el => { buttonRefs.current[activeIndex] = el as HTMLButtonElement | null; }}
-                  className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap overflow-hidden text-primary"
+                  className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap overflow-hidden"
+                  style={{ color: 'var(--color-text-secondary)' }}
                 >
                   <span
                     className="absolute left-0 top-0 w-full h-full flex items-center justify-center"

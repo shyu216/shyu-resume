@@ -7,12 +7,12 @@ import { cn } from "@/content/config";
 
 export function BilangSwitch() {
   const [mounted, setMounted] = React.useState(false);
-  const { language, setLanguage } = useContext(LanguageContext);
+  const { language, transitionLanguage, isTransitioning } = useContext(LanguageContext);
 
   React.useEffect(() => setMounted(true), []);
 
   function toggleLanguage() {
-    setLanguage(language === "en" ? "zh" : "en");
+    transitionLanguage(language === "en" ? "zh" : "en");
   }
 
   const displayLabel = language === "en" ? "中" : "EN";
@@ -28,7 +28,7 @@ export function BilangSwitch() {
         type="button"
         aria-label={tooltipContent}
         className={cn(
-          "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 backdrop-blur transition-all duration-200 hover:scale-105 shadow-soft"
+          "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 ring-default backdrop-blur transition-all duration-200 hover:scale-105 shadow-soft"
         )}
         style={{
           borderColor: 'var(--color-border-default)',
@@ -37,7 +37,9 @@ export function BilangSwitch() {
         onClick={toggleLanguage}
       >
         <span
-          className="font-bold transition-all duration-200 group-hover:scale-110 inline-block text-primary"
+          className={`font-bold transition-all duration-200 inline-block text-primary ${
+            isTransitioning ? 'opacity-0 scale-75' : 'opacity-100 scale-100'
+          }`}
         >
           {displayLabel}
         </span>

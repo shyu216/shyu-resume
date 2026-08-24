@@ -8,21 +8,11 @@ import { ElegantTooltip } from "@/components/ui/tooltip";
 import { copy } from "@/content/copy";
 import { cn } from "@/content/config";
 
-const themes = [
-  { value: "light", icon: Icons.Sun },
-  { value: "dark", icon: Icons.Moon },
-];
-
 export function ThemeSwitcher() {
   const [mounted, setMounted] = React.useState(false);
   const { setTheme, resolvedTheme } = useTheme();
   const { language } = useContext(LanguageContext);
   const uiCopy = copy[language];
-
-  const ThemeIcon = React.useMemo(
-    () => themes.find((t) => t.value === resolvedTheme)?.icon ?? Icons.Sun,
-    [resolvedTheme]
-  );
 
   React.useEffect(() => setMounted(true), []);
 
@@ -30,7 +20,8 @@ export function ThemeSwitcher() {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
   }
 
-  const tooltipContent = resolvedTheme === "dark" ? uiCopy.themeSwitcher.tooltip.dark : uiCopy.themeSwitcher.tooltip.light;
+  const isDark = resolvedTheme === "dark";
+  const tooltipContent = isDark ? uiCopy.themeSwitcher.tooltip.dark : uiCopy.themeSwitcher.tooltip.light;
 
   if (!mounted) {
     return null;
@@ -42,19 +33,29 @@ export function ThemeSwitcher() {
         type="button"
         aria-label={uiCopy.themeSwitcher.ariaLabel}
         className={cn(
-          "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 backdrop-blur transition-all duration-200 hover:scale-105 shadow-soft border-default"
+          "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 ring-default backdrop-blur transition-all duration-200 hover:scale-105 shadow-soft border-default"
         )}
         style={{
           background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
         }}
         onClick={toggleTheme}
       >
-        <ThemeIcon
-          className="h-6 w-6 p-0.5 transition-all duration-200 group-hover:rotate-12 stroke-text"
-          style={{
-            transition: 'stroke 0.2s ease, transform 0.2s ease'
-          }}
-        />
+        <div className="relative h-6 w-6 group-hover:rotate-12 transition-transform duration-200">
+          <Icons.Sun
+            className="absolute inset-0 h-full w-full p-0.5 text-primary transition-all duration-300"
+            style={{
+              opacity: isDark ? 1 : 0,
+              transform: `scale(${isDark ? 1 : 0.5}) rotate(${isDark ? 0 : 90}deg)`,
+            }}
+          />
+          <Icons.Moon
+            className="absolute inset-0 h-full w-full p-0.5 text-primary transition-all duration-300"
+            style={{
+              opacity: isDark ? 0 : 1,
+              transform: `scale(${isDark ? 0.5 : 1}) rotate(${isDark ? -90 : 0}deg)`,
+            }}
+          />
+        </div>
       </button>
     </ElegantTooltip>
   );

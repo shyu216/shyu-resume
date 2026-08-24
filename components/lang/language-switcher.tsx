@@ -32,7 +32,7 @@ export function LanguageSwitcher() {
               type="button"
               aria-label={`Switch to ${lang.name}`}
               className={cn(
-                "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition-all duration-200 backdrop-blur shadow-soft border-default",
+                "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 ring-default transition-all duration-200 backdrop-blur shadow-soft border-default",
                 !shouldScale && "scale-90"
               )}
               style={{
