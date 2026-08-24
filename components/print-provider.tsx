@@ -41,8 +41,8 @@ export function PrintProvider({
 
       const targetDoc = iframe?.contentDocument;
       if (targetDoc) {
-        targetDoc.documentElement.style.setProperty("--font-family", "LXGWWenKaiTC, system-ui, sans-serif");
-        targetDoc.body?.style.setProperty("font-family", "LXGWWenKaiTC, system-ui, sans-serif");
+        targetDoc.documentElement.style.setProperty("--font-family", "var(--font-lxgw), system-ui, sans-serif");
+        targetDoc.body?.style.setProperty("font-family", "var(--font-lxgw), system-ui, sans-serif");
 
         // PDF export always uses light theme colors for consistent output.
         targetDoc.documentElement.style.setProperty("--header-color", colorSet.light);
@@ -74,12 +74,12 @@ export function PrintProvider({
         size: 210mm 297mm;
       }
       :root { 
-        --font-family: "LXGWWenKaiTC", system-ui, sans-serif;
+        --font-family: var(--font-lxgw), system-ui, sans-serif;
         --header-color: ${colorSet.light};
         --pdf-font-scale: 1;
         --pdf-section-gap: 0.5rem;
       }
-      html, body { font-family: "LXGWWenKaiTC", system-ui, sans-serif; margin: 0; }
+      html, body { font-family: var(--font-lxgw), system-ui, sans-serif; margin: 0; }
     `,
   });
 

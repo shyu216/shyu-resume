@@ -1,3 +1,4 @@
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import "@/styles/globals.css";
 import "@/styles/variables.css";
@@ -15,6 +16,14 @@ import { DynamicTitle } from "@/components/dynamic-title";
 import { siteConfig } from "@/content/config";
 import { PrintProvider } from "@/components/print-provider";
 
+const lxgwWenKai = localFont({
+  src: "../public/fonts/LXGWWenKaiTC-Regular.ttf",
+  display: "swap",
+  weight: "normal",
+  style: "normal",
+  variable: "--font-lxgw",
+});
+
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
@@ -31,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="m-0 h-full p-0 antialiased"
+      className={`m-0 h-full p-0 antialiased ${lxgwWenKai.variable}`}
       suppressHydrationWarning
     >
       <head>

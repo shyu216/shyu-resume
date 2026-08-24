@@ -3,18 +3,6 @@
 @tailwind utilities;
 
 /* ==========================================
-   Font Face
-   ========================================== */
-
-@font-face {
-  font-family: "LXGWWenKaiTC";
-  src: url("/fonts/LXGWWenKaiTC-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ==========================================
    Tailwind Component Layer
    ========================================== */
 

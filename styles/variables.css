@@ -6,7 +6,7 @@
   /* Layout colors */
   --color-grid: #d6d3d1;
   --color-page: rgb(250 250 249 / 0.7);
-  --font-family: "LXGWWenKaiTC", system-ui, -apple-system, sans-serif;
+  --font-family: "LXGWWenKaiTC", var(--font-lxgw), system-ui, -apple-system, sans-serif;
 
   /* Theme colors - Light mode defaults */
   --color-surface: #ffffff;
