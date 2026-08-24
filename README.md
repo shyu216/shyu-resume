@@ -6,102 +6,117 @@
 
 ![Banner](public/images/banner.png)
 
-Hey there! 👋 Welcome to **ShYu Resume** – a modern, bilingual resume builder crafted with Next.js and React!
+A bilingual (EN/ZH) resume builder built with Next.js, featuring job-aware content tailoring and one-click PDF export with smart pagination.
 
-This little gem is here to help you create stunning resumes that not only look amazing on the web but also export beautifully to PDF. It's a fancy fork of [Markdown-React-Resume](https://github.com/Crayon-ShinChan/mr-resume), supercharged with extra goodies to make your resume pop and shine in front of HR and ATS systems!
+## Features
 
-## 📄 How to Generate PDF
+- **Bilingual** — Switch between English and Simplified Chinese seamlessly
+- **Job-Aware Content** — 4 profiles (SWE, SRE, AI/MR, NONE) with tailored summary, work experience, and projects for each
+- **One-Click PDF Export** — Smart pagination that keeps content on-page, with clickable hyperlinks preserved
+- **Dark / Light Mode** — Comfortable viewing in both themes
+- **Self-Hosted Font** — LXGW WenKai font loaded locally via `next/font` for consistent rendering across devices
+- **Mobile-Friendly** — Responsive layout that works on all screen sizes
+- **Multi-Platform Deployment** — GitHub Pages, Vercel, Cloudflare Pages
 
-No worries, it's super easy! Just follow these steps:
+## Getting Started
 
-1. Open your resume in Chrome (trust us, it works best!)
-2. Hit the **Save as PDF** button on the page
-3. The print dialog will pop up – pretty cool, right?
-4. Choose **Save as PDF** as your destination
-5. Click **Save** and boom! Your PDF is ready! 🎉
-
-> **Pro Tip**: For the *most* gorgeous PDF output with perfect layout and clickable links, Chrome is your best friend. Other browsers like Edge or Firefox might show things a bit differently. On mobile? Custom fonts might not render fully. For that *chef's kiss* result: enable background graphics and set margins to "None" in the print dialog. You're welcome! 😉
-
-## ✨ What's Cool About This
-
-- **Bilingual Vibes** ✌️ – Switch between Chinese and English effortlessly
-- **PDF-Ready Layout** 📄 – Perfect A4 formatting with smart pagination – no more broken pages!
-- **Mobile-Friendly** 📱 – Looks fabulous on both desktop and mobile devices
-- **Theme Customization** 🎨 – 8 color palettes, 5 background styles, 5 PDF styles, and 2 font families to match your style
-- **Easy Content Management** 📝 – All your text lives in the organized `content` folder – just edit and go!
-- **JD-Tailored** 🤖 – Tailor your Summary based on the job description so your resume gets noticed
-- **Project Filter** 🎯 – Dynamically shows only the most relevant projects for each job type
-- **One-Click PDF Export** 🖨️ – Generate beautifully formatted PDFs with a single click
-- **Dark Mode Support** 🌙 – Comfortable viewing experience in both light and dark themes
-- **Job Profile Switching** 💼 – Instantly switch between SWE, SRE, AI/MR profiles with tailored content
-
-## 🚀 Let's Get You Started
-
-Ready to craft your dream resume? Let's go! 🌟
-
-### What You'll Need
+### Prerequisites
 
 - Node.js 18+
 - npm or yarn
 
 ### Installation
 
-1. Install all the dependencies
-   ```bash
-   npm install
-   ```
-2. Fire up the development server
-   ```bash
-   npm run dev
-   ```
-3. Open [http://localhost:3000](http://localhost:3000) in your browser – ta-da! 🎊
+```bash
+npm install
+npm run dev
+```
 
-## 🎨 Customization Guide
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-All your resume content and visual settings live in the `content` folder and related style directories:
+### Build for Static Export
 
-| File/Folder | What's Inside |
-|-------------|---------------|
-| `content/config.ts` | Personal info, job profiles, visual theme bindings, and customizable configurations |
-| `content/copy.ts` | All UI text, labels, and localization strings |
-| `content/en/` | English resume content (summary, work experience, projects, skills, education) |
-| `content/zh/` | Simplified Chinese resume content |
-| `app/globals.css` | Global styles and CSS variables |
-| `app/bg-styles/` | Webpage background style presets (5 styles: default-grid, triangle-prism, lumen-beams, orbit-mesh, dot-matrix) |
-| `app/pdf-styles/` | Resume PDF style presets (5 styles: accent, cards, blueprint, editorial, ribbon) |
+```bash
+npm run build
+```
 
-### 🎯 Visual Theme Configuration
+The static output will be in the `out/` directory, ready for deployment to GitHub Pages, Vercel, or Cloudflare Pages.
 
-In `content/config.ts`, you can customize:
+## Project Structure
 
-- **Color Palettes** (8 options): `blue`, `red`, `purple`, `green`, `orange`, `pink`, `teal`, `indigo`
-- **Background Styles** (5 options): `default-grid`, `triangle-prism`, `lumen-beams`, `orbit-mesh`, `dot-matrix`
-- **PDF Styles** (5 options): `accent`, `cards`, `blueprint`, `editorial`, `ribbon`
-- **Font Families** (2 options): `monospace` (JetBrains Mono, Fira Code), `songti` (Chinese serif)
+```
+content/
+  config.ts         — Personal info, site config, localization helpers
+  copy.ts           — UI labels and localization strings
+  en/               — English resume content
+    summary.ts
+    work-experience.ts
+    projects.ts
+    skills.ts
+    education.ts
+  zh/               — Simplified Chinese resume content
+    summary.ts
+    work-experience.ts
+    projects.ts
+    skills.ts
+    education.ts
+styles/
+  globals.css       — Tailwind directives and global styles
+  variables.css     — CSS custom properties (colors, fonts)
+  base.css          — Base element resets and typography
+  resume.css        — Resume-specific layout classes
+  background.css    — Background pattern styles
+  utilities.css     — Utility classes
+  print.css         — Print-specific overrides
+components/
+  section/          — Section, Experience, header, summary, skills, etc.
+  labels/           — Label, LabelWithLink, LabelWithGraphic
+  lang/             — Language provider
+  job/              — Job type provider and switcher
+  theme/            — Theme provider
+public/
+  fonts/            — Self-hosted font files
+  images/           — Company logos, icons, banner
+```
 
-Each job profile (SWE, SRE, AIMR, NONE) can have its own visual preset combination!
+## Content Customization
 
-### 📝 Content Structure
+### Personal Info & Site Config
 
-Each language folder contains:
-- `summary.ts` – Personal summary tailored for different job types
-- `work-experience.ts` – Work history with job-type filtering
-- `projects.ts` – Project portfolio with relevance scoring
-- `skills.ts` – Skills categorized by domain
-- `education.ts` – Educational background
+Edit `content/config.ts`:
 
-## 📚 The Tech Stuff
+- Name, contact details (email, phone, LinkedIn, GitHub, WeChat)
+- Site title, description, keywords
+- Language-specific name layout (first/last name order)
 
-- Next.js 14
+### Resume Content
+
+Each language folder (`content/en/`, `content/zh/`) contains:
+
+| File | Description |
+|------|-------------|
+| `summary.ts` | Personal summary for each job profile |
+| `work-experience.ts` | Work history with job-type filtering |
+| `projects.ts` | Project portfolio (2 highlights per project) |
+| `skills.ts` | Skills categorized by domain |
+| `education.ts` | Educational background |
+
+### Copy & Localization
+
+Edit `content/copy.ts` to customize:
+
+- UI labels (section titles, button text, tooltips)
+- Language-specific layout preferences (name order, contact info)
+- Theme switcher, job switcher labels
+
+## Tech Stack
+
+- Next.js 14 (static export)
 - React 18
 - TypeScript
 - Tailwind CSS
-- Framer Motion (for those smooth, silky animations)
+- Framer Motion
 
-## 📄 License
+## License
 
-This project is open source under the [MIT License](LICENSE). Feel free to use it, share it, love it! 💖
-
-## 🌟 Show Some Love
-
-If you find this project helpful or just think it's neat, please give it a ⭐️ on GitHub! It makes our day! ☀️
+This project is open source under the [MIT License](LICENSE).
