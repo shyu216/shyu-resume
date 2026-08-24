@@ -19,16 +19,14 @@ export default function LabelWithLink({ content, link }: LabelWithLinkProps) {
       href={link}
       target="_blank"
       rel="noreferrer"
-      className="flex items-center gap-x-1 group"
-      style={{ color: "var(--color-text-primary)" }}
+      className="flex items-center gap-x-1 group text-primary"
       tooltipSide="bottom"
     >
       {content}
-      <Icons.Link
+      {/* <Icons.Link
         size={11}
-        className="transition group-hover:animate-shake"
-        style={{ color: "var(--color-text-primary)" }}
-      />
+        className="transition group-hover:animate-shake stroke-text"
+      /> */}
     </HoverLink>
   );
 }

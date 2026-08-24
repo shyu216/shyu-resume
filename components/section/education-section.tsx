@@ -30,15 +30,15 @@ export default function EducationSection({ usage }: Props) {
             head1={
               e.institutionLink ? (
                 <LabelWithLink
-                  content={<LabelWithGraphic image={e.institutionImage} content={e.institution} />}
+                  content={<LabelWithGraphic image={e.institutionImage} content={e.institution} usage={usage} />}
                   link={e.institutionLink}
                   usage={usage}
                 />
               ) : (
-                <LabelWithGraphic image={e.institutionImage} content={e.institution} />
+                <LabelWithGraphic image={e.institutionImage} content={e.institution} usage={usage} />
               )
             }
-            head6={e.gpa ? <LabelWithGraphic icon={Icons.GraduationCap} content={e.gpa} /> : <></>}
+            head6={e.gpa ? <LabelWithGraphic icon={Icons.GraduationCap} content={e.gpa} usage={usage} /> : <></>}
             head4={e.dateRange}
             bulletPointsShort={e.honors}
             usage={usage}

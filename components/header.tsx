@@ -8,17 +8,13 @@ import React from "react";
 import Image from "next/image";
 import { Container } from "./ui/container";
 import { HoverLink } from "./ui/tooltip";
-import { BilangSwitch } from "./lang/bilang-switch";
 import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
-import { LanguageContext } from "./lang/language-provider";
-import { useJobType } from "./job/job-type-provider";
-import { getColor, getFont, siteConfig } from "@/content/config";
+import { BilangSwitch } from "./lang/bilang-switch";
+import { getColor, siteConfig } from "@/content/config";
 import { useTheme } from "next-themes";
 export function Header() {
   // Extract GitHub username from the GitHub URL
   const githubUsername = siteConfig.personal.contact.github.split('/').pop();
-  const { language } = React.useContext(LanguageContext);
-  const { jobType } = useJobType();
   const { resolvedTheme } = useTheme();
   const [isScrolled, setIsScrolled] = React.useState(false);
 
@@ -35,8 +31,7 @@ export function Header() {
     };
   }, []);
 
-  const headerColor = getColor(jobType, language)[resolvedTheme === "dark" ? "dark" : "light"];
-  const fontStack = getFont(jobType, language).fontStack.join(", ");
+  const headerColor = getColor()[resolvedTheme === "dark" ? "dark" : "light"];
 
   React.useEffect(() => {
     document.documentElement.style.setProperty("--header-color", headerColor);
@@ -47,8 +42,6 @@ export function Header() {
       <Container
         className="py-3"
         style={{
-          fontFamily: fontStack,
-          "--font-family": fontStack,
           "--header-color": headerColor,
         } as React.CSSProperties}
       >

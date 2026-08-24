@@ -1,7 +1,6 @@
 import React from "react";
 import { FullResume } from "@/components/section/full-resume";
 import { PDFResumeContainer } from "@/components/print-provider";
-import { PdfStyleThemeWrapper } from "@/components/pdf-style-theme-wrapper";
 
 export default function CVPage() {
   return (
@@ -11,9 +10,9 @@ export default function CVPage() {
           <FullResume usage="pdf" />
         </PDFResumeContainer>
       </div>
-      <PdfStyleThemeWrapper>
+      <div className="pdf-resume-theme" data-pdf-style="cards">
         <FullResume usage="live" />
-      </PdfStyleThemeWrapper>
+      </div>
     </>
   );
 }

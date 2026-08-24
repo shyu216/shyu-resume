@@ -1,0 +1,66 @@
+/* ==========================================
+   Resume Section Classes
+   ========================================== */
+
+.resume-section-title {
+  padding-bottom: 0.125rem;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.resume-entry:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+
+/* ==========================================
+   PDF overrides for resume layout
+   ========================================== */
+
+.pdf-resume-theme {
+  --pdf-font-scale: 1;
+  --pdf-section-gap: 0.35rem;
+  --pdf-section-padding: 0.08rem 0;
+}
+
+.pdf-resume-theme .pdf-resume-root {
+  font-size: calc(1rem * var(--pdf-font-scale));
+  padding: 1rem 1.5rem;
+}
+
+.pdf-resume-theme .pdf-resume-root section {
+  margin-bottom: var(--pdf-section-gap);
+  padding: var(--pdf-section-padding);
+}
+
+/* resume-entry sections use their own spacing, not the generic section margin */
+.pdf-resume-theme .pdf-resume-root section.resume-entry {
+  margin-bottom: 0;
+}
+
+.pdf-resume-theme .pdf-resume-root section > h3 {
+  letter-spacing: 0.05em;
+  font-size: calc(1rem * 1.02);
+  margin-bottom: 0.15rem;
+}
+
+.pdf-resume-theme .pdf-resume-root .resume-section-title {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.pdf-resume-theme .pdf-resume-root .resume-section-title-text {
+  position: relative;
+  display: inline-block;
+}
+
+/* PDF entry spacing */
+.pdf-resume-theme .pdf-resume-root .resume-entry:not(:last-child) {
+  margin-bottom: 0.15rem;
+}
+
+/* PDF header/summary spacing */
+.pdf-resume-theme .pdf-resume-root .resume-section--hero h2 {
+  margin-bottom: 0.15rem;
+}
+
+.pdf-resume-theme .pdf-resume-root .mb-2 {
+  margin-bottom: 0.35rem;
+}

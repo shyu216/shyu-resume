@@ -5,9 +5,7 @@ import { cn, getColor } from "@/content/config";
 import * as React from "react";
 import Link from "next/link";
 import { LanguageContext } from "@/components/lang/language-provider";
-import { useJobType } from "@/components/job/job-type-provider";
 import { copy } from "@/content/copy";
-import { useTheme } from "next-themes";
 
 const { Provider, Root, Trigger, Portal } = TooltipPrimitive;
 
@@ -20,15 +18,9 @@ const TooltipContent = React.forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        "z-50 overflow-hidden rounded-md px-3 py-1.5 text-xs font-medium shadow-lg shadow-neutral-600/5 ring-1 backdrop-blur transition",
+        "z-50 overflow-hidden rounded-md px-3 py-1.5 text-xs font-medium shadow-lg shadow-neutral-600/5 ring-1 backdrop-blur transition tooltip-card",
         className
       )}
-      style={{
-        backgroundColor: 'var(--color-card-default)',
-        color: 'var(--color-text-primary)',
-        borderColor: 'var(--color-border-default)',
-        boxShadow: 'var(--shadow-md)',
-      }}
       {...props}
     />
   );
@@ -144,16 +136,14 @@ export function CopyText({
   tooltipSide = "bottom",
 }: CopyTextProps) {
   const { language } = React.useContext(LanguageContext);
-  const { jobType } = useJobType();
-  const { resolvedTheme } = useTheme();
   const [copied, setCopied] = React.useState(false);
   const [showCopiedIcon, setShowCopiedIcon] = React.useState(false);
   const [isIconShrinking, setIsIconShrinking] = React.useState(false);
   const [isInteracting, setIsInteracting] = React.useState(false);
   const [forceTooltipOpen, setForceTooltipOpen] = React.useState(false);
   const [countdownPercent, setCountdownPercent] = React.useState(100);
-  const resetTimerRef = React.useRef<number | null>(null);
   const switchTimerRef = React.useRef<number | null>(null);
+  const resetTimerRef = React.useRef<number | null>(null);
   const progressTimerRef = React.useRef<number | null>(null);
   const countdownDeadlineRef = React.useRef<number>(0);
 
@@ -230,7 +220,7 @@ export function CopyText({
 
   const activeIcon = showCopiedIcon ? (copiedIcon ?? <span>OK</span>) : icon;
   const tooltipOpen = forceTooltipOpen || isInteracting;
-  const accentColor = getColor(jobType, language)[resolvedTheme === "dark" ? "dark" : "light"];
+  const accentColor = getColor()["light"];
 
   const tooltipContent = (
     <div className="min-w-[160px]">

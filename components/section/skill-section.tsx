@@ -21,14 +21,14 @@ export default function SkillSection({ usage }: Props) {
 
   return (
     <Section title={title} usage={usage}>
-      <div className="m-0 grid grid-cols-[max-content,minmax(0,1fr)] items-start gap-x-8 gap-y-1 p-0">
+      <div className="m-0 grid grid-cols-[max-content,minmax(0,1fr)] items-start gap-x-8 gap-y-0.5 p-0">
         {skills.map((skill: SkillCategory, index: number) => (
           <div key={`row-${index}`} className="contents">
             <div className={style}>
               <Label content={skill.name} usage={usage} />
             </div>
-            <div className={`min-w-0 ${descStyle}`} style={{ color: 'var(--color-text-primary)' }}>
-              <p>{skill.skills.join("·")}</p>
+            <div className={`min-w-0 ${descStyle} text-primary`}>
+              <p>{skill.skills.join(" · ")}</p>
             </div>
           </div>
         ))}

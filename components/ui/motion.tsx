@@ -4,7 +4,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { useBgStyle } from "@/app/bg-styles/bg-style-provider";
 
 type Props = {
   children: React.ReactNode;
@@ -13,20 +12,18 @@ type Props = {
 };
 
 export default function Motion({ children, delay, className }: Props) {
-  const { motion: motionPreset } = useBgStyle();
-
   const fadeInUpwards = React.useMemo(
     () => ({
-      initial: { opacity: 0, y: motionPreset.yOffset },
+      initial: { opacity: 0, y: 32 },
       animate: { opacity: 1, y: 0 },
       transition: {
         type: "spring" as const,
-        damping: motionPreset.damping,
-        stiffness: motionPreset.stiffness,
-        duration: motionPreset.duration,
+        damping: 22,
+        stiffness: 92,
+        duration: 0.42,
       },
     }),
-    [motionPreset]
+    []
   );
 
   return (
@@ -35,7 +32,7 @@ export default function Motion({ children, delay, className }: Props) {
       variants={fadeInUpwards}
       initial="initial"
       animate="animate"
-      transition={{ ...fadeInUpwards.transition, delay: delay * motionPreset.delayMultiplier }}
+      transition={{ ...fadeInUpwards.transition, delay: delay * 1.1 }}
     >
       {children}
     </motion.div>

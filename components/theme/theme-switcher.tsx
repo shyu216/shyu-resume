@@ -42,19 +42,16 @@ export function ThemeSwitcher() {
         type="button"
         aria-label={uiCopy.themeSwitcher.ariaLabel}
         className={cn(
-          "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 backdrop-blur transition-all duration-200 hover:scale-105"
+          "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 backdrop-blur transition-all duration-200 hover:scale-105 shadow-soft border-default"
         )}
         style={{
-          boxShadow: 'var(--shadow-soft)',
-          borderColor: 'var(--color-border-default)',
           background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
         }}
         onClick={toggleTheme}
       >
         <ThemeIcon
-          className="h-6 w-6 p-0.5 transition-all duration-200 group-hover:rotate-12"
+          className="h-6 w-6 p-0.5 transition-all duration-200 group-hover:rotate-12 stroke-text"
           style={{
-            stroke: 'var(--color-text-primary)',
             transition: 'stroke 0.2s ease, transform 0.2s ease'
           }}
         />

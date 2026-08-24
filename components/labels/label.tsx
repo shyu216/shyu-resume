@@ -10,7 +10,7 @@ interface LabelProps {
 
 export default function Label({ content }: LabelProps) {
   return (
-    <div className="font-bold" style={{ color: 'var(--color-text-primary)' }}>
+    <div className="font-bold text-primary">
       {content}
     </div>
   );

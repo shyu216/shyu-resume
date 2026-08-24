@@ -47,7 +47,7 @@ export const skills: SkillCategory[] = [
     id: "languages",
     name: "Languages",
     skills: [
-      "English (Fluent)", "Mandarin (Native)", "Cantonese (Fluent)"
+      "English", "Mandarin", "Cantonese"
     ]
   }
 ];

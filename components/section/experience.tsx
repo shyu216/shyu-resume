@@ -41,8 +41,7 @@ export default function Experience({
 
   return (
     <section
-      className={cn(textSize, "resume-entry")}
-      style={{ color: 'var(--color-text-primary)' }}
+      className={cn(textSize, "resume-entry text-primary")}
     >
       <div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
@@ -51,11 +50,11 @@ export default function Experience({
             {head2 && <div>{head2}</div>}
             {head3 && <div>{head3}</div>}
           </div>
-          {head4 && <div style={{ color: 'var(--color-text-primary)' }}>{head4}</div>}
+          {head4 && <div className="text-primary">{head4}</div>}
         </div>
         <div className="flex font-semibold gap-x-4 flex-wrap justify-between">
           {head5 && <div>{head5}</div>}
-          {head6 && <div style={{ color: 'var(--color-text-primary)' }}>{head6}</div>}
+          {head6 && <div className="text-primary">{head6}</div>}
         </div>
       </div>
 

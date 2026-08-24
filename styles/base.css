@@ -1,0 +1,25 @@
+/* ==========================================
+   Browser Defaults Reset
+   ========================================== */
+
+section {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding-left: 0;
+}
+
+li {
+  margin: 0;
+}
+

@@ -1,11 +1,11 @@
 import { type Summary } from "@/types/summary";
 
 export const summary: Summary = {
-  SWE: "**Software Engineer** — production experience designing and delivering scalable systems, from event-driven payment architectures to real-time data pipelines. Architected **AWS event-driven backends** (EventBridge, Lambda, DynamoDB) supporting payment workflows and automated notifications; built real-time biosensing pipelines achieving **40ms** low-latency processing. Led cross-functional teams in Agile environments to deliver **80+ production features**. Skilled in **system design, API development, concurrency, and microservices**, with primary stacks in TypeScript, Python and Node.js.",
+  SWE: "**Software Engineer** — Designed and delivered scalable systems from event-driven payment architectures to real-time biosensing pipelines. Built **AWS event-driven backends** (EventBridge, Lambda, DynamoDB) and led agile teams to deliver **80+ production features**. Primary stacks: TypeScript, Python, Node.js.",
 
-  AIMR: "**AI/ML Engineer (AI/MR)** — experience building computer vision and mixed-reality systems. During MSc focused on clinical-grade CV/MR system development using **PyTorch, YOLO and OpenCV** to produce real-time pipelines for 4DMedical's XV Scanner. Undergraduate research included a 3D object recognition project. Proficient in productionizing CV algorithms and deploying optimized ML models.",
+  AIMR: "**AI/ML Engineer** — Built clinical-grade CV/MR systems using **PyTorch, YOLO, OpenCV** for 4DMedical's XV Scanner, achieving **40ms** real-time pipelines. Developed MR biosensing prototype on **Unity / Meta Quest 3** with SIGGRAPH Asia XR submission.",
 
-  SRE: "**Cloud / SRE** — focused on Infrastructure as Code (IaC), observability and reliable platform delivery. At a startup used **AWS CDK, Terraform and GitHub Actions** to automate CI/CD pipelines, cutting deployment effort by **90%**; implemented automated rollbacks and environment isolation. Built event-driven systems with **AWS EventBridge/SES** and established end-to-end monitoring and alerting.",
+  SRE: "**Cloud / SRE** — Automated CI/CD pipelines with **AWS CDK, Terraform, GitHub Actions**, cutting deployment effort by **90%**. Built event-driven systems on **AWS EventBridge/SES** with end-to-end monitoring. Focused on IaC, observability, and reliable platform delivery.",
 
-  NONE: "Versatile technical professional with an MSc in Computer Science and cross-domain experience from CV research to full-stack development. Undergraduate CV research followed by 1 year at a startup delivering **80+ cloud-native features** on **Next.js/AWS** and reducing deployment effort by **90%** through CI/CD; MSc work focused on CV/MR systems (PyTorch, YOLO, OpenCV) building clinical-grade **40ms** real-time pipelines. Comfortable translating technical work for non-technical stakeholders."
+  NONE: "Versatile engineer with an MSc in Computer Science. Cross-domain experience from CV research (3D object detection, real-time biosensing) to full-stack development (80+ cloud-native features on Next.js/AWS). Comfortable translating technical work for non-technical stakeholders."
 };

@@ -14,35 +14,6 @@ import { copy, JobType, LanguageType } from "@/content/copy";
 
 
 export type ExperienceJobType = Exclude<JobType, "NONE">;
-type FontFamilyType = "monospace" | "songti";
-type ColorPalette =
-  | "blue"
-  | "red"
-  | "purple"
-  | "green"
-  | "orange"
-  | "pink"
-  | "teal"
-  | "indigo";
-export type PdfStyleId =
-  | "accent"
-  | "cards"
-  | "blueprint"
-  | "editorial"
-  | "ribbon";
-type BgStyleId =
-  | "default-grid"
-  | "triangle-prism"
-  | "lumen-beams"
-  | "orbit-mesh"
-  | "dot-matrix";
-type VisualBindingMode = "asconfig" | "aslist" | "random" | "consistent";
-type VisualPreset = {
-  color: ColorPalette;
-  bgStyle: BgStyleId;
-  pdfStyle: PdfStyleId;
-  font?: FontFamilyType;
-};
 
 interface ContactInfo {
   linkedin: string;
@@ -64,7 +35,6 @@ export interface JobSwitcherProps {
 }
 type NamePart = keyof Name;
 type NameRenderSegment = { text: string; highlighted: boolean };
-type ThemeOverride = { color?: ColorPalette; font?: FontFamilyType };
 
 const profileOrder: readonly JobType[] = [
   "SWE",
@@ -72,131 +42,10 @@ const profileOrder: readonly JobType[] = [
   "AIMR",
   "NONE",
 ];
-const colorList: readonly ColorPalette[] = [
-  "red",
-  "indigo",
-  "green",
-  "purple",
-  "teal",
-  "blue",
-  "orange",
-  "pink",
-];
-const bgStyleList: readonly BgStyleId[] = [
-  "default-grid",
-  "triangle-prism",
-  "lumen-beams",
-  "orbit-mesh",
-  "dot-matrix",
-];
-const pdfStyleList: readonly PdfStyleId[] = [
-  "accent",
-  "cards",
-  "blueprint",
-  "editorial",
-  "ribbon",
-];
 
-const visualConsistentCache: {
-  color: Map<JobType, ColorPalette>;
-  bgStyle: Map<JobType, BgStyleId>;
-  pdfStyle: Map<JobType, PdfStyleId>;
-} = { color: new Map(), bgStyle: new Map(), pdfStyle: new Map() };
-const visualBinding = {
-  colorMode: "asconfig" as VisualBindingMode,
-  bgStyleMode: "asconfig" as VisualBindingMode,
-  pdfStyleMode: "asconfig" as VisualBindingMode,
-} as const;
-const visualPresetDefaults = {
-  color: "red" as ColorPalette,
-  bgStyle: "default-grid" as BgStyleId,
-  pdfStyle: "ribbon" as PdfStyleId,
-};
-const visualThemeDefaults: Required<VisualPreset> = {
-  ...visualPresetDefaults,
-  font: "monospace",
-};
-
-const visualThemeByJob: Record<JobType, VisualPreset> = {
-  SWE: {
-    color: "red",
-    bgStyle: "orbit-mesh",
-    pdfStyle: "editorial",
-    font: "monospace",
-  },
-  SRE: {
-    color: "purple",
-    bgStyle: "triangle-prism",
-    pdfStyle: "cards",
-    font: "monospace",
-  },
-  AIMR: {
-    color: "indigo",
-    bgStyle: "default-grid",
-    pdfStyle: "blueprint",
-    font: "monospace",
-  },
-  NONE: {
-    color: "teal",
-    bgStyle: "dot-matrix",
-    pdfStyle: "ribbon",
-    font: "monospace",
-  },
-};
-
-const visualThemeLanguageOverrides: Partial<
-  Record<LanguageType, Partial<Record<JobType, Partial<VisualPreset>>>>
-> = {
-  zh: {
-    SWE: { font: "songti" },
-    SRE: { font: "songti" },
-    AIMR: { font: "songti" },
-    NONE: { font: "songti" },
-  },
-};
-
-const fontFamilies: Record<
-  FontFamilyType,
-  { name: string; fontStack: string[] }
-> = {
-  monospace: {
-    name: "Monospace",
-    fontStack: [
-      "JetBrains Mono",
-      "Fira Code",
-      "ui-monospace",
-      "SFMono-Regular",
-      "Menlo",
-      "Monaco",
-      "Consolas",
-      "Liberation Mono",
-      "Courier New",
-      "monospace",
-    ],
-  },
-  songti: {
-    name: "Songti",
-    fontStack: [
-      "Songti SC",
-      "SimSun",
-      "NSimSun",
-      "STSong",
-      "PMingLiU",
-      "serif",
-    ],
-  },
-};
-
-const colorPalettes: Record<ColorPalette, { light: string; dark: string }> = {
-  blue: { light: "#1e40af", dark: "#60a5fa" },
-  red: { light: "#dc2626", dark: "#fca5a5" },
-  purple: { light: "#7e22ce", dark: "#d8b4fe" },
-  green: { light: "#059669", dark: "#6ee7b7" },
-  orange: { light: "#ea580c", dark: "#fdba74" },
-  pink: { light: "#db2777", dark: "#f9a8d4" },
-  teal: { light: "#0d9488", dark: "#5eead4" },
-  indigo: { light: "#4338ca", dark: "#a5b4fc" },
-};
+export function getColor() {
+  return { light: "#dc2626", dark: "#fca5a5" };
+}
 
 const localizedSectionData = {
   summary: { en: summaryEn, zh: summaryZh },
@@ -209,136 +58,6 @@ const localizedSectionData = {
   education: { en: educationEn, zh: educationZh },
 } as const;
 
-function getVisualPreset(
-  profile: JobType,
-  language?: LanguageType,
-): Required<VisualPreset> {
-  const base = visualThemeByJob[profile] ?? visualThemeDefaults;
-  const o = language
-    ? visualThemeLanguageOverrides[language]?.[profile]
-    : undefined;
-  return {
-    color: o?.color ?? base.color,
-    bgStyle: o?.bgStyle ?? base.bgStyle,
-    pdfStyle: o?.pdfStyle ?? base.pdfStyle,
-    font: (o?.font ?? base.font) as FontFamilyType,
-  };
-}
-
-function getProfileIndex(profile: JobType): number {
-  const index = profileOrder.indexOf(profile);
-  return index === -1 ? 0 : index;
-}
-function getRandomItem<T>(list: readonly T[], fallback: T): T {
-  return list.length === 0
-    ? fallback
-    : (list[Math.floor(Math.random() * list.length)] ?? fallback);
-}
-function getConsistentItem<T>(
-  cache: Map<JobType, T>,
-  profile: JobType,
-  list: readonly T[],
-  fallback: T,
-): T {
-  const cached = cache.get(profile);
-  if (cached) return cached;
-  const next = getRandomItem(list, fallback);
-  cache.set(profile, next);
-  return next;
-}
-
-export function resolveVisualValue(kind: "color", mode: VisualBindingMode, profile: JobType, language?: LanguageType): ColorPalette;
-export function resolveVisualValue(kind: "bgStyle", mode: VisualBindingMode, profile: JobType, language?: LanguageType): BgStyleId;
-export function resolveVisualValue(kind: "pdfStyle", mode: VisualBindingMode, profile: JobType, language?: LanguageType): PdfStyleId;
-export function resolveVisualValue(
-  kind: "color" | "bgStyle" | "pdfStyle",
-  mode: VisualBindingMode,
-  profile: JobType,
-  language?: LanguageType,
-): ColorPalette | BgStyleId | PdfStyleId {
-  const preset = getVisualPreset(profile, language);
-
-  const fallbackByKind = {
-    color: visualPresetDefaults.color,
-    bgStyle: visualPresetDefaults.bgStyle,
-    pdfStyle: visualPresetDefaults.pdfStyle,
-  } as const;
-
-  const listByKind = {
-    color: colorList,
-    bgStyle: bgStyleList,
-    pdfStyle: pdfStyleList,
-  } as const;
-
-  const configValueByKind = {
-    color: (preset.color ?? visualThemeDefaults.color) as ColorPalette,
-    bgStyle: (preset.bgStyle ?? visualThemeDefaults.bgStyle) as BgStyleId,
-    pdfStyle: (preset.pdfStyle ?? visualThemeDefaults.pdfStyle) as PdfStyleId,
-  } as const;
-
-  const fallback = fallbackByKind[kind];
-  const list = listByKind[kind];
-
-  if (mode === "asconfig") {
-    if (kind === "color") return (configValueByKind.color ?? fallback) as ColorPalette;
-    if (kind === "bgStyle") return (configValueByKind.bgStyle ?? fallback) as BgStyleId;
-    return (configValueByKind.pdfStyle ?? fallback) as PdfStyleId;
-  }
-
-  if (mode === "aslist") {
-    const index = getProfileIndex(profile) % list.length;
-    if (kind === "color") return (list[index] ?? fallback) as ColorPalette;
-    if (kind === "bgStyle") return (list[index] ?? fallback) as BgStyleId;
-    return (list[index] ?? fallback) as PdfStyleId;
-  }
-
-  if (mode === "random") {
-    const val = getRandomItem(list, fallback);
-    if (kind === "color") return val as ColorPalette;
-    if (kind === "bgStyle") return val as BgStyleId;
-    return val as PdfStyleId;
-  }
-
-  const cache = visualConsistentCache[kind as keyof typeof visualConsistentCache] as Map<JobType, unknown>;
-  const result = getConsistentItem(cache as Map<JobType, any>, profile, list, fallback);
-  if (kind === "color") return result as ColorPalette;
-  if (kind === "bgStyle") return result as BgStyleId;
-  return result as PdfStyleId;
-}
-
-function resolveTheme(
-  profile: JobType,
-  language: LanguageType,
-): Required<ThemeOverride> {
-  const preset = getVisualPreset(profile, language);
-  return {
-    color: resolveVisualValue(
-      "color",
-      visualBinding.colorMode,
-      profile,
-      language,
-    ),
-    font: preset.font,
-  };
-}
-
-export function getColor(profile: JobType, language: LanguageType) {
-  const { color } = resolveTheme(profile, language);
-  return colorPalettes[color];
-}
-export function getFont(profile: JobType, language: LanguageType) {
-  const { font } = resolveTheme(profile, language);
-  return fontFamilies[font];
-}
-export function getPdfStyle(profile: JobType): PdfStyleId {
-  return resolveVisualValue("pdfStyle", visualBinding.pdfStyleMode, profile);
-}
-export function getBgStyleBindingMode(): VisualBindingMode {
-  return visualBinding.bgStyleMode;
-}
-export function getBgStyle(profile: JobType): BgStyleId {
-  return resolveVisualValue("bgStyle", visualBinding.bgStyleMode, profile);
-}
 export function cn(...classNames: ClassValue[]): string {
   return twMerge(clsx(classNames));
 }

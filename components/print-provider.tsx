@@ -4,10 +4,7 @@ import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import React from "react";
 import { createContext } from "react";
-import { useJobType } from "@/components/job/job-type-provider";
-import { LanguageContext } from "@/components/lang/language-provider";
-import { getColor, getFont } from "@/content/config";
-import { usePdfStyle } from "@/app/pdf-styles/pdf-style-provider";
+import { getColor } from "@/content/config";
 import '@/lib/pagination';
 
 type PrintContext = {
@@ -25,11 +22,7 @@ export function PrintProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const { language } = React.useContext(LanguageContext);
-  const { jobType } = useJobType();
-  const { styleId, style } = usePdfStyle();
-  const fontStack = getFont(jobType, language).fontStack.join(", ");
-  const colorSet = getColor(jobType, language);
+  const colorSet = getColor();
   const componentRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
     onBeforePrint: () => {
@@ -48,14 +41,14 @@ export function PrintProvider({
 
       const targetDoc = iframe?.contentDocument;
       if (targetDoc) {
-        targetDoc.documentElement.style.setProperty("--font-family", fontStack);
-        targetDoc.body?.style.setProperty("font-family", fontStack);
+        targetDoc.documentElement.style.setProperty("--font-family", "LXGWWenKaiTC, system-ui, sans-serif");
+        targetDoc.body?.style.setProperty("font-family", "LXGWWenKaiTC, system-ui, sans-serif");
 
         // PDF export always uses light theme colors for consistent output.
         targetDoc.documentElement.style.setProperty("--header-color", colorSet.light);
-        targetDoc.documentElement.setAttribute("data-pdf-style", styleId);
-        targetDoc.documentElement.style.setProperty("--pdf-font-scale", `${style.fontScale}`);
-        targetDoc.documentElement.style.setProperty("--pdf-section-gap", style.sectionGap);
+        targetDoc.documentElement.setAttribute("data-pdf-style", "cards");
+        targetDoc.documentElement.style.setProperty("--pdf-font-scale", "1");
+        targetDoc.documentElement.style.setProperty("--pdf-section-gap", "0.5rem");
 
         // Call shared pagination implementation from lib
         try {
@@ -81,12 +74,12 @@ export function PrintProvider({
         size: 210mm 297mm;
       }
       :root { 
-        --font-family: ${fontStack}; 
+        --font-family: "LXGWWenKaiTC", system-ui, sans-serif;
         --header-color: ${colorSet.light};
-        --pdf-font-scale: ${style.fontScale};
-        --pdf-section-gap: ${style.sectionGap};
+        --pdf-font-scale: 1;
+        --pdf-section-gap: 0.5rem;
       }
-      html, body { font-family: ${fontStack}; margin: 0; }
+      html, body { font-family: "LXGWWenKaiTC", system-ui, sans-serif; margin: 0; }
     `,
   });
 
@@ -103,10 +96,9 @@ export function PDFResumeContainer({
   children: React.ReactNode;
 }) {
   const { componentRef } = usePrint();
-  const { styleId } = usePdfStyle();
 
   return (
-    <div ref={componentRef} className="pdf-resume-theme" data-pdf-style={styleId}>
+    <div ref={componentRef} className="pdf-resume-theme" data-pdf-style="cards">
       {children}
     </div>
   );

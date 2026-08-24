@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   Font Face
+   ========================================== */
+
+@font-face {
+  font-family: "LXGWWenKaiTC";
+  src: url("/fonts/LXGWWenKaiTC-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================
+   Tailwind Component Layer
+   ========================================== */
+
+@layer components {
+  .bg-page-container {
+    @apply w-full ring-1 ring-stone-500/50;
+    background-color: var(--color-page);
+  }
+}

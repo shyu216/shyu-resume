@@ -1,0 +1,40 @@
+/* ==========================================
+   Print / PDF Media Queries
+   ========================================== */
+
+@media print {
+  /* Ensure header/footer use consistent font */
+  header, header *, footer, footer * {
+    font-family: var(--font-family) !important;
+  }
+
+  /* Prevent entry/page breaks */
+  .pdf-resume-theme .resume-entry {
+    break-inside: avoid-page !important;
+    page-break-inside: avoid;
+  }
+
+  .pdf-resume-theme .resume-entry li {
+    break-inside: avoid-page !important;
+    page-break-inside: avoid;
+  }
+
+  /* Avoid orphans */
+  .pdf-resume-theme p,
+  .pdf-resume-theme li {
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Prevent page break after title */
+  .pdf-resume-theme .resume-section-title {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  /* Keep first entry with title */
+  .pdf-resume-theme .resume-section .resume-entry:first-of-type {
+    break-before: avoid-page;
+    page-break-before: avoid;
+  }
+}

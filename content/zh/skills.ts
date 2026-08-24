@@ -47,7 +47,7 @@ export const skills: SkillCategory[] = [
     id: "languages",
     name: "语言",
     skills: [
-      "英语 (流利)", "普通话 (母语)", "粤语 (流利)"
+      "英语", "普通话", "广东话"
     ]
   }
 ];

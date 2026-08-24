@@ -12,10 +12,8 @@ export const projects: Project[] = [
     techStack: "Python, Flask, YOLO, OpenCV",
     jobTypes: ["AIMR", "SRE"],
     bullets: [
-      "Collaborated with 4DMedical stakeholders in biweekly meetings to deliver real-time breath tracking system for XV Scanner workflow automation",
-      "Trained **YOLOv11n** for depth map human detection, enhanced breath pattern signal quality (correlation ↑0.5, MSE ↓59.1%)",
-      "Rebuilt MATLAB EVM algorithm in Python (**OpenCV/NumPy**) to magnify subtle respiratory motions",
-      "Built real-time breath tracking pipeline; optimized **Flask** demo (1000ms→150ms rendering)"
+      "Trained YOLOv11n for depth map human detection, enhancing breath pattern signal quality (correlation ↑0.5, MSE ↓59.1%)",
+      "Built real-time breath tracking pipeline; optimized Flask demo (1000ms→150ms rendering)",
     ],
   },
   {
@@ -28,11 +26,8 @@ export const projects: Project[] = [
     techStack: "Unity, Meta Quest 3, C#",
     jobTypes: ["AIMR", "SWE"],
     bullets: [
-      "Co-authored (2nd) **SIGGRAPH Asia XR** submission; implemented codebase and contributed to paper writing",
-      "Led end-to-end delivery of MR biosensing prototype from supervisor concept to functional demo; solo-built **Unity** project (6 scenes, 40+ scripts) with 3D/UI integration",
-      "Reproduced EVM via **ComputeShader**; deployed on Meta Quest 3",
-      "Benchmarked **YOLOv11n** on Quest 3; optimized **ONNX/Sentis** quantization",
-      "Validated **rPPG** (HR MAE 3.75 BPM, BR MAE 2.45 BPM) on UBFC-rPPG dataset",
+      "Co-authored SIGGRAPH Asia XR submission; implemented codebase and contributed to paper writing",
+      "Validated rPPG (HR MAE 3.75 BPM, BR MAE 2.45 BPM) on UBFC-rPPG dataset",
     ],
   },
   {
@@ -45,8 +40,8 @@ export const projects: Project[] = [
     techStack: "Next.js, Tailwind",
     jobTypes: ["SRE"],
     bullets: [
-      "Built a **Next.js** i18n resume generator with tri-language (ZH/EN/HK) switching and **A4 PDF export** (hyperlinks included)",
-      "Deployed to **GitHub Pages** with one-click save/print; wrote comprehensive README for developer onboarding",
+      "Built a Next.js i18n resume generator with tri-language (ZH/EN/HK) switching and A4 PDF export (hyperlinks included)",
+      "Deployed to GitHub Pages with one-click save/print; wrote comprehensive README for developer onboarding",
     ],
   },
   {
@@ -59,9 +54,8 @@ export const projects: Project[] = [
     techStack: "React Native, Google Maps API",
     jobTypes: ["SWE"],
     bullets: [
-      "Built a **React Native** eco-habit app with tasks, leaderboards, and activity reminders",
-      "Implemented sensor fusion integrating gyroscope and GPS data with **Google Maps API** to ship a \"sedentary alert + park recommendation\" challenge prototype",
-      "Owned routing and project skeleton; shipped the APK",
+      "Built a React Native eco-habit app with tasks, leaderboards, and activity reminders",
+      "Built sensor fusion (gyro + GPS + Maps API) shipping a \"sedentary alert + park recommendation\" prototype",
     ],
   },
   // {
@@ -87,9 +81,7 @@ export const projects: Project[] = [
     techStack: "PyTorch, Open3D, OpenPCDet, SLURM",
     jobTypes: ["AIMR"],
     bullets: [
-      "Reproduced 3D object detection on **OpenPCDet**, generating vehicle/pedestrian/cyclist boxes on **KITTI**; improved pedestrian AP by 13.4% and car AP by 5.7% over baseline",
-      "Conducted comprehensive literature review and comparative analysis of state-of-the-art methods",
-      "Trained on a **SLURM** cluster; used **Open3D** for point-cloud visualization and experiment analysis",
+      "Reproduced 3D detection on OpenPCDet (KITTI); ↑pedestrian AP 13.4%, ↑car AP 5.7%",
       "Completed the bachelor thesis independently, consolidating methods and results",
     ],
   },
@@ -103,7 +95,7 @@ export const projects: Project[] = [
     techStack: "Go, Raft",
     jobTypes: ["SRE"],
     bullets: [
-      "Implemented **Raft** consensus algorithm from the original paper; coded leader election and log replication logic in **Go**",
+      "Implemented Raft consensus algorithm from the original paper; coded leader election and log replication logic in Go",
       "Delivered a stable distributed KV store with automatic leader election and data consistency guarantees; passed all tests",
     ],
   },
@@ -130,11 +122,8 @@ export const projects: Project[] = [
     techStack: "SQL, Hadoop, Python",
     jobTypes: ["SWE"],
     bullets: [
-      "Designed **Hadoop/MapReduce** pipelines for parallel **Dijkstra**, **PageRank**, **K-Means**; optimized big-data processing flow",
-      "Designed a 5-table PK/FK schema and 8 complex **SQL** queries for league/team/sponsor analytics",
-      "Built **PostGIS** spatial SQL for distance, routing, single-point elevation, and area slope statistics",
-      "Built Splendor planning agents modeled with **MDP** and reward functions; achieved 27/40 wins against TA’s benchmark (ranked 4th in class)",
-      "Trained a climate claim fact-checking system with **Doc2Vec/BiLSTM**; processed 1.2M+ evidence sentences with 64.9% classification accuracy",
+      "Designed Hadoop/MapReduce pipelines for parallel Dijkstra, PageRank, K-Means; optimized big-data processing flow",
+      "Built Splendor planning agents modeled with MDP and reward functions; achieved 27/40 wins against TA's benchmark (ranked 4th in class)",
     ],
   },
 ];

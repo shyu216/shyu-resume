@@ -12,10 +12,8 @@ export const projects: Project[] = [
     techStack: "Python, Flask, YOLO, OpenCV",
     jobTypes: ["AIMR", "SRE"],
     bullets: [
-      "与4DMedical利益相关者定期双周会议协作，为XV Scanner工作流自动化交付实时呼吸追踪系统",
-      "训练**YOLOv11n**进行深度图人体检测，优化呼吸模式信号质量（相关性↑0.5，MSE↓59.1%）",
-      "将MATLAB EVM算法重构为Python实现（**OpenCV/NumPy**），放大细微呼吸运动",
-      "构建实时呼吸追踪流水线；优化**Flask**演示性能（渲染时间从1000ms降至150ms）",
+      "训练YOLOv11n进行深度图人体检测，优化呼吸模式信号质量（相关性↑0.5，MSE↓59.1%）",
+      "构建实时呼吸追踪流水线；优化Flask演示性能（渲染时间从1000ms降至150ms）",
     ],
   },
   {
@@ -28,11 +26,8 @@ export const projects: Project[] = [
     techStack: "Unity, Meta Quest 3, C#",
     jobTypes: ["AIMR", "SWE"],
     bullets: [
-      "合著（第二作者）**SIGGRAPH Asia XR**论文投稿；负责代码实现并参与论文撰写",
-      "主导MR生物传感原型从导师概念到功能演示的端到端交付；独立构建**Unity**项目（6个场景，40+脚本），完成3D与UI集成",
-      "通过**ComputeShader**复现EVM算法；部署至Meta Quest 3",
-      "在Quest 3上基准测试**YOLOv11n**；优化**ONNX/Sentis**量化",
-      "在UBFC-rPPG数据集上验证**rPPG**（心率MAE 3.75 BPM，呼吸率MAE 2.45 BPM）",
+      "参与SIGGRAPH Asia XR论文投稿；负责代码实现并参与论文撰写",
+      "在UBFC-rPPG数据集上验证rPPG（心率MAE 3.75 BPM，呼吸率MAE 2.45 BPM）",
     ],
   },
   {
@@ -45,8 +40,8 @@ export const projects: Project[] = [
     techStack: "Next.js, Tailwind",
     jobTypes: ["SRE"],
     bullets: [
-      "构建基于**Next.js**的i18n简历生成器，支持中/英/港三语切换及**A4 PDF导出**（含超链接）",
-      "部署至**GitHub Pages**，提供一键保存/打印功能；撰写完整README文档便于开发者上手",
+      "构建基于Next.js的i18n简历生成器，支持中/英/港三语切换及A4 PDF导出（含超链接）",
+      "部署至GitHub Pages，提供一键保存/打印功能；撰写完整README文档便于开发者上手",
     ],
   },
   {
@@ -59,9 +54,8 @@ export const projects: Project[] = [
     techStack: "React Native, Google Maps API",
     jobTypes: ["SWE"],
     bullets: [
-      "构建**React Native**环保习惯应用，包含任务系统、排行榜和活动提醒功能",
-      "实现传感器融合，集成陀螺仪和GPS数据与**Google Maps API**，交付\"久坐提醒+公园推荐\"挑战原型",
-      "负责路由设计和项目骨架搭建；完成APK打包发布",
+      "构建React Native环保习惯应用，包含任务系统、排行榜和活动提醒功能",
+      "实现传感器融合（陀螺仪 + GPS + Maps API），交付\"久坐提醒+公园推荐\"原型",
     ],
   },
   // {
@@ -87,9 +81,7 @@ export const projects: Project[] = [
     techStack: "PyTorch, Open3D, OpenPCDet, SLURM",
     jobTypes: ["AIMR"],
     bullets: [
-      "基于**OpenPCDet**复现3D目标检测，在**KITTI**数据集上生成车辆/行人/自行车检测框；提升行人检测AP精度13.4%",
-      "开展全面的文献综述和对比分析，研究最先进方法",
-      "在**SLURM**集群上训练模型；使用**Open3D**进行点云可视化和实验分析",
+      "基于OpenPCDet复现3D检测（KITTI）；↑行人AP 13.4%，↑车辆AP 5.7%",
       "独立完成本科毕业论文，系统整合研究方法和实验结果",
     ],
   },
@@ -103,7 +95,7 @@ export const projects: Project[] = [
     techStack: "Go, Raft",
     jobTypes: ["SRE"],
     bullets: [
-      "研读并实现**Raft**共识算法原始论文；用**Go**编写领导者选举和日志复制逻辑",
+      "研读并实现Raft共识算法原始论文；用Go编写领导者选举和日志复制逻辑",
       "交付稳定的分布式KV存储，支持自动领导者选举和数据一致性保证；通过所有测试用例",
     ],
   },
@@ -130,11 +122,8 @@ export const projects: Project[] = [
     techStack: "SQL, Hadoop, Python",
     jobTypes: ["SWE"],
     bullets: [
-      "设计**Hadoop/MapReduce**流水线并行实现**Dijkstra**、**PageRank**、**K-Means**；优化大数据处理流程",
-      "设计5表主键/外键架构和8个复杂**SQL**查询，用于联赛/球队/赞助商分析",
-      "构建**PostGIS**空间SQL实现距离计算、路径规划、单点高程和区域坡度统计",
-      "构建Splendor规划智能体，使用**MDP**和奖励函数建模；以27/40胜率击败TA基准（班级排名第4）",
-      "训练事实核查系统，采用**Doc2Vec/BiLSTM**；处理120万+证据句子，分类准确率达64.9%",
+      "设计Hadoop/MapReduce流水线并行实现Dijkstra、PageRank、K-Means；优化大数据处理流程",
+      "构建Splendor规划智能体，使用MDP和奖励函数建模；以27/40胜率击败TA基准（班级排名第4）",
     ],
   },
 ];

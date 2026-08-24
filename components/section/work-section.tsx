@@ -34,12 +34,12 @@ export default function WorkSection({ usage }: Props) {
             head1={
               e.companyLink ? (
                 <LabelWithLink
-                  content={<LabelWithGraphic image={e.companyImage} content={e.company} />}
+                  content={<LabelWithGraphic image={e.companyImage} content={e.company} usage={usage} />}
                   link={e.companyLink}
                   usage={usage}
                 />
               ) : (
-                <LabelWithGraphic image={e.companyImage} content={e.company} />
+                <LabelWithGraphic image={e.companyImage} content={e.company} usage={usage} />
               )
             }
             // head3={<LabelWithGraphic icon={Icons.Stack} content={e.techStack} />}

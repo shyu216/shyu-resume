@@ -4,7 +4,6 @@ import React, { useContext, useRef, useEffect, useState } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { cn } from "@/content/config";
-import { getFont } from "@/content/config";
 import { copy } from "@/content/copy";
 import { jobOptions, type JobType } from "@/content/copy";
 import { type JobSwitcherProps, getJobTooltip } from "@/content/config";
@@ -14,7 +13,6 @@ export { JobType, JobSwitcherProps };
 export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const { language } = useContext(LanguageContext);
   const uiCopy = copy[language];
-  const fontStack = getFont(jobType, language).fontStack.join(", ");
   const [barPosition, setBarPosition] = useState(0);
   const [barWidth, setBarWidth] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -81,16 +79,12 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
       clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
     };
-  }, [jobType, fontStack, isNoneActive]);
+  }, [jobType, isNoneActive]);
 
   return (
     <div className="relative inline-block">
       <div
-        className="flex rounded-full p-1 overflow-hidden backdrop-blur-sm"
-        style={{
-          backgroundColor: 'color-mix(in srgb, var(--color-card-default) 50%, transparent)',
-          boxShadow: 'var(--shadow-soft)'
-        }}
+        className="flex rounded-full p-1 overflow-hidden backdrop-blur-sm shadow-soft bg-card-mix"
       >
         {/* 背景滑动条 */}
         <div
@@ -134,7 +128,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
             <button
               ref={el => buttonRefs.current[index] = el}
               onClick={() => onJobTypeChange(option.value as JobType)}
-              className="relative z-10 px-4 py-1 rounded-full transition-all duration-200 font-medium hover:text-[var(--color-text-primary)]"
+              className="relative z-10 px-4 py-1 rounded-full transition-all duration-200 font-medium hover:text-primary"
               style={{
                 color: jobType === option.value ? 'var(--color-text-secondary)' : 'var(--color-text-primary)',
               }}
@@ -162,7 +156,7 @@ export function JobSwitcher({ jobType, onJobTypeChange }: JobSwitcherProps) {
                 onJobTypeChange('NONE');
               }
             }}
-            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-[var(--color-text-primary)]"
+            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-primary"
             style={{
               color: isNoneActive ? 'var(--color-text-primary)' : 'var(--color-text-primary)',
               minWidth: '24px',

@@ -4,7 +4,6 @@ import { useContext, useRef, useEffect, useState } from "react";
 import { ElegantTooltip } from "@/components/ui/tooltip";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { cn } from "@/content/config";
-import { getFont } from "@/content/config";
 import { copy } from "@/content/copy";
 import { jobOptions, type JobType } from "@/content/copy";
 import { type JobSwitcherProps, getJobTooltip } from "@/content/config";
@@ -14,7 +13,6 @@ export { JobType, JobSwitcherProps };
 export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps) {
   const { language } = useContext(LanguageContext);
   const uiCopy = copy[language];
-  const fontStack = getFont(jobType, language).fontStack.join(", ");
   const [barPosition, setBarPosition] = useState(0);
   const [barWidth, setBarWidth] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -100,7 +98,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
       clearTimeout(fallbackTimer);
       window.removeEventListener('resize', updateBarPosition);
     };
-  }, [jobType, fontStack, isNoneActive, activeIndex]);
+  }, [jobType, isNoneActive, activeIndex]);
 
   const handlePrevious = () => {
     const currentIndex = jobOptions.findIndex(option => option.value === jobType);
@@ -117,11 +115,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
   return (
     <div className="relative inline-block" ref={containerRef}>
       <div
-        className="flex rounded-full p-1 overflow-hidden backdrop-blur-sm items-center relative"
-        style={{
-          backgroundColor: 'color-mix(in srgb, var(--color-card-default) 50%, transparent)',
-          boxShadow: 'var(--shadow-soft)'
-        }}
+        className="flex rounded-full p-1 overflow-hidden backdrop-blur-sm items-center relative shadow-soft bg-card-mix"
       >
         {/* 背景滑动条 */}
         <div
@@ -166,11 +160,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
         >
           <button
             onClick={handlePrevious}
-            className="relative z-10 w-6 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:text-[var(--color-text-primary)]"
-            style={{
-              color: 'var(--color-text-primary)',
-              flexShrink: 0
-            }}
+            className="relative z-10 w-6 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:text-primary text-primary shrink-0"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" style={{ pointerEvents: 'none' }}>
               <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -180,7 +170,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
 
         {/* 当前选中的选项 */}
         <div className="flex-1 min-w-0 px-2">
-          <div className="relative overflow-hidden" style={{ width: '96px' }}>
+          <div className="relative overflow-hidden w-24">
             {!isNoneActive && (
               <ElegantTooltip
                 content={getJobTooltip(jobOptions[activeIndex], language)}
@@ -188,10 +178,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
               >
                 <div
                   ref={el => { buttonRefs.current[activeIndex] = el as HTMLButtonElement | null; }}
-                  className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap overflow-hidden"
-                  style={{
-                    color: 'var(--color-text-primary)'
-                  }}
+                  className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap overflow-hidden text-primary"
                 >
                   <span
                     className="absolute left-0 top-0 w-full h-full flex items-center justify-center"
@@ -223,10 +210,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
             )}
             {isNoneActive && (
               <button
-                className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap"
-                style={{
-                  color: 'var(--color-text-primary)'
-                }}
+                className="relative z-10 w-full h-8 rounded-full font-medium text-center whitespace-nowrap text-primary"
               >
                 {jobOptions.find(opt => opt.value === previousJobType)?.label}
               </button>
@@ -241,11 +225,7 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
         >
           <button
             onClick={handleNext}
-            className="relative z-10 w-6 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:text-[var(--color-text-primary)]"
-            style={{
-              color: 'var(--color-text-primary)',
-              flexShrink: 0
-            }}
+            className="relative z-10 w-6 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:text-primary text-primary shrink-0"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" style={{ pointerEvents: 'none' }}>
               <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
@@ -267,13 +247,9 @@ export function JobSwitcherMobile({ jobType, onJobTypeChange }: JobSwitcherProps
                 onJobTypeChange('NONE');
               }
             }}
-            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-[var(--color-text-primary)]"
+            className="relative z-10 px-3 py-1 rounded-full transition-all duration-200 font-medium ml-1 hover:text-primary text-primary flex items-center justify-center"
             style={{
-              color: isNoneActive ? 'var(--color-text-primary)' : 'var(--color-text-primary)',
-              minWidth: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+              minWidth: '24px'
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">

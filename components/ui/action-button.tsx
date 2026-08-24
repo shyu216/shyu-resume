@@ -36,25 +36,17 @@ export default function ActionButton({ className, usage }: Props) {
       <button
         type="button"
         aria-label={uiCopy.actionButton.ariaLabel}
+        className={cn(baseButtonClass, "font-semibold btn-gradient")}
         onClick={handlePrint}
-        className={cn(baseButtonClass, "font-semibold")}
-        style={{
-          background: 'linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))',
-          color: 'var(--color-text-secondary)',
-        }}
       >
         {text}
       </button>
     </ElegantTooltip>
   ) : (
     <HoverLink
-      className={cn(baseButtonClass, "font-semibold")}
+      className={cn(baseButtonClass, "font-semibold btn-gradient text-primary")}
       href="https://shyu216.github.io/shyu-resume/"
       aria-label={uiCopy.actionButton.ariaLabel}
-      style={{
-        background: 'linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))',
-        color: 'var(--color-text-primary)',
-      }}
       tooltipContent={tooltip}
     >
       {text}

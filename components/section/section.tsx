@@ -10,14 +10,12 @@ interface SectionProps {
 }
 
 export default function Section({ title, children, usage }: SectionProps) {
-  const titleSize = usage === "live" ? "text-md" : "text-[16px]";
+  const titleSize = usage === "live" ? "text-md" : "text-[14px]";
 
   return (
     <section className="resume-section">
       <h3
-        className={cn(titleSize, "resume-section-title font-bold")}
-        style={{ color: 'var(--header-color)' }}
-      >
+        className={cn(titleSize, "resume-section-title font-bold mb-1 text-accent")}>
         <span className="resume-section-title-text">{title}</span>
       </h3>
       {children}

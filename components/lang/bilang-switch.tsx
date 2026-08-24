@@ -28,20 +28,16 @@ export function BilangSwitch() {
         type="button"
         aria-label={tooltipContent}
         className={cn(
-          "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 backdrop-blur transition-all duration-200 hover:scale-105"
+          "group rounded-full bg-gradient-to-b px-3 py-2 ring-1 backdrop-blur transition-all duration-200 hover:scale-105 shadow-soft"
         )}
         style={{
-          boxShadow: 'var(--shadow-soft)',
           borderColor: 'var(--color-border-default)',
           background: `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,
         }}
         onClick={toggleLanguage}
       >
         <span
-          className="font-bold transition-all duration-200 group-hover:scale-110 inline-block"
-          style={{
-            color: 'var(--color-text-primary)',
-          }}
+          className="font-bold transition-all duration-200 group-hover:scale-110 inline-block text-primary"
         >
           {displayLabel}
         </span>

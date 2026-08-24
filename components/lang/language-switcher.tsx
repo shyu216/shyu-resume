@@ -32,12 +32,10 @@ export function LanguageSwitcher() {
               type="button"
               aria-label={`Switch to ${lang.name}`}
               className={cn(
-                "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition-all duration-200 backdrop-blur",
+                "rounded-full px-3 py-2 bg-gradient-to-b font-bold ring-1 transition-all duration-200 backdrop-blur shadow-soft border-default",
                 !shouldScale && "scale-90"
               )}
               style={{
-                boxShadow: 'var(--shadow-soft)',
-                borderColor: 'var(--color-border-default)',
                 background: isSelected
                   ? `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`
                   : `linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 80%, transparent), color-mix(in srgb, var(--color-surface) 95%, transparent))`,

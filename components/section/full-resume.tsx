@@ -11,7 +11,7 @@ import ProjectSection from "@/components/section/project-section";
 import EducationSection from "@/components/section/education-section";
 import { LanguageContext } from "@/components/lang/language-provider";
 import { useJobType } from "@/components/job/job-type-provider";
-import { getColor, getFont } from "@/content/config";
+import { getColor } from "@/content/config";
 import { useTheme } from "next-themes";
 
 type Props = {
@@ -35,8 +35,7 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
   const { language } = useContext(LanguageContext);
   const { jobType } = useJobType();
   const { resolvedTheme } = useTheme();
-  const fontStack = getFont(jobType, language).fontStack.join(", ");
-  const colorSet = getColor(jobType, language);
+  const colorSet = getColor();
   const headerColor = usage === "pdf" ? colorSet.light : colorSet[resolvedTheme === "dark" ? "dark" : "light"];
 
   const animatedComponents: AnimatedComponent[] = [
@@ -48,35 +47,13 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
 
   const resumeSections = (
     <>
-      {usage === "pdf" ? (
-        <HeaderSection usage={usage}>
-          <SummarySection usage={usage} />
-        </HeaderSection>
-      ) : (
-        <>
-          <div className="hidden md:block">
-            <Motion delay={0.1} className="w-full">
-              <HeaderSection usage={usage}>
-                <SummarySection usage={usage} />
-              </HeaderSection>
-            </Motion>
-          </div>
-
-          <div className="md:hidden">
-            <Motion delay={0.1} className="w-fit max-w-full">
-              <HeaderSection usage={usage} />
-            </Motion>
-            <Motion delay={0.2} className="w-full min-w-0">
-              <SummarySection usage={usage} />
-            </Motion>
-          </div>
-        </>
-      )}
+      <HeaderSection usage={usage} />
+      <SummarySection usage={usage} />
 
       {animatedComponents.map(
         ({ component: Component, props = { usage: "live" }, delay }, index) =>
           usage === "live" ? (
-            <Motion key={language + jobType + fontStack + headerColor + index} delay={delay}>
+            <Motion key={language + jobType + headerColor + index} delay={delay}>
               <Component {...props} />
             </Motion>
           ) : (
@@ -87,20 +64,33 @@ export const FullResume = React.forwardRef(({ usage }: Props, ref) => {
     </>
   );
 
-  const ResumeContent = () => (
-    <Container
-      className={`${usage === "pdf" ? "" : "mt-9 max-w-6xl mx-auto"} pdf-resume-root`}
-      disableGutter={usage === "pdf"}
-      ref={ref as React.RefObject<HTMLDivElement>}
-      style={{
-        fontFamily: fontStack,
-        "--font-family": fontStack,
-        "--header-color": headerColor,
-      } as React.CSSProperties}
-    >
-      {resumeSections}
-    </Container>
-  );
+  const ResumeContent = () => {
+    if (usage === "pdf") {
+      return (
+        <div
+          className="pdf-resume-root"
+          ref={ref as React.RefObject<HTMLDivElement>}
+          style={{
+            "--header-color": headerColor,
+          } as React.CSSProperties}
+        >
+          {resumeSections}
+        </div>
+      );
+    }
+
+    return (
+      <Container
+        className="mt-9 max-w-6xl mx-auto pdf-resume-root"
+        ref={ref as React.RefObject<HTMLDivElement>}
+        style={{
+          "--header-color": headerColor,
+        } as React.CSSProperties}
+      >
+        {resumeSections}
+      </Container>
+    );
+  };
 
   return <ResumeContent />;
 });

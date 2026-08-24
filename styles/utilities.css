@@ -1,0 +1,65 @@
+/* ==========================================
+   Utility Classes (extracted from inline styles)
+   ========================================== */
+
+/* Color utilities */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-accent {
+  color: var(--header-color);
+}
+
+.bg-card {
+  background-color: var(--color-card-default);
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.stroke-text {
+  stroke: var(--color-text-primary);
+}
+
+/* Gradient button */
+.btn-gradient {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--header-color) 90%, transparent),
+    color-mix(in srgb, var(--header-color) 70%, transparent)
+  );
+}
+
+/* Hover utilities */
+.hover\:text-primary:hover {
+  color: var(--color-text-primary);
+}
+
+/* Tooltip card */
+.tooltip-card {
+  background-color: var(--color-card-default);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+  box-shadow: var(--shadow-md);
+}
+
+/* Border default */
+.border-default {
+  border-color: var(--color-border-default);
+}
+
+/* Card mix background */
+.bg-card-mix {
+  background-color: color-mix(in srgb, var(--color-card-default) 50%, transparent);
+}
+
+/* PDF size utilities */
+.pdf-resume-theme .pdf-text-sm {
+  font-size: 11px;
+}
+
+.pdf-resume-theme .pdf-text-base {
+  font-size: 16px;
+}
