@@ -65,6 +65,7 @@ export default function RootLayout({
                 <div className="relative text-stone-700 dark:text-stone-300">
                   <Header />
                   <main>{children}</main>
+                  <div className="h-48 lg:h-0" /> {/* 移动端浮动面板占位，防止遮挡 footer */}
                   <FloatingActionButton />
                   <Footer />
                 </div>

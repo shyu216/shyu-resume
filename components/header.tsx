@@ -11,6 +11,7 @@ import { JobSwitcherWrapper } from "./job/job-switcher-wrapper";
 import { BilangSwitch } from "./lang/bilang-switch";
 import { getColor, siteConfig } from "@/content/config";
 import { useTheme } from "next-themes";
+import ActionButton from "./ui/action-button";
 
 export function Header() {
   const githubUsername = siteConfig.personal.contact.github.split('/').pop();
@@ -146,13 +147,18 @@ export function Header() {
             className="flex flex-wrap items-center gap-4 w-full"
           >
             {avatar}
-            {/* ml-auto 将 JobSwitcher 组推到右侧：
-                - 宽屏: [Avatar] ... [JobSwitcher][Bilang][Theme]
-                - 窄屏: flex-wrap 自然换行 */}
+            {/* ml-auto 将操作按钮组推到右侧：
+                - 桌面端(>=1024px): [Avatar] ... [JobSwitcher][Bilang][Theme][SavePDF]
+                - 移动端(<1024px): flex-wrap 自然换行，SavePDF 隐藏，由浮动面板替代 */}
             <div className="ml-auto flex items-center gap-4 flex-wrap">
-              <JobSwitcherWrapper useMobile={useMobileSwitcher} />
+              <div className="hidden lg:block">
+                <JobSwitcherWrapper useMobile={useMobileSwitcher} />
+              </div>
               <BilangSwitch />
               <ThemeSwitcher />
+              <div className="hidden lg:block">
+                <ActionButton />
+              </div>
             </div>
           </nav>
         </div>

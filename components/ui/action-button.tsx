@@ -16,7 +16,7 @@ export default function ActionButton() {
       <button
         type="button"
         aria-label={uiCopy.actionButton.ariaLabel}
-        className="group rounded-full bg-gradient-to-b px-3 py-2 ring-1 ring-default backdrop-blur transition-all duration-200 hover:scale-105 shadow-soft"
+        className="group rounded-xl bg-gradient-to-b px-3 py-2 ring-1 ring-default backdrop-blur transition-all duration-200 hover:scale-105 shadow-soft"
         onClick={handlePrint}
         style={{
           background: `linear-gradient(to bottom, color-mix(in srgb, var(--header-color) 90%, transparent), color-mix(in srgb, var(--header-color) 70%, transparent))`,

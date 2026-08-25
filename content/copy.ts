@@ -108,8 +108,8 @@ function buildJobOptionsMap(lang: LanguageType) {
   });
   // add NONE default
   map["NONE"] = {
-    label: lang === "en" ? "NONE" : "默认",
-    tooltip: lang === "en" ? "Default — Show all experiences" : "默认 — 显示所有经历",
+    label: lang === "en" ? "Any" : "不限",
+    tooltip: lang === "en" ? "Any — Show all experiences" : "不限 — 显示所有经历",
   };
   return map as Record<JobType, JobOptionCopy>;
 }
