@@ -100,15 +100,54 @@ export function PrintProvider({
         targetDoc.documentElement.setAttribute("data-pdf-style", "cards");
         targetDoc.documentElement.style.setProperty("--pdf-font-scale", "1");
         targetDoc.documentElement.style.setProperty("--pdf-section-gap", "0.5rem");
-      }
+        targetDoc.documentElement.style.setProperty("--pdf-section-padding", "0.08rem 0");
 
-      // 打印前输出 HTML 内容到控制台，便于调试
+        // ====== 验证：所有注入值是否已生效 ======
+        const html = targetDoc.documentElement;
+        const body = targetDoc.body;
+        console.log("=== PDF 注入变量验证 ===");
+        console.log("--font-lxgw:",              html.style.getPropertyValue('--font-lxgw'));
+        console.log("--font-family:",            html.style.getPropertyValue('--font-family'));
+        console.log("--header-color:",           html.style.getPropertyValue('--header-color'));
+        console.log("--pdf-font-scale:",         html.style.getPropertyValue('--pdf-font-scale'));
+        console.log("--pdf-section-gap:",        html.style.getPropertyValue('--pdf-section-gap'));
+        console.log("--pdf-section-padding:",    html.style.getPropertyValue('--pdf-section-padding'));
+        console.log("data-pdf-style:",           html.getAttribute('data-pdf-style'));
+        console.log("body font-family (computed):", getComputedStyle(body).fontFamily);
+        console.log("body font-size (computed):",   getComputedStyle(body).fontSize);
+        // 检查 @font-face 规则
+        let fontFaceCount = 0;
+        for (const sheet of targetDoc.styleSheets) {
+          try {
+            const rules = sheet.cssRules;
+            if (!rules) continue;
+            for (const rule of rules) {
+              if (rule instanceof CSSFontFaceRule) fontFaceCount++;
+            }
+          } catch (_) { /* skip cross-origin */ }
+        }
+        console.log("@font-face 规则数:", fontFaceCount);
+        // 检查字体加载状态
+        if (targetDoc.fonts) {
+          for (const f of targetDoc.fonts) {
+            console.log("  字体:", f.family, "status:", f.status);
+          }
+        }
 
-
-      const el = componentRef.current as HTMLElement | null;
-      if (el) {
-        console.log("这是打印的HTML内容，复制以下内容进行调试：");
-        console.log(el.innerHTML);
+        // 打印 iframe 的 <html> 结构（含注入的 inline style + <head> 中的 @font-face）
+        // 方便复制粘贴到本地 html 文件单独调试
+        console.log("=== iframe HTML 结构（可复制调试）===");
+        const htmlClone = html.cloneNode(true) as HTMLHtmlElement;
+        // 清理 body 内容，只保留结构骨架
+        const bodyClone = htmlClone.querySelector('body');
+        if (bodyClone) {
+          // 仅保留 body 上的 inline style，移除大量子内容
+          while (bodyClone.firstChild) bodyClone.removeChild(bodyClone.firstChild);
+          bodyClone.textContent = '...（内容省略）';
+        }
+        console.log(htmlClone.outerHTML);
+        console.log("=== iframe HTML 结构结束 ===");
+        // ====== 验证结束 ======
       }
     },
     onPrintError: (error) => console.log(error),
